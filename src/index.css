@@ -5,9 +5,440 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-repeat: no-repeat;
+ -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+  background-image: url(./images/light.png);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+* {
+
+  text-decoration: none;
+  box-sizing: inherit;
+}
+
+#navbar_menu {
+  width: 100%;
+}
+
+
+
+/* HEADER */
+
+
+.imgLogo {
+  width: 179px;
+ margin-left: 20px;
+ margin-top: 10px;
+  display: inline;
+  float: left;
+}
+
+#head {
+  float: right;
+  display: inline-block;
+
+}
+
+#notConnect_wallet{
+    width: 150px;
+    height: 35px;
+    background-color: white;
+    border: none;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 14px;
+   
+   
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    font-weight: 500;
+    
+  }
+
+#menuButton {
+  width: 105px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  color: gray;
+  text-align: center;
+  text-decoration: none;
+ 
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  
+  margin: 10px;
+  font-weight: 500;
+}
+
+#menuButton_sun {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  color: gray;
+  text-align: center;
+  text-decoration: none;
+ 
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  
+  margin: 10px;
+  font-weight: 500;
+}
+
+#Vector {
+  width: 15px;
+  align-items: center;
+  height: 15px;
+}
+
+
+/* sidebar */
+.sidebar {
+  border-radius: 10px;
+  width: 220px;
+  display: table;
+  text-align: left;
+  padding: 15px;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 15% 5%;
+  position: absolute;
+  background-color: white;
+  max-width: 100%;
+  height: 300px;
+}
+
+.btnM {
+  width: 200px;
+  height: 40px;
+  font-size: 14px;
+  text-align: left;
+  margin: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  color: #000;
+  font-weight: 500px;
+}
+
+#menuHR {
+width: 200px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+
+
+/* BODY */
+
+.mainmenu {
+position: fixed;
+background-color: white;
+width: 650px;
+display: table;
+border-radius: 15px;
+overflow: auto;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+margin: 210px auto;
+height: 500px;
+
+}
+
+.mainmenu_feedback {
+  position: fixed;
+  background-color: white;
+  width: 500px;
+  display: table;
+  border-radius: 15px;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 210px auto;
+  height: 355px;
+  
+  }
+
+
+.feedback-page > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.feedback-page > h1 {
+  position: fixed;
+  margin-top: 8%;
+  margin-left: 45.5%;
+
+}
+
+.feedback-page__content-btn {
+  padding: 25px;
+  padding-top: 25px;
+  box-shadow: 10 0 99px hsl(0deg 0% 46% / 16%);
+  transition: .2s;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  
+  background: #BCD4F2;
+  width: 80%;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+
+.feedback-page__content-btn_op {
+  padding: 25px;
+  padding-top: 25px;
+  box-shadow: 10 0 99px hsl(0deg 0% 46% / 16%);
+  transition: .2s;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border-radius: 25px;
+  
+  background: #BCD4F2;
+  width: 40%;
+  margin-left: 25%;
+  margin-top: 6%;
+}
+
+/* TRANSACTIONS */
+
+.mainmenu_transaction {
+  font-family: 'Prompt', sans-serif;
+  background-color: white;
+  border-radius: 7px;
+  width: 800px;
+  height: 525px;
+  margin: auto;
+  padding: 10px 30px;
+  text-align: left;
+  position: absolute; /*Can also be `fixed`*/
+  left: 360px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.transactionTitle1 {
+  font-weight: 600;
+}
+
+.transactionTitle2 {
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+table {
+
+border-bottom: 1px solid black;
+}
+tr {
+
+}
+ td {
+  font-size: 12px;
+  padding: 10px;
+  text-align: left;
+  width: 28%;
+  
+}
+
+
+/* DASHBOARD */
+
+
+.menu_dashboard {
+  display: grid;
+  grid-template-columns: 350px 350px 350px;
+  ;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 450px;
+  grid-gap: 50px;
+}
+
+
+.menu_dashboard > div {
+  background-color: white;
+  border-radius: 10px;
+  height: 320px;
+}
+.menu_dashboard > .info2 {
+  height: 120px;
+} 
+
+.round {
+  width: 12em;
+  height: 12em;
+  border: 3px solid #339AD3;
+  border-radius: 50%;
+  padding: 1.4644em;  /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
+  box-sizing: border-box;  /* чтобы padding не увеличивал ширину и высоту элемента */
+  background: rgb(255, 255, 255);
+  margin-top: 60px;
+  margin-left: 80px;
+}
+
+.round > h4 {
+  font-size: 20px;
+  color: #339AD3;
+}
+
+.number1 {
+  font-size: 20px;
+  color: #339AD3;
+}
+
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+#counter1 {
+  animation: counter 3s alternate ease-in-out;
+  counter-reset: num var(--num);
+  
+
+}
+#counter1::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  
+  to {
+    --num: 231;
+  }
+}
+
+
+
+/* BRIDGE */
+
+#content1 {
+  font-family: 'Prompt', sans-serif;
+  background-color: #F1F6FF;
+  border-radius: 20px;
+  width: 600px;
+  height: 600px;;
+  display: table;
+  margin: 170px auto;
+  text-align: center;
+  position: fixed; /*Can also be `fixed`*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.btcInput {
+  width: 90%;
+  background-color: #DBE4F6;
+  border: none;
+  height: 60px;
+}
+
+.calling {
+
+position: absolute;
+margin-top: 160px;
+margin-left: 36%;
+
+}
+
+.mainButton {
+  width: 90%;
+  height: 60px;
+  background-color: #A6C6FA;
+  border: none;
+  border-radius: 15px;
+  margin-top: 25%;
+}
+
+#radios {
+  position: relative;
+  background-color: #DDDDDD;
+  z-index: 5;
+  width: 552px;
+  height: 50px;
+  margin: auto;
+  border-radius: 3px;
+  margin-top: 30px;
+  
+}
+#radios > input {
+ 
+    display: none;
+ 
+}
+
+#bckgrnd,
+.labels {
+  width: 276px;
+  height: 40px;
+  text-align: center;
+  display: inline-block;
+  padding-top: 10px;
+  margin-right: -3px;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.labels > b {
+  
+}
+#bckgrnd {
+  background-color: #A6C6EC;
+  position: absolute;
+  left: 0;
+ margin-top: 0px;
+  z-index: -1;
+}
+
+#rad1:checked ~ #bckgrnd {
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+#rad2:checked ~ #bckgrnd {
+  transform: translateX(276px);
+  transition: transform 0.5s ease-in-out;
 }
