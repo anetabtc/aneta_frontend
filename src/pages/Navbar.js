@@ -25,9 +25,13 @@ function DropDown({selected, setSelected}) {
 
     function DownUp(){
         if(isActive){
-            <img src={require('./img/up.png')}/>
+            return (
+                <img id="down" src={require('./img/up.png')}/>
+            )
         }else{
-            <img src={require('./img/down.png')}/>
+            return (
+                <img id="down" src={require('./img/down.png')}/>
+            )
         }
     }
     const options = ["Ergo", "Cardano"];
@@ -38,7 +42,7 @@ function DropDown({selected, setSelected}) {
                     <img src={require('./img/' + selected + '.png')} id="Vector" />
                 )}
                 <p>{selected}</p>
-                <img src={require('./img/down.png')} id="down"/>
+                <DownUp/>
 
             </div>
 
