@@ -4,6 +4,9 @@ import {Link} from "react-router-dom"
 function Menu() {
     return (
         <div className="sidebar">
+            <div className="net">
+                Testnet
+            </div>
             <div className="sidebar_content">
                 <ul className="menuList">
             <Link to="/" className="menu-item">
@@ -51,8 +54,24 @@ function Menu() {
                 </div>
                 <li className="btnM">
                     Docs
-                </li></Link>
+                    <img src={require('./img/link.png')} id="linkImg"/>
+                </li>
+            </Link>
             </ul>
+                <div className="socialMedia">
+                    <div className="menu-icon">
+                        <img src={require('./img/twitter.png')} id="Vector"/>
+                    </div>
+                    <div className="menu-icon">
+                        <img src={require('./img/discord.png')} id="Vector"/>
+                    </div>
+                    <div className="menu-icon">
+                        <img src={require('./img/telegram.png')} id="Vector"/>
+                    </div>
+                    <div className="menu-icon">
+                        <img src={require('./img/git.png')} id="Vector"/>
+                    </div>
+                </div>
             </div>
         </div>
     )

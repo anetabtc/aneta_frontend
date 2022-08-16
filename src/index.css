@@ -115,6 +115,7 @@ code {
   align-items: center;
   text-align: center;
   border-radius: 10px;
+  padding-left: 20px;
 }
 
 .menu-item:hover {
@@ -122,16 +123,13 @@ code {
 }
 
 
+
+
 ul{
   padding-inline-start: 0px;
 }
 
-.menu-icon {
-  width: 15px;
-  padding-inline-start: 20px;
-  display: flex;
-  justify-content: center;
-}
+
 
 .nav-icon{
   margin-right: 10px;
@@ -142,6 +140,14 @@ ul{
   align-items: center;
   height: 15px;
   margin-top: auto;
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 /*dropdown*/
@@ -225,8 +231,25 @@ ul{
 }
 
 /* sidebar */
+.net{
+  width: 55px;
+  height: 17px;
+  border-radius: 5px;
+  background-color: #FAEDEC;
+  color: #84312D;
+  font-size: 9px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .sidebar {
-  border-radius: 10px;
+  border-radius: 16px;
   width: 220px;
   display: table;
   text-align: left;
@@ -255,11 +278,21 @@ ul{
   display: flex;
   align-items: center;
   color: #000;
-  font-weight: 500px;
-  margin-left: 10px;
+  margin-left: 10px
+}
+
+#linkImg {
+  width: 9px;
+  height: 8px;
+  margin-left: 5px;
+  margin-top: 3px;
 }
 
 #menuHR {
+  width: 90%;
+  height: 1px;
+  background-color: black;
+  border-radius: 2px;
   text-align: left;
   margin-top: -20px;
 }
