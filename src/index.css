@@ -82,6 +82,25 @@ code {
   
   margin: 10px;
   font-weight: 500;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+}
+
+#sun{
+  width: 35px;
+  height: 35px;
+  display: block ;
+}
+
+#nautilusimg {
+  width: 20px;
+  height: 20px;
 }
 
 #sun{
@@ -114,6 +133,10 @@ ul{
   justify-content: center;
 }
 
+.nav-icon{
+  margin-right: 10px;
+}
+
 
 #Vector {
   align-items: center;
@@ -123,7 +146,7 @@ ul{
 
 /*dropdown*/
 .dropdown {
-  width: 105px;
+  width: 165px;
 }
 
 .dropdown .dropdown-btn {
@@ -146,12 +169,16 @@ ul{
   justify-content: space-between;
   align-items: center;
 
+  padding-left: 20px;
+  padding-right: 20px;
+
 
 }
 
 .dropdown .dropdown-content{
+  width: 135px;
   position: absolute;
-  padding: 15px;
+  padding: 5px;
   background-color: white;
   color: gray;
   text-decoration: none;
@@ -159,6 +186,7 @@ ul{
   font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
+  margin-left: 10px;
 
 }
 
@@ -166,14 +194,9 @@ ul{
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s;
-  align-items: start;
   display: flex;
 }
 
-.dropdown-item:hover {
-  background-color: rgba(62, 132, 215, 0.46);
-}
 
 #down {
   width: 8px;
@@ -182,6 +205,24 @@ ul{
   margin-right: auto;
 }
 
+.imgwrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#navText{
+  font-size: 9px;
+}
+
+.selected{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #4ADE80;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}
 
 /* sidebar */
 .sidebar {
