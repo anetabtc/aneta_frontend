@@ -143,6 +143,7 @@ ul{
 
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 
 
@@ -172,6 +173,13 @@ ul{
 
 .dropdown-item:hover {
   background-color: rgba(62, 132, 215, 0.46);
+}
+
+#down {
+  width: 8px;
+  height: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
