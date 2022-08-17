@@ -9,6 +9,9 @@ function Navbar() {
            <img src={require('./img/logo.png')} className="imgLogo" />
            </div>
            <div id="head">
+               <div className="menuButton">
+                   Get Test BTC
+               </div>
                <div><DropDown selected={selected} setSelected={setSelected}/></div>
                <div className="menuButton">
                    <img id="nautilusimg" src={require('./img/nautilus.jpeg')}/>
