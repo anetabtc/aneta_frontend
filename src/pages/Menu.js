@@ -67,7 +67,7 @@ function Menu() {
                     </a>
                     <a href="https://t.me/anetaBTC" className="menu-icon">
                         <img src={require('./img/telegram.png')} id="Vector"/>
-                    </a>k
+                    </a>
                     <a href="https://github.com/anetabtc" className="menu-icon">
                         <img src={require('./img/git.png')} id="Vector"/>
                     </a>
