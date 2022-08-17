@@ -48,7 +48,7 @@ function Menu() {
                 <li className="btnM">
                     Feedback
                 </li></Link>
-            <Link to="/docs" className="menu-item">
+            <a href="https://anetabtc.io/" className="menu-item">
                 <div className="menu-icon">
                     <img src={require('./img/docs.png')} id="Vector"/>
                 </div>
@@ -56,21 +56,21 @@ function Menu() {
                     Docs
                     <img src={require('./img/link.png')} id="linkImg"/>
                 </li>
-            </Link>
+            </a>
             </ul>
                 <div className="socialMedia">
-                    <div className="menu-icon">
+                    <a href="https://twitter.com/anetaBTC" className="menu-icon">
                         <img src={require('./img/twitter.png')} id="Vector"/>
-                    </div>
-                    <div className="menu-icon">
+                    </a>
+                    <a href="https://discord.com/invite/ScXG76dJXM" className="menu-icon">
                         <img src={require('./img/discord.png')} id="Vector"/>
-                    </div>
-                    <div className="menu-icon">
+                    </a>
+                    <a href="https://t.me/anetaBTC" className="menu-icon">
                         <img src={require('./img/telegram.png')} id="Vector"/>
-                    </div>
-                    <div className="menu-icon">
+                    </a>k
+                    <a href="https://github.com/anetabtc" className="menu-icon">
                         <img src={require('./img/git.png')} id="Vector"/>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
