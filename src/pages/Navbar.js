@@ -2,7 +2,7 @@ import react, {useState} from "react";
 
 
 function Navbar() {
-    const[selected, setSelected] = useState("Select Network")
+    const[selected, setSelected] = useState("Ergo")
     return (
         <div id="navbar_menu">
         <div id="imgLogonav">
@@ -46,9 +46,7 @@ function DropDown({selected, setSelected}) {
         <div className="dropdown">
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 <div className="imgwrapper">
-                    {selected != "Select Network" && (
-                        <img src={require('./img/' + selected + '.png')} id="Vector" />
-                    )}
+                    <img src={require('./img/' + selected + '.png')} id="Vector" />
                 </div>
                 <div>{selected}</div>
                 <div><DownUp/></div>

@@ -115,7 +115,6 @@ code {
   align-items: center;
   text-align: center;
   border-radius: 10px;
-  padding-left: 20px;
 }
 
 .menu-item:hover {
@@ -279,8 +278,8 @@ ul{
 }
 
 .btnM {
-  width: 200px;
-  height: 40px;
+  width: 150px;
+  height: 30px;
   font-size: 14px;
   text-align: left;
   margin: 2px;
@@ -289,7 +288,6 @@ ul{
   display: flex;
   align-items: center;
   color: #000;
-  margin-left: 10px
 }
 
 #linkImg {
@@ -603,3 +601,29 @@ margin-left: 36%;
   transform: translateX(276px);
   transition: transform 0.5s ease-in-out;
 }
+
+/* Vault */
+.main-block {
+  width: 800px;
+  height: 500px;
+  margin: 170px 30%;
+  text-align: left;
+  position: fixed; /*Can also be `fixed`*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.page-topic {
+}
+
+.content-block {
+  background-color: white;
+  border-radius: 15px;
+}
+
