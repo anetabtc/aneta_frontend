@@ -1,4 +1,4 @@
-import react from "react";
+
 import {Link} from "react-router-dom"
 
 function Menu() {
@@ -11,28 +11,28 @@ function Menu() {
                 <ul className="menuList">
             <Link to="/" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/bridge.png')} id="Vector" />
+                    <img src={require('./img/bridge.png')} alt="aneta" id="Vector" />
                 </div>
                 <li className="btnM">
                     Bridge
                 </li></Link>
             <Link to="/transactions" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/transactions.png' )} id="Vector"/>
+                    <img src={require('./img/transactions.png' )} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Transactions
                 </li></Link>
             <Link to="/dashboard" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/dashboard.png')} id="Vector"/>
+                    <img src={require('./img/dashboard.png')} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Dashboard
                 </li></Link>
             <Link to="/vault" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/vault.png')} id="Vector"/>
+                    <img src={require('./img/vault.png')} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Vault
@@ -43,33 +43,33 @@ function Menu() {
             <ul>
             <Link to="/feedback" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/feedback.png')} id="Vector"/>
+                    <img src={require('./img/feedback.png')} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Feedback
                 </li></Link>
             <Link to="/docs" className="menu-item">
                 <div className="menu-icon">
-                    <img src={require('./img/docs.png')} id="Vector"/>
+                    <img src={require('./img/docs.png')} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Docs
-                    <img src={require('./img/link.png')} id="linkImg"/>
+                    <img src={require('./img/link.png')} alt="aneta" id="linkImg"/>
                 </li>
             </Link>
             </ul>
             <div className="socialMedia">
                 <a href="https://twitter.com/anetaBTC" className="menu-icon">
-                    <img src={require('./img/twitter.png')} id="Vector"/>
+                    <img src={require('./img/twitter.png')} alt="aneta" id="Vector"/>
                 </a>
                 <a href="https://discord.com/invite/ScXG76dJXM" className="menu-icon">
-                    <img src={require('./img/discord.png')} id="Vector"/>
+                    <img src={require('./img/discord.png')} alt="aneta" id="Vector"/>
                 </a>
                 <a href="https://t.me/anetaBTC" className="menu-icon">
-                    <img src={require('./img/telegram.png')} id="Vector"/>
+                    <img src={require('./img/telegram.png')} alt="aneta" id="Vector"/>
                 </a>
                 <a href="https://github.com/anetabtc" className="menu-icon">
-                    <img src={require('./img/git.png')} id="Vector"/>
+                    <img src={require('./img/git.png')} alt="aneta" id="Vector"/>
                 </a>
             </div>
             </div>

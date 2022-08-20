@@ -21,12 +21,12 @@ function DownUp(){
                       <p /><p />
                       <div className="flex-container">
                         <div className="left">Bridge Fee</div>
-                        <div className="right"><img id="bit" src={require('../img/Bitcoin.png')}/><b>0</b> BTC</div>
+                        <div className="right"><img id="bit" src={require('../img/Bitcoin.png')} alt="aneta"/><b>0</b> BTC</div>
                       </div>
                       <p /><p />
                       <div className="flex-container">
                         <div className="left">Security Deposit</div>
-                        <div className="right"><img id="bit" src={require('../img/Ergo.png')}/><b>0</b> ADA</div>
+                        <div className="right"><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>0</b> ADA</div>
                       </div>
 
                       <p /><p />
@@ -52,12 +52,12 @@ function DownUp(){
                       <p /><p />
                       <div className="flex-container">
                         <div className="left">BTC network Fee</div>
-                        <div className="right"><img id="bit" src={require('../img/Bitcoin.png')}/><b>0</b> BTC</div>
+                        <div className="right"><img id="bit" src={require('../img/Bitcoin.png')} alt="aneta"/><b>0</b> BTC</div>
                       </div>
                       <p /><p />
                       <div className="flex-container">
                         <div className="left">ERG network Fee</div>
-                        <div className="right"><img id="bit" src={require('../img/Ergo.png')}/><b>0</b> ERG</div>
+                        <div className="right"><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>0</b> ERG</div>
                       </div>
 
                       <p /><p />
@@ -78,7 +78,7 @@ function DownUp(){
     <div className="mainPopup">
     <div className="popup">
     <div className="divLabel">
-  <img id="bitcoin" src={require('../img/Bitcoin.png')}/>  <label className="labelMain"> BTC Deposit </label>
+  <img id="bitcoin" src={require('../img/Bitcoin.png')} alt="aneta"/>  <label className="labelMain"> BTC Deposit </label>
 </div>
     <div className="menuPopup">
 <br />
@@ -98,7 +98,7 @@ function DownUp(){
 <div className="attention">
 <span><b>Attention:</b> Some Bitcoin wallets display values in mBTC. In </span><br/><span>this case, ensure you send the correct amount: <b>1000mBTC</b></span></div>
 <br/>
-<img className="qr" src={require('../img/qr.png')}/>
+<img className="qr" src={require('../img/qr.png')} alt="aneta"/>
 <br /><br/> <div className="note">
 <b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are safe :)
 </div>

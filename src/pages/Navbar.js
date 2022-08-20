@@ -1,4 +1,4 @@
-import react, {useState} from "react";
+import {useState} from "react";
 
 
 function Navbar() {
@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <div id="navbar_menu">
         <div id="imgLogonav">
-           <img src={require('./img/logo.png')} className="imgLogo" />
+           <img src={require('./img/logo.png')} alt="aneta" className="imgLogo" />
            </div>
            <div id="head">
            <div className="menuButton">
@@ -14,10 +14,10 @@ function Navbar() {
               </div>
                <div><DropDown selected={selected} setSelected={setSelected}/></div>
                <div className="menuButton">
-                   <img id="nautilusimg" src={require('./img/nautilus.jpeg')}/>
+                   <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg')}/>
                    9fSbgi...KMJAhb
                </div>
-               <div><button type="button" className="menuButton" id="sun"><img src={require('./img/Vector.png')} id="Vector" /></button></div>
+               <div><button type="button" className="menuButton" id="sun"><img alt="aneta" src={require('./img/Vector.png')} id="Vector" /></button></div>
            </div>
         </div>
 
@@ -32,11 +32,11 @@ function DropDown({selected, setSelected}) {
     function DownUp(){
         if(isActive){
             return (
-                <img id="down" src={require('./img/up.png')}/>
+                <img id="down" alt="aneta" src={require('./img/up.png')}/>
             )
         }else{
             return (
-                <img id="down" src={require('./img/down.png')}/>
+                <img id="down" alt="aneta" src={require('./img/down.png')}/>
             )
         }
     }
@@ -46,8 +46,8 @@ function DropDown({selected, setSelected}) {
         <div className="dropdown">
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 <div className="imgwrapper">
-                    {selected != "Select Network" && (
-                        <img src={require('./img/' + selected + '.png')} id="Vector" />
+                    {selected !== "Select Network" && (
+                        <img src={require('./img/' + selected + '.png')} alt="aneta" id="Vector" />
                     )}
                 </div>
                 <div>{selected}</div>
@@ -66,9 +66,9 @@ function DropDown({selected, setSelected}) {
                             setIsActive(false)
                         }}
                              className="dropdown-item" >
-                            <div><img className="nav-icon" src={require('./img/' + option + '.png')} id="Vector" /></div>
+                            <div><img className="nav-icon" src={require('./img/' + option + '.png')} alt="aneta" id="Vector" /></div>
                             <div>{option}</div>
-                            {selected == option && (
+                            {selected === option && (
                                 <div className="selected"></div>
                             ) }
                         </div>
