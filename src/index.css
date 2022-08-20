@@ -13,6 +13,9 @@ body {
   background-image: url(./images/light.png);
 }
 
+body{
+font-family: 'Avenir', Helvetica, sans-serif;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -27,6 +30,89 @@ code {
 
 #navbar_menu {
   width: 100%;
+}
+
+/*dropdown*/
+.dropdown {
+  width: 165px;
+}
+
+.dropdown .dropdown-btn {
+  height: 35px;
+  background-color: white;
+  border: none;
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  margin: 10px;
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+
+}
+
+.dropdown .dropdown-content{
+  width: 135px;
+  position: absolute;
+  padding: 5px;
+  background-color: white;
+  color: gray;
+  text-decoration: none;
+  text-align: start;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+
+}
+
+.dropdown-item {
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+}
+
+
+#down {
+  width: 8px;
+  height: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgwrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#navText{
+  font-size: 9px;
+}
+
+.selected{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #4ADE80;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+.nav-icon{
+  margin-right: 10px;
 }
 
 
@@ -44,7 +130,9 @@ code {
 
 #head {
   float: right;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
 }
 
@@ -56,61 +144,81 @@ code {
     color: gray;
     text-align: center;
     text-decoration: none;
-    
+
     font-size: 14px;
-   
-   
+
+
     cursor: pointer;
     border-radius: 5px;
     margin: 10px;
     font-weight: 500;
-    
+
   }
 
-#menuButton {
-  width: 105px;
-  height: 35px;
-  background-color: white;
-  border: none;
-  color: gray;
-  text-align: center;
-  text-decoration: none;
- 
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  
-  margin: 10px;
-  font-weight: 500;
-}
+  .menuButton {
+    height: 35px;
+    background-color: white;
+    border: none;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
 
-#menuButton_sun {
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    margin: 10px;
+    font-weight: 500;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+  }
+
+
+  #Vector {
+    align-items: center;
+    height: 15px;
+    margin-top: auto;
+  }
+
+#sun{
   width: 35px;
   height: 35px;
-  background-color: white;
-  border: none;
-  color: gray;
-  text-align: center;
-  text-decoration: none;
- 
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  
-  margin: 10px;
-  font-weight: 500;
+  display: block ;
 }
 
-#Vector {
-  width: 15px;
-  align-items: center;
-  height: 15px;
+#nautilusimg {
+  width: 20px;
+  height: 20px;
 }
+
 
 
 /* sidebar */
+.net{
+  width: 55px;
+  height: 17px;
+  border-radius: 5px;
+  background-color: #FAEDEC;
+  color: #84312D;
+  font-size: 9px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .sidebar {
-  border-radius: 10px;
+  border-radius: 16.5px;
   width: 220px;
   display: table;
   text-align: left;
@@ -125,6 +233,7 @@ code {
   background-color: white;
   max-width: 100%;
   height: 300px;
+  align-items: center;
 }
 
 .btnM {
@@ -135,19 +244,35 @@ code {
   margin: 2px;
   text-decoration: none;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   color: #000;
-  font-weight: 500px;
+  margin-left: 10px
+}
+
+#linkImg {
+  width: 9px;
+  height: 8px;
+  margin-left: 5px;
+  margin-top: 3px;
 }
 
 #menuHR {
-width: 200px;
+  width: 90%;
+  height: 1px;
+  background-color: black;
+  border-radius: 2px;
   text-align: left;
   margin-top: -20px;
 }
 
-
-
+.socialMedia {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-right: 30%;
+}
 /* BODY */
 
 .mainmenu {
@@ -179,7 +304,7 @@ height: 500px;
   bottom: 0;
   margin: 210px auto;
   height: 355px;
-  
+
   }
 
 
@@ -204,7 +329,7 @@ height: 500px;
   margin-bottom: 15px;
   font-size: 1rem;
   border-radius: 10px;
-  
+
   background: #BCD4F2;
   width: 80%;
   margin-left: 5%;
@@ -220,7 +345,7 @@ height: 500px;
   margin-bottom: 15px;
   font-size: 1rem;
   border-radius: 25px;
-  
+
   background: #BCD4F2;
   width: 40%;
   margin-left: 25%;
@@ -257,7 +382,17 @@ height: 500px;
   font-weight: 600;
   margin-top: 50px;
 }
+.title {
+  font-size: 16px;
+  color: #575757;
+}
 
+.title2 {
+  font-size: 14px;
+  color: #575757;
+  text-align: left;
+  margin-left: 27px;
+}
 table {
 
 border-bottom: 1px solid black;
@@ -270,11 +405,12 @@ tr {
   padding: 10px;
   text-align: left;
   width: 28%;
-  
+
 }
 
 
 /* DASHBOARD */
+
 
 
 .menu_dashboard {
@@ -285,6 +421,7 @@ tr {
   margin-top: 150px;
   margin-left: 450px;
   grid-gap: 50px;
+
 }
 
 
@@ -295,7 +432,7 @@ tr {
 }
 .menu_dashboard > .info2 {
   height: 120px;
-} 
+}
 
 .round {
   width: 12em;
@@ -329,7 +466,7 @@ tr {
 #counter1 {
   animation: counter 3s alternate ease-in-out;
   counter-reset: num var(--num);
-  
+
 
 }
 #counter1::after {
@@ -337,7 +474,7 @@ tr {
 }
 
 @keyframes counter {
-  
+
   to {
     --num: 231;
   }
@@ -351,12 +488,12 @@ tr {
   font-family: 'Prompt', sans-serif;
   background-color: #F1F6FF;
   border-radius: 20px;
-  width: 600px;
-  height: 600px;;
+  width: 643px;
+
   display: table;
   margin: 170px auto;
   text-align: center;
-  position: fixed; /*Can also be `fixed`*/
+  position: absolute;; /*Can also be `fixed`*/
   left: 0;
   right: 0;
   top: 0;
@@ -368,10 +505,35 @@ tr {
 }
 
 .btcInput {
-  width: 90%;
+  width: 560px;
   background-color: #DBE4F6;
   border: none;
-  height: 60px;
+  border-radius: 10px;
+  height: 98px;
+  font-size: 38px;
+
+}
+
+.btcInput[type=text] {
+
+padding: 0px 20px;
+
+}
+
+.btcInputAddress {
+  width: 560px;
+  background-color: #DBE4F6;
+  border: none;
+  border-radius: 10px;
+  height: 47px;
+  font-size: 16px;
+
+}
+
+.btcInputAddress[type=text] {
+
+padding: 0px 20px;
+
 }
 
 .calling {
@@ -383,34 +545,35 @@ margin-left: 36%;
 }
 
 .mainButton {
-  width: 90%;
-  height: 60px;
+  width: 609px;
+  height: 65px;
   background-color: #A6C6FA;
   border: none;
   border-radius: 15px;
-  margin-top: 25%;
+  margin-top: 16%;
+  font-size: 16px;
 }
 
 #radios {
   position: relative;
   background-color: #DDDDDD;
   z-index: 5;
-  width: 552px;
+  width: 609px;
   height: 50px;
   margin: auto;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 30px;
-  
+
 }
 #radios > input {
- 
+
     display: none;
- 
+
 }
 
 #bckgrnd,
 .labels {
-  width: 276px;
+  width: 304.5px;
   height: 40px;
   text-align: center;
   display: inline-block;
@@ -424,7 +587,7 @@ margin-left: 36%;
 }
 
 .labels > b {
-  
+
 }
 #bckgrnd {
   background-color: #A6C6EC;
@@ -437,8 +600,220 @@ margin-left: 36%;
 #rad1:checked ~ #bckgrnd {
   transform: translateX(0);
   transition: transform 0.5s ease-in-out;
+  border-radius: 10px;
 }
 #rad2:checked ~ #bckgrnd {
-  transform: translateX(276px);
+  transform: translateX(304.5px);
   transition: transform 0.5s ease-in-out;
+  border-radius: 10px;
+}
+
+.lblInp {
+  position: absolute;
+  margin-left: 84%;
+  clear:both; text-align:right;
+  margin-top: -80px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.lblInp2 {
+  position: absolute;
+  margin-left: 82%;
+  clear:both; text-align:right;
+  margin-top: -80px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.left {
+  text-align: left;
+
+}
+
+.right {
+  text-align: right;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container > div {
+  width: 240px;
+  height: 40px;
+  margin: auto;
+  line-height: 95px;
+  font-size: 17px;
+}
+
+#menuHR1 {
+width: 90%;
+margin-top: 40px;
+  text-align: left;
+
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+.menu-item:hover {
+  background-color: rgba(62, 132, 215, 0.46);
+}
+
+
+ul{
+  padding-inline-start: 0px;
+}
+
+.menu-icon {
+  width: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/*POPUP */
+
+.mainPopup {
+  background-color: grey;
+  width: 100%;
+  height: 1120px;
+  position: absolute;
+  top: 0%;
+  z-index: 6;
+    background-color: rgba(128,128,128,0.208);
+}
+
+.popup {
+  height: 750px;
+  width: 545px;
+  align-items: center;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  opacity: 100%;
+  border-radius: 16.5px;
+  right: 34.3%;
+}
+
+
+.divLabel {
+  height: 63px;
+  border-radius: 16.5px;
+  margin-top: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+}
+.labelMain {
+  font-size: 32px;
+
+
+}
+
+.menuPopup {
+  height: 88%;
+  border-bottom-right-radius: 16.5px;
+  border-bottom-left-radius: 16.5px;
+  width: 100%;
+  background-color: #EEF4FF;
+}
+
+#bitcoin {
+  width: 27px;
+  height: 27px;
+
+}
+
+div > .addressBTC {
+
+width: 90%;
+    height: 40px;
+    background-color: #EEF4FF;
+  border: 3px solid #2C83BC;
+  border-radius: 11px;
+  margin-left: 25px;
+left: 50%;
+
+
+
+}
+
+.addressBTC > .labelAdd {
+font-size: 17.5px;
+margin-top: 8px;
+}
+
+.btnPayment {
+  width: 90%;
+  height: 58px;
+  border-radius: 11px;
+  background-color: #BEDAFF;
+  border: 0;
+  margin-top: 27px;
+  font-size: 20px;
+}
+
+
+.attention {
+text-align: center;
+width: 91%;
+font-size: 16.5px;
+padding: 0px 20px 0px 20px;
+}
+
+.note {
+  font-size: 13px;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.SingleTrans1 {
+  font-size: 20px;
+}
+.SingleTrans2 {
+  font-size: 18px;
+}
+.timing {
+font-size: 13px;
+}
+
+.qr {
+  width: 154px;
+  height: 154px;
+}
+#WRAP {
+  height: 520px;
+}
+#UNWRAP {
+  height: 618px;
+
+}
+
+#bit {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: -40px;
+
+}
+
+.right {
+
+
 }

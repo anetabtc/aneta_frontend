@@ -12,7 +12,7 @@ import Menu from './pages/Menu'
 function App() {
   return (
     <div className="App" >
-    
+
       <Navbar />
       <Menu />
       
