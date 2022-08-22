@@ -156,6 +156,8 @@ ul{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 /*dropdown*/
