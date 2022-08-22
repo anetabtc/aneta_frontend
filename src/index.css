@@ -155,9 +155,7 @@ ul{
 .socialMedia {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-left: 30%;
-  margin-right: 30%;
+  justify-content: space-evenly;
 }
 
 /*dropdown*/
