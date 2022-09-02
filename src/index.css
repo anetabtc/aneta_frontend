@@ -357,9 +357,9 @@ height: 500px;
 .mainmenu_transaction {
   font-family: 'Prompt', sans-serif;
   background-color: white;
-  border-radius: 7px;
-  width: 800px;
-  height: 525px;
+  border-radius: 15px;
+  width: 1189px;
+  height: 664px;
   margin: auto;
   padding: 10px 30px;
   text-align: left;
@@ -375,20 +375,22 @@ height: 500px;
 }
 
 .transactionTitle1 {
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 25px;
 }
 
 .transactionTitle2 {
   font-weight: 600;
+  font-size: 25px;
   margin-top: 50px;
 }
 .title {
-  font-size: 16px;
+  font-size: 12.5px;
   color: #575757;
 }
 
 .title2 {
-  font-size: 14px;
+  font-size: 12.5px;
   color: #575757;
   text-align: left;
   margin-left: 27px;
@@ -404,10 +406,13 @@ tr {
   font-size: 12px;
   padding: 10px;
   text-align: left;
-  width: 28%;
+  width: 29.3%;
 
 }
 
+.menuTr {
+  padding: 20px;
+}
 
 /* DASHBOARD */
 
@@ -790,6 +795,9 @@ padding: 0px 20px 0px 20px;
 }
 .timing {
 font-size: 13px;
+display: flex;
+flex-direction: row;
+justify-content: center;
 }
 
 .qr {
@@ -816,4 +824,218 @@ font-size: 13px;
 .right {
 
 
+}
+
+
+.main-block {
+  width: 1189px;
+  height: 800px;
+  margin: 170px 25%;
+  text-align: left;
+  position: absolute;; /*Can also be `fixed`*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.page-topic {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+.content-block {
+  background-color: white;
+  border-radius: 15px;
+  width: 1189px;
+  height: 664px;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+.gradient-button {
+  width: 418px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(86.72deg, #BCD4F2 -17.81%, #E2D8FA 138.37%);
+  border-radius: 20px;
+}
+
+.gradient-button:hover {
+  background: linear-gradient(86.72deg, #9abcf5 -17.81%, #c9b4fd 138.37%);
+}
+
+#operate-button {
+  margin-top: 10%;
+}
+
+.vault-set-up {
+  width: 544px;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.vault-set-up-text {
+  text-align: center;
+}
+
+.vault-amount-block {]
+  width: 544px;
+  height: 157px;
+
+  border: 0.88px solid #5C5C5C;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vault-amount-text {
+  width: 544px;
+}
+
+#p {
+  margin-left: 55px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+
+}
+
+.vault-input-block {
+  width: 457px;
+  height: 48px;
+
+  background: #FBFCFF;
+  border: 4px solid #74C8FF;
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.vault-input {
+  width: 457px;
+  height: 48px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.vault-input:active {
+  border: none;
+  outline: none;
+}
+
+#vault-icon {
+  margin-left: 15px;
+  margin-right: 10px;
+}
+
+.vault-deposit-text {
+  font-size: 32px;
+  text-align: center;
+}
+
+.send-text {
+  font-size: 24px;
+  text-align: center;
+}
+
+.transaction-text {
+  text-align: center;
+}
+
+.transaction-input {
+  width: 509px;
+  height: 44px;
+  border: 3px solid #2C83BC;
+  border-radius: 11px;
+
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.time-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#time-text {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.qr1 {
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 180px;
+}
+
+.blue-button {
+  width: 511px;
+  height: 58px;
+
+  background: #BEDAFF;
+  border-radius: 11px;
+
+  font-size: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vault-deposit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around ;
+}
+
+.my-vault-block {
+  width: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 22px;
+}
+
+.my-vault-text {
+  font-weight: bold;
+  text-align: center;
+}
+
+.my-vault-info {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.my-vault-info-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.my-vault-but {
+  display: flex;
+  justify-content: center;
 }

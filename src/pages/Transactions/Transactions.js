@@ -3,24 +3,27 @@ import React from 'react'
 function Transactions() {
   return (
     <div className='mainmenu_transaction'>
+    <div className="menuTr">
        <p class="transactionTitle1">Wrap Requests</p>
-          <table>
+          <b><table>
             <tr>
               <td>Updated</td>
-              <td>Amount(anetaBTC)</td>
+              <td>Amount (anetaBTC)</td>
               <td>BTC Transaction</td>
               <td>Confirmation Status</td>
             </tr>
           </table>
+          <br />
           <p class="transactionTitle2">Unwrap Requests</p>
           <table>
             <tr>
               <td>Updated</td>
-              <td>Amount(anetaBTC)</td>
+              <td>Amount (anetaBTC)</td>
               <td>BTC Transaction</td>
               <td>Confirmation Status</td>
             </tr>
-          </table>
+          </table></b>
+          </div>
     </div>
   )
 }

@@ -30,13 +30,7 @@ function Menu() {
                 <li className="btnM">
                     Dashboard
                 </li></Link>
-            <Link to="/vault" className="menu-item">
-                <div className="menu-icon">
-                    <img src={require('./img/vault.png')} id="Vector"/>
-                </div>
-                <li className="btnM">
-                    Vault
-                </li></Link>
+          
             </ul>
                 <br/>
             <hr id="menuHR"></hr>

@@ -1,12 +1,127 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
+import CountdownTimer from './CountdownTimer';
+import { formatData } from "./Utils";
 
 function Bridge() {
+  const opts = {
+    tooltips: {
+      intersect: false,
+      mode: "index"
+    },
+    responsive: true,
+    maintainAspectRatio: false
+  };
+
+  const [currencies, setcurrencies] = useState([]);
+  const [pair, setpair] = useState("");
+  const [price, setprice] = useState("0.00");
+  const [pastData, setpastData] = useState({});
+  const ws = useRef(null);
+  const idCoin = 38;
+  let first = useRef(false);
+  const url = "https://api.pro.coinbase.com";
+
+  useEffect(() => {
+    ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
+
+    let pairs = [];
+
+    const apiCall = async () => {
+      await fetch(url + "/products")
+        .then((res) => res.json())
+        .then((data) => (pairs = data));
+      
+      let filtered = pairs.filter((pair) => {
+        if (pair.quote_currency === "USD") {
+          return pair;
+        }
+      });
+
+      filtered = filtered.sort((a, b) => {
+        if (a.base_currency < b.base_currency) {
+          return -1;
+        }
+        if (a.base_currency > b.base_currency) {
+          return 1;
+        }
+        return 0;
+      });
+
+      
+      setcurrencies(filtered);
+
+      first.current = true;
+    };
+
+    apiCall();
+  }, []);
+
+  useEffect(() => {
+    if (!first.current) {
+      
+      return;
+    }
+
+    
+    let msg = {
+      type: "subscribe",
+      product_ids: [pair],
+      channels: ["ticker"]
+    };
+    let jsonMsg = JSON.stringify(msg);
+    ws.current.send(jsonMsg);
+
+    let historicalDataURL = `${url}/products/${pair}/candles?granularity=86400`;
+    const fetchHistoricalData = async () => {
+      let dataArr = [];
+      await fetch(historicalDataURL)
+        .then((res) => res.json())
+        .then((data) => (dataArr = data));
+      
+      let formattedData = formatData(dataArr);
+      setpastData(formattedData);
+    };
+
+    fetchHistoricalData();
+
+    ws.current.onmessage = (e) => {
+      let data = JSON.parse(e.data);
+      if (data.type !== "ticker") {
+        return;
+      }
+
+      if (data.product_id === pair) {
+        setprice(data.price);
+      }
+    };
+  }, [pair]);
+
+  const handleSelect = (e) => {
+    let unsubMsg = {
+      type: "unsubscribe",
+      product_ids: ["BTC-USD"],
+      channels: ["ticker"]
+    };
+    let unsub = JSON.stringify(unsubMsg);
+
+    ws.current.send(unsub);
+
+    setpair(e.target.value);
+  };
+
+  
+
+  const THREE_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000;
+    const NOW_IN_MS = new Date().getTime();
+
+    const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
   const[visible, SetVisible]=useState(true);
 const[popup, setPopup] = useState(false);
 const handleClickOpen=()=>{
   setPopup(!popup);
 
+  
 }
 function DownUp(){
     if(visible){
@@ -73,6 +188,7 @@ function DownUp(){
 }
   return (
 
+    
     <div >
     {popup?
     <div className="mainPopup">
@@ -82,9 +198,27 @@ function DownUp(){
 </div>
     <div className="menuPopup">
 <br />
-<label className="SingleTrans1">Send 1 BTC </label>
+<label className="SingleTrans1">Send 1 BTC =</label>
+               <p></p> 
+{`$${price}`}&nbsp;&nbsp;&nbsp;
+<button name="currency" value={pair} onClick={handleSelect} className="btnCrypt">
+  
+          {currencies.slice(37,38).map((cur, idx) => {
+            return (
+              <option key={idx} value="BTC-USD">
+                {cur.display_name}
+                
+              </option>
+            );
+          })}
+        </button>
+
+        
 <p />
-= $30,521.00
+
+
+
+         
 <p />
 <label className="SingleTrans2">In a single transaction to: </label> <p/>
   <div type="text" className="addressBTC">
@@ -92,7 +226,7 @@ function DownUp(){
   tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe
 </p>
   </div><div className="timing">
-<p />Within <b>0 Days 23:59:59</b><p />
+<p /><CountdownTimer targetDate={dateTimeAfterThreeDays} ></CountdownTimer><p />
 </div>
 <br />
 <div className="attention">
@@ -104,21 +238,9 @@ function DownUp(){
 </div>
 <p />
 <button className="btnPayment">I have made the payment</button>
-
     </div>
-
     </div>
     </div>:""}
-
-
-
-
-
-
-
-
-
-
     <div id="content1">
           <div id="radios">
             <input id="rad1" type="radio" name="radioBtn" onClick={()=>SetVisible(true)}   />
@@ -127,20 +249,11 @@ function DownUp(){
             <label className="labels" htmlFor="rad2"><b>UNWRAP</b></label>
             <div id="bckgrnd"></div>
           </div>
-
-
-
 <DownUp/>
-
-
-
-        </div>
+      </div>
 </div>
   )
 }
 
 
 export default Bridge;
-<script type="text/javascript">
-
-</script>
