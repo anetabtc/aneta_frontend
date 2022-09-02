@@ -87,6 +87,7 @@ function Vault() {
     }
 
   return (
+<<<<<<< HEAD
     <div className="page">
         <div className="main-block">
             <div className="page-topic">BTC Vault</div>
@@ -111,6 +112,15 @@ function Vault() {
             </div>
         </div>
     </div>
+=======
+    <div>
+    <h2 className='calling'>BTC Vault</h2>
+    <div className='mainmenu_transaction'>
+  <div className="feedback-page__content-btn_op">Operate an anetaBTC vault</div>
+     
+ </div>
+ </div>
+>>>>>>> 25dfd49fc4133fd23697af2161a8229cf312b3a6
   )
 }
 
