@@ -3,6 +3,51 @@ import CountdownTimer from './CountdownTimer';
 import {formatData} from "./Utils";
 
 function Bridge() {
+
+    const refreshPage = ()=>{
+        window.location.reload();
+    }
+
+
+    function runMint(args){
+        let data = {amount: 1, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
+        console.log(JSON.stringify(data));
+        (async () => {
+            const rawResponse = await fetch('http://localhost:5004/mint', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type':  'application/x-www-form-urlencoded'
+                },
+                mode: 'cors',
+                cache: 'default',
+                body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
+            });
+            const content = await rawResponse.json();
+            handleClickOpen();
+            console.log(content);
+        })();
+    }
+
+    function runRedeem(args){
+        let data = {amount: 1, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
+        console.log(JSON.stringify(data));
+        (async () => {
+            const rawResponse = await fetch('http://localhost:5004/redeem', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type':  'application/x-www-form-urlencoded'
+                },
+                mode: 'cors',
+                cache: 'default',
+                body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
+            });
+            const content = await rawResponse.json();
+            console.log(content);
+        })();
+    }
+
     const opts = {
         tooltips: {
             intersect: false,
@@ -153,7 +198,7 @@ function Bridge() {
                         <div className="left">You Will Receive</div>
                         <div className="right"><b>0</b> anetaBTC</div>
                     </div>
-                    <button onClick={runMint(this)} type="button" className="mainButton" id="mintButton"><b>Mint
+                    <button onClick={()=>runMint(true)} type="button" className="mainButton" id="mintButton"><b>Mint
                         anetaBTC</b></button>
                 </div>
             )
@@ -190,7 +235,7 @@ function Bridge() {
                         <div className="left">You Will Receive</div>
                         <div className="right"><b>0</b> BTC</div>
                     </div>
-                    <button onClick={runRedeem(this)} type="button" className="mainButton" id="mintButton">
+                    <button onClick={()=>runRedeem(true)} type="button" className="mainButton" id="mintButton">
                         <b>Confirm</b></button>
                 </div>
             )
@@ -251,7 +296,7 @@ function Bridge() {
                                 safe :)
                             </div>
                             <p/>
-                            <button className="btnPayment">I have made the payment</button>
+                            <button onClick={refreshPage} className="btnPayment">I have made the payment</button>
                         </div>
                     </div>
                 </div> : ""}
@@ -269,42 +314,6 @@ function Bridge() {
     )
 }
 
-function runMint(args){
-    let data = {amount: 1, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
-    console.log(JSON.stringify(data));
-    (async () => {
-        const rawResponse = await fetch('http://localhost:5004/mint', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type':  'application/x-www-form-urlencoded'
-            },
-            mode: 'cors',
-            cache: 'default',
-            body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-        });
-        const content = await rawResponse.json();
-        console.log(content);
-    })();
-}
 
-function runRedeem(args){
-    let data = {amount: 1, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
-    console.log(JSON.stringify(data));
-    (async () => {
-        const rawResponse = await fetch('http://localhost:5004/redeem', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type':  'application/x-www-form-urlencoded'
-            },
-            mode: 'cors',
-            cache: 'default',
-            body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-        });
-        const content = await rawResponse.json();
-        console.log(content);
-    })();
-}
 
 export default Bridge;

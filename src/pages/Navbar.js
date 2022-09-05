@@ -18,9 +18,9 @@ function Navbar() {
                     9fSbgi...KMJAhb
                 </div>
                 <div>
-                    <button type="button" className="menuButton" id="sun"><img alt="aneta"
-                                                                               src={require('./img/Vector.png')}
-                                                                               id="Vector"/></button>
+                    <button type="button" className="menuButton" id="sun">
+                        <img alt="aneta" src={require('./img/Vector.png')} id="Vector"/>
+                    </button>
                 </div>
             </div>
         </div>
@@ -52,10 +52,6 @@ function DropDown({selected, setSelected}) {
                 <div className="imgwrapper">
 
                     <img src={require('./img/' + selected + '.png')} id="Vector"/>
-
-                    {selected !== "Select Network" && (
-                        <img src={require('./img/' + selected + '.png')} alt="aneta" id="Vector"/>
-                    )}
 
                 </div>
                 <div>{selected}</div>
