@@ -4,13 +4,25 @@ import {formatData} from "./Utils";
 
 function Bridge() {
 
+    const [mintAmount, setMintAmount] = useState('');
+
+    const handleChange = event => {
+        setMintAmount(event.target.value);
+    };
+
+    const [redeemAmount, setRedeemAmount] = useState('');
+
+    const handleChangeRedeem = event => {
+        setRedeemAmount(event.target.value);
+    };
+
     const refreshPage = ()=>{
         window.location.reload();
     }
 
 
     function runMint(args){
-        let data = {amount: 1, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
+        let data = {amount: mintAmount, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
         console.log(JSON.stringify(data));
         (async () => {
             const rawResponse = await fetch('http://localhost:5004/mint', {
@@ -173,7 +185,14 @@ function Bridge() {
             return (
                 <div id="WRAP">
                     <p className="title">Mint anetaBTC by Wrapping BTC</p>
-                    <input type="text" className="btcInput" size="30" placeholder="0.00" required/><br/>
+                    <input type="text" placeholder="0.00" required
+                           className="btcInput"
+                           size="30"
+                           id="mintAmount"
+                           name="mintAmount"
+                           onChange={handleChange}
+                           value={mintAmount}
+                    /><br/>
                     <div className="lblInp">
                         BTC<br/>
                         ~ $ 0.00
@@ -206,7 +225,12 @@ function Bridge() {
             return (
                 <div id="UNWRAP">
                     <p className="title">Redeem BTC</p>
-                    <input type="text" className="btcInput" size="30" placeholder="0.00" required/><br/>
+                    <input type="text" className="btcInput" size="30" placeholder="0.00" required
+                           id="mintAmount"
+                           name="mintAmount"
+                           onChange={handleChangeRedeem}
+                           value={redeemAmount}
+                    /><br/>
                     <div className="lblInp2">
                         anetaBTC<br/>
                         ~ $ 0.00
