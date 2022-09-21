@@ -1037,3 +1037,36 @@ justify-content: center;
   display: flex;
   justify-content: center;
 }
+
+.imgLogoMenu {
+  display: none;
+  width: 141px;
+}
+
+
+@media (max-width: 1387px) {
+  .sidebar {
+    width: 350px;
+    height: 100%;
+    margin: 0 0;
+    border-radius: 0px;
+    background-color: white;
+    max-width: 100%;
+    z-index: 7;
+  }
+
+  .imgLogoMenu {
+    display: block;
+  }
+
+  .menuTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .net {
+    margin-bottom: auto;
+    margin-top: auto;
+  }
+}

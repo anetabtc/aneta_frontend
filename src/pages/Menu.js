@@ -4,8 +4,11 @@ import {Link} from "react-router-dom"
 function Menu() {
     return (
         <div className="sidebar">
-            <div className="net">
-                Testnet
+            <div className="menuTop">
+                <img src={require('./img/logo.png')} alt="aneta" className="imgLogoMenu"/>
+                <div className="net">
+                    Testnet
+                </div>
             </div>
             <div className="sidebar_content">
                 <ul className="menuList">
