@@ -1044,9 +1044,14 @@ justify-content: center;
 }
 
 
+.mob_nav_bar {
+  display: none;
+}
+
+
 @media (max-width: 1387px) {
   .sidebar {
-    width: 350px;
+    display:none;
     height: 100%;
     margin: 0 0;
     border-radius: 0px;
@@ -1060,13 +1065,38 @@ justify-content: center;
   }
 
   .menuTop {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
   }
 
   .net {
     margin-bottom: auto;
     margin-top: auto;
+  }
+
+  .menuButton1 {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+  }
+
+  .menuButton1:hover {
+    background-color: rgba(154, 188, 245, 0.66);
+  }
+
+  #navbar_menu {
+    display: none;
+  }
+
+  .mob_nav_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logoImgMob {
+    height: 42px;
   }
 }

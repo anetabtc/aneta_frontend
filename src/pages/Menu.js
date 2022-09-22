@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 function Menu() {
     return (
-        <div className="sidebar">
+        <div className="sidebar" id="sidebar">
             <div className="menuTop">
                 <img src={require('./img/logo.png')} alt="aneta" className="imgLogoMenu"/>
                 <div className="net">
