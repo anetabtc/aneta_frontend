@@ -1,9 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react'
 import CountdownTimer from './CountdownTimer';
 import {formatData} from "./Utils";
+import {QRCodeCanvas} from "qrcode.react";
+
+
 
 function Bridge() {
 
+    const [address, setAddress] = useState('');
     const [mintAmount, setMintAmount] = useState('');
 
     const handleChange = event => {
@@ -35,7 +39,14 @@ function Bridge() {
                 cache: 'default',
                 body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
             });
-            const content = await rawResponse.json();
+
+
+            const content = await rawResponse.json()
+
+            setAddress(content.address)
+
+
+
             handleClickOpen();
             console.log(content);
         })();
@@ -302,7 +313,7 @@ function Bridge() {
                             <label className="SingleTrans2">In a single transaction to: </label> <p/>
                             <div type="text" className="addressBTC">
                                 <p className="labelAdd">
-                                    tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe
+                                    {address}
                                 </p>
                             </div>
                             <div className="timing">
@@ -313,7 +324,13 @@ function Bridge() {
                                 <span><b>Attention:</b> Some Bitcoin wallets display values in mBTC. In </span><br/><span>this case, ensure you send the correct amount: <b>1000mBTC</b></span>
                             </div>
                             <br/>
-                            <img className="qr" src={require('../img/qr.png')} alt="aneta"/>
+                            <QRCodeCanvas
+                                id="qrCode"
+                                // value={"hwgefukwyhegfbukqyh"}
+                                value={address}
+                                size={154}
+                                level={"H"}
+                            />
                             <br/><br/>
                             <div className="note">
                                 <b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are
