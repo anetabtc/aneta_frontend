@@ -25,6 +25,7 @@ function Bridge() {
     }
 
 
+
     function runMint(args){
         let data = {amount: mintAmount, btc_vault_id: 0, btc_wallet_id: "Wallet1-testnet", network: "testnet", vault_id: 0, wallet_id: 0};
         console.log(JSON.stringify(data));
