@@ -1,4 +1,3 @@
-
 import {Link} from "react-router-dom"
 
 function Menu() {
@@ -34,13 +33,13 @@ function Menu() {
                     Dashboard
                 </li></Link>
 
-            <Link to="/vault" className="menu-item">
-                <div className="menu-icon">
-                    <img src={require('./img/vault.png')} alt="aneta" id="Vector"/>
-                </div>
-                <li className="btnM">
-                    Vault
-                </li></Link>
+            {/*<Link to="/vault" className="menu-item">*/}
+            {/*    <div className="menu-icon">*/}
+            {/*        <img src={require('./img/vault.png')} alt="aneta" id="Vector"/>*/}
+            {/*    </div>*/}
+            {/*    <li className="btnM">*/}
+            {/*        Vault*/}
+            {/*    </li></Link>*/}
 
             </ul>
                 <br/>

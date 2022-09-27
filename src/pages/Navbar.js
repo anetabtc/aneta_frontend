@@ -1,9 +1,6 @@
 import {useState} from "react";
 
-function menuBlock() {
-    // var menu = document.getElementById("sidebar")
-    // menu.style.display = "block"
-}
+
 function Navbar() {
     const [selected, setSelected] = useState("Ergo")
     return (
@@ -27,15 +24,6 @@ function Navbar() {
                         </button>
                     </div>
                 </div>
-            </div>
-            <div className="mob_nav_bar">
-                <div className="menuButton1"
-                     onClick={menuBlock()}
-                >
-                    {/*<img src={require('./img/menuButton.png')} alt="menuButton"/>*/}
-                </div>
-                {/*<img src={require('./img/mobLogo.png')} alt="Logo" className="logoImgMob"/>*/}
-                {/*<img src={require('./img/mobLogoAneta.png')} alt="Logo" className="logoImgMob"/>*/}
             </div>
         </div>
 

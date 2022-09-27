@@ -11,17 +11,21 @@ import Menu from './pages/Menu'
 
 function App() {
   return (
-    <div className="App" >
+      <div className="Main">
+          <div className="App" >
+              <Navbar />
+              <Menu />
 
-      <Navbar />
-      <Menu />
-      
-      <Routes><Route path="/" element={<Bridge />} /></Routes>
-      <Routes><Route path="/transactions" element={<Transactions />} /></Routes>
-      <Routes><Route path="/dashboard" element={<Dashboard />} /></Routes>
-      <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
-      <Routes><Route path="/vault" element={<Vault />} /></Routes>
-    </div>
+              <Routes><Route path="/" element={<Bridge />} /></Routes>
+              <Routes><Route path="/transactions" element={<Transactions />} /></Routes>
+              <Routes><Route path="/dashboard" element={<Dashboard />} /></Routes>
+              <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
+              <Routes><Route path="/vault" element={<Vault />} /></Routes>
+          </div>
+          <div className="MediaText">
+              <h1>Sorry</h1>
+          </div>
+      </div>
   )
 }
 
