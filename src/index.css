@@ -10,7 +10,6 @@ body {
          -moz-background-size: cover;
          -o-background-size: cover;
          background-size: cover;
-  background-image: url(./images/light.png);
 }
 
 body{
@@ -21,6 +20,9 @@ code {
     monospace;
 }
 
+.App {
+  background-image: linear-gradient(180deg, #cac0e5, #bed9e8, #fcf7e1);
+}
 
 * {
 
@@ -1035,30 +1037,26 @@ justify-content: center;
   display: none;
 }
 
-.MediaText {
+.mobile {
   display: none;
 }
 
 @media (max-width: 1050px) {
- .App{
+ .Main{
    display: none;
  }
 
-  .MediaText{
-    width: 100%;
-    padding-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .mobile {
     display: block;
+    padding: 20px;
+    font-size: 16px;
   }
 
-  #bckgrnd {
-    background-color: rgba(166, 198, 236, 0.49);
-    position: absolute;
-    left: 0;
-    margin-top: 0px;
-    z-index: -1;
+  .mobLogo {
+    height: 60px;
   }
 
+  .textMob {
+    margin-top: 200px;
+  }
 }

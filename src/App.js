@@ -10,9 +10,10 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Menu from './pages/Menu'
 
 function App() {
+
   return (
-      <div className="Main">
-          <div className="App" >
+      <div className="App" >
+          <div className="Main">
               <Navbar />
               <Menu />
 
@@ -22,8 +23,10 @@ function App() {
               <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
               <Routes><Route path="/vault" element={<Vault />} /></Routes>
           </div>
-          <div className="MediaText">
-              <h1>Sorry</h1>
+          <div className="mobile">
+              <img src={require('./pages/img/mobLogo.png')} className="mobLogo"
+                   alt="aneta"/>
+              <h2 className="textMob">anetaBTC is not yet available on mobile devices. Please use anetaBTC on desktop.</h2>
           </div>
       </div>
   )
