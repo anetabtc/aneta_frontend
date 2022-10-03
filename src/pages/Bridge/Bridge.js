@@ -71,21 +71,13 @@ function Bridge() {
         })();
     }
 
-    const opts = {
-        tooltips: {
-            intersect: false,
-            mode: "index"
-        },
-        responsive: true,
-        maintainAspectRatio: false
-    };
+
 
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
     const [pastData, setpastData] = useState({});
     const ws = useRef(null);
-    const idCoin = 38;
     let first = useRef(false);
     const url = "https://api.pro.coinbase.com";
 

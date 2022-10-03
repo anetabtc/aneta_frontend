@@ -1,37 +1,24 @@
 {
   "name": "vault",
   "version": "0.1.0",
-  "homepage": "https://staging.anetabtc.io",
-  "description": "anetaBTC UI Wrapping",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "chart.js": "^3.9.1",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
-    "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anetabtc/aneta_vault.git"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-<<<<<<< HEAD
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-=======
     "eject": "react-scripts eject"
-    
->>>>>>> 25dfd49fc4133fd23697af2161a8229cf312b3a6
   },
   "eslintConfig": {
     "extends": [
