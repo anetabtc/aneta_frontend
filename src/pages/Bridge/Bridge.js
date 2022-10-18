@@ -205,14 +205,15 @@ function Bridge() {
                     <p/><p/>
                     <div className="flex-container">
                         <div className="left">Bridge Fee</div>
-                        <div className="right"><img id="bit" src={require('../img/Bitcoin.png')}
-                                                    alt="aneta"/><b>0</b> BTC
+                        <div className="right"><img id="bit" src={require('../img/Ergo.png')}
+                                                    alt="aneta"/><b>0.5</b> ERG
                         </div>
                     </div>
                     <p/><p/>
                     <div className="flex-container">
-                        <div className="left">Security Deposit</div>
-                        <div className="right"><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>0</b> ADA
+                        <div className="left">ERG Network fee</div>
+                        <div className="right">
+                            <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>0.02</b> ERG</div>
                         </div>
                     </div>
 
@@ -220,7 +221,7 @@ function Bridge() {
                     <hr id="menuHR1"></hr>
                     <div className="flex-container">
                         <div className="left">You Will Receive</div>
-                        <div className="right"><b>0</b> anetaBTC</div>
+                        <div className="right"><b>1.00</b> anetaBTC</div>
                     </div>
                     <button onClick={()=>runMint(true)} type="button" className="mainButton" id="mintButton"><b>Mint
                         anetaBTC</b></button>
@@ -343,6 +344,14 @@ function Bridge() {
     )
 }
 
+function ConfirmationWindow() {
+    return(
+        <div>
+            Pay Bridge Fee
+            Request:
 
+        </div>
+    )
+}
 
 export default Bridge;
