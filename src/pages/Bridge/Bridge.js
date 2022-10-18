@@ -1,7 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react'
+import QRCode from 'react-qr-code';
 import CountdownTimer from './CountdownTimer';
 import {formatData} from "./Utils";
-import QRCode from "react-qr-code";
+
 
 
 
