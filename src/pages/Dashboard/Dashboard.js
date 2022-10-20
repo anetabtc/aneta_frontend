@@ -4,18 +4,16 @@ function Dashboard() {
   return (
     <div id="pageDashboard">
     <div className='menu_dashboard'>
-      <div>GRAPHS</div>  <div>GRAPHS</div>
-      <div><div class="round">
-
-          <h4>Capacity</h4> 12.3 nBTC
-          </div></div>
-      <div><div class="round"><h4>Secure</h4>  anetaBTC bridge</div></div>
-      <div><div class="round"><h4>Synced</h4>Block 2330363</div></div>
-      <div><div class="round"><h4>Online</h4>231 KSM/nBTC</div></div>
-      <div class="info2"><br></br>Active Vaults: <p className='number1'><h4>20</h4></p></div>
-      <div class="info2"><br></br>Active Collators: <p className='number1'><h4>3</h4></p></div>
-
-</div>
+    
+      
+      <div><h3 className="infoCluster">BTC in Vault</h3><div class="round"><h4>13.300 BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> View Vault ➜</h6></div></div>
+      <div><h3 className="infoCluster">eBTC minted</h3><div class="round"><h4>13.300 eBTC</h4><h6 className='ClusterL'>Synced</h6><h6>View supploy ➜</h6></div></div>
+      <div><h3 className="infoCluster">Network Security</h3><div class="round"><h4>Secure</h4><h6 className='ClusterL'>anetaBTC Bridge</h6><h6>View supploy ➜</h6></div></div>
+      </div>
+      <div className='menu_dash'>
+      <div><h3 className="infoCluster">BTC Network</h3><div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block 3346729</h6><h6>View BTC height ➜</h6></div></div>
+      <div><h3 className="infoCluster">ERG Network</h3><div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block 2330363</h6><h6>View ERG height ➜</h6></div></div>
+      </div>
     </div>
   )
 }

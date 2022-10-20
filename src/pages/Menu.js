@@ -52,15 +52,15 @@ function Menu() {
                 <li className="btnM">
                     Feedback
                 </li></Link>
-            <Link to="/docs" className="menu-item">
-                <div className="menu-icon">
+                <a href="https://docs.anetabtc.io/" className="menu-item">
+            <div className="menu-icon">
                     <img src={require('./img/docs.png')} alt="aneta" id="Vector"/>
                 </div>
                 <li className="btnM">
                     Docs
                     <img src={require('./img/link.png')} alt="aneta" id="linkImg"/>
                 </li>
-            </Link>
+            </a>
             </ul>
             <div className="socialMedia">
                 <a href="https://twitter.com/anetaBTC" className="menu-icon">

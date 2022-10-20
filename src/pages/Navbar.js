@@ -11,9 +11,9 @@ function Navbar() {
                     <img src={require('./img/logo.png')} alt="aneta" className="imgLogo"/>
                 </div>
                 <div id="head">
-                    <div className="menuButton">
+                    <a href="https://bitcoinfaucet.uo1.net/"><div className="menuButton">
                         Get Test BTC
-                    </div>
+                    </div></a>
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div className="menuButton">
                         <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg')}/>

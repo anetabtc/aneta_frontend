@@ -22,7 +22,7 @@ code {
 }
 
 .App {
-    background-image: linear-gradient(180deg, #cac0e5, #bed9e8, #fcf7e1);
+    background-image: linear-gradient(180deg, #bce1e9, #c8dfe7, #ebf1f0);
 }
 
 * {
@@ -491,6 +491,8 @@ svg {
 .mainmenu_feedback {
     position: fixed;
     background-color: white;
+    text-decoration: none;
+      color: inherit;
     width: 500px;
     display: table;
     border-radius: 15px;
@@ -500,14 +502,19 @@ svg {
     top: 0;
     bottom: 0;
     margin: 320px auto;
-
+    text-decoration: none;
+    font: inherit;
 }
 
 
 .feedback-page > a {
     color: inherit;
+    all: unset;
+    font: inherit;
+
     text-decoration: none;
 }
+
 
 .feedback-page > h1 {
     position: fixed;
@@ -525,7 +532,7 @@ svg {
     margin-bottom: 15px;
     font-size: 1rem;
     border-radius: 10px;
-
+    text-decoration: none;
     background: #BCD4F2;
     width: 80%;
     margin-left: 5%;
@@ -534,6 +541,7 @@ svg {
 
 .feedback-page__content-btn_op {
     padding: 25px;
+    
     padding-top: 25px;
     box-shadow: 10 0 99px hsl(0deg 0% 46% / 16%);
     transition: .2s;
@@ -548,6 +556,10 @@ svg {
     margin-top: 6%;
 }
 
+a:visited { 
+    text-decoration: none; 
+    color: inherit; 
+   }
 /* TRANSACTIONS */
 
 .mainmenu_transaction {
@@ -638,22 +650,58 @@ td {
     height: 120px;
 }
 
+.infoCluster {
+    color: #339AD3;
+    font-size: 25px;
+        text-align: left;
+        margin-left: 30px;;
+}
+
 .round {
     width: 12em;
     height: 12em;
-    border: 3px solid #339AD3;
+    border: 3px solid hsl(201, 65%, 51%);
     border-radius: 50%;
     padding: 1.4644em; /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
     box-sizing: border-box; /* чтобы padding не увеличивал ширину и высоту элемента */
     background: rgb(255, 255, 255);
-    margin-top: 60px;
+    margin-top: 30px;
     margin-left: 80px;
 }
 
+
+.round > .ClusterL {
+    margin-top: -20px;
+}
+
+.roudn > h6 {
+    margin-top: 20px;
+}
 .round > h4 {
     font-size: 20px;
     color: #339AD3;
 }
+
+.menu_dash {
+    display: grid;
+    grid-template-columns: 350px 350px;;
+    position: absolute;
+    margin-top: 550px;
+    margin-left: 650px;
+    grid-gap: 50px;
+
+}
+
+.menu_dash > div {
+    background-color: white;
+    border-radius: 10px;
+    height: 320px;
+}
+
+.menu_dash > .info2 {
+    height: 120px;
+}
+
 
 .number1 {
     font-size: 20px;
