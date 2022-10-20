@@ -2,6 +2,7 @@ import {useState} from "react";
 
 
 function Navbar() {
+
     const [selected, setSelected] = useState("Ergo")
     return (
         <div>
