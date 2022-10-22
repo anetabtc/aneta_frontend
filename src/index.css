@@ -39,7 +39,7 @@ code {
 
 .confContent {
     display: table;
-    margin: 300px 40%;
+    margin: 300px 38%;
     text-align: center;
     position: absolute;
 }
@@ -1030,7 +1030,7 @@ ul {
     top: 10%;
     opacity: 100%;
     border-radius: 16.5px;
-    right: 34.3%;
+    right: 40%;
 }
 
 
@@ -1433,3 +1433,11 @@ div > .addressBTC {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.error {
+    color: #FF5555;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 80px;
+}
+

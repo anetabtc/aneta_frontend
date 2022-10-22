@@ -8,14 +8,29 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     const [conf, setConf] = useState("info");
 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
     function Conf() {
-        if(conf === "info"){
+        if(eBTC !== "0"){
+            if(conf === "info"){
+                return(
+                    <ConfirmationInfo/>
+                )
+            }else if(conf === "subm"){
+                return(
+                    <ConfirmationSubmission/>
+                )
+            }
+        }else{
             return(
-                <ConfirmationInfo/>
-            )
-        }else if(conf === "subm"){
-            return(
-                <ConfirmationSubmission/>
+                <div>
+                    <div className="error">
+                        You cannot mint 0 amount of BTC. Please, try again!
+                    </div>
+                    <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                </div>
             )
         }
     }
