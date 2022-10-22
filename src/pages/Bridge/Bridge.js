@@ -103,10 +103,11 @@ function Bridge() {
         return (
             <div id="WRAP">
                 <p className="title">Mint anetaBTC by Wrapping BTC</p>
-                <input type="text" placeholder="0.00"
+                <input pattern="[0-9]+" type="text" maxlength="4" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
+                       
                        name="mintAmount"
                        onChange={handleChange}
                        value={mintAmount}
@@ -120,17 +121,32 @@ function Bridge() {
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png')}
-                             alt="aneta"/><b>{bridgeFee}</b> ERG ~ $ {bridgeFeeUsd}
+                             alt="aneta"/><b>{bridgeFee}</b> ERG 
+                             
+                          
+
                     </div>
+                    
+                    <div className="feeUSD">   = $ {bridgeFeeUsd}</div>
+                    
                 </div>
+               
+                <br></br>
                 <p/><p/>
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG ~ $ {ergFeeUsd}</div>
+                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG 
+                        
+                        </div>
+                        
                     </div>
+                    <div className="feeUSD2"> = $ {ergFeeUsd} </div>
                 </div>
 
+                <p/><p/>
+                
+                <br></br>
                 <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
@@ -198,16 +214,17 @@ function Bridge() {
         return (
             <div id="UNWRAP">
                 <p className="title">Redeem BTC</p>
-                <input type="text" className="btcInput" size="30" placeholder="0.00" required
+                <input type="text" className="btcInput" maxlength="4" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
                        value={redeemAmount}
                 /><br/>
-                <div className="lblInp2">
+                <div className="lblInp">
                     anetaBTC<br/>
                     ~ $ {usd}
                 </div>
+                <br></br>
                 <p/>
                 <p className="title2">BTC address</p>
                 <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address"
@@ -232,7 +249,7 @@ function Bridge() {
                     <div className="left">You Will Receive</div>
                     <div className="right"><b>0</b> BTC</div>
                 </div>
-                <button onClick={() => runRedeem(true)} type="button" className="mainButton" id="mintButton">
+                <button onClick={() => runRedeem(true)} type="button" className="mainButton2" id="mintButton">
                     <b>Confirm</b></button>
             </div>
         )

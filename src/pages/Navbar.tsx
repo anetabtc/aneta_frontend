@@ -1,9 +1,26 @@
 import {useState} from "react";
-
+import {ReactNode, useEffect} from "react";
 
 function Navbar() {
 
     const [selected, setSelected] = useState("Ergo")
+    const [userAddress, setUserAddress] = useState<string>('');
+
+    async function handleWalletConnect() {
+  
+        const isConnected: boolean = await ergoConnector.nautilus.connect();
+        
+        if(isConnected) {
+          const address = ergo.get_change_address();
+            address.then((value) => {
+                setUserAddress(value)
+            });
+        }
+        }
+
+        useEffect(() => {
+            handleWalletConnect();
+        }, [])
     return (
         <div>
             <div id="navbar_menu">
@@ -11,13 +28,13 @@ function Navbar() {
                     <img src={require('./img/logo.png')} alt="aneta" className="imgLogo"/>
                 </div>
                 <div id="head">
-                    <a href="https://bitcoinfaucet.uo1.net/"><div className="menuButton">
+                <a target="_blank" href="https://bitcoinfaucet.uo1.net/"><div className="menuButton">
                         Get Test BTC
                     </div></a>
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div className="menuButton">
                         <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg')}/>
-                        9fSbgi...KMJAhb
+                        {userAddress? userAddress : 'Connect wallet'}
                     </div>
                     <div>
                         <button type="button" className="menuButton" id="sun">

@@ -651,7 +651,7 @@ td {
 }
 
 .infoCluster {
-    color: #339AD3;
+    color: black;
     font-size: 25px;
         text-align: left;
         margin-left: 30px;;
@@ -753,7 +753,7 @@ td {
 }
 
 .btcInput {
-    width: 560px;
+    width: 570px;
     background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
@@ -768,7 +768,7 @@ td {
 }
 
 .btcInputAddress {
-    width: 560px;
+    width: 570px;
     background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
@@ -792,12 +792,22 @@ td {
 }
 
 .mainButton {
-    width: 609px;
+    width: 598px;
     height: 65px;
     background-color: #A6C6FA;
     border: none;
     border-radius: 15px;
-    margin-top: 16%;
+    margin-top: 13%;
+    font-size: 20px;
+}
+
+.mainButton2 {
+    width: 598px;
+    height: 65px;
+    background-color: #A6C6FA;
+    border: none;
+    border-radius: 15px;
+    margin-top: 17%;
     font-size: 20px;
 }
 
@@ -889,12 +899,27 @@ td {
 .flex-container {
     display: flex;
     flex-direction: row;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .flex-container > div {
-    width: 240px;
+    width: 280px;
+    height: 40px;
+    margin: auto;
+    line-height: 95px;
+    font-size: 17px;
+}
+
+.flex-containerB {
+    display: flex;
+    flex-direction: row;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.flex-containerB > div {
+    width: 280px;
     height: 40px;
     margin: auto;
     line-height: 95px;
@@ -902,7 +927,7 @@ td {
 }
 
 #menuHR1 {
-    width: 90%;
+    width: 92%;
     margin-top: 40px;
     text-align: left;
 
@@ -942,7 +967,7 @@ ul {
 .mainPopup {
     background-color: grey;
     width: 100%;
-    height: 1120px;
+    height: 100vh;
     position: absolute;
     top: 0%;
     z-index: 6;
@@ -1056,11 +1081,11 @@ div > .addressBTC {
 }
 
 #WRAP {
-    height: 520px;
+    height: 530px;
 }
 
 #UNWRAP {
-    height: 618px;
+    height: 608px;
 
 }
 
@@ -1320,3 +1345,20 @@ div > .addressBTC {
         margin-top: 200px;
     }
 }
+
+
+.feeUSD {
+text-align: right;
+
+position: absolute;
+left: 53%;
+top: 37%;
+}
+
+.feeUSD2 {
+    text-align: right;
+    
+    position: absolute;
+    left: 53%;
+    top: 49%;
+    }

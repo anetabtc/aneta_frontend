@@ -44,13 +44,13 @@ function ConfirmationWindow() {
         return (
             <div>
                 <div className="confInfo">
-                    <div className="flex-container">
+                    <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
                             Mint 1.00 eBTC
                         </div>
                     </div>
-                    <div className="flex-container">
+                    <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
                             <img id="bit" src={require('../img/Ergo.png')}

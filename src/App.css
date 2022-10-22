@@ -1,14 +1,14 @@
 .App {
   text-align: center;
 
-
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-          height: 1120px;
-
+  background: linear-gradient(180deg, #bce1e9, #c8dfe7, #ebf1f0) no-repeat;
+  -moz-background-size: 100%; /* Firefox 3.6+ */
+  -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+  -o-background-size: 100%; /* Opera 9.6+ */
+  background-size: 100%; /* Современные браузеры */
+  background-size: cover;
+  height: 100vh;
+  
 }
 .show-counter {
 
