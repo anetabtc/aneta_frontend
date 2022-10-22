@@ -19,7 +19,7 @@ function BTCDeposit() {
                     <div className="confSubmission">
                         <div className="textBTC"></div>
                         <CheckMark/>
-                        <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
+                        <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>
                 </div>
             </div>

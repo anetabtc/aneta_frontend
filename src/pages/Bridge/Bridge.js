@@ -1,13 +1,81 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import ConfirmationWindow from "./ConfirmationWindow";
+import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem";
 
 
 function Bridge() {
 
+
+    const [ergUsd, setErgUsd] = useState('0');
+
+    const [usdBTC, setUsdBTC] = useState('0');
+
+    const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
+
+    const [bridgeFee, setBridgeFee] = useState('0');
+    const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+
+    const [btcNetworkFee, setBtcNetworkFee] = useState('0');
+    const [btcNetworkFeeUsd, setBtcNetworkFeeUsd] = useState('0');
+    const [btcAddress, setBtcAddress] = useState('');
+    const [BTCAmount, setBTCAmount] = useState('0');
+
+    useEffect(()=>{
+        ErgUsd();
+        BtcUsd();
+    }, [])
+
+    // setInterval(() => {
+    //     ErgUsd();
+    //     BtcUsd();
+    // }, 60000);
+
+    function ErgUsd() {
+
+        (async () => {
+            const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ERG&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                mode: 'cors',
+                cache: 'default',
+            });
+            const content = await rawResponse.json();
+            console.log(content.USD + " erg fee")
+            setErgUsd(content.USD)
+        })();
+
+
+    }
+
+    function BtcUsd() {
+        (async () => {
+            const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                mode: 'cors',
+                cache: 'default',
+            });
+            const content = await rawResponse.json();
+            setUsdBTC(content.USD)
+            console.log(usdBTC)
+        })();
+    }
+
     const [popup, setPopup] = useState(false);
     const handleClickOpen = () => {
         setPopup(!popup);
+    }
+
+    const [popupr, setPopupr] = useState(false);
+    const handleClickOpenRedeem = () => {
+        setPopupr(!popupr);
     }
 
     const [visible, SetVisible] = useState(true);
@@ -27,7 +95,8 @@ function Bridge() {
 
     return (
         <div>
-            {popup ? <ConfirmationWindow/> : ""}
+            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmount} bridgeFee = {bridgeFee} bridgeFeeUsd = {bridgeFeeUsd} /> : ""}
+            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmount} btcNetworkFee = {btcNetworkFee} btcNetworkFeeUsd = {btcNetworkFeeUsd}  btcAddress = {btcAddress} /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -44,63 +113,25 @@ function Bridge() {
     function MintPage() {
 
         const [mintAmount, setMintAmount] = useState('');
-        const [bridgeFee, setBridgeFee] = useState('0');
         const [ergFee, setErgFee] = useState('0');
-        const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
-        const [usdBTC, setUsdBTC] = useState('0');
-        const [ergUsd, setErgUsd] = useState('0');
-        const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
         const [ergFeeUsd, setErgFeeUsd] = useState('0');
-
-        function ErgUsd() {
-
-            (async () => {
-                const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ERG&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                });
-                const content = await rawResponse.json();
-                console.log(content.USD + " erg fee")
-                setErgUsd(content.USD)
-            })();
-
-
-        }
-
-        ErgUsd();
+        const [usdBtcMint, setUsdBtcMint] = useState('0');
 
         const handleChange = event => {
+            // ErgUsd();
+            // BtcUsd();
             setMintAmount(event.target.value);
             setErgFee("0.02");
-            if(event.target.value !== ''){
-                setAnetaBTCAmount(event.target.value);
-            }else{
+            if (event.target.value !== '') {
+                setAnetaBTCAmount(event.target.value * 0.995);
+            } else {
                 setAnetaBTCAmount('0');
             }
             setBridgeFee(event.target.value * 33);
             console.log("aaa" + ergUsd);
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
             setErgFeeUsd(0.02 * ergUsd);
-
-            (async () => {
-                const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                });
-                const content = await rawResponse.json();
-                setUsdBTC(content.USD * event.target.value)
-                console.log(usdBTC)
-            })();
+            setUsdBtcMint(usdBTC * event.target.value)
         };
 
 
@@ -111,51 +142,50 @@ function Bridge() {
                        className="btcInput"
                        size="30"
                        id="mintAmount"
-                       
+
                        name="mintAmount"
                        onChange={handleChange}
                        value={mintAmount}
                 /><br/>
                 <div className="lblInp">
                     BTC<br/>
-                    ~ $ {usdBTC}
+                   <div id="usd"> ~ $ {usdBtcMint}</div>
                 </div>
                 <p/><p/>
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png')}
-                             alt="aneta"/><b>{bridgeFee}</b> ERG 
-                             
-                          
+                             alt="aneta"/><b>{bridgeFee}</b> ERG
+
 
                     </div>
-                    
-                    <div className="feeUSD">   = $ {bridgeFeeUsd}</div>
-                    
+
+                    <div className="feeUSD" id="usd"> = $ {bridgeFeeUsd}</div>
+
                 </div>
-               
+
                 <br></br>
                 <p/><p/>
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG 
-                        
+                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG
+
                         </div>
-                        
+
                     </div>
-                    <div className="feeUSD2"> = $ {ergFeeUsd} </div>
+                    <div className="feeUSD2" id="usd"> = $ {ergFeeUsd} </div>
                 </div>
 
                 <p/><p/>
-                
+
                 <br></br>
                 <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><b>{anetaBTCAmount}</b> anetaBTC</div>
+                    <div className="right"><b>{anetaBTCAmount}</b> eBTC</div>
                 </div>
                 <button
                     onClick={handleClickOpen}
@@ -167,27 +197,31 @@ function Bridge() {
 
     function RedeemPage() {
         const [redeemAmount, setRedeemAmount] = useState('');
-        const [usd, setUSD] = useState('0');
+        const [ergFee, setErgFee] = useState('0');
+        const [ergFeeUsd, setErgFeeUsd] = useState('0');
+        const [usdBtcRedeem, setUsdBtcRedeem] = useState('0');
+
 
         const handleChangeRedeem = event => {
+            // ErgUsd();
+            // BtcUsd();
             setRedeemAmount(event.target.value);
-
-            (async () => {
-                const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                });
-                const content = await rawResponse.json();
-                setUSD(content.USD * event.target.value)
-                console.log(usd)
-            })();
+            setErgFee("0.02");
+            if (event.target.value !== '' && event.target.value !== 0) {
+                setBTCAmount(event.target.value);
+            } else {
+                setBTCAmount('0');
+            }
+            setBtcNetworkFee(event.target.value * 33);
+            setBtcNetworkFeeUsd(event.target.value * 33 * usdBtcRedeem);
+            setErgFeeUsd(0.02 * ergUsd);
+            setUsdBtcRedeem(usdBTC * event.target.value);
 
         };
+
+        const handleChangeBtcAddress = event => {
+            setBtcAddress(event.target.value);
+        }
 
         function runRedeem(args) {
             let data = {
@@ -226,34 +260,50 @@ function Bridge() {
                 /><br/>
                 <div className="lblInp">
                     anetaBTC<br/>
-                    ~ $ {usd}
+                    <div id="usd">~ $ {usdBtcRedeem}</div>
                 </div>
                 <br></br>
                 <p/>
                 <p className="title2">BTC address</p>
-                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address"
+                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
                        required/><br/>
                 <p/><p/>
                 <div className="flex-container">
                     <div className="left">BTC network Fee</div>
-                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png')}
-                                                alt="aneta"/><b>0</b> BTC
+                    <div className="right">
+                        <img id="bit" src={require('../img/Bitcoin.png')}
+                             alt="aneta"/><b>{btcNetworkFee}</b> BTC
+
+
                     </div>
-                </div>
-                <p/><p/>
-                <div className="flex-container">
-                    <div className="left">ERG network Fee</div>
-                    <div className="right"><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>0</b> ERG
-                    </div>
+
+                    <div className="feeUSD3" id="usd"> = $ {btcNetworkFeeUsd}</div>
+
                 </div>
 
+                <br></br>
+                <p/><p/>
+                <div className="flex-container">
+                    <div className="left">ERG Network fee</div>
+                    <div className="right">
+                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG
+
+                        </div>
+
+                    </div>
+                    <div className="feeUSD4" id="usd"> = $ {ergFeeUsd} </div>
+                </div>
+
+                <p/><p/>
+
+                <br></br>
                 <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><b>0</b> BTC</div>
+                    <div className="right"><b>{BTCAmount}</b> BTC</div>
                 </div>
-                <button onClick={() => runRedeem(true)} type="button" className="mainButton2" id="mintButton">
+                <button onClick={handleClickOpenRedeem} type="button" className="mainButton2" id="mintButton">
                     <b>Confirm</b></button>
             </div>
         )

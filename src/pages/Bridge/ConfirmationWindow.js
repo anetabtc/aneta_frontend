@@ -4,7 +4,7 @@ import Mint from "./Mint";
 
 
 
-function ConfirmationWindow() {
+function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     const [conf, setConf] = useState("info");
 
@@ -47,14 +47,14 @@ function ConfirmationWindow() {
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
-                            Mint 1.00 eBTC
+                            Mint {eBTC} eBTC
                         </div>
                     </div>
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
                             <img id="bit" src={require('../img/Ergo.png')}
-                                 alt="aneta"/><b>3</b> ERG
+                                 alt="aneta"/><b>{bridgeFee}</b> ERG <div id="usd" className="confBF">= $ {bridgeFeeUsd}</div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ function ConfirmationWindow() {
             <div className="confSubmission">
                 <div>Bridge Fee Payment Submitted</div>
                 <CheckMark/>
-                <button type="button" id="confButton1"  onClick={() => setConf("mint")}><b>Continue</b></button>
+                <button type="button" id="confButton1" className="confWRS"  onClick={() => setConf("mint")}><b>Continue</b></button>
             </div>
         )
     }

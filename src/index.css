@@ -79,7 +79,6 @@ code {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .confSubmission {
@@ -120,8 +119,7 @@ svg {
 }
 
 
-
-@keyframes  progress {
+@keyframes progress {
     from {
         stroke-dashoffset: 360;
     }
@@ -130,7 +128,7 @@ svg {
     }
 }
 
-@keyframes  bgprogress {
+@keyframes bgprogress {
     0% {
         stroke: #f1f1f1;
     }
@@ -143,8 +141,7 @@ svg {
 }
 
 
-
-@keyframes  cmprogress {
+@keyframes cmprogress {
     0% {
         border-top: 4px solid rgba(76, 217, 100, 0);
         border-right: 4px solid rgba(76, 217, 100, 0);
@@ -195,27 +192,26 @@ svg {
 }
 
 
-
 /*.circle, .overlay {*/
 /*    grid-area: 1 / 1;*/
 /*    left: 45%;*/
 /*}*/
 
 
-
 .overlay {
     margin-left: 205px;
 }
 
-.textBTC::before{
+.textBTC::before {
     animation: textprogress 2s ease-out;
 }
-.textBTC::after{
+
+.textBTC::after {
     content: "BTC Deposit Submitted. eBTC should be arrived in your wallet soon";
     animation: textprogress 2s ease-out;
 }
 
-@keyframes  textprogress {
+@keyframes textprogress {
     0% {
         content: "Awaiting BTC deposit confirmation";
     }
@@ -224,14 +220,62 @@ svg {
     }
 }
 
+.textUR::before {
+    animation: textprogressUR 2s ease-out;
+}
+
+.textUR::after {
+    content: "eBTC deposit submitted";
+    animation: textprogressUR 2s ease-out;
+}
+
+@keyframes textprogressUR {
+    0% {
+        content: "Awaiting eBTC payment confirmation";
+    }
+    100% {
+        content: ""
+    }
+}
+
+.confWRS{
+    animation: button 2s ease-out;
+}
+
+
+
+@keyframes button {
+    0% {
+        width: 0;
+        content: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: rgba(0, 0, 0, 0);
+    }
+    90% {
+        width: 0;
+        content: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: rgba(0, 0, 0, 0);
+    }
+    100% {
+        width: 100%;
+        content: "Continue";
+    }
+}
+
+.confBF {
+    margin-top: -70px;
+}
+
+#confBA {
+    margin-top: 10px;
+}
 
 
 /*dropdown*/
 .dropdown {
     width: 165px;
 }
-
-
 
 
 .dropdown .dropdown-btn {
@@ -492,7 +536,7 @@ svg {
     position: fixed;
     background-color: white;
     text-decoration: none;
-      color: inherit;
+    color: inherit;
     width: 500px;
     display: table;
     border-radius: 15px;
@@ -541,7 +585,7 @@ svg {
 
 .feedback-page__content-btn_op {
     padding: 25px;
-    
+
     padding-top: 25px;
     box-shadow: 10 0 99px hsl(0deg 0% 46% / 16%);
     transition: .2s;
@@ -556,10 +600,11 @@ svg {
     margin-top: 6%;
 }
 
-a:visited { 
-    text-decoration: none; 
-    color: inherit; 
-   }
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* TRANSACTIONS */
 
 .mainmenu_transaction {
@@ -653,8 +698,8 @@ td {
 .infoCluster {
     color: black;
     font-size: 25px;
-        text-align: left;
-        margin-left: 30px;;
+    text-align: left;
+    margin-left: 30px;;
 }
 
 .round {
@@ -677,6 +722,7 @@ td {
 .roudn > h6 {
     margin-top: 20px;
 }
+
 .round > h4 {
     font-size: 20px;
     color: #339AD3;
@@ -807,7 +853,7 @@ td {
     background-color: #A6C6FA;
     border: none;
     border-radius: 15px;
-    margin-top: 17%;
+    margin-top: 10%;
     font-size: 20px;
 }
 
@@ -964,6 +1010,7 @@ ul {
 .windowPop {
     z-index: 6;
 }
+
 .mainPopup {
     background-color: grey;
     width: 100%;
@@ -1010,7 +1057,6 @@ ul {
     width: 100%;
     background-color: #EEF4FF;
 }
-
 
 
 #bitcoin {
@@ -1348,17 +1394,42 @@ div > .addressBTC {
 
 
 .feeUSD {
-text-align: right;
+    text-align: right;
 
-position: absolute;
-left: 53%;
-top: 37%;
+    position: absolute;
+    left: 53%;
+    top: 37%;
 }
 
 .feeUSD2 {
     text-align: right;
-    
+
     position: absolute;
     left: 53%;
     top: 49%;
-    }
+}
+
+.feeUSD3 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 49%;
+}
+
+.feeUSD4 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 61%;
+}
+
+#usd {
+    font-size: 16px;
+}
+
+.dntwrr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

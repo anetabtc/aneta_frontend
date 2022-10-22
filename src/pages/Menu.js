@@ -52,7 +52,7 @@ function Menu() {
                 <li className="btnM">
                     Feedback
                 </li></Link>
-                <a href="https://docs.anetabtc.io/" className="menu-item">
+                <a href="https://docs.anetabtc.io/" target="_blank"  className="menu-item">
             <div className="menu-icon">
                     <img src={require('./img/docs.png')} alt="aneta" id="Vector"/>
                 </div>
