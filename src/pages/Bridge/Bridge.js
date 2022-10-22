@@ -77,7 +77,11 @@ function Bridge() {
         const handleChange = event => {
             setMintAmount(event.target.value);
             setErgFee("0.02");
-            setAnetaBTCAmount(event.target.value);
+            if(event.target.value !== ''){
+                setAnetaBTCAmount(event.target.value);
+            }else{
+                setAnetaBTCAmount('0');
+            }
             setBridgeFee(event.target.value * 33);
             console.log("aaa" + ergUsd);
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
