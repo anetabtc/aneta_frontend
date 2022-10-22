@@ -48,13 +48,40 @@ function Bridge() {
         const [ergFee, setErgFee] = useState('0');
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [usdBTC, setUsdBTC] = useState('0');
+        const [ergUsd, setErgUsd] = useState('0');
+        const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+        const [ergFeeUsd, setErgFeeUsd] = useState('0');
 
+        function ErgUsd() {
+
+            (async () => {
+                const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ERG&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                });
+                const content = await rawResponse.json();
+                console.log(content.USD + " erg fee")
+                setErgUsd(content.USD)
+            })();
+
+
+        }
+
+        ErgUsd();
 
         const handleChange = event => {
             setMintAmount(event.target.value);
             setErgFee("0.02");
             setAnetaBTCAmount(event.target.value);
             setBridgeFee(event.target.value * 33);
+            console.log("aaa" + ergUsd);
+            setBridgeFeeUsd(event.target.value * 33 * ergUsd);
+            setErgFeeUsd(0.02 * ergUsd);
 
             (async () => {
                 const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {
@@ -93,14 +120,14 @@ function Bridge() {
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png')}
-                             alt="aneta"/><b>{bridgeFee}</b> ERG
+                             alt="aneta"/><b>{bridgeFee}</b> ERG ~ $ {bridgeFeeUsd}
                     </div>
                 </div>
                 <p/><p/>
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG</div>
+                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{ergFee}</b> ERG ~ $ {ergFeeUsd}</div>
                     </div>
                 </div>
 
