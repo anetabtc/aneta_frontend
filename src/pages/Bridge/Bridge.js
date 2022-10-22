@@ -11,15 +11,15 @@ function Bridge() {
 
     const [usdBTC, setUsdBTC] = useState('0');
 
-    const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
+    const [anetaBTCAmountG, setAnetaBTCAmountG] = useState('0');
 
-    const [bridgeFee, setBridgeFee] = useState('0');
-    const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+    const [bridgeFeeG, setBridgeFeeG] = useState('0');
+    const [bridgeFeeUsdG, setBridgeFeeUsdG] = useState('0');
 
-    const [btcNetworkFee, setBtcNetworkFee] = useState('0');
-    const [btcNetworkFeeUsd, setBtcNetworkFeeUsd] = useState('0');
-    const [btcAddress, setBtcAddress] = useState('');
-    const [BTCAmount, setBTCAmount] = useState('0');
+    const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
+    const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
+    const [btcAddressG, setBtcAddressG] = useState('');
+    const [BTCAmountG, setBTCAmountG] = useState('0');
 
     useEffect(()=>{
         ErgUsd();
@@ -44,7 +44,7 @@ function Bridge() {
                 cache: 'default',
             });
             const content = await rawResponse.json();
-            console.log(content.USD + " erg fee")
+            console.log(content.USD + " erg usd")
             setErgUsd(content.USD)
         })();
 
@@ -64,7 +64,7 @@ function Bridge() {
             });
             const content = await rawResponse.json();
             setUsdBTC(content.USD)
-            console.log(usdBTC)
+            console.log(usdBTC + " btcusd")
         })();
     }
 
@@ -95,8 +95,8 @@ function Bridge() {
 
     return (
         <div>
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmount} bridgeFee = {bridgeFee} bridgeFeeUsd = {bridgeFeeUsd} /> : ""}
-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmount} btcNetworkFee = {btcNetworkFee} btcNetworkFeeUsd = {btcNetworkFeeUsd}  btcAddress = {btcAddress} /> : ""}
+            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
+            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG} /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -116,23 +116,33 @@ function Bridge() {
         const [ergFee, setErgFee] = useState('0');
         const [ergFeeUsd, setErgFeeUsd] = useState('0');
         const [usdBtcMint, setUsdBtcMint] = useState('0');
+        const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
+        const [bridgeFee, setBridgeFee] = useState('0');
+        const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
 
         const handleChange = event => {
-            // ErgUsd();
-            // BtcUsd();
             setMintAmount(event.target.value);
             setErgFee("0.02");
+            setErgFeeUsd(0.02 * ergUsd);
+            setUsdBtcMint(usdBTC * event.target.value)
             if (event.target.value !== '') {
                 setAnetaBTCAmount(event.target.value * 0.995);
-            } else {
+            }
+            else {
                 setAnetaBTCAmount('0');
             }
             setBridgeFee(event.target.value * 33);
-            console.log("aaa" + ergUsd);
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
-            setErgFeeUsd(0.02 * ergUsd);
-            setUsdBtcMint(usdBTC * event.target.value)
         };
+
+
+        function handleClickOpen1() {
+
+            setAnetaBTCAmountG(anetaBTCAmount)
+            setBridgeFeeG(bridgeFee)
+            setBridgeFeeUsdG(bridgeFeeUsd)
+            handleClickOpen()
+        }
 
 
         return (
@@ -142,7 +152,6 @@ function Bridge() {
                        className="btcInput"
                        size="30"
                        id="mintAmount"
-
                        name="mintAmount"
                        onChange={handleChange}
                        value={mintAmount}
@@ -188,7 +197,7 @@ function Bridge() {
                     <div className="right"><b>{anetaBTCAmount}</b> eBTC</div>
                 </div>
                 <button
-                    onClick={handleClickOpen}
+                    onClick={handleClickOpen1}
                     type="button" className="mainButton" id="mintButton"><b>Mint
                     anetaBTC</b></button>
             </div>
@@ -200,6 +209,10 @@ function Bridge() {
         const [ergFee, setErgFee] = useState('0');
         const [ergFeeUsd, setErgFeeUsd] = useState('0');
         const [usdBtcRedeem, setUsdBtcRedeem] = useState('0');
+        const [btcNetworkFee, setBtcNetworkFee] = useState('0');
+        const [btcNetworkFeeUsd, setBtcNetworkFeeUsd] = useState('0');
+        const [btcAddress, setBtcAddress] = useState('');
+        const [BTCAmount, setBTCAmount] = useState('0');
 
 
         const handleChangeRedeem = event => {
@@ -213,11 +226,19 @@ function Bridge() {
                 setBTCAmount('0');
             }
             setBtcNetworkFee(event.target.value * 33);
-            setBtcNetworkFeeUsd(event.target.value * 33 * usdBtcRedeem);
+            setBtcNetworkFeeUsd(event.target.value * 33 * usdBTC);
             setErgFeeUsd(0.02 * ergUsd);
             setUsdBtcRedeem(usdBTC * event.target.value);
 
         };
+
+        function handleClickOpenRedeem1() {
+            setBtcNetworkFeeG(btcNetworkFee)
+            setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
+            setBtcAddressG(btcAddress)
+            setBTCAmountG(BTCAmount)
+            handleClickOpenRedeem()
+        }
 
         const handleChangeBtcAddress = event => {
             setBtcAddress(event.target.value);
@@ -251,7 +272,7 @@ function Bridge() {
 
         return (
             <div id="UNWRAP">
-                <p className="title">Redeem BTC</p>
+                <p className="title">Turn eBTC into BTC</p>
                 <input type="text" className="btcInput" maxlength="4" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
@@ -259,7 +280,7 @@ function Bridge() {
                        value={redeemAmount}
                 /><br/>
                 <div className="lblInp">
-                    anetaBTC<br/>
+                    eBTC<br/>
                     <div id="usd">~ $ {usdBtcRedeem}</div>
                 </div>
                 <br></br>
@@ -303,7 +324,7 @@ function Bridge() {
                     <div className="left">You Will Receive</div>
                     <div className="right"><b>{BTCAmount}</b> BTC</div>
                 </div>
-                <button onClick={handleClickOpenRedeem} type="button" className="mainButton2" id="mintButton">
+                <button onClick={handleClickOpenRedeem1} type="button" className="mainButton2" id="mintButton">
                     <b>Confirm</b></button>
             </div>
         )

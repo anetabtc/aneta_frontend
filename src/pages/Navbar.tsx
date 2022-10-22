@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {ReactNode, useEffect} from "react";
 
+
 function Navbar() {
 
     const [selected, setSelected] = useState("Ergo")
@@ -32,9 +33,9 @@ function Navbar() {
                         Get Test BTC
                     </div></a>
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
-                    <div className="menuButton">
+                    <div className="menuButton" >
                         <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg')}/>
-                        {userAddress? userAddress : 'Connect wallet'}
+                        {userAddress? userAddress.substring(0,6) + '...' + userAddress.substring(userAddress.length-6, userAddress.length) : 'Connect wallet'}
                     </div>
                     <div>
                         <button type="button" className="menuButton" id="sun">

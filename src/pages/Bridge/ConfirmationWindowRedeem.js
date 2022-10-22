@@ -46,7 +46,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
                     <div className="confWindow">
                         <div className="confTitle">
-                            UnwrapRequest
+                            Unwrap Request
                         </div>
                         <Conf/>
                     </div>
