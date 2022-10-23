@@ -194,7 +194,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><b>{anetaBTCAmount}</b> eBTC</div>
+                    <div className="right"><img id="bit" src={require('../img/werg.png')} alt="eBTC"/><b>{anetaBTCAmount}</b> eBTC</div>
                 </div>
                 <button
                     onClick={handleClickOpen1}
