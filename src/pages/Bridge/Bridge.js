@@ -84,7 +84,7 @@ function Bridge() {
     function DownUp() {
         if (visible) {
             return (
-                <MintPage/>
+                <MintPage eBTC={anetaBTCAmountG} bridgeFee={bridgeFeeG}/>
             )
         } else {
             return (
@@ -166,8 +166,6 @@ function Bridge() {
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png')}
                              alt="aneta"/><b>{bridgeFee}</b> ERG
-
-
                     </div>
 
                     <div className="feeUSD" id="usd"> = $ {bridgeFeeUsd}</div>

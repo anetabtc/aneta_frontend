@@ -13,6 +13,8 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     }
 
     function Conf() {
+        
+
         if(eBTC !== "0"){
             if(conf === "info"){
                 return(

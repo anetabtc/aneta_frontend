@@ -7,10 +7,11 @@ import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
 
-function Mint(args) {
+function Mint({eBTC, bridgeFee}) {
     const [address, setAddress] = useState('');
 
     const [window, setWindow] = useState(true);
+    const [paymentWindow, setPaymentWindow] = useState(true)
     let data = {
         amount: 0,
         btc_vault_id: 0,
@@ -20,26 +21,7 @@ function Mint(args) {
         wallet_id: 0
     };
     console.log(JSON.stringify(data));
-    (async () => {
-        const rawResponse = await fetch('http://localhost:5004/mint', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            mode: 'cors',
-            cache: 'default',
-            body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-        });
-
-
-        const content = await rawResponse.json()
-
-        setAddress(content.address)
-
-        console.log(content);
-    })();
-
+    
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
@@ -48,9 +30,67 @@ function Mint(args) {
     let first = useRef(false);
     const url = "https://api.pro.coinbase.com";
 
-    useEffect(() => {
-        ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
+    const mint = () => {
+        // calling into the /mint endpoint in the backend
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                amount: eBTC,
+                btc_wallet_addr: "2N3XVbjuNsv7Pzmfxi6qQ3AA8a1mppEYCno",
+                network: "testnet",
+                wallet_id: "<NAUTILUS_ERGO_ADDRESS_HERE>" 
+            })
+        };
 
+        fetch("http://localhost:5004/mint", requestOptions)
+            .then(res => res.json())
+            .then((response) => { 
+                console.log("Response from /mint endpoint: " + JSON.stringify(response))
+                let taskId = response['data']['task_id']
+                const interval = setInterval(() => {
+                    fetch("http://localhost:5004/statusMint/" + taskId)
+                    .then(res1 => res1.json())
+                    .then((statusResponse) => {
+                        console.log("Status response: " + JSON.stringify(statusResponse))
+                        if (statusResponse['data']['task_status'] == 'finished') {
+                            clearInterval(interval);
+                            if (statusResponse['data']['task_result']['success'] === true) {
+                                console.log("Resulting operation is success!")
+                                navigateToBTCDeposit()
+                            } else {
+                                console.log("Resulting operation did not complete successfully!")
+                            }
+                        } else if (statusResponse['data']['task_status'] == 'failed') {
+                            clearInterval(interval);
+                            console.log("Resulting operation has failed to finish!")
+                        } else {
+                            console.log("trying again...")
+                        }
+                    })
+                }, 5000);
+        })
+    }
+
+    const getVaultAddress = () => {
+    
+        fetch("http://localhost:5004/getVaultAddress")
+        .then(res1 => res1.json())
+        .then((vaultAddress) => {
+            console.log("Vault address: " + JSON.stringify(vaultAddress))
+            setAddress(vaultAddress.address)
+        })
+    }
+
+    useEffect(() => {
+
+        // getting the vault address for the QR code
+        getVaultAddress()
+
+        // calling into /mint endpoint
+        mint()
+
+        ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
         let pairs = [];
 
         const apiCall = async () => {
@@ -74,7 +114,6 @@ function Mint(args) {
                 return 0;
             });
 
-
             setcurrencies(filtered);
 
             first.current = true;
@@ -85,10 +124,8 @@ function Mint(args) {
 
     useEffect(() => {
         if (!first.current) {
-
             return;
         }
-
 
         let msg = {
             type: "subscribe",
@@ -136,6 +173,10 @@ function Mint(args) {
         setpair(e.target.value);
     };
 
+    const navigateToBTCDeposit = () => {
+        console.log('payment is done!')
+        setPaymentWindow(false);
+    }
 
     const THREE_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000;
     const NOW_IN_MS = new Date().getTime();
@@ -144,10 +185,10 @@ function Mint(args) {
 
     return(
         <div>
-            {window ? <PaymentInfo/> : <BTCDeposit/>}
+            {console.log("window" + paymentWindow)}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC = {eBTC} bridgeFee = {bridgeFee}/>}
         </div>
     )
-
 
     function PaymentInfo() {
         return (
@@ -155,7 +196,7 @@ function Mint(args) {
                 <div className="popup">
                     <div className="divLabel">
                         <img id="bitcoin" src={require('../img/Bitcoin.png')} alt="aneta"/> <label
-                        className="labelMain"> BTC Deposit </label>
+                        className="labelMain"> BTC Deposit Payment</label>
                     </div>
                     <div className="menuPopup">
                         <br/>
@@ -184,8 +225,9 @@ function Mint(args) {
                         <QRCode
                             id="qrCode"
                             value={address}
-                            size={154}
-                            level={"H"}
+                            size={96}
+                            level={"L"}
+                            includeMargin={false}
                         />
                         <br/><br/>
                         <div className="note">
@@ -193,7 +235,9 @@ function Mint(args) {
                             safe :)
                         </div>
                         <p/>
-                        <button className="btnPayment" onClick={setWindow(false)}>I have made the payment</button>
+                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I have made the payment</button>
+                        {/* <button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
+
                     </div>
                 </div>
             </div>

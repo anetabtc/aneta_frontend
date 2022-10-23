@@ -1,6 +1,6 @@
 import CheckMark from "./CheckMark";
 
-function BTCDeposit() {
+function BTCDeposit({eBTC, bridgeFee}) {
 
     const refreshPage = () => {
         window.location.reload();
