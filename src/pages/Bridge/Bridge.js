@@ -83,6 +83,7 @@ function Bridge() {
 
     function DownUp() {
         if (visible) {
+            {console.log("anetaBTCAmountG" + anetaBTCAmountG)}
             return (
                 <MintPage eBTC={anetaBTCAmountG} bridgeFee={bridgeFeeG}/>
             )

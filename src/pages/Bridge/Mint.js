@@ -186,6 +186,7 @@ function Mint({eBTC, bridgeFee}) {
     return(
         <div>
             {console.log("window" + paymentWindow)}
+            {console.log("eBTC" + eBTC)}
             {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC = {eBTC} bridgeFee = {bridgeFee}/>}
         </div>
     )
@@ -200,7 +201,7 @@ function Mint({eBTC, bridgeFee}) {
                     </div>
                     <div className="menuPopup">
                         <br/>
-                        <label className="SingleTrans1">Send 1 BTC =</label>
+                        <label className="SingleTrans1">Send {eBTC} BTC =</label>
                         <p></p>
 
 

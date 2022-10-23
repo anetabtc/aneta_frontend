@@ -39,7 +39,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
    if (conf === "mint") {
        return (
-           <Mint/>
+           <Mint eBTC={eBTC} bridgeFee={bridgeFee}/>
        )
    }else {
        return (
