@@ -24,7 +24,7 @@ function Navbar() {
 
             setConnected(true)
         }else{
-            setVisible(true)
+            visible ? setVisible(false) : setVisible(true)
         }
     }
 

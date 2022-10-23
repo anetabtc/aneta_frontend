@@ -35,8 +35,9 @@ code {
     width: 100%;
 }
 
-.disconnect {
-    margin-top: 10px;
+#disconnect {
+    display: flex;
+    justify-content: center;
 }
 
 /*confirmation window*/
