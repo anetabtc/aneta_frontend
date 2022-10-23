@@ -148,7 +148,7 @@ function Bridge() {
         return (
             <div id="WRAP">
                 <p className="title">Mint anetaBTC by Wrapping BTC</p>
-                <input pattern="[0-9]+" type="text" maxlength="4" placeholder="0.00"
+                <input pattern="[0-9]+" type="text" max="9999" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
@@ -273,7 +273,7 @@ function Bridge() {
         return (
             <div id="UNWRAP">
                 <p className="title">Turn eBTC into BTC</p>
-                <input type="text" className="btcInput" maxlength="4" size="30" placeholder="0.00" required
+                <input pattern="[0-9]+" type="text" className="btcInput"  max="9999" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
@@ -322,7 +322,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><b>{BTCAmount}</b> BTC</div>
+                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png')} alt="BTC"/><b>{BTCAmount}</b> BTC</div>
                 </div>
                 <button onClick={handleClickOpenRedeem1} type="button" className="mainButton2" id="mintButton">
                     <b>Confirm</b></button>
