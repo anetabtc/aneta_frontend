@@ -34,13 +34,16 @@ function Mint({eBTC, bridgeFee}) {
         // calling into the /mint endpoint in the backend
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                amount: eBTC,
-                btc_wallet_addr: "2N3XVbjuNsv7Pzmfxi6qQ3AA8a1mppEYCno",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':  'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({ 
+                amount: eBTC.toString(),
+                btc_wallet_addr: "<USER_BTC_ADDRESS_HERE>",
                 network: "testnet",
-                wallet_id: "<NAUTILUS_ERGO_ADDRESS_HERE>" 
-            })
+                wallet_addr: "<NAUTILUS_ERGO_ADDRESS_HERE>" 
+            }).toString()
         };
 
         fetch("http://localhost:5004/mint", requestOptions)

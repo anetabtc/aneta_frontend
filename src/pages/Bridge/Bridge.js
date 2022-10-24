@@ -89,7 +89,7 @@ function Bridge() {
             )
         } else {
             return (
-                <RedeemPage/>
+                <RedeemPage eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG} />
             )
         }
     }
