@@ -432,6 +432,13 @@ svg {
     margin-top: auto;
 }
 
+#Vector-sm {
+    align-items: center;
+    width: 17px;
+    height: 17px;
+    margin-top: auto;
+}
+
 #sun {
     width: 35px;
     height: 35px;
@@ -484,15 +491,15 @@ svg {
 .btnM {
     width: 200px;
     height: 40px;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 550;
     text-align: left;
-    margin: 2px;
     text-decoration: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     color: #000;
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 #linkImg {
@@ -538,7 +545,7 @@ svg {
 }
 
 .mainmenu_feedback {
-    position: fixed;
+    position: absolute;
     background-color: white;
     text-decoration: none;
     color: inherit;
@@ -546,11 +553,7 @@ svg {
     display: table;
     border-radius: 15px;
     overflow: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: 320px auto;
+    margin: 315px 37%;
     text-decoration: none;
     font: inherit;
 }
@@ -1002,9 +1005,7 @@ ul {
 }
 
 .menu-icon {
-    width: 15px;
-    display: flex;
-    justify-content: center;
+    height: 20px;
 }
 
 
