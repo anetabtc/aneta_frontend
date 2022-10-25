@@ -87,7 +87,7 @@ code {
 }
 
 .confSubmission {
-    height: 280px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -176,7 +176,7 @@ svg {
 #checkMarkIcon {
     position: absolute;
     content: "";
-    top: 53%;
+    top: 57%;
     left: 30px;
     transform: scaleX(-1) rotate(135deg);
     height: 60px;
@@ -207,12 +207,14 @@ svg {
     margin-left: 205px;
 }
 
+
 .textBTC::before {
     animation: textprogress 2s ease-out;
 }
 
 .textBTC::after {
-    content: "BTC Deposit Submitted. eBTC should be arrived in your wallet soon";
+
+    content: "BTC deposit successfully submitted. eBTC will arrive in your wallet soon. Transactions can take around 10 minutes to process.";
     animation: textprogress 2s ease-out;
 }
 
