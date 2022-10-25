@@ -37,6 +37,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
             )
 
         }
+
     }
 
 
