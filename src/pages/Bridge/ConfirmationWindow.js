@@ -64,14 +64,14 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
-                            Mint {eBTC} eBTC
+                            Mint {Math.round(eBTC*100)/100} eBTC
                         </div>
                     </div>
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
                             <img id="bit" src={require('../img/Ergo.png')}
-                                 alt="aneta"/><b>{bridgeFee}</b> ERG <div id="usd" className="confBF">= $ {bridgeFeeUsd}</div>
+                                 alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG <div id="usd" className="confBF">= $ {Math.round(100*bridgeFeeUsd)/100}</div>
                         </div>
                     </div>
                 </div>

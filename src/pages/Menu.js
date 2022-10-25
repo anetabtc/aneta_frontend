@@ -33,13 +33,6 @@ function Menu() {
                     Dashboard
                 </li></Link>
 
-            {/*<Link to="/vault" className="menu-item">*/}
-            {/*    <div className="menu-icon">*/}
-            {/*        <img src={require('./img/vault.png')} alt="aneta" id="Vector"/>*/}
-            {/*    </div>*/}
-            {/*    <li className="btnM">*/}
-            {/*        Vault*/}
-            {/*    </li></Link>*/}
 
             </ul>
                 <br/>
@@ -51,7 +44,8 @@ function Menu() {
                 </div>
                 <li className="btnM">
                     Feedback
-                </li></Link>
+                </li>
+            </Link>
                 <a href="https://docs.anetabtc.io/" target="_blank"  className="menu-item">
             <div className="menu-icon">
                     <img src={require('./img/docs.png')} alt="aneta" id="Vector"/>
@@ -64,16 +58,16 @@ function Menu() {
             </ul>
             <div className="socialMedia">
                 <a href="https://twitter.com/anetaBTC" className="menu-icon">
-                    <img src={require('./img/twitter.png')} alt="aneta" id="Vector"/>
+                    <img src={require('./img/twitter.png')} alt="aneta" id="Vector-sm"/>
                 </a>
                 <a href="https://discord.com/invite/ScXG76dJXM" className="menu-icon">
-                    <img src={require('./img/discord.png')} alt="aneta" id="Vector"/>
+                    <img src={require('./img/discord.png')} alt="aneta" id="Vector-sm"/>
                 </a>
                 <a href="https://t.me/anetaBTC" className="menu-icon">
-                    <img src={require('./img/telegram.png')} alt="aneta" id="Vector"/>
+                    <img src={require('./img/telegram.png')} alt="aneta" id="Vector-sm"/>
                 </a>
                 <a href="https://github.com/anetabtc" className="menu-icon">
-                    <img src={require('./img/git.png')} alt="aneta" id="Vector"/>
+                    <img src={require('./img/git.png')} alt="aneta" id="Vector-sm"/>
                 </a>
             </div>
             </div>
