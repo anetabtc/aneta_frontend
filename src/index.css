@@ -281,7 +281,7 @@ svg {
 
 /*dropdown*/
 .dropdown {
-    width: 165px;
+    width: 105px;
 }
 
 
@@ -304,9 +304,10 @@ svg {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 8%;
+    padding-right: 15%;
+    
+ 
 
 
 }
@@ -524,7 +525,7 @@ svg {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 20%;
+    margin-left: 25%;
     margin-right: 30%;
 }
 
@@ -863,7 +864,7 @@ td {
     background-color: #A6C6FA;
     border: none;
     border-radius: 15px;
-    margin-top: 10%;
+    margin-top: 14%;
     font-size: 20px;
 }
 
@@ -982,7 +983,7 @@ td {
 
 #menuHR1 {
     width: 92%;
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: left;
 
 }
@@ -1137,7 +1138,7 @@ div > .addressBTC {
 }
 
 #UNWRAP {
-    height: 608px;
+    height: 668px;
 
 }
 
@@ -1148,10 +1149,19 @@ div > .addressBTC {
     vertical-align: middle;
 }
 
+#bit1 {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
 .right {
    align-items: center;
     text-align: end;
+ 
 }
+
 
 
 .main-block {
@@ -1404,6 +1414,13 @@ div > .addressBTC {
     left: 53%;
     top: 37%;
 }
+.feeUSD1 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 43%;
+}
 
 .feeUSD2 {
     text-align: right;
@@ -1429,6 +1446,30 @@ div > .addressBTC {
     top: 61%;
 }
 
+.feeUSD5 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 53%;
+}
+
+.feeUSD6 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 62%;
+}
+
+.feeUSD7 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 75%;
+}
+
 #usd {
     font-size: 16px;
 }
@@ -1439,9 +1480,16 @@ div > .addressBTC {
 }
 
 .error {
-    color: #FF5555;
+   
     font-weight: bold;
     font-size: 20px;
     margin: 80px;
+}
+
+.error1 {
+    color: #B20000;
+    font-weight: 500;
+    font-size: 30px;
+    
 }
 

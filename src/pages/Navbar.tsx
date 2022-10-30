@@ -80,18 +80,18 @@ function Navbar() {
 function DropDown({selected, setSelected}) {
     const [isActive, setIsActive] = useState(false)
 
-    function DownUp() {
-        if (isActive) {
-            return (
-                <img id="down" alt="aneta" src={require('./img/up.png')}/>
-            )
-        } else {
-            return (
-                <img id="down" alt="aneta" src={require('./img/down.png')}/>
-            )
-        }
-    }
-
+    // function DownUp() {
+    //     if (isActive) {
+    //         return (
+    //             <img id="down" alt="aneta" src={require('./img/up.png')}/>
+    //         )
+    //     } else {
+    //         return (
+    //             <img id="down" alt="aneta" src={require('./img/down.png')}/>
+    //         )
+    //     }
+    // }
+    
     const options = ["Ergo", "Cardano"];
     return (
         <div className="dropdown">
@@ -102,7 +102,7 @@ function DropDown({selected, setSelected}) {
 
                 </div>
                 <div>{selected}</div>
-                <div><DownUp/></div>
+               
 
             </div>
 

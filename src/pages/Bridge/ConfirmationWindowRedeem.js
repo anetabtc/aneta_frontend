@@ -10,7 +10,23 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
     const [conf, setConf] = useState("info");
-
+    function NameTrans() {
+        if(eBTC !=="0") {
+            return(
+                <div>
+                    Pay Bridge Fee
+                </div>
+            )
+        }
+        else {
+            return(
+                <div>
+                    <div className="error1">
+                    Unavailable Quantity
+                    </div>
+                </div>
+            )}
+        }
     function Conf() {
         if (eBTC !== "0" || btcAddress!=='') {
             if (conf === "info") {
@@ -26,11 +42,12 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                     <DontWorryMess/>
                 )
             }
+            
         } else {
             return (
                 <div>
-                    <div className="error">
-                        Address and amount of eBTC cannot be null. Please, try again!
+                   <div className="error">
+                        Your requested transaction is not within current quantity limits. Please try again. 
                     </div>
                     <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
                 </div>
@@ -46,7 +63,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
                     <div className="confWindow">
                         <div className="confTitle">
-                            Unwrap Request
+                           <NameTrans />
                         </div>
                         <Conf/>
                     </div>
@@ -69,8 +86,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                             <div className="left">BTC Network Fee:</div>
                             <div className="right">
                                 <img id="bit" src={require('../img/Ergo.png')}
-                                     alt="aneta"/><b>{btcNetworkFee}</b> ERG <div id="usd" className="confBF">=
-                                $ {btcNetworkFeeUsd}</div>
+                                     alt="aneta"/><b>{Math.round(btcNetworkFee*1000)/1000}</b> ERG <div id="usd" className="confBF">=
+                                $ {Math.round(100*btcNetworkFeeUsd)/100}</div>
                             </div>
                         </div>
                         <div className="flex-containerB" id="confBA">

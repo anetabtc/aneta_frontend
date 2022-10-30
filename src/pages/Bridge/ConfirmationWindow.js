@@ -11,6 +11,23 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     const refreshPage = () => {
         window.location.reload();
     }
+function NameTrans() {
+    if(eBTC !=="0") {
+        return(
+            <div>
+                Pay Bridge Fee
+            </div>
+        )
+    }
+    else {
+        return(
+            <div>
+                <div className="error1">
+                Unavailable Quantity
+                </div>
+            </div>
+        )}
+    }
 
     function Conf() {
         if(eBTC !== "0"){
@@ -27,7 +44,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
             return(
                 <div>
                     <div className="error">
-                        You cannot mint 0 amount of BTC. Please, try again!
+                        Your requested transaction is not within current quantity limits. Please try again. 
                     </div>
                     <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
                 </div>
@@ -46,7 +63,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
                    <div className="confWindow">
                        <div className="confTitle">
-                           Pay Bridge Fee
+                           <NameTrans />
                        </div>
                        <Conf/>
                    </div>
@@ -62,7 +79,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
-                            Mint {Math.round(eBTC*100)/100} eBTC
+                        <img id="bit1" src={require('../img/werg.png')} alt="eBTC"/> Mint {Math.round(eBTC*100)/100} eBTC
                         </div>
                     </div>
                     <div className="flex-containerB">
