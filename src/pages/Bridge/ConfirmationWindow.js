@@ -1,6 +1,6 @@
 import {useState} from "react";
 import CheckMark from "./CheckMark";
-import Mint from "./Mint";
+import Mint from "./Mint.tsx";
 
 
 

@@ -1,5 +1,4 @@
 import {useState} from "react";
-import {ReactNode, useEffect} from "react";
 
 
 function Navbar() {

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import ConfirmationWindow from "./ConfirmationWindow";
-import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem";
+import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
 
 
 function Bridge() {
