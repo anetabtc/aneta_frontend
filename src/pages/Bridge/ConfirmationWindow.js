@@ -30,6 +30,8 @@ function NameTrans() {
     }
 
     function Conf() {
+        
+
         if(eBTC !== "0"){
             if(conf === "info"){
                 return(
@@ -54,7 +56,7 @@ function NameTrans() {
 
    if (conf === "mint") {
        return (
-           <Mint/>
+           <Mint eBTC={eBTC} bridgeFee={bridgeFee}/>
        )
    }else {
        return (

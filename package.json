@@ -2,6 +2,7 @@
   "name": "vault",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://aneta.free.beeceptor.com",
   "dependencies": {
     "@ergoplatform/ergo-js": "^1.6.0",
     "@testing-library/jest-dom": "^5.16.4",

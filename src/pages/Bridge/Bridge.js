@@ -83,12 +83,13 @@ function Bridge() {
 
     function DownUp() {
         if (visible) {
+            {console.log("anetaBTCAmountG" + anetaBTCAmountG)}
             return (
-                <MintPage/>
+                <MintPage eBTC={anetaBTCAmountG} bridgeFee={bridgeFeeG}/>
             )
         } else {
             return (
-                <RedeemPage/>
+                <RedeemPage eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG} />
             )
         }
     }
@@ -165,7 +166,9 @@ function Bridge() {
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png')}
+
                              alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
+
 
 
                     </div>
