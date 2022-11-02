@@ -1,8 +1,9 @@
 import {useState} from "react";
 import CheckMark from "./CheckMark";
-import Mint from "./Mint";
-import Transaction from "ergoscript";
-import {MIN_FEE} from "ergoscript/lib/constants";
+import { ErgoAddress, OutputBuilder, SColl, SByte, SConstant, SLong, TransactionBuilder } from "@fleet-sdk/core";
+import * as buffer from "buffer";
+window.Buffer = buffer.Buffer;
+
 
 
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
@@ -22,24 +23,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     console.log(nautilusAddress + " NAUTILUS ADDRESS")
 
-    async function HandleVote() {
-        const tx = new Transaction([
-            {
-                funds: {
-                    ERG: 0,
-                    tokens: [ { amount: eBTC, tokenId: '60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690'}]
-                },
-                toAddress: '9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw',
-                additionalRegisters: {}
-            }
-        ]);
 
-        const unsignedTx = await tx.build();
-
-        const signedTx = await ergo.sign_tx(unsignedTx.toJSON());
-
-        await ergo.submit_tx(signedTx);
-    }
 
 
     const redeem = () => {
@@ -184,7 +168,9 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
                     </div>
                 </div>
-                <button type="button" id="confButton" onClick={HandleVote}><b>Confirm</b></button>
+                <button type="button" id="confButton"
+                        // onClick={() => sendTransaction(eBTC, "9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw")}
+                ><b>Confirm</b></button>
 
             </div>
         )
@@ -216,6 +202,59 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 
 }
+
+// export async function HandleVote() {
+//     const tx = new Transaction([
+//         {
+//             funds: {
+//                 ERG: 0,
+//                 tokens: [ { amount: eBTC, tokenId: '60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690'}]
+//             },
+//             toAddress: '9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw',
+//             additionalRegisters: {}
+//         }
+//     ]);
+//
+//     const unsignedTx = await tx.build();
+//
+//     const signedTx = await ergo.sign_tx(unsignedTx.toJSON());
+//
+//     await ergo.submit_tx(signedTx);
+// }
+
+
+
+// const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
+// const ERGONAMES_CONTRACT_ADDRESS = "gyGWQNQZJQ1qvJobi3aP6XGPd8vSAKAJwZowKLMhFQowQjCToww199LT2p7tpeZzJaWDfCeYUhWsw2qaEhCbpcxXpb898WPGz7LxKTWrscMrw8LLeJ6k7UTXDWznrnmkidBbXKVwGfCaHuUyyBBdTyf5rZREH1hw2bdky4hbGnDwjCVpsGnpNgY1ASwwsiDJGJ8GXyvfaZbuT5PaNKYqZxLBbUzRR2bLvm2aVEEBh5AWG77Mzy54nVxMAh1omNRgR8uf2MrMzficmqDPF9hrrk52fDyw6ixxMpwoMoaMovcqkhE3zreWdq3QetW758WPCTu6cEGLMhfMXXqB7jaCh3STPqtp8YayvXNcYBiStFTh2gfG9MSK6fdDdMPZ3QVN1gEhCkmuV2jF713JMRLaWiXTZTHTBr9XM6ympxNDGJpgVWb";
+//
+// export async function sendTransaction(price, receiverAddress, explorerUrl = DEFAULT_EXPLORER_URL) {
+//     let currentHeight = await getCurrentHeight(explorerUrl);
+//     let amountToSend = price + (1000000 * 2);
+//     let inputs = await ergo.get_utxos(amountToSend);
+//
+//     const unsignedTransaction = new TransactionBuilder(currentHeight)
+//         .from(inputs)
+//         .to(new OutputBuilder(amountToSend, ERGONAMES_CONTRACT_ADDRESS)
+//             .addTokens([
+//                 { tokenId: "60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690", amount: 1n }
+//             ])
+//         )
+//         .sendChangeTo(receiverAddress)
+//         .payMinFee()
+//         .build("EIP-12");
+//
+//     let signedTransaction = await ergo.sign_tx(unsignedTransaction);
+//     let outputZeroBoxId = signedTransaction.outputs[0].boxId;
+//     let txInfo = await ergo.submit_tx(signedTransaction);
+//     return { txId: txInfo, boxId: outputZeroBoxId };
+// }
+//
+// async function getCurrentHeight(explorerUrl = DEFAULT_EXPLORER_URL) {
+//     let url = `${explorerUrl}/api/v1/blocks?limit=1`;
+//     let response = await fetch(url);
+//     let json = await response.json();
+//     return json.total;
+// }
 
 
 export default ConfirmationWindowRedeem;
