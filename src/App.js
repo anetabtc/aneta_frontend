@@ -11,25 +11,25 @@ import Menu from './pages/Menu'
 
 function App() {
 
-  return (
-      <div className="App" >
-          <div className="Main">
-              <Navbar />
-              <Menu />
+    return (
+        <div className="App" >
+            <div className="Main">
+                <Navbar />
+                <Menu />
 
-              <Routes><Route path="/" element={<Bridge />} /></Routes>
-              <Routes><Route path="/transactions" element={<Transactions />} /></Routes>
-              <Routes><Route path="/dashboard" element={<Dashboard />} /></Routes>
-              <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
-              <Routes><Route path="/vault" element={<Vault />} /></Routes>
-          </div>
-          <div className="mobile">
-              <img src={require('./pages/img/mobLogo.png')} className="mobLogo"
-                   alt="aneta"/>
-              <h2 className="textMob">anetaBTC is not yet available on mobile devices. Please use anetaBTC on desktop.</h2>
-          </div>
-      </div>
-  )
+                <Routes><Route path="/" element={<Bridge />} /></Routes>
+                <Routes><Route path="/transactions" element={<Transactions />} /></Routes>
+                <Routes><Route path="/dashboard" element={<Dashboard />} /></Routes>
+                <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
+                <Routes><Route path="/vault" element={<Vault />} /></Routes>
+            </div>
+            <div className="mobile">
+                <img src={require('./pages/img/mobLogo.png').default} className="mobLogo"
+                     alt="aneta"/>
+                <h2 className="textMob">anetaBTC is not yet available on mobile devices. Please use anetaBTC on desktop.</h2>
+            </div>
+        </div>
+    )
 }
 
 export default App;

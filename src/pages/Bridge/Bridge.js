@@ -165,7 +165,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png')}
+                        <img id="bit" src={require('../img/Ergo.png').default}
 
                              alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
 
@@ -182,7 +182,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{Math.round(ergFee*100)/100}</b> ERG
+                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(ergFee*100)/100}</b> ERG
 
                         </div>
 
@@ -197,7 +197,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/werg.png')} alt="eBTC"/><b>{Math.round(100*anetaBTCAmount)/100}</b> eBTC</div>
+                    <div className="right"><img id="bit" src={require('../img/werg.png').default} alt="eBTC"/><b>{Math.round(100*anetaBTCAmount)/100}</b> eBTC</div>
                 </div>
                 <button
                     onClick={handleClickOpen1}
@@ -301,7 +301,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png')}
+                        <img id="bit" src={require('../img/Ergo.png').default}
                              alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
 
 
@@ -316,7 +316,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">BTC network Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Bitcoin.png')}
+                        <img id="bit" src={require('../img/Bitcoin.png').default}
                              alt="aneta"/><b>{Math.round(10000*btcNetworkFee)/10000}</b> BTC
 
 
@@ -331,7 +331,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png')} alt="aneta"/><b>{Math.round(100*ergFee)/100}</b> ERG
+                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(100*ergFee)/100}</b> ERG
 
                         </div>
 
@@ -344,7 +344,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png')} alt="BTC"/><b>{Math.round(10000*BTCAmount*0.9975)/10000}</b> BTC</div>
+                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png').default} alt="BTC"/><b>{Math.round(10000*BTCAmount*0.9975)/10000}</b> BTC</div>
                     <div className="feeUSD7" id="usd"> = $ {Math.round(usdBtcRedeem*0.9975*100)/100} </div>
                 </div>
                 <button onClick={handleClickOpenRedeem1} type="button" className="mainButton2" id="mintButton">

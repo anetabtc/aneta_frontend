@@ -1,18 +1,19 @@
-import {useState} from "react";
+import React from "react";
+import {SetStateAction, useState} from "react";
 
 
 function Navbar() {
 
     const [selected, setSelected] = useState("Ergo")
-    const [userAddress, setUserAddress] = useState<string>('');
+    const [userAddress, setUserAddress] = useState('');
     const [connected, setConnected] = useState(false);
     const [visible, setVisible] = useState(false);
 
 
     async function handleWalletConnect() {
 
-        if(!connected){
-            const isConnected: boolean = await ergoConnector.nautilus.connect();
+        if (!connected) {
+            const isConnected = await ergoConnector.nautilus.connect();
 
             if (isConnected) {
                 const address = ergo.get_change_address();
@@ -44,7 +45,7 @@ function Navbar() {
         <div>
             <div id="navbar_menu">
                 <div id="imgLogonav">
-                    <img src={require('./img/logo.png')} alt="aneta" className="imgLogo"/>
+                    <img src={require('./img/logo.png').default} alt="aneta" className="imgLogo"/>
                 </div>
                 <div id="head">
                     <a target="_blank" href="https://bitcoinfaucet.uo1.net/">
@@ -55,7 +56,7 @@ function Navbar() {
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div>
                         <div className="menuButton" onClick={handleWalletConnect}>
-                            {connected ? <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg')}/> : ""}
+                            {connected ? <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg').default}/> : ""}
                             {userAddress ? userAddress.substring(0, 4) + '...' + userAddress.substring(userAddress.length - 4, userAddress.length) : 'Connect wallet'}
                         </div>
                         {visible ? <div className="menuButton" id="disconnect" onClick={disconnect}>Disconnect</div> : "" }
@@ -64,7 +65,7 @@ function Navbar() {
                     </div>
                     <div>
                         <button type="button" className="menuButton" id="sun">
-                            <img alt="aneta" src={require('./img/Vector.png')} id="Vector"/>
+                            <img alt="aneta" src={require('./img/Vector.png').default} id="Vector"/>
                         </button>
                     </div>
                 </div>
@@ -97,7 +98,7 @@ function DropDown({selected, setSelected}) {
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 <div className="imgwrapper">
 
-                    <img src={require('./img/' + selected + '.png')} id="Vector"/>
+                    <img src={require('./img/' + selected + '.png').default} id="Vector"/>
 
                 </div>
                 <div>{selected}</div>
@@ -115,7 +116,7 @@ function DropDown({selected, setSelected}) {
                             setIsActive(false)
                         }}
                              className="dropdown-item">
-                            <div><img className="nav-icon" src={require('./img/' + option + '.png')} alt="aneta"
+                            <div><img className="nav-icon" src={require('./img/' + option + '.png').default} alt="aneta"
                                       id="Vector"/></div>
                             <div>{option}</div>
                             {selected === option && (

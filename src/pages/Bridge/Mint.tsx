@@ -1,6 +1,6 @@
 import CountdownTimer from "./CountdownTimer";
 import QRCode from "react-qr-code";
-
+import React from 'react';
 import {useState} from "react";
 import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
@@ -204,7 +204,7 @@ function Mint({eBTC, bridgeFee}) {
             <div className="mainPopup">
                 <div className="popup">
                     <div className="divLabel">
-                        <img id="bitcoin" src={require('../img/Bitcoin.png')} alt="aneta"/> <label
+                        <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/> <label
                         className="labelMain"> BTC Deposit Payment</label>
                     </div>
                     <div className="menuPopup">

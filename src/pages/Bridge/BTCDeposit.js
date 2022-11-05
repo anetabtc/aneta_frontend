@@ -1,5 +1,5 @@
 import CheckMark from "./CheckMark";
-
+import React from 'react';
 function BTCDeposit({eBTC, bridgeFee}) {
 
     const refreshPage = () => {
@@ -12,7 +12,7 @@ function BTCDeposit({eBTC, bridgeFee}) {
                 <div className="confWindow">
                     <div className="confTitle">
                         <div>
-                            {/*<img id="bit" src={require('../img/Bitcoin.png')}*/}
+                            {/*<img id="bit" src={require('../img/Bitcoin.png').default}*/}
                             {/*      alt="aneta"/>*/}
                             BTC Deposit</div>
                     </div>

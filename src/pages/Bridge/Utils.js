@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const formatData = (data) => {
     let finalData = {
       labels: [],

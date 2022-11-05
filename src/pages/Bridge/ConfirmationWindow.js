@@ -1,6 +1,7 @@
 import {useState} from "react";
 import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
+import React from 'react';
 
 
 
@@ -81,13 +82,13 @@ function NameTrans() {
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
-                        <img id="bit1" src={require('../img/werg.png')} alt="eBTC"/> Mint {Math.round(eBTC*100)/100} eBTC
+                        <img id="bit1" src={require('../img/werg.png').default} alt="eBTC"/> Mint {Math.round(eBTC*100)/100} eBTC
                         </div>
                     </div>
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
-                            <img id="bit" src={require('../img/Ergo.png')}
+                            <img id="bit" src={require('../img/Ergo.png').default}
                                  alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG <div id="usd" className="confBF">= $ {Math.round(100*bridgeFeeUsd)/100}</div>
                         </div>
                     </div>
