@@ -1,7 +1,6 @@
 import CountdownTimer from "./CountdownTimer";
 import QRCode from "react-qr-code";
-import {Link} from "react-router-dom"
-
+import React from 'react';
 import {useState} from "react";
 import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
@@ -9,6 +8,12 @@ import BTCDeposit from "./BTCDeposit";
 
 function Mint({eBTC, bridgeFee}) {
     const [address, setAddress] = useState('');
+    const [nautilusAddress, setNautilusAddress] = useState('');
+
+    const address1 = ergo.get_change_address();
+    address1.then((value) => {
+        setNautilusAddress(value)
+    });
 
     const [window, setWindow] = useState(true);
     const [paymentWindow, setPaymentWindow] = useState(true)
@@ -42,7 +47,7 @@ function Mint({eBTC, bridgeFee}) {
                 amount: eBTC.toString(),
                 btc_wallet_addr: "<USER_BTC_ADDRESS_HERE>",
                 network: "testnet",
-                wallet_addr: "<NAUTILUS_ERGO_ADDRESS_HERE>" 
+                wallet_addr: nautilusAddress.toString()
             }).toString()
         };
 
@@ -199,7 +204,7 @@ function Mint({eBTC, bridgeFee}) {
             <div className="mainPopup">
                 <div className="popup">
                     <div className="divLabel">
-                        <img id="bitcoin" src={require('../img/Bitcoin.png')} alt="aneta"/> <label
+                        <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/> <label
                         className="labelMain"> BTC Deposit Payment</label>
                     </div>
                     <div className="menuPopup">

@@ -1,3 +1,5 @@
+import React from 'react';
+
 function CheckMark() {
     return (
         <div className="check-container">
