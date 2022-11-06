@@ -21,7 +21,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 amount: eBTC.toString(),
                 btc_wallet_addr: btcAddress,
                 network: "testnet",
-                wallet_addr: "<NAUTILUS_ERGO_ADDRESS_HERE>" 
+                wallet_addr: "<NAUTILUS_ERGO_ADDRESS_HERE>", 
+                tx_id: "366e72bf61c418671b01ca23e90035391eef665bacb5dd7fbe95317a0f62128d"
             }).toString()
         };
 
