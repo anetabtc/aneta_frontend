@@ -189,6 +189,7 @@ export async function sendTransaction(price, receiverAddress, btcAddress, explor
     let txInfo = await ergo.submit_tx(signedTransaction);
 
     console.log(txInfo, outputZeroBoxId)
+    console.log("tx_id:", txInfo)
 
 
 
@@ -206,7 +207,7 @@ export async function sendTransaction(price, receiverAddress, btcAddress, explor
                 btc_wallet_addr: btcAddress,
                 network: "testnet",
                 wallet_addr: nautilusAddress.toString(),
-                txId: txInfo.toString()
+                tx_id: txInfo.toString()
             }).toString()
         };
 
