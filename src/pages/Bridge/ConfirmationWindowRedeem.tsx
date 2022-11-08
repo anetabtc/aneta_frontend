@@ -14,6 +14,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [conf, setConf] = useState("info");
 
+
     function NameTrans() {
         if (eBTC !== "0") {
             return (
