@@ -3,8 +3,9 @@ import React from 'react';
 
 const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 const ERGONAMES_CONTRACT_ADDRESS = "gyGWQNQZJQ1qvJobi3aP6XGPd8vSAKAJwZowKLMhFQowQjCToww199LT2p7tpeZzJaWDfCeYUhWsw2qaEhCbpcxXpb898WPGz7LxKTWrscMrw8LLeJ6k7UTXDWznrnmkidBbXKVwGfCaHuUyyBBdTyf5rZREH1hw2bdky4hbGnDwjCVpsGnpNgY1ASwwsiDJGJ8GXyvfaZbuT5PaNKYqZxLBbUzRR2bLvm2aVEEBh5AWG77Mzy54nVxMAh1omNRgR8uf2MrMzficmqDPF9hrrk52fDyw6ixxMpwoMoaMovcqkhE3zreWdq3QetW758WPCTu6cEGLMhfMXXqB7jaCh3STPqtp8YayvXNcYBiStFTh2gfG9MSK6fdDdMPZ3QVN1gEhCkmuV2jF713JMRLaWiXTZTHTBr9XM6ympxNDGJpgVWb";
+const RECEIVER_ADDRESS = "9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw"
 
-export async function sendTransaction(price, name, receiverAddress, explorerUrl = DEFAULT_EXPLORER_URL) {
+export async function sendTransaction(price, name, receiverAddress = RECEIVER_ADDRESS, explorerUrl = DEFAULT_EXPLORER_URL) {
     let currentHeight = await getCurrentHeight(explorerUrl);
     let amountToSend = price + (1000000 * 2);
     let inputs = await ergo.get_utxos(amountToSend);
@@ -38,3 +39,5 @@ async function getCurrentHeight(explorerUrl = DEFAULT_EXPLORER_URL) {
     let json = await response.json();
     return json.total;
 }
+
+export default sendTransaction()

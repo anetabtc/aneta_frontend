@@ -21,6 +21,7 @@ function Bridge() {
     const [btcAddressG, setBtcAddressG] = useState('');
     const [BTCAmountG, setBTCAmountG] = useState('0');
 
+
     useEffect(()=>{
         ErgUsd();
         BtcUsd();
@@ -197,7 +198,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/werg.png').default} alt="eBTC"/><b>{Math.round(100*anetaBTCAmount)/100}</b> eBTC</div>
+                    <div className="right"><img id="bit" src={require('../img/werg.png').default} alt="eBTC"/><b>{anetaBTCAmount}</b> eBTC</div>
                 </div>
                 <button
                     onClick={handleClickOpen1}

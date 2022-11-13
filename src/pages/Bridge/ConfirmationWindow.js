@@ -2,12 +2,16 @@ import {useState} from "react";
 import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
 import React from 'react';
+import sendFeeFunction from "./sendFee";
 
 
 
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     const [conf, setConf] = useState("info");
+    const [txInfo, setTxInfo] = useState('');
+
+
 
     const refreshPage = () => {
         window.location.reload();
@@ -39,6 +43,10 @@ function NameTrans() {
                     <ConfirmationInfo/>
                 )
             }else if(conf === "subm"){
+                sendFeeFunction().then(r => setTxInfo(r))
+                // if(!txInfo){
+                //     setConf("error")
+                // }
                 return(
                     <ConfirmationSubmission/>
                 )
@@ -104,7 +112,9 @@ function NameTrans() {
             <div className="confSubmission">
                 <div>Bridge Fee Payment Submitted</div>
                 <CheckMark/>
-                <button type="button" id="confButton1" className="confWRS"  onClick={() => setConf("mint")}><b>Continue</b></button>
+                <button type="button" id="confButton1" className="confWRS"
+                        onClick={() => setConf("mint")}
+                ><b>Continue</b></button>
             </div>
         )
     }

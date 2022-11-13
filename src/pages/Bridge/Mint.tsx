@@ -26,7 +26,7 @@ function Mint({eBTC, bridgeFee}) {
         wallet_id: 0
     };
     console.log(JSON.stringify(data));
-    
+
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
@@ -41,9 +41,9 @@ function Mint({eBTC, bridgeFee}) {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type':  'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: new URLSearchParams({ 
+            body: new URLSearchParams({
                 amount: eBTC.toString(),
                 btc_wallet_addr: "<USER_BTC_ADDRESS_HERE>",
                 network: "testnet",
@@ -53,41 +53,41 @@ function Mint({eBTC, bridgeFee}) {
 
         fetch("http://localhost:5004/mint", requestOptions)
             .then(res => res.json())
-            .then((response) => { 
+            .then((response) => {
                 console.log("Response from /mint endpoint: " + JSON.stringify(response))
                 let taskId = response['data']['task_id']
                 const interval = setInterval(() => {
                     fetch("http://localhost:5004/statusMint/" + taskId)
-                    .then(res1 => res1.json())
-                    .then((statusResponse) => {
-                        console.log("Status response: " + JSON.stringify(statusResponse))
-                        if (statusResponse['data']['task_status'] == 'finished') {
-                            clearInterval(interval);
-                            if (statusResponse['data']['task_result']['success'] === true) {
-                                console.log("Resulting operation is success!")
-                                navigateToBTCDeposit()
+                        .then(res1 => res1.json())
+                        .then((statusResponse) => {
+                            console.log("Status response: " + JSON.stringify(statusResponse))
+                            if (statusResponse['data']['task_status'] == 'finished') {
+                                clearInterval(interval);
+                                if (statusResponse['data']['task_result']['success'] === true) {
+                                    console.log("Resulting operation is success!")
+                                    navigateToBTCDeposit()
+                                } else {
+                                    console.log("Resulting operation did not complete successfully!")
+                                }
+                            } else if (statusResponse['data']['task_status'] == 'failed') {
+                                clearInterval(interval);
+                                console.log("Resulting operation has failed to finish!")
                             } else {
-                                console.log("Resulting operation did not complete successfully!")
+                                console.log("trying again...")
                             }
-                        } else if (statusResponse['data']['task_status'] == 'failed') {
-                            clearInterval(interval);
-                            console.log("Resulting operation has failed to finish!")
-                        } else {
-                            console.log("trying again...")
-                        }
-                    })
+                        })
                 }, 5000);
-        })
+            })
     }
 
     const getVaultAddress = () => {
-    
+
         fetch("http://localhost:5004/getVaultAddress")
-        .then(res1 => res1.json())
-        .then((vaultAddress) => {
-            console.log("Vault address: " + JSON.stringify(vaultAddress))
-            setAddress(vaultAddress.address)
-        })
+            .then(res1 => res1.json())
+            .then((vaultAddress) => {
+                console.log("Vault address: " + JSON.stringify(vaultAddress))
+                setAddress(vaultAddress.address)
+            })
     }
 
     useEffect(() => {
@@ -96,6 +96,7 @@ function Mint({eBTC, bridgeFee}) {
         getVaultAddress()
 
         // calling into /mint endpoint
+
         mint()
 
         ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
@@ -191,11 +192,11 @@ function Mint({eBTC, bridgeFee}) {
 
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-    return(
+    return (
         <div>
             {console.log("window" + paymentWindow)}
             {console.log("eBTC" + eBTC)}
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC = {eBTC} bridgeFee = {bridgeFee}/>}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee}/>}
         </div>
     )
 
@@ -245,7 +246,7 @@ function Mint({eBTC, bridgeFee}) {
                         </div>
                         <p/>
                         <button className="btnPayment" onClick={navigateToBTCDeposit}>I have made the payment</button>
-                        {/* <button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
+                         {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
 
                     </div>
                 </div>
@@ -253,5 +254,6 @@ function Mint({eBTC, bridgeFee}) {
         )
     }
 }
+
 
 export default Mint

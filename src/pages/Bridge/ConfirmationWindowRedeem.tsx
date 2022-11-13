@@ -1,7 +1,8 @@
 import {useState} from "react";
 import CheckMark from "./CheckMark";
 import React from 'react';
-import {ErgoAddress, OutputBuilder, TransactionBuilder} from "@fleet-sdk/core";
+import sendPaymentFunction from "./sendPayment";
+import redeem from "./redeem";
 
 const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 
@@ -10,6 +11,14 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     const refreshPage = () => {
         window.location.reload();
     }
+
+    const [nautilusAddress, setNautilusAddress] = useState('');
+    const [txInfo, setTxInfo] = useState('');
+
+    const address = ergo.get_change_address();
+    address.then((value) => {
+        setNautilusAddress(value)
+    });
 
 
     const [conf, setConf] = useState("info");
@@ -43,7 +52,10 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 return (
                     <ConfirmationSubmission/>
                 )
-            } else if (conf === "concl") {
+            }
+            else if (conf === "concl") {
+                console.log("txInfo before redeem", txInfo)
+                redeem(eBTC, btcAddress, nautilusAddress, txInfo)
                 return (
                     <DontWorryMess/>
                 )
@@ -114,10 +126,13 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         )
     }
 
+
     function ConfirmationSubmission() {
-        sendTransaction(eBTC, "9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw", btcAddress).then(r => {
-            setConf("subm")
+        sendPaymentFunction(eBTC, btcAddress, nautilusAddress).then(r => {
+            setTxInfo(r)
         })
+
+        console.log("txinfo in window:", txInfo)
         return (
             <div className="confSubmission">
                 <div className="textUR"></div>
