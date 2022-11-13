@@ -6,14 +6,9 @@ import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
 
-function Mint({eBTC, bridgeFee}) {
+function Mint({eBTC, bridgeFee, nautilusaddress}) {
     const [address, setAddress] = useState('');
-    const [nautilusAddress, setNautilusAddress] = useState('');
 
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
 
     const [window, setWindow] = useState(true);
     const [paymentWindow, setPaymentWindow] = useState(true)
@@ -36,6 +31,7 @@ function Mint({eBTC, bridgeFee}) {
     const url = "https://api.pro.coinbase.com";
 
     const mint = () => {
+        console.log(nautilusaddress.toString(), "ldkjcfmerdjn")
         // calling into the /mint endpoint in the backend
         const requestOptions = {
             method: 'POST',
@@ -47,7 +43,7 @@ function Mint({eBTC, bridgeFee}) {
                 amount: eBTC.toString(),
                 btc_wallet_addr: "<USER_BTC_ADDRESS_HERE>",
                 network: "testnet",
-                wallet_addr: nautilusAddress.toString()
+                wallet_addr: nautilusaddress.toString()
             }).toString()
         };
 

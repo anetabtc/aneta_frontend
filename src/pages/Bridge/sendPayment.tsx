@@ -12,12 +12,8 @@ const sendPaymentFunction = async function sendTransaction(price, btcAddress, na
         console.log("log:", r)
         setTxInfo(r)
     })
-    if(txInfo){
-        return txInfo;
-    }
-    else{
-        return "error";
-    }
+
+    return txInfo
 
 }
 
@@ -58,7 +54,7 @@ export async function sendTransaction1(price, btcAddress, nautilusAddress, explo
     let outputZeroBoxId = signedTransaction.outputs[0].boxId;
     let txInfo = await ergo.submit_tx(signedTransaction);
 
-    // console.log(txInfo, outputZeroBoxId)
+    console.log(txInfo, outputZeroBoxId)
 
     console.log("tx_info", txInfo)
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import ConfirmationWindow from "./ConfirmationWindow";
+import ConfirmationWindow from "./ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
 
 
