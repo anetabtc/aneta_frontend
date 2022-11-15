@@ -1,5 +1,6 @@
 import React from "react";
 import {SetStateAction, useState} from "react";
+import getAddress from "./Bridge/address";
 
 
 function Navbar() {
@@ -8,7 +9,6 @@ function Navbar() {
     const [userAddress, setUserAddress] = useState('');
     const [connected, setConnected] = useState(false);
     const [visible, setVisible] = useState(false);
-
 
     async function handleWalletConnect() {
 
@@ -20,6 +20,10 @@ function Navbar() {
                 address.then((value) => {
                     setUserAddress(value)
                 });
+                // const address = getAddress();
+                // address.then((value) => {
+                //     setUserAddress(value)
+                // });
             }
 
             setConnected(true)
@@ -56,7 +60,7 @@ function Navbar() {
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div>
                         <div className="menuButton" onClick={handleWalletConnect}>
-                            {connected ? <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg').default}/> : ""}
+                            {userAddress ? <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.jpeg').default}/> : ""}
                             {userAddress ? userAddress.substring(0, 4) + '...' + userAddress.substring(userAddress.length - 4, userAddress.length) : 'Connect wallet'}
                         </div>
                         {visible ? <div className="menuButton" id="disconnect" onClick={disconnect}>Disconnect</div> : "" }
@@ -91,7 +95,7 @@ function DropDown({selected, setSelected}) {
     //         )
     //     }
     // }
-    
+
     const options = ["Ergo", "Cardano"];
     return (
         <div className="dropdown">
@@ -102,7 +106,7 @@ function DropDown({selected, setSelected}) {
 
                 </div>
                 <div>{selected}</div>
-               
+
 
             </div>
 

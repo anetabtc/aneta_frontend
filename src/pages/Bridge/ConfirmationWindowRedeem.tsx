@@ -3,25 +3,30 @@ import CheckMark from "./CheckMark";
 import React from 'react';
 import sendPaymentFunction from "./sendPayment";
 import redeem from "./redeem";
+import ErrorPayment from "./ErrorPayment";
 
 const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
 
+    const [nautilusAddress, setNautilusAddress] = useState('');
+
+    const address1 = ergo.get_change_address();
+    address1.then((value) => {
+        setNautilusAddress(value)
+    });
+
     const refreshPage = () => {
         window.location.reload();
     }
 
-    const [nautilusAddress, setNautilusAddress] = useState('');
     const [txInfo, setTxInfo] = useState('');
-
-    const address = ergo.get_change_address();
-    address.then((value) => {
-        setNautilusAddress(value)
-    });
 
 
     const [conf, setConf] = useState("info");
+    const [error, setError] = useState(false);
+
+    const [disable, setDisable] = useState(false);
 
 
     function NameTrans() {
@@ -77,7 +82,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 
     return (
-        <div className="mainPopup">
+        error ? <ErrorPayment/> : <div className="mainPopup">
             <div className="confContent">
 
                 <div className="confWindow">
@@ -118,21 +123,24 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
                     </div>
                 </div>
-                <button type="button" id="confButton"
-                        onClick={() => setConf("subm")}
+                <button type="button" id="confButton" disabled={disable}
+                        onClick={() => send()}
                 ><b>Confirm</b></button>
 
             </div>
         )
     }
 
+    async function send() {
+        setDisable(true)
+        const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
+        setTxInfo(result)
+        console.log("res", result)
+        result ? setConf("subm") : setError(true)
+    }
+
 
     function ConfirmationSubmission() {
-        sendPaymentFunction(eBTC, btcAddress, nautilusAddress).then(r => {
-            setTxInfo(r)
-        })
-
-        console.log("txinfo in window:", txInfo)
         return (
             <div className="confSubmission">
                 <div className="textUR"></div>
@@ -159,115 +167,6 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 }
 
-export async function sendTransaction(price, receiverAddress, btcAddress, explorerUrl = DEFAULT_EXPLORER_URL) {
-
-    const [nautilusAddress, setNautilusAddress] = useState('');
-
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
-
-    console.log("Start")
-    console.log(price + " Price")
-    console.log(receiverAddress + " address")
-    let currentHeight = await getCurrentHeight(explorerUrl);
-    let amountToSend = price * 1000000000;
-    let tokenAmountToSend = price * 100000000;
-    let feeAmount = price * 33 * 1000000000;
-    let fee = feeAmount;
-    console.log(amountToSend + " Amount to send")
-    console.log(feeAmount + " Fee to send")
-    let inputs = await ergo.get_utxos();
-
-
-    console.log(inputs + "Input")
-
-
-    const unsignedTransaction = new TransactionBuilder(currentHeight)
-        .from(inputs)
-        .to(new OutputBuilder(amountToSend, receiverAddress)
-            .addTokens([
-                {tokenId: "60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690", amount: tokenAmountToSend}
-            ])
-        )
-        .sendChangeTo(nautilusAddress).payFee(fee)
-        .build("EIP-12");
-
-    console.log(unsignedTransaction)
-
-
-    let signedTransaction = await ergo.sign_tx(unsignedTransaction);
-    console.log(signedTransaction)
-
-    let outputZeroBoxId = signedTransaction.outputs[0].boxId;
-    let txInfo = await ergo.submit_tx(signedTransaction);
-
-    console.log(txInfo, outputZeroBoxId)
-    console.log("tx_id:", txInfo)
-
-
-
-    const redeem = () => {
-        // calling into the /mint endpoint in the backend
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                amount: price.toString(),
-                btc_wallet_addr: btcAddress,
-                network: "testnet",
-                wallet_addr: nautilusAddress.toString(),
-                tx_id: txInfo.toString()
-            }).toString()
-        };
-
-        fetch("http://localhost:5004/redeem", requestOptions)
-            .then(res => res.json())
-            .then((response) => {
-                console.log("Response from /redeem endpoint: " + JSON.stringify(response))
-                let taskId = response['data']['task_id']
-                const interval = setInterval(() => {
-                    fetch("http://localhost:5004/statusRedeem/" + taskId)
-                        .then(res1 => res1.json())
-                        .then((statusResponse) => {
-                            console.log("Status response: " + JSON.stringify(statusResponse))
-                            if (statusResponse['data']['task_status'] == 'finished') {
-                                clearInterval(interval);
-                                if (statusResponse['data']['task_result']['success'] === true) {
-                                    console.log("Resulting operation is success!")
-                                } else {
-                                    console.log("Resulting operation did not complete successfully!")
-                                }
-                            } else if (statusResponse['data']['task_status'] == 'failed') {
-                                clearInterval(interval);
-                                console.log("Resulting operation has failed to finish!")
-                            } else {
-                                console.log("trying again...")
-                            }
-                        })
-                }, 5000);
-            })
-    }
-
-    if(txInfo){
-        redeem()
-    }
-
-}
-
-async function getCurrentHeight(explorerUrl = DEFAULT_EXPLORER_URL) {
-    console.log("currentheight")
-    let url = `${explorerUrl}/api/v1/blocks?limit=1`;
-    let response = await fetch(url);
-    let json = await response.json();
-    console.log(json)
-    return json.total;
-}
 
 
 

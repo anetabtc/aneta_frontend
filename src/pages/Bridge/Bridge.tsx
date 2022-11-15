@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 
 import ConfirmationWindow from "./ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
+import getAddress from "./address";
 
 
 function Bridge() {
-
 
     const [ergUsd, setErgUsd] = useState('0');
 
@@ -20,6 +20,16 @@ function Bridge() {
     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
     const [btcAddressG, setBtcAddressG] = useState('');
     const [BTCAmountG, setBTCAmountG] = useState('0');
+    const [userAddress, setUserAddress] = useState('');
+
+
+
+    const [connectWalletError, setConnectWalletError] = useState(false);
+
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
 
 
     useEffect(()=>{
@@ -95,10 +105,30 @@ function Bridge() {
         }
     }
 
+    function ConnectWalletError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                            Your wallet is not connected. Please try again.
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
+            {connectWalletError ? <ConnectWalletError/> : ""}
             {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG} /> : ""}
+            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -138,12 +168,15 @@ function Bridge() {
         };
 
 
-        function handleClickOpen1() {
+        async function handleClickOpen1() {
 
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
             setBridgeFeeUsdG(bridgeFeeUsd)
-            handleClickOpen()
+
+            const address = await getAddress()
+            console.log(address)
+            address ? handleClickOpen() : setConnectWalletError(true)
         }
 
 
@@ -241,14 +274,18 @@ function Bridge() {
            
         };
 
-        function handleClickOpenRedeem1() {
+        async function handleClickOpenRedeem1() {
             setBtcNetworkFeeG(btcNetworkFee)
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
             setBtcAddressG(btcAddress)
             setBTCAmountG(BTCAmount)
-            
-            handleClickOpenRedeem()
+            const address = await getAddress()
+            console.log(address)
+            address ? handleClickOpenRedeem() : setConnectWalletError(true)
         }
+
+
+
 
         const handleChangeBtcAddress = event => {
             setBtcAddress(event.target.value);

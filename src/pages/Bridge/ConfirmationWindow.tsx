@@ -3,18 +3,22 @@ import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
 import React from 'react';
 import sendFeeFunction from "./sendFee";
+import ErrorPayment from "./ErrorPayment";
 
 
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
-    const [conf, setConf] = useState("info");
-    const [txInfo, setTxInfo] = useState('');
     const [nautilusAddress, setNautilusAddress] = useState('');
 
     const address1 = ergo.get_change_address();
     address1.then((value) => {
         setNautilusAddress(value)
     });
+
+    const [conf, setConf] = useState("info");
+    const [txInfo, setTxInfo] = useState('');
+    const [disable, setDisable] = useState(false);
+
 
     const refreshPage = () => {
         window.location.reload();
@@ -47,10 +51,6 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                     <ConfirmationInfo/>
                 )
             } else if (conf === "subm") {
-                sendFeeFunction().then(r => setTxInfo(r))
-                // if(!txInfo){
-                //     setConf("error")
-                // }
                 return (
                     <ConfirmationSubmission/>
                 )
@@ -71,11 +71,15 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
         return (
             <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
         )
-    } else {
+    } else if(conf === "error") {
+        return(
+            <ErrorPayment/>
+        )
+    }else {
         return (
             <div className="mainPopup">
-                <div className="confContent">
 
+                <div className="confContent">
                     <div className="confWindow">
                         <div className="confTitle">
                             <NameTrans/>
@@ -108,10 +112,16 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                         </div>
                     </div>
                 </div>
-                <button type="button" id="confButton" onClick={() => setConf("subm")}><b>Confirm</b></button>
+                <button disabled={disable} type="button" id="confButton"onClick={() => send()}><b>Confirm</b></button>
 
             </div>
         )
+    }
+
+    async function send(){
+        setDisable(true)
+        const result = await sendFeeFunction(nautilusAddress)
+        result ? setConf("subm") : setConf("error")
     }
 
     function ConfirmationSubmission() {
