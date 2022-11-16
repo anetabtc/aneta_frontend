@@ -13,7 +13,7 @@ const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInf
             btc_wallet_addr: btcAddress,
             network: "testnet",
             wallet_addr: nautilusAddress.toString(),
-            txId: txInfo.toString()
+            tx_id: txInfo.toString()
         }).toString()
     };
 
