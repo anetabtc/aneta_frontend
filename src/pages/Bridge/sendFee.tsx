@@ -10,15 +10,19 @@ const sendFeeFunction = async function sendFee( nautilusAddress, explorerUrl = D
     let result = ''
     try{
         let currentHeight = await getCurrentHeight(explorerUrl);
-        let fee = 1 * 10000000
+        let fee = 2 * 10000000;
 
         let inputs = await ergo.get_utxos();
 
 
+        // const unsignedTransaction = new TransactionBuilder(currentHeight)
+        //     .payFee(fee)
+        //     .build("EIP-12");
+
         const unsignedTransaction = new TransactionBuilder(currentHeight)
             .from(inputs)
-            .to(new OutputBuilder(fee, receiverAddress))
-            .sendChangeTo(nautilusAddress).payFee(fee)
+            .payFee(fee)
+            .sendChangeTo(nautilusAddress)
             .build("EIP-12");
 
         console.log(unsignedTransaction)
