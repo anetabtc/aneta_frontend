@@ -96,9 +96,19 @@ function DropDown({selected, setSelected}) {
     //     }
     // }
 
+    function changeWidth() {
+        if(selected==="Ergo"){
+            document.getElementById("dropdown").style.width = "145px";
+            document.getElementById("drop-content").style.width = "115px"
+        }else if(selected==="Cardano"){
+            document.getElementById("dropdown").style.width = "125px";
+            document.getElementById("drop-content").style.width = "95px"
+        }
+    }
+
     const options = ["Ergo", "Cardano"];
     return (
-        <div className="dropdown">
+        <div className="dropdown"  id={"dropdown"} >
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 <div className="imgwrapper">
 
@@ -112,12 +122,13 @@ function DropDown({selected, setSelected}) {
 
 
             {isActive && (
-                <div className="dropdown-content">
+                <div className="dropdown-content" id={"drop-content"}>
                     <p id="navText">Select Network</p>
                     {options.map((option) => (
                         <div onClick={(e) => {
                             setSelected(option)
                             setIsActive(false)
+                            changeWidth()
                         }}
                              className="dropdown-item">
                             <div><img className="nav-icon" src={require('./img/' + option + '.png').default} alt="aneta"

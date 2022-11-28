@@ -157,8 +157,8 @@ function Bridge() {
             setErgFee("0.02");
             setErgFeeUsd(0.02 * ergUsd);
             setUsdBtcMint(usdBTC * event.target.value)
-            if (event.target.value !== '') {
-                setAnetaBTCAmount(event.target.value * 0.995);
+            if (event.target.value !== '' && (1000 * event.target.value)/1000 !== 0) {
+                setAnetaBTCAmount(event.target.value);
             }
             else {
                 setAnetaBTCAmount('0');
@@ -260,7 +260,7 @@ function Bridge() {
             // BtcUsd();
             setRedeemAmount(event.target.value);
             setErgFee("0.02");
-            if (event.target.value !== '' && event.target.value !== 0) {
+            if (event.target.value !== '' && (1000 * event.target.value)/1000 !== 0) {
                 setBTCAmount(event.target.value);
             } else {
                 setBTCAmount('0');
@@ -382,7 +382,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png').default} alt="BTC"/><b>{Math.round(10000*BTCAmount*0.9975)/10000}</b> BTC</div>
+                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png').default} alt="BTC"/><b>{BTCAmount}</b> BTC</div>
                     <div className="feeUSD7" id="usd"> = $ {Math.round(usdBtcRedeem*0.9975*100)/100} </div>
                 </div>
                 <button onClick={handleClickOpenRedeem1} type="button" className="mainButton2" id="mintButton">

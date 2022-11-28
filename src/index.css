@@ -282,7 +282,7 @@ svg {
 
 /*dropdown*/
 .dropdown {
-    width: 105px;
+    width: 125px;
 }
 
 
@@ -303,7 +303,7 @@ svg {
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding-left: 8%;
     padding-right: 15%;
@@ -313,8 +313,8 @@ svg {
 
 }
 
-.dropdown .dropdown-content {
-    width: 135px;
+.dropdown-content {
+    width: 115px;
     position: absolute;
     padding: 5px;
     background-color: white;
@@ -323,8 +323,8 @@ svg {
     text-align: start;
     font-size: 14px;
     cursor: pointer;
-    border-radius: 5px;
     margin-left: 10px;
+    border-radius: 5px;
 
 }
 
