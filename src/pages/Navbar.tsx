@@ -100,7 +100,7 @@ function DropDown({selected, setSelected}) {
         if(selected==="Ergo"){
             document.getElementById("dropdown").style.width = "145px";
             document.getElementById("drop-content").style.width = "115px"
-        }else if(selected==="Cardano"){
+        }else if(selected==="Cardano") {
             document.getElementById("dropdown").style.width = "125px";
             document.getElementById("drop-content").style.width = "95px"
         }
