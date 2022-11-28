@@ -8,6 +8,7 @@ import Navbar from './pages/Navbar.tsx'
 import Transactions from './pages/Transactions/Transactions'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Menu from './pages/Menu'
+import Mint from "./pages/Bridge/Mint";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                 <Routes><Route path="/dashboard" element={<Dashboard />} /></Routes>
                 <Routes><Route path="/feedback" element={<Feedback />} /></Routes>
                 <Routes><Route path="/vault" element={<Vault />} /></Routes>
+
             </div>
             <div className="mobile">
                 <img src={require('./pages/img/mobLogo.png').default} className="mobLogo"

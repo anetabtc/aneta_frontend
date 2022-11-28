@@ -231,7 +231,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                         <QRCode
                             id="qrCode"
                             value={address}
-                            size={96}
+                            size={120}
                             level={"L"}
                             includeMargin={false}
                         />
