@@ -11,7 +11,7 @@ const sendFeeFunction = async function sendFee( erg, nautilusAddress, explorerUr
     try{
         let currentHeight = await getCurrentHeight(explorerUrl);
         let fee = 2 * 10000000;
-        let bridgeFee = erg * 1000000
+        let bridgeFee = erg * 1000000000
         let inputs = await ergo.get_utxos();
 
 
