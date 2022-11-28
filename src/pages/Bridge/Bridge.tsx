@@ -201,13 +201,13 @@ function Bridge() {
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo.png').default}
 
-                             alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
+                             alt="aneta"/><b>{Math.round(bridgeFee*10000)/10000}</b> ERG
 
 
 
                     </div>
 
-                    <div className="feeUSD" id="usd"> = $ {Math.round(bridgeFeeUsd*100)/100}</div>
+                    <div className="feeUSD" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
 
                 </div>
 
