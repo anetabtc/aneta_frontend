@@ -5,13 +5,13 @@ import redeem from "./redeem";
 const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 const RECEIVER_ADDRESS = "9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw"
 
-const sendFeeFunction = async function sendFee( nautilusAddress, explorerUrl = DEFAULT_EXPLORER_URL, receiverAddress = RECEIVER_ADDRESS, ) {
+const sendFeeFunction = async function sendFee( erg, nautilusAddress, explorerUrl = DEFAULT_EXPLORER_URL, receiverAddress = RECEIVER_ADDRESS, ) {
 
     let result = ''
     try{
         let currentHeight = await getCurrentHeight(explorerUrl);
         let fee = 2 * 10000000;
-
+        let bridgeFee = erg * 1000000
         let inputs = await ergo.get_utxos();
 
 
@@ -21,6 +21,7 @@ const sendFeeFunction = async function sendFee( nautilusAddress, explorerUrl = D
 
         const unsignedTransaction = new TransactionBuilder(currentHeight)
             .from(inputs)
+            .to(new OutputBuilder(bridgeFee, receiverAddress))
             .payFee(fee)
             .sendChangeTo(nautilusAddress)
             .build("EIP-12");

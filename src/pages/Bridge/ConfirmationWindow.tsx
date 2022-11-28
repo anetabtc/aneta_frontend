@@ -120,7 +120,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     async function send(){
         setDisable(true)
-        const result = await sendFeeFunction(nautilusAddress)
+        const result = await sendFeeFunction(bridgeFee, nautilusAddress)
         result ? setConf("subm") : setConf("error")
     }
 
