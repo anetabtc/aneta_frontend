@@ -6,6 +6,28 @@ import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
 
+///////////////////////////////
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+// Add a second document with a generated ID.
+import { addDoc, collection, getDocs } from "firebase/firestore"; 
+const firebaseConfig = {
+    "apiKey": "AIzaSyDkTWwt7X5XKgB9Uh7qe98sUqYdcNgfyZ4",
+    "authDomain": "anetabtc-dcd3c.firebaseapp.com",
+    "projectId": "anetabtc-dcd3c",
+    "storageBucket": "anetabtc-dcd3c.appspot.com",
+    "messagingSenderId": "834678075786",
+    "appId": "1:834678075786:web:650ae8da7ed1e1a32f1873",
+    "measurementId": "G-VQ2B0CHHC7"
+}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+/////////////////////////////////
+
 function Mint({eBTC, bridgeFee, nautilusaddress}) {
     const [address, setAddress] = useState('');
 
@@ -178,8 +200,24 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
         setpair(e.target.value);
     };
 
-    const navigateToBTCDeposit = () => {
+    const navigateToBTCDeposit = async () => {
         console.log('payment is done!')
+        /////////////////////
+        console.log("Writing to Firebase")
+        // TODO Write to DB
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+            erg_address: nautilusaddress,
+            amount: eBTC,
+            datetime: new Date().getTime().toString(),
+            info: "Mint Order Paid"
+            });
+
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+        /////////////////////////
         setPaymentWindow(false);
     }
 

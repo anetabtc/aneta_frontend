@@ -5,6 +5,27 @@ import React from 'react';
 import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
+///////////////////////////////
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+// Add a second document with a generated ID.
+import { addDoc, collection, getDocs } from "firebase/firestore"; 
+const firebaseConfig = {
+    "apiKey": "AIzaSyDkTWwt7X5XKgB9Uh7qe98sUqYdcNgfyZ4",
+    "authDomain": "anetabtc-dcd3c.firebaseapp.com",
+    "projectId": "anetabtc-dcd3c",
+    "storageBucket": "anetabtc-dcd3c.appspot.com",
+    "messagingSenderId": "834678075786",
+    "appId": "1:834678075786:web:650ae8da7ed1e1a32f1873",
+    "measurementId": "G-VQ2B0CHHC7"
+}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+/////////////////////////////////
 
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
@@ -124,7 +145,24 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
         result ? setConf("subm") : setConf("error")
     }
 
-    function ConfirmationSubmission() {
+    async function ConfirmationSubmission() {
+        /////////////////////
+        console.log("Writing to Firebase")
+        // TODO Write to DB
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+            erg_address: nautilusAddress,
+            amount: eBTC,
+            datetime: new Date().getTime().toString(),
+            erg_txid: "",
+            info: "Mint Order Submitted"
+            });
+
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+        /////////////////////////
         return (
             <div className="confSubmission">
                 <div>Bridge Fee Payment Submitted</div>

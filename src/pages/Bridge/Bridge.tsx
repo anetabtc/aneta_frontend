@@ -4,25 +4,6 @@ import ConfirmationWindow from "./ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
 import getAddress from "./address";
 
-///////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
-// Add a second document with a generated ID.
-import { addDoc, collection, getDocs } from "firebase/firestore"; 
-
-const firebaseConfig = {
-
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
-
-/////////////////////////////////
-
-
 function Bridge() {
 
     const [ergUsd, setErgUsd] = useState('0');
@@ -171,33 +152,6 @@ function Bridge() {
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
 
         const handleChange = async event => {
-            /////////////////////
-            // TODO: Replace the following with your app's Firebase project configuration
-            // See: https://firebase.google.com/docs/web/learn-more#config-object
-            // Initialize Cloud Firestore and get a reference to the service
-            // console.log("Running")
-            // // Write
-            // try {
-            //     const docRef = await addDoc(collection(db, "users"), {
-            //     first: "Alan",
-            //     middle: "Mathison",
-            //     last: "Turing",
-            //     born: 1912
-            //     });
-            
-            //     console.log("Document written with ID: ", docRef.id);
-            // } catch (e) {
-            //     console.error("Error adding document: ", e);
-            // }
-
-            // // Read
-            // const querySnapshot = await getDocs(collection(db, "users"));
-            // querySnapshot.forEach((doc) => {
-            //     console.log(`${doc.id} => ${doc.data()}`);
-            //     console.log(doc.data())
-            // });
-            /////////////////////////
-
             setMintAmount(event.target.value);
             setErgFee("0.02");
             setErgFeeUsd(0.02 * ergUsd);
