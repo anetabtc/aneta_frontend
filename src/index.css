@@ -13,6 +13,7 @@ body {
     width: 1600px;
     min-width: 100%;
     margin: 0 auto;
+    text-decoration: none;
 }
 
 body {
@@ -26,6 +27,24 @@ code {
 
 .App {
     background-image: linear-gradient(180deg, #bce1e9, #c8dfe7, #ebf1f0);
+}
+
+/* Dark mode */
+
+body.dark .App {
+    background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(122.33deg, rgba(0, 44, 105, 0.5) 0%, rgba(134, 134, 134, 0) 69.38%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #002C69;
+  }
+
+.dark__mode {
+    display: none;
+}
+
+body.dark .sun__mode {
+    display: none;
+}
+
+body.dark .dark__mode{
+    display: inline;
 }
 
 * {
@@ -62,10 +81,15 @@ code {
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.08);
 }
 
+body.dark .confWindow {
+    background: #20242D;
+    color: white;
+}
+
 .confTitle {
     width: 545px;
     height: 93px;
-    background: #FFFFFF;
+    background: #EEF4FF;
     border-radius: 16px 16px 0px 0px;
     font-size: 28px;
     display: flex;
@@ -73,14 +97,24 @@ code {
     justify-content: center;
 }
 
+body.dark .confTitle {
+    background: #000000;
+    color: white;
+}
+
 #confButton {
     width: 486px;
     height: 65px;
-    background-color: #A6C6FA;
+    background-color: #B9DDFF;
     border: none;
     border-radius: 20px;
     margin-top: 16%;
     font-size: 16px;
+}
+
+body.dark #confButton {
+    background-color: #1C4574;
+    color: white;
 }
 
 .confInfo {
@@ -194,10 +228,15 @@ svg {
 #confButton1 {
     width: 486px;
     height: 65px;
-    background-color: #A6C6FA;
+    background-color: #B9DDFF;
     border: none;
     border-radius: 20px;
     font-size: 16px;
+}
+
+body.dark #confButton1 {
+    background-color: #1C4574;
+    color: white;
 }
 
 
@@ -310,10 +349,13 @@ svg {
     align-items: center;
     padding-left: 8%;
     padding-right: 15%;
-    
- 
+}
 
+/* dark mode */
 
+body.dark .dropdown .dropdown-btn {
+    background-color: #2C2E3B;
+    color: white;
 }
 
 .dropdown-content {
@@ -329,6 +371,13 @@ svg {
     margin-left: 10px;
     border-radius: 5px;
 
+}
+
+/* dark mode */
+
+body.dark .dropdown-content {
+    background-color: #2C2E3B;
+    color: white;
 }
 
 .dropdown-item {
@@ -432,11 +481,24 @@ svg {
     padding-inline-end: 10px;
 }
 
+/* Dark Mode */
+
+body.dark .menuButton {
+    background-color: #2C2E3B;
+    color: white;
+}
+
 
 #Vector {
     align-items: center;
     height: 15px;
     margin-top: auto;
+}
+
+#Icons {
+    align-items: center;
+    height: 15px;
+    margin-left: 15px;
 }
 
 #Vector-sm {
@@ -495,6 +557,12 @@ svg {
     position: absolute;
 }
 
+/* Dark Mode */
+
+body.dark .sidebar {
+    background-color: #191B1F;
+}
+
 .btnM {
     width: 200px;
     height: 40px;
@@ -507,6 +575,16 @@ svg {
     align-items: center;
     color: #000;
     margin-left: 10px;
+}
+
+/* Dark Mode */
+
+body.dark .btnM {
+    color: #B1B1B1;
+}
+
+body.dark .btnM:hover {
+    color: white;
 }
 
 #linkImg {
@@ -554,15 +632,17 @@ svg {
 .mainmenu_feedback {
     position: absolute;
     background-color: white;
-    text-decoration: none;
     color: inherit;
     width: 500px;
     display: table;
     border-radius: 15px;
     overflow: auto;
     margin: 315px 37%;
-    text-decoration: none;
     font: inherit;
+}
+
+body.dark .mainmenu_feedback{
+    background-color: #191B1F;
 }
 
 
@@ -570,8 +650,6 @@ svg {
     color: inherit;
     all: unset;
     font: inherit;
-
-    text-decoration: none;
 }
 
 
@@ -583,6 +661,7 @@ svg {
 }
 
 .feedback-page__content-btn {
+    color: black;
     padding: 25px;
     padding-top: 25px;
     box-shadow: 10 0 99px hsl(0deg 0% 46% / 16%);
@@ -590,12 +669,17 @@ svg {
     text-align: center;
     margin-bottom: 15px;
     font-size: 1rem;
+    font-weight: 600;
     border-radius: 10px;
-    text-decoration: none;
     background: #BCD4F2;
     width: 80%;
     margin-left: 5%;
     margin-top: 3%;
+}
+
+body.dark .feedback-page__content-btn {
+    background: #203980;
+    color: white;
 }
 
 .feedback-page__content-btn_op {
@@ -615,10 +699,10 @@ svg {
     margin-top: 6%;
 }
 
-a:visited {
+/*a:visited {
     text-decoration: none;
     color: inherit;
-}
+}*/
 
 /* TRANSACTIONS */
 
@@ -642,15 +726,27 @@ a:visited {
     overflow: auto;
 }
 
+body.dark .mainmenu_transaction {
+    background-color: #191B1F;
+}
+
 .transactionTitle1 {
     font-weight: 800;
     font-size: 25px;
+}
+
+body.dark .transactionTitle1 {
+    color: white;
 }
 
 .transactionTitle2 {
     font-weight: 600;
     font-size: 25px;
     margin-top: 50px;
+}
+
+body.dark .transactionTitle2 {
+    color: white;
 }
 
 .title {
@@ -670,6 +766,11 @@ table {
     border-bottom: 1px solid black;
 }
 
+body.dark table {
+
+    border-bottom: 1px solid #D2D2D2;
+}
+
 tr {
 
 }
@@ -679,7 +780,10 @@ td {
     padding: 10px;
     text-align: left;
     width: 29.3%;
+}
 
+body.dark td {
+    color: #D2D2D2;
 }
 
 .menuTr {
@@ -706,21 +810,29 @@ td {
     height: 320px;
 }
 
+body.dark .menu_dashboard > div {
+    background-color: #191B1F;
+}
+
 .menu_dashboard > .info2 {
     height: 120px;
 }
 
 .infoCluster {
-    color: black;
+    color: #339AD3;
     font-size: 25px;
     text-align: left;
     margin-left: 30px;;
 }
 
+body.dark .infoCluster {
+    color: #93CBEA;
+}
+
 .round {
     width: 12em;
     height: 12em;
-    border: 3px solid hsl(201, 65%, 51%);
+    border: 3px solid #339AD3;
     border-radius: 50%;
     padding: 1.4644em; /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
     box-sizing: border-box; /* чтобы padding не увеличивал ширину и высоту элемента */
@@ -729,18 +841,31 @@ td {
     margin-left: 80px;
 }
 
+body.dark .round {
+    background: #191B1F;
+    border: 3px solid #93CBEA;
+}
+
 
 .round > .ClusterL {
     margin-top: -20px;
 }
 
-.roudn > h6 {
+.round > h6 {
     margin-top: 20px;
+}
+
+body.dark .round > h6 {
+    color: white;
 }
 
 .round > h4 {
     font-size: 20px;
     color: #339AD3;
+}
+
+body.dark .round > h4 {
+    color: #93CBEA;
 }
 
 .menu_dash {
@@ -757,6 +882,10 @@ td {
     background-color: white;
     border-radius: 10px;
     height: 320px;
+}
+
+body.dark .menu_dash > div {
+    background-color: #191B1F;
 }
 
 .menu_dash > .info2 {
@@ -813,6 +942,11 @@ td {
     overflow: auto;
 }
 
+body.dark #content1 {
+    background-color: #191B1F;
+    color: white;
+}
+
 .btcInput {
     width: 570px;
     background-color: #DBE4F6;
@@ -820,6 +954,11 @@ td {
     border-radius: 10px;
     height: 98px;
     font-size: 38px;
+}
+
+body.dark .btcInput {
+    background-color: #222429;
+    color: white;
 }
 
 .btcInput[type=text] {
@@ -830,12 +969,17 @@ td {
 
 .btcInputAddress {
     width: 570px;
-    background-color: #DBE4F6;
+    background-color: #DCE4EE;
     border: none;
     border-radius: 10px;
     height: 47px;
     font-size: 16px;
 
+}
+
+body.dark .btcInputAddress {
+    background-color: #222429;
+    color: white;
 }
 
 .btcInputAddress[type=text] {
@@ -855,21 +999,31 @@ td {
 .mainButton {
     width: 598px;
     height: 65px;
-    background-color: #A6C6FA;
+    background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
     margin-top: 13%;
     font-size: 20px;
 }
 
+body.dark .mainButton {
+    background-color: #184372;
+    color: white;
+}
+
 .mainButton2 {
     width: 598px;
     height: 65px;
-    background-color: #A6C6FA;
+    background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
     margin-top: 14%;
     font-size: 20px;
+}
+
+body.dark .mainButton2 {
+    background-color: #184372;
+    color: white;
 }
 
 #radios {
@@ -882,6 +1036,11 @@ td {
     border-radius: 10px;
     margin-top: 30px;
 
+}
+
+body.dark #radios{
+    background-color: #000000;
+    color: white;
 }
 
 #radios > input {
@@ -910,11 +1069,15 @@ td {
 }
 
 #bckgrnd {
-    background-color: #A6C6EC;
+    background-color: #B9DDFF;
     position: absolute;
     left: 0;
     margin-top: 0px;
     z-index: -1;
+}
+
+body.dark #bckgrnd {
+    background-color: #234877;
 }
 
 #rad1:checked ~ #bckgrnd {
@@ -992,6 +1155,10 @@ td {
 
 }
 
+body.dark #menuHR1 {
+    color: #9E9E9E;
+}
+
 .menu-item {
     display: flex;
     flex-direction: row;
@@ -1003,7 +1170,10 @@ td {
 }
 
 .menu-item:hover {
-    background-color: rgba(62, 132, 215, 0.46);
+    background-color: #B9DDFF;
+}
+body.dark .menu-item:hover {
+    background-color: #3E84D7;
 }
 
 
@@ -1032,6 +1202,9 @@ ul {
     background-color: rgba(128, 128, 128, 0.208);
 }
 
+body.dark .mainPopup {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 
 .popup {
@@ -1045,6 +1218,7 @@ ul {
     border-radius: 16.5px;
     right: 30%;
 }
+
 
 
 .divLabel {
