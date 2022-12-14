@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
 import React from 'react';
@@ -6,13 +6,13 @@ import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
 ///////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
-import { addDoc, collection, getDocs } from "firebase/firestore"; 
-const firebaseConfig = {
-}
+import {addDoc, collection, getDocs} from "firebase/firestore";
+import firebaseConfig from "./firebaseConfig";
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -23,6 +23,7 @@ const db = getFirestore(app);
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     const [nautilusAddress, setNautilusAddress] = useState('');
+    const [txID, setTxID] = useState('');
 
     const address1 = ergo.get_change_address();
     address1.then((value) => {
@@ -85,11 +86,11 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
         return (
             <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
         )
-    } else if(conf === "error") {
-        return(
+    } else if (conf === "error") {
+        return (
             <ErrorPayment/>
         )
-    }else {
+    } else {
         return (
             <div className="mainPopup">
 
@@ -121,40 +122,33 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                         <div className="right">
                             <img id="bit" src={require('../img/Ergo.png').default}
                                  alt="aneta"/><b>{Math.round(bridgeFee * 1000000) / 1000000}</b> ERG <div id="usd"
-                                                                                                  className="confBF">=
+                                                                                                          className="confBF">=
                             $ {Math.round(1000000 * bridgeFeeUsd) / 1000000}</div>
                         </div>
                     </div>
                 </div>
-                <button disabled={disable} type="button" id="confButton"onClick={() => send()}><b>Confirm</b></button>
+                <button disabled={disable} type="button" id="confButton" onClick={() => send()}><b>Confirm</b></button>
 
             </div>
         )
     }
 
-    async function send(){
+    async function send() {
         setDisable(true)
         const result = await sendFeeFunction(bridgeFee, nautilusAddress)
+        setTxID(result)
+        console.log("Tx ID: ", txID, "res: ", result)
         result ? setConf("subm") : setConf("error")
     }
 
-    async function ConfirmationSubmission() {
+    function ConfirmationSubmission() {
         /////////////////////
         console.log("Writing to Firebase")
+        console.log("Tx ID:", txID)
         // TODO Write to DB
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-            erg_address: nautilusAddress,
-            amount: eBTC,
-            datetime: new Date().getTime().toString(),
-            erg_txid: "",
-            info: "Mint Order Submitted"
-            });
-
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
+        useEffect(() => {
+            writeToDB(nautilusAddress, eBTC, txID)
+        })
         /////////////////////////
         return (
             <div className="confSubmission">
@@ -168,6 +162,23 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     }
 
 
+}
+
+
+async function writeToDB(nautilusAddress, eBTC, txID) {
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+            erg_address: nautilusAddress,
+            amount: eBTC,
+            datetime: new Date().getTime().toString(),
+            erg_txid: txID,
+            info: "Mint Order Submitted"
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
 }
 
 

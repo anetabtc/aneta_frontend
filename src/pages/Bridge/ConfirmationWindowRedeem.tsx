@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import CheckMark from "./CheckMark";
 import React from 'react';
 import sendPaymentFunction from "./sendPayment";
@@ -6,13 +6,13 @@ import redeem from "./redeem";
 import ErrorPayment from "./ErrorPayment";
 
 //////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
-import { addDoc, collection, getDocs } from "firebase/firestore"; 
-const firebaseConfig = {
-}
+import {addDoc, collection, getDocs} from "firebase/firestore";
+import firebaseConfig from "./firebaseConfig";
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -72,8 +72,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 return (
                     <ConfirmationSubmission/>
                 )
-            }
-            else if (conf === "concl") {
+            } else if (conf === "concl") {
                 console.log("txInfo before redeem", txInfo)
                 redeem(eBTC, btcAddress, nautilusAddress, txInfo)
                 return (
@@ -155,22 +154,11 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
 
-    async function ConfirmationSubmission() {
+    function ConfirmationSubmission() {
         // TODO Write to DB
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-            erg_address: nautilusAddress,
-            btc_address: btcAddress,
-            amount: eBTC,
-            datetime: new Date().getTime().toString(),
-            erg_txid: "",
-            info: "Redeem Order Submitted"
-            });
-
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
+        useEffect(() => {
+            writeToDB(nautilusAddress, btcAddress, eBTC, txInfo)
+        })
         /////////////////////////
         return (
             <div className="confSubmission">
@@ -198,8 +186,23 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 }
 
+async function writeToDB(nautilusAddress, btcAddress, eBTC, txInfo) {
+    console.log("txID", txInfo)
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+            erg_address: nautilusAddress,
+            btc_address: btcAddress,
+            amount: eBTC,
+            datetime: new Date().getTime().toString(),
+            erg_txid: txInfo,
+            info: "Redeem Order Submitted"
+        });
 
-
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
 
 
 export default ConfirmationWindowRedeem;
