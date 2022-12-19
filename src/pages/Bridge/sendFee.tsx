@@ -1,15 +1,17 @@
 import {useState} from "react";
 import {OutputBuilder, TransactionBuilder} from "@fleet-sdk/core";
 import redeem from "./redeem";
+import getReceiverAddress from "./getReceiverAddress";
+import getCurrentHeight from "./getCurrentHeight";
 
-const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
-const RECEIVER_ADDRESS = "9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw"
+const sendFeeFunction = async function sendFee( erg, nautilusAddress) {
 
-const sendFeeFunction = async function sendFee( erg, nautilusAddress, explorerUrl = DEFAULT_EXPLORER_URL, receiverAddress = RECEIVER_ADDRESS, ) {
-
+    let receiverAddress = getReceiverAddress()
+    console.log("here", receiverAddress)
     let result = ''
     try{
-        let currentHeight = await getCurrentHeight(explorerUrl);
+        let currentHeight = await getCurrentHeight();
+        console.log(currentHeight)
         let fee = 2 * 10000000;
         let bridgeFee = erg * 1000000000
         let inputs = await ergo.get_utxos();
@@ -49,13 +51,5 @@ const sendFeeFunction = async function sendFee( erg, nautilusAddress, explorerUr
 
 }
 
-async function getCurrentHeight(explorerUrl = DEFAULT_EXPLORER_URL) {
-    console.log("currentheight")
-    let url = `${explorerUrl}/api/v1/blocks?limit=1`;
-    let response = await fetch(url);
-    let json = await response.json();
-    console.log(json)
-    return json.total;
-}
 
 export default sendFeeFunction;
