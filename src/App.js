@@ -26,8 +26,8 @@ function App() {
 
             </div>
             <div className="mobile">
-                <img src={require('./pages/img/mobLogo.png').default} className="mobLogo"
-                     alt="aneta"/>
+                <img src={require('./pages/img/logo.png').default} className="mobLogo sun__mode" alt="aneta"/>
+                <img src={require('./pages/img/logo_dark.png').default} className="mobLogo dark__mode" alt="aneta"/>
                 <h2 className="textMob">anetaBTC is not yet available on mobile devices. Please use anetaBTC on desktop.</h2>
             </div>
         </div>

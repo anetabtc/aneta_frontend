@@ -199,9 +199,9 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png').default}
-
-                             alt="aneta"/><b>{Math.round(bridgeFee*10000)/10000}</b> ERG
+                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <b>{Math.round(bridgeFee*10000)/10000}</b> ERG
 
 
 
@@ -216,7 +216,10 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(ergFee*100)/100}</b> ERG
+                        <div>
+                            <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <b>{Math.round(ergFee*100)/100}</b> ERG
 
                         </div>
 
@@ -339,8 +342,9 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png').default}
-                             alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
+                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <b>{Math.round(bridgeFee*100)/100}</b> ERG
 
 
                     </div>
@@ -369,7 +373,9 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(100*ergFee)/100}</b> ERG
+                        <div><img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <b>{Math.round(100*ergFee)/100}</b> ERG
 
                         </div>
 
