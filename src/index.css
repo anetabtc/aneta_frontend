@@ -18,6 +18,12 @@ body {
 
 body {
     font-family: 'Avenir', Helvetica, sans-serif;
+    width: 100%;
+
+
+    background: linear-gradient(180deg, rgba(155, 217, 242, 0) 41.16%, rgba(255, 255, 255, 0.7) 100%), linear-gradient(237.67deg, rgba(179, 233, 255, 0) 30.62%, rgba(255, 215, 138, 0.33) 100%), linear-gradient(121.92deg, rgba(155, 217, 242, 0) 31.4%, rgba(255, 215, 138, 0.33) 100%), linear-gradient(115.18deg, rgba(168, 200, 230, 0.5) -35.29%, rgba(168, 200, 230, 0) 57.9%), linear-gradient(245.41deg, rgba(168, 230, 226, 0.55) -12.18%, rgba(155, 217, 242, 0) 56.8%), linear-gradient(0deg, rgba(216, 234, 250, 0.12), rgba(216, 234, 250, 0.12)), #B8DEFA;
+    background-size: 100% 400vh;
+    background-repeat: no-repeat;
 }
 
 code {
@@ -26,13 +32,17 @@ code {
 }
 
 .App {
-    background-image: linear-gradient(180deg, #bce1e9, #c8dfe7, #ebf1f0);
+
+
+
 }
 
 /* Dark mode */
 
-body.dark .App {
+body.dark {
     background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(122.33deg, rgba(0, 44, 105, 0.5) 0%, rgba(134, 134, 134, 0) 69.38%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #002C69;
+    background-size: 100% 400vh;
+    background-repeat: no-repeat;
   }
 
 .dark__mode {
@@ -110,6 +120,10 @@ body.dark .confTitle {
     border-radius: 20px;
     margin-top: 16%;
     font-size: 16px;
+}
+
+#confButton:hover{
+    cursor: pointer;
 }
 
 body.dark #confButton {
@@ -232,6 +246,10 @@ svg {
     border: none;
     border-radius: 20px;
     font-size: 16px;
+}
+
+#confButton1:hover{
+    cursor: pointer;
 }
 
 body.dark #confButton1 {
@@ -634,23 +652,17 @@ body.dark .btnM:hover {
     background-color: white;
     color: inherit;
     width: 500px;
+    padding: 50px;
     display: table;
     border-radius: 15px;
     overflow: auto;
-    margin: 315px 37%;
-    font: inherit;
+    margin: 230px 37%;
 }
 
 body.dark .mainmenu_feedback{
     background-color: #191B1F;
 }
 
-
-.feedback-page > a {
-    color: inherit;
-    all: unset;
-    font: inherit;
-}
 
 
 .feedback-page > h1 {
@@ -675,6 +687,11 @@ body.dark .mainmenu_feedback{
     width: 80%;
     margin-left: 5%;
     margin-top: 3%;
+    transition: 0.25s;
+}
+
+.feedback-page__content-btn:hover {
+    scale: 1.05;
 }
 
 body.dark .feedback-page__content-btn {
@@ -699,10 +716,6 @@ body.dark .feedback-page__content-btn {
     margin-top: 6%;
 }
 
-/*a:visited {
-    text-decoration: none;
-    color: inherit;
-}*/
 
 /* TRANSACTIONS */
 
@@ -710,9 +723,10 @@ body.dark .feedback-page__content-btn {
     font-family: 'Prompt', sans-serif;
     background-color: white;
     border-radius: 15px;
-    width: 1189px;
-    height: 664px;
-    margin: auto;
+    width: 750px;
+    height: 475px;
+    margin-top: 150px;
+    margin-left: 50px;
     padding: 10px 30px;
     text-align: left;
     position: absolute; /*Can also be `fixed`*/
@@ -724,6 +738,14 @@ body.dark .feedback-page__content-btn {
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+    .mainmenu_transaction {
+        width: 1189px;
+        height: 664px;
+        margin-left: 75px;
+    }
 }
 
 body.dark .mainmenu_transaction {
@@ -779,7 +801,16 @@ td {
     font-size: 12px;
     padding: 10px;
     text-align: left;
-    width: 29.3%;
+    width: 12.3%;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+    td {
+        font-size: 12px;
+        padding: 10px;
+        text-align: left;
+        width: 29.3%;
+    }
 }
 
 body.dark td {
@@ -794,20 +825,23 @@ body.dark td {
 
 
 .menu_dashboard {
-    display: grid;
-    grid-template-columns: 350px 350px 350px;;
-    position: absolute;
-    margin-top: 150px;
-    margin-left: 450px;
-    grid-gap: 50px;
 
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    margin: 150px 25px 50px 375px;
 }
+
 
 
 .menu_dashboard > div {
     background-color: white;
     border-radius: 10px;
     height: 320px;
+    width: 360px;
 }
 
 body.dark .menu_dashboard > div {
@@ -870,7 +904,7 @@ body.dark .round > h4 {
 
 .menu_dash {
     display: grid;
-    grid-template-columns: 350px 350px;;
+    grid-template-columns: 350px 350px;
     position: absolute;
     margin-top: 550px;
     margin-left: 650px;
@@ -1006,6 +1040,10 @@ body.dark .btcInputAddress {
     font-size: 20px;
 }
 
+.mainButton:hover{
+    cursor: pointer;
+}
+
 body.dark .mainButton {
     background-color: #184372;
     color: white;
@@ -1019,6 +1057,10 @@ body.dark .mainButton {
     border-radius: 15px;
     margin-top: 14%;
     font-size: 20px;
+}
+
+.mainButton2:hover{
+    cursor: pointer;
 }
 
 body.dark .mainButton2 {
@@ -1173,7 +1215,7 @@ body.dark #menuHR1 {
     background-color: #B9DDFF;
 }
 body.dark .menu-item:hover {
-    background-color: #3E84D7;
+    background-color: #234877;
 }
 
 
@@ -1566,7 +1608,7 @@ div > .addressBTC {
     display: none;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1249px) {
     .Main {
         display: none;
     }
