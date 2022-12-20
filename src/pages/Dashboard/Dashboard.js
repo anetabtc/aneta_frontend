@@ -73,8 +73,7 @@ function Dashboard() {
                     <div class="round"><h4>{security}</h4><h6 className='ClusterL'>anetaBTC Bridge</h6><h6>View supply
                         ➜</h6></div>
                 </div>
-            </div>
-            <div className='menu_dash'>
+
                 <div><h3 className="infoCluster">BTC Network</h3>
                     <div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block {btcCH}</h6><h6>View BTC height
                         ➜</h6></div>
