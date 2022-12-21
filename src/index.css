@@ -877,7 +877,7 @@ body.dark td {
 .menu_dashboard > div {
     background-color: white;
     border-radius: 10px;
-    height: 320px;
+    height: 330px;
     width: 360px;
 }
 
@@ -901,15 +901,19 @@ body.dark .infoCluster {
 }
 
 .round {
-    width: 12em;
-    height: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 220px;
     border: 3px solid #339AD3;
     border-radius: 50%;
     padding: 1.4644em; /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
-    box-sizing: border-box; /* чтобы padding не увеличивал ширину и высоту элемента */
+    box-sizing: border-box;
     background: rgb(255, 255, 255);
-    margin-top: 30px;
-    margin-left: 80px;
+    margin-top: 20px;
+    margin-left: 70px;
 }
 
 body.dark .round {
@@ -917,21 +921,28 @@ body.dark .round {
     border: 3px solid #93CBEA;
 }
 
-
-.round > .ClusterL {
-    margin-top: -20px;
-}
-
 .round > h6 {
     margin-top: 20px;
+    color: #DCAE00;
+    font-size: 12px;
 }
 
 body.dark .round > h6 {
+    color: #ECC946;
+}
+
+.round > .ClusterL {
+    margin-top: -20px;
+    color: #000000;
+}
+
+body.dark .round > .ClusterL {
+    margin-top: -20px;
     color: white;
 }
 
 .round > h4 {
-    font-size: 20px;
+    font-size: 16px;
     color: #339AD3;
 }
 
