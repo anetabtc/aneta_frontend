@@ -62,11 +62,11 @@ function Dashboard() {
 
 
                 <div><h3 className="infoCluster">BTC in Vault</h3>
-                    <div class="round"><h4>{amount} BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> View Vault ➜</h6>
+                    <div class="round"><h4>{amount} <br/>BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> View Vault ➜</h6>
                     </div>
                 </div>
                 <div><h3 className="infoCluster">eBTC minted</h3>
-                    <div class="round"><h4>{eBTCAmount} eBTC</h4><h6 className='ClusterL'>Synced</h6><h6>View supply
+                    <div class="round"><h4>{eBTCAmount} <br/>eBTC</h4><h6 className='ClusterL'>Synced</h6><h6>View supply
                         ➜</h6></div>
                 </div>
                 <div><h3 className="infoCluster">Network Security</h3>
