@@ -1412,7 +1412,7 @@ div > .addressBTC {
 }
 
 #WRAP {
-    height: 530px;
+    height: 625px;
 }
 
 #UNWRAP {
@@ -1699,7 +1699,7 @@ div > .addressBTC {
 
     position: absolute;
     left: 53%;
-    top: 37%;
+    top: 46%;
 }
 .feeUSD1 {
     text-align: right;
@@ -1714,7 +1714,7 @@ div > .addressBTC {
 
     position: absolute;
     left: 53%;
-    top: 49%;
+    top: 56%;
 }
 
 .feeUSD3 {
