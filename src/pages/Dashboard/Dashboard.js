@@ -62,24 +62,25 @@ function Dashboard() {
 
 
                 <div><h3 className="infoCluster">BTC in Vault</h3>
-                    <div class="round"><h4>{amount} BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> <a href={"https://tbtc.bitaps.com/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5"} target={"_blank"}>View Vault ➜</a></h6>
+                    <div className="round"><h4>{amount} <br/>BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> <a href={"https://tbtc.bitaps.com/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5"} target={"_blank"}>View Vault ➜</a></h6>
                     </div>
                 </div>
                 <div><h3 className="infoCluster">eBTC minted</h3>
-                    <div class="round"><h4>{eBTCAmount} eBTC</h4><h6 className='ClusterL'>Synced</h6><h6><a href={"https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw"} target={"_blank"}>View supply
+                    <div className="round"><h4>{eBTCAmount} <br/>eBTC</h4><h6 className='ClusterL'>Synced</h6><h6><a href={"https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw"} target={"_blank"}>View supply
                         ➜</a></h6></div>
                 </div>
                 <div><h3 className="infoCluster">Network Security</h3>
-                    <div class="round"><h4>{security}</h4><h6 className='ClusterL'>anetaBTC Bridge</h6></div>
+                    <div className="round"><h4>{security}</h4><h6 className='ClusterL'>anetaBTC Bridge</h6></div>
                 </div>
-            </div>
-            <div className='menu_dash'>
+
                 <div><h3 className="infoCluster">BTC Network</h3>
-                    <div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block {btcCH}</h6><h6><a href={"https://btc.bitaps.com/"} target={"_blank"}>View BTC height
+                    <div className="round"><h4>Synced</h4><h6 className='ClusterL'>Block {btcCH}</h6><h6><a
+                        href={"https://btc.bitaps.com/"} target={"_blank"}>View BTC height
                         ➜</a></h6></div>
                 </div>
                 <div><h3 className="infoCluster">ERG Network</h3>
-                    <div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block {ergCH}</h6><h6><a href={"https://testnet.ergoplatform.com/"} target={_blank}>View ERG height
+                    <div className="round"><h4>Synced</h4><h6 className='ClusterL'>Block {ergCH}</h6><h6><a
+                        href={"https://testnet.ergoplatform.com/"} target={_blank}>View ERG height
                         ➜</a></h6></div>
                 </div>
             </div>
@@ -88,6 +89,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-<script type="text/javascript">
-
-</script>
