@@ -80,7 +80,7 @@ function Dashboard() {
                 </div>
                 <div><h3 className="infoCluster">ERG Network</h3>
                     <div className="round"><h4>Synced</h4><h6 className='ClusterL'>Block {ergCH}</h6><h6><a
-                        href={"https://testnet.ergoplatform.com/"} target={_blank}>View ERG height
+                        href={"https://testnet.ergoplatform.com/"} target={"_blank"}>View ERG height
                         ➜</a></h6></div>
                 </div>
             </div>
