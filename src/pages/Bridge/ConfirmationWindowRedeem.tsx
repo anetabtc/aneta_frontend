@@ -30,13 +30,13 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 
     function NameTrans() {
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             return (
                 <div>
                     Pay Bridge Fee
                 </div>
             )
-        } else {
+        }  else {
             return (
                 <div>
                     <div className="error1">
@@ -48,7 +48,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
     function Conf() {
-        if (eBTC !== "0" || btcAddress !== '') {
+        if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>

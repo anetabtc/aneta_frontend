@@ -6,13 +6,13 @@ import getCurrentHeight from "./getCurrentHeight";
 
 const sendFeeFunction = async function sendFee( erg, nautilusAddress) {
 
-    let receiverAddress = getReceiverAddress()
+    let receiverAddress = await getReceiverAddress();
     console.log("here", receiverAddress)
     let result = ''
     try{
         let currentHeight = await getCurrentHeight();
         console.log(currentHeight)
-        let fee = 2 * 10000000;
+        let fee = 20000000
         let bridgeFee = erg * 1000000000
         let inputs = await ergo.get_utxos();
 
@@ -50,6 +50,5 @@ const sendFeeFunction = async function sendFee( erg, nautilusAddress) {
     return result
 
 }
-
 
 export default sendFeeFunction;

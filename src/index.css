@@ -814,7 +814,8 @@ td {
 }
 
 .btcInput {
-    width: 570px;
+    padding-left: 10px;
+    width: 600px;
     background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
