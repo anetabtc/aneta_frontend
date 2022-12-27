@@ -237,8 +237,8 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                         />
                         <br/><br/>
                         <div className="note">
-                            <b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are
-                            safe :)
+                            <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are
+                        safe :)</span>
                         </div>
                         <p/>
                         <button className="btnPayment" onClick={navigateToBTCDeposit}>I have made the payment</button>
