@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes" />
+    <list default="true" id="e900a148-0757-4f69-be1a-60eb66bde402" name="Changes" comment="dashboard" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,34 +17,21 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev-2" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2H2asZsyszBpKyps8NroeZoHRmX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/aishakozhamseitova/WebstormProjects/aneta_vault&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/aishakozhamseitova/WebstormProjects/aneta_vault/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/src/pages/Bridge",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/pages/Bridge" />
     </key>
   </component>
   <component name="RunManager">
@@ -61,100 +48,37 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="" />
-      <created>1667485843326</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1667485843326</updated>
-      <workItem from="1667485848226" duration="21233000" />
-      <workItem from="1667876882587" duration="12604000" />
-      <workItem from="1668091148520" duration="37779000" />
-      <workItem from="1668590952918" duration="2409000" />
-      <workItem from="1668941968045" duration="1831000" />
-      <workItem from="1669042053614" duration="1256000" />
-      <workItem from="1669157450902" duration="17004000" />
-    </task>
-    <task id="LOCAL-00001" summary="new changes">
-      <created>1667687958699</created>
+    <task id="LOCAL-00001" summary="write txID to DB">
+      <created>1671026022389</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1667687958700</updated>
+      <updated>1671026022389</updated>
     </task>
-    <task id="LOCAL-00002" summary="new changes">
-      <created>1667877160576</created>
+    <task id="LOCAL-00002" summary="dashboard">
+      <created>1671481110613</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1667877160576</updated>
+      <updated>1671481110614</updated>
     </task>
-    <task id="LOCAL-00003" summary="new changes">
-      <created>1668323021400</created>
+    <task id="LOCAL-00003" summary="dashboard">
+      <created>1671526547518</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1668323021401</updated>
+      <updated>1671526547519</updated>
     </task>
-    <task id="LOCAL-00004" summary="new changes">
-      <created>1668323729095</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1668323729095</updated>
-    </task>
-    <task id="LOCAL-00005" summary="new changes">
-      <created>1668335105378</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1668335105378</updated>
-    </task>
-    <task id="LOCAL-00006" summary="new changes">
-      <created>1668519546709</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1668519546712</updated>
-    </task>
-    <task id="LOCAL-00007" summary="new changes">
-      <created>1668591017789</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1668591017789</updated>
-    </task>
-    <task id="LOCAL-00008" summary="new changes">
-      <created>1669173979343</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669173979343</updated>
-    </task>
-    <task id="LOCAL-00009" summary="new changes">
-      <created>1669599854474</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669599854474</updated>
-    </task>
-    <task id="LOCAL-00010" summary="new changes">
-      <created>1669601073277</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1669601073277</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -168,7 +92,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="new changes" />
+    <MESSAGE value="write txID to DB" />
+    <MESSAGE value="dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="dashboard" />
   </component>
 </project>

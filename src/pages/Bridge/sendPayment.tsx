@@ -7,7 +7,7 @@ import getCurrentHeight from "./getCurrentHeight";
 const sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {
 
     let result = ''
-    let receiverAddress = getReceiverAddress()
+    let receiverAddress = await getReceiverAddress()
     let currentHeight = await getCurrentHeight();
     console.log(currentHeight)
     let amountToSend = price * 33 * 1000000000;
