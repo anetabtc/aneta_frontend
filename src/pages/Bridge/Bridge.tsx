@@ -317,32 +317,6 @@ function Bridge() {
             setBtcAddress(event.target.value);
         }
 
-        function runRedeem(args) {
-            let data = {
-                amount: 1,
-                btc_vault_id: 0,
-                btc_wallet_id: "Wallet1-testnet",
-                network: "testnet",
-                vault_id: 0,
-                wallet_id: 0
-            };
-            console.log(JSON.stringify(data));
-            (async () => {
-                const rawResponse = await fetch('http://localhost:5004/redeem', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                    body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-                });
-                const content = await rawResponse.json();
-                console.log(content);
-            })();
-        }
-
         return (
             <div id="UNWRAP">
                 <p className="title">Turn eBTC into BTC</p>
@@ -382,7 +356,7 @@ function Bridge() {
                     <div className="left">BTC network Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Bitcoin.png').default}
-                             alt="aneta"/><b>{btcNetworkFee}</b> BTC
+                             alt="aneta"/><b>{Math.round(btcNetworkFee*100)/100}</b> BTC
 
 
                     </div>

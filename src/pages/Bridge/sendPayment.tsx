@@ -2,17 +2,18 @@ import {useState} from "react";
 import {OutputBuilder, TransactionBuilder} from "@fleet-sdk/core";
 import redeem from "./redeem";
 import getReceiverAddress from "./getReceiverAddress";
-import getCurrentHeight from "./getCurrentHeight";
+
+const DEFAULT_EXPLORER_URL = "https://api.ergoplatform.com";
 
 const sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {
 
     let result = ''
     let receiverAddress = await getReceiverAddress()
-    let currentHeight = await getCurrentHeight();
+    let currentHeight = await getch();
     console.log(currentHeight)
-    let amountToSend = price * 33 * 1000000000;
-    let tokenAmountToSend = price * 100000000;
-    let feeAmount = 2 * 10000000;
+    let amountToSend = BigInt(price * 33 * 1000000000);
+    let tokenAmountToSend = BigInt(price * 100000000);
+    let feeAmount = BigInt(2 * 10000000);
     let fee = feeAmount;
 
 
@@ -45,6 +46,15 @@ const sendPaymentFunction = async function sendTransaction1(price, btcAddress, n
 
     return result
 
+}
+
+async function getch(explorerUrl = DEFAULT_EXPLORER_URL){
+    console.log("currentheight")
+    let url = `${explorerUrl}/api/v1/blocks?limit=1`;
+    let response = await fetch(url);
+    let json = await response.json();
+    console.log(json)
+    return json.total;
 }
 
 
