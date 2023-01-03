@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import getAddress from './getAddress'
 
 //////////////////////////////
@@ -16,8 +16,9 @@ const db = getFirestore(app);
 
 
 function Transactions() {
-
+    const [products, setProducts] = useState([]);
     let txs = []
+
 
     useEffect(() => {
         const address = "9gsreni8oGsKvRxCip5A1gijpSroy5LTqGcHNkV7zxq4ppXxkub"
@@ -31,9 +32,17 @@ function Transactions() {
         snapshot.forEach(doc => {
             txs.push(
                 doc.data()
+
             )
+
         })
         console.log(txs)
+
+        setProducts(txs)
+
+
+
+
     }
 
     return (
@@ -43,12 +52,24 @@ function Transactions() {
                 <b>
                     <table>
                         <tr>
-                            <td>Updated</td>
-                            <td>Amount (anetaBTC)</td>
+                            <td>Created at</td>
+                            <td>Amount (BTC)</td>
+                            <td>Amount (eBTC)</td>
                             <td>BTC Transaction</td>
+                            <td>ERG transaction</td>
                             <td>Confirmation Status</td>
                         </tr>
-                        </tr>
+
+                        {products.map((tx) => (
+                            <tr key={tx.id}>
+                                <td>{tx.datetime}</td>
+                                <td>{tx.amount}</td>
+                                <td>{tx.amount}</td>
+                                <td>{tx.erg_txid}</td>
+                                <td>{tx.erg_txid}</td>
+                                <td>{tx.info}</td>
+                            </tr>
+                        ))}
                     </table>
                     <br/>
                     <p class="transactionTitle2">Unwrap Requests</p>
@@ -70,3 +91,6 @@ export default Transactions;
 <script type="text/javascript">
 
 </script>
+
+
+
