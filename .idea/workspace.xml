@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +39,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -76,7 +79,8 @@
       <workItem from="1668941968045" duration="1831000" />
       <workItem from="1669042053614" duration="1256000" />
       <workItem from="1669157450902" duration="17004000" />
-      <workItem from="1672744246880" duration="19000" />
+      <workItem from="1672744246880" duration="4280000" />
+      <workItem from="1672919881554" duration="5707000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1667687958699</created>
