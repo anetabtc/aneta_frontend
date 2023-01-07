@@ -1442,7 +1442,7 @@ body.dark .btnPayment {
 }
 
 #WRAP {
-    height: 530px;
+    height: 625px;
 }
 
 #UNWRAP {
@@ -1729,7 +1729,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 37%;
+    top: 46%;
 }
 .feeUSD1 {
     text-align: right;
@@ -1744,7 +1744,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 49%;
+    top: 56%;
 }
 
 .feeUSD3 {

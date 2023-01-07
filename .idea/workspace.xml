@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e900a148-0757-4f69-be1a-60eb66bde402" name="Changes" comment="dashboard" />
+    <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,12 +27,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/src/pages/Bridge",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
-  }
-}]]></component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/Bridge" />
@@ -56,8 +65,23 @@
     </recent_temporary>
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="write txID to DB">
-      <created>1671026022389</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="" />
+      <created>1667485843326</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667485843326</updated>
+      <workItem from="1667485848226" duration="21233000" />
+      <workItem from="1667876882587" duration="12604000" />
+      <workItem from="1668091148520" duration="37779000" />
+      <workItem from="1668590952918" duration="2409000" />
+      <workItem from="1668941968045" duration="1831000" />
+      <workItem from="1669042053614" duration="1256000" />
+      <workItem from="1669157450902" duration="17004000" />
+      <workItem from="1671640360359" duration="332000" />
+    </task>
+    <task id="LOCAL-00001" summary="new changes">
+      <created>1667687958699</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />

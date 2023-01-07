@@ -172,7 +172,7 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
-        
+        const [btcAddress, setBtcAddress] = useState('');
 
         const handleChange = event => {
             setMintAmount(event.target.value);
@@ -201,6 +201,10 @@ function Bridge() {
             address ? handleClickOpen() : setConnectWalletError(true)
         }
 
+        const handleChangeBtcAddress = event => {
+            setBtcAddress(event.target.value);
+        }
+
 
         return (
             <div id="WRAP">
@@ -215,9 +219,14 @@ function Bridge() {
                 /><br/>
                 <div className="lblInp">
                     BTC<br/>
-                   <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
+                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
-                <p/><p/>
+
+                <br></br>
+                <p/>
+                <p className="title2">BTC address</p>
+                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
+                       required/><br/>
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
@@ -296,7 +305,7 @@ function Bridge() {
             setUsdBtcRedeem(usdBTC * event.target.value);
             setBridgeFee(event.target.value * 33);
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
-           
+
         };
 
         async function handleClickOpenRedeem1() {
@@ -335,7 +344,7 @@ function Bridge() {
                 <p className="title2">BTC address</p>
                 <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
                        required/><br/>
-           
+
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
@@ -380,7 +389,7 @@ function Bridge() {
                     <div className="feeUSD6" id="usd"> = $ {Math.round(100*ergFeeUsd)/100} </div>
                 </div>
 
-                
+
                 <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
