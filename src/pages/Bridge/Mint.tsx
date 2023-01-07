@@ -5,7 +5,6 @@ import {useState} from "react";
 import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
-// I changed something
 
 function Mint({eBTC, bridgeFee, nautilusaddress}) {
     const [address, setAddress] = useState('');
