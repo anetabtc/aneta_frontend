@@ -26,6 +26,7 @@ function Bridge() {
 
     const [connectWalletError, setConnectWalletError] = useState(false);
 
+    const [addressError, setAddressWalletError] = useState(false);
 
     const refreshPage = () => {
         window.location.reload();
@@ -124,9 +125,29 @@ function Bridge() {
         )
     }
 
+    function AddressError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                            Your address is incorrect. Please try again.
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             {connectWalletError ? <ConnectWalletError/> : ""}
+            {addressError ? <AddressError/> : ""}
             {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
             {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
@@ -188,7 +209,7 @@ function Bridge() {
         return (
             <div id="WRAP">
                 <p className="title">Mint eBTC by locking BTC</p>
-                <input pattern="[0-9]+" type="text" max="9999" placeholder="0.00"
+                <input pattern="[0-9]+" type="number" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
@@ -293,10 +314,11 @@ function Bridge() {
             setBtcAddressG(btcAddress)
             setBTCAmountG(BTCAmount)
             const address = await getAddress()
-            console.log(address)
+            console.log(address, "Address")
             address ? handleClickOpenRedeem() : setConnectWalletError(true)
         }
 
+        
 
 
 
@@ -304,36 +326,10 @@ function Bridge() {
             setBtcAddress(event.target.value);
         }
 
-        function runRedeem(args) {
-            let data = {
-                amount: 1,
-                btc_vault_id: 0,
-                btc_wallet_id: "Wallet1-testnet",
-                network: "testnet",
-                vault_id: 0,
-                wallet_id: 0
-            };
-            console.log(JSON.stringify(data));
-            (async () => {
-                const rawResponse = await fetch('http://localhost:5004/redeem', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                    body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-                });
-                const content = await rawResponse.json();
-                console.log(content);
-            })();
-        }
-
         return (
             <div id="UNWRAP">
                 <p className="title">Turn eBTC into BTC</p>
-                <input pattern="[0-9]+" type="text" className="btcInput"  max="9999" size="30" placeholder="0.00" required
+                <input pattern="[0-9]+" type="number" className="btcInput"  max="9999" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
@@ -369,7 +365,7 @@ function Bridge() {
                     <div className="left">BTC network Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Bitcoin.png').default}
-                             alt="aneta"/><b>{Math.round(10000*btcNetworkFee)/10000}</b> BTC
+                             alt="aneta"/><b>{Math.round(btcNetworkFee*100)/100}</b> BTC
 
 
                     </div>

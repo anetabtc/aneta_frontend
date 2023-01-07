@@ -25,7 +25,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     }
 
     function NameTrans() {
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             return (
                 <div>
                     Pay Bridge Fee
@@ -45,7 +45,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     function Conf() {
 
 
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>

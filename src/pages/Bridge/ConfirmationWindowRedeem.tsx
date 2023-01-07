@@ -5,7 +5,6 @@ import sendPaymentFunction from "./sendPayment";
 import redeem from "./redeem";
 import ErrorPayment from "./ErrorPayment";
 
-const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
 
@@ -30,13 +29,13 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 
     function NameTrans() {
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             return (
                 <div>
                     Pay Bridge Fee
                 </div>
             )
-        } else {
+        }  else {
             return (
                 <div>
                     <div className="error1">
@@ -48,14 +47,10 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
     function Conf() {
-        if (eBTC !== "0" || btcAddress !== '') {
+        if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>
-                )
-            } else if (conf === "subm") {
-                return (
-                    <ConfirmationSubmission/>
                 )
             }
             else if (conf === "concl") {
@@ -136,19 +131,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
         setTxInfo(result)
         console.log("res", result)
-        result ? setConf("subm") : setError(true)
-    }
-
-
-    function ConfirmationSubmission() {
-        return (
-            <div className="confSubmission">
-                <div className="textUR"></div>
-                <CheckMark/>
-                <button type="button" id="confButton1" className="confWRS" onClick={() => setConf("concl")}>
-                    <b>Continue</b></button>
-            </div>
-        )
+        result ? setConf("concl") : setError(true)
     }
 
     function DontWorryMess() {
