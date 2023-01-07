@@ -1,3 +1,4 @@
+// Hello I'm Madina and I am testing the github
 import CountdownTimer from "./CountdownTimer";
 import QRCode from "react-qr-code";
 import React from 'react';
