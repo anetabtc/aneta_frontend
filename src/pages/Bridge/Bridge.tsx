@@ -16,6 +16,10 @@ function Bridge() {
     const [bridgeFeeG, setBridgeFeeG] = useState('0');
     const [bridgeFeeUsdG, setBridgeFeeUsdG] = useState('0');
 
+
+    const [bridgeFeeGR, setBridgeFeeGR] = useState('0');
+    const [bridgeFeeUsdGR, setBridgeFeeUsdGR] = useState('0');
+
     const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
     const [btcAddressG, setBtcAddressG] = useState('');
@@ -149,7 +153,7 @@ function Bridge() {
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
             {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
+            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG} bridgeFee = {bridgeFeeGR} btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -172,7 +176,7 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
-        
+
 
         const handleChange = event => {
             setMintAmount(event.target.value);
@@ -296,7 +300,7 @@ function Bridge() {
             setUsdBtcRedeem(usdBTC * event.target.value);
             setBridgeFee(event.target.value * 33);
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
-           
+
         };
 
         async function handleClickOpenRedeem1() {
@@ -304,12 +308,13 @@ function Bridge() {
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
             setBtcAddressG(btcAddress)
             setBTCAmountG(BTCAmount)
+            setBridgeFeeGR(bridgeFee)
             const address = await getAddress()
             console.log(address, "Address")
             address ? handleClickOpenRedeem() : setConnectWalletError(true)
         }
 
-        
+
 
 
 
@@ -361,7 +366,7 @@ function Bridge() {
                 <p className="title2">BTC address</p>
                 <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
                        required/><br/>
-           
+
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
@@ -406,7 +411,7 @@ function Bridge() {
                     <div className="feeUSD6" id="usd"> = $ {Math.round(100*ergFeeUsd)/100} </div>
                 </div>
 
-                
+
                 <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">

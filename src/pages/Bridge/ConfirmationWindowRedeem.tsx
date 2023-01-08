@@ -7,7 +7,7 @@ import ErrorPayment from "./ErrorPayment";
 
 const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 
-function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
+function ConfirmationWindowRedeem({eBTC, btcNetworkFee, btcNetworkFeeUsd, bridgeFee, btcAddress}) {
 
     const [nautilusAddress, setNautilusAddress] = useState('');
 
@@ -133,7 +133,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     async function send() {
         setDisable(true)
-        const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
+        const result = await sendPaymentFunction(eBTC, bridgeFee, nautilusAddress)
         setTxInfo(result)
         console.log("res", result)
         result ? setConf("subm") : setError(true)

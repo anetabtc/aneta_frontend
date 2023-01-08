@@ -4,14 +4,14 @@ import redeem from "./redeem";
 import getReceiverAddress from "./getReceiverAddress";
 import getCurrentHeight from "./getCurrentHeight";
 
-const sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {
+const sendPaymentFunction = async function sendTransaction1(price, bridgeFee, nautilusAddress) {
 
     let result = ''
     let receiverAddress = await getReceiverAddress()
     let currentHeight = await getCurrentHeight();
     console.log(currentHeight)
-    let amountToSend = price * 33 * 1000000000;
-    let tokenAmountToSend = price * 100000000;
+    let amountToSend = BigInt(bridgeFee * 1000000000)
+    let tokenAmountToSend = BigInt(price * 100000000);
     let feeAmount = 2 * 10000000;
     let fee = feeAmount;
 
