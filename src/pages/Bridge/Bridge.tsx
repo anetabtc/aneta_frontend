@@ -172,6 +172,7 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+        const [btcAddress, setBtcAddress] = useState('');
         
 
         const handleChange = event => {
@@ -198,9 +199,14 @@ function Bridge() {
 
             const address = await getAddress()
             console.log(address)
+            console.log(btcAddress, "BTC Address")
             address ? handleClickOpen() : setConnectWalletError(true)
         }
 
+
+        const handleChangeBtcAddress = event => {
+            setBtcAddress(event.target.value);
+        }
 
         return (
             <div id="WRAP">
@@ -217,7 +223,11 @@ function Bridge() {
                     BTC<br/>
                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
-                <p/><p/>
+                <br></br>
+                <p/>
+                <p className="title2">BTC address</p>
+                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
+                       required/><br/>
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
@@ -229,7 +239,7 @@ function Bridge() {
 
                     </div>
 
-                    <div className="feeUSD" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
+                    <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
 
                 </div>
 
@@ -246,7 +256,7 @@ function Bridge() {
                         </div>
 
                     </div>
-                    <div className="feeUSD2" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
+                    <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
                 </div>
 
                 <p/><p/>
