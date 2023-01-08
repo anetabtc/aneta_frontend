@@ -6,7 +6,7 @@ import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
 
-function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
+function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     const [nautilusAddress, setNautilusAddress] = useState('');
 
@@ -69,7 +69,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
+            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} btcAddress={btcAddress}/>
         )
     } else if(conf === "error") {
         return(

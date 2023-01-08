@@ -19,6 +19,7 @@ function Bridge() {
     const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
     const [btcAddressG, setBtcAddressG] = useState('');
+    const [btcAddressMint, setBtcAddressMint] = useState('');
     const [BTCAmountG, setBTCAmountG] = useState('0');
     const [userAddress, setUserAddress] = useState('');
 
@@ -148,7 +149,7 @@ function Bridge() {
         <div>
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
+            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} btcAddress={btcAddressMint} /> : ""}
             {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
@@ -196,10 +197,10 @@ function Bridge() {
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
             setBridgeFeeUsdG(bridgeFeeUsd)
+            setBtcAddressMint(btcAddress)
 
             const address = await getAddress()
             console.log(address)
-            console.log(btcAddress, "BTC Address")
             address ? handleClickOpen() : setConnectWalletError(true)
         }
 

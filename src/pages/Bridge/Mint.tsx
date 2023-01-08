@@ -6,7 +6,7 @@ import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
 
-function Mint({eBTC, bridgeFee, nautilusaddress}) {
+function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
     const [address, setAddress] = useState('');
 
 
@@ -31,7 +31,8 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
     const url = "https://api.pro.coinbase.com";
 
     const mint = () => {
-        console.log(nautilusaddress.toString(), "ldkjcfmerdjn")
+
+        console.log(btcAddress, "BTC Address")
         // calling into the /mint endpoint in the backend
         const requestOptions = {
             method: 'POST',
@@ -41,7 +42,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
             },
             body: new URLSearchParams({
                 amount: eBTC.toString(),
-                btc_wallet_addr: "<USER_BTC_ADDRESS_HERE>",
+                btc_wallet_addr: btcAddress.toString(),
                 network: "testnet",
                 wallet_addr: nautilusaddress.toString()
             }).toString()
