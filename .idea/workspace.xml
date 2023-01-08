@@ -26,6 +26,14 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -80,7 +88,8 @@
       <workItem from="1669042053614" duration="1256000" />
       <workItem from="1669157450902" duration="17004000" />
       <workItem from="1672744246880" duration="4280000" />
-      <workItem from="1672919881554" duration="5707000" />
+      <workItem from="1672919881554" duration="6756000" />
+      <workItem from="1673147883028" duration="6015000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1667687958699</created>
