@@ -1,0 +1,378 @@
+Index: src/pages/Bridge/sendPayment.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {useState} from \"react\";\nimport {OutputBuilder, TransactionBuilder} from \"@fleet-sdk/core\";\nimport redeem from \"./redeem\";\nimport getReceiverAddress from \"./getReceiverAddress\";\nimport getCurrentHeight from \"./getCurrentHeight\";\n\nconst sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {\n\n    let result = ''\n    let receiverAddress = await getReceiverAddress()\n    let currentHeight = await getCurrentHeight();\n    console.log(currentHeight)\n    let amountToSend = price * 33 * 1000000000;\n    let tokenAmountToSend = price * 100000000;\n    let feeAmount = 2 * 10000000;\n    let fee = feeAmount;\n\n\n    try{\n        let inputs = await ergo.get_utxos()\n\n        const unsignedTransaction = new TransactionBuilder(currentHeight)\n            .from(inputs)\n            .to(new OutputBuilder(amountToSend, receiverAddress)\n                .addTokens([\n                    {tokenId: \"60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690\", amount: tokenAmountToSend}\n                ])\n            )\n            .sendChangeTo(nautilusAddress).payFee(fee)\n            .build(\"EIP-12\");\n\n\n\n        let signedTransaction = await ergo.sign_tx(unsignedTransaction)\n\n        let outputZeroBoxId = signedTransaction.outputs[0].boxId;\n        let txInfo = await ergo.submit_tx(signedTransaction)\n\n        result = txInfo\n    }catch(e){\n        console.log(\"error\", e)\n        result = ''\n    }\n\n\n    return result\n\n}\n\n\n\nexport default sendPaymentFunction;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/Bridge/sendPayment.tsx b/src/pages/Bridge/sendPayment.tsx
+--- a/src/pages/Bridge/sendPayment.tsx	(revision f9fd0ab18136a823db5db5b77550a5fd748f3aac)
++++ b/src/pages/Bridge/sendPayment.tsx	(date 1672142465317)
+@@ -4,14 +4,14 @@
+ import getReceiverAddress from "./getReceiverAddress";
+ import getCurrentHeight from "./getCurrentHeight";
+ 
+-const sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {
++const sendPaymentFunction = async function sendTransaction1(price, bridgeFee, nautilusAddress) {
+ 
+     let result = ''
+     let receiverAddress = await getReceiverAddress()
+     let currentHeight = await getCurrentHeight();
+     console.log(currentHeight)
+-    let amountToSend = price * 33 * 1000000000;
+-    let tokenAmountToSend = price * 100000000;
++    let amountToSend = BigInt(bridgeFee * 1000000000)
++    let tokenAmountToSend = BigInt(price * 100000000);
+     let feeAmount = 2 * 10000000;
+     let fee = feeAmount;
+ 
+Index: src/pages/Bridge/Bridge.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useEffect, useState} from 'react'\n\nimport ConfirmationWindow from \"./ConfirmationWindow.tsx\";\nimport ConfirmationWindowRedeem from \"./ConfirmationWindowRedeem.tsx\";\nimport getAddress from \"./address\";\n\n\nfunction Bridge() {\n\n    const [ergUsd, setErgUsd] = useState('0');\n\n    const [usdBTC, setUsdBTC] = useState('0');\n\n    const [anetaBTCAmountG, setAnetaBTCAmountG] = useState('0');\n\n    const [bridgeFeeG, setBridgeFeeG] = useState('0');\n    const [bridgeFeeUsdG, setBridgeFeeUsdG] = useState('0');\n\n    const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');\n    const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');\n    const [btcAddressG, setBtcAddressG] = useState('');\n    const [BTCAmountG, setBTCAmountG] = useState('0');\n    const [userAddress, setUserAddress] = useState('');\n\n\n\n    const [connectWalletError, setConnectWalletError] = useState(false);\n\n    const [addressError, setAddressWalletError] = useState(false);\n\n    const refreshPage = () => {\n        window.location.reload();\n    }\n\n\n    useEffect(()=>{\n        ErgUsd();\n        BtcUsd();\n    }, [])\n\n    // setInterval(() => {\n    //     ErgUsd();\n    //     BtcUsd();\n    // }, 60000);\n\n    function ErgUsd() {\n\n        (async () => {\n            const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ERG&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {\n                method: 'POST',\n                headers: {\n                    'Accept': 'application/json',\n                    'Content-Type': 'application/x-www-form-urlencoded'\n                },\n                mode: 'cors',\n                cache: 'default',\n            });\n            const content = await rawResponse.json();\n            console.log(content.USD + \" erg usd\")\n            setErgUsd(content.USD)\n        })();\n\n\n    }\n\n    function BtcUsd() {\n        (async () => {\n            const rawResponse = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=54a8bf7e64887ee6696896672ecc16a5b9ae3e1602f8d5fa687652e23761e8b6', {\n                method: 'POST',\n                headers: {\n                    'Accept': 'application/json',\n                    'Content-Type': 'application/x-www-form-urlencoded'\n                },\n                mode: 'cors',\n                cache: 'default',\n            });\n            const content = await rawResponse.json();\n            setUsdBTC(content.USD)\n            console.log(usdBTC + \" btcusd\")\n        })();\n    }\n\n    const [popup, setPopup] = useState(false);\n    const handleClickOpen = () => {\n        setPopup(!popup);\n    }\n\n    const [popupr, setPopupr] = useState(false);\n    const handleClickOpenRedeem = () => {\n        setPopupr(!popupr);\n    }\n\n    const [visible, SetVisible] = useState(true);\n\n\n    function DownUp() {\n        if (visible) {\n            {console.log(\"anetaBTCAmountG\" + anetaBTCAmountG)}\n            return (\n                <MintPage eBTC={anetaBTCAmountG} bridgeFee={bridgeFeeG}/>\n            )\n        } else {\n            return (\n                <RedeemPage eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG} />\n            )\n        }\n    }\n\n    function ConnectWalletError() {\n        return(\n            <div className=\"mainPopup\">\n                <div className=\"confContent\">\n\n                    <div className=\"confWindow\">\n                        <div className=\"confTitle\">\n                            Error\n                        </div>\n                        <div className=\"error\">\n                            Your wallet is not connected. Please try again.\n                        </div>\n                        <button type=\"button\" id=\"confButton1\" onClick={refreshPage}><b>Try again</b></button>\n                    </div>\n                </div>\n            </div>\n        )\n    }\n\n    function AddressError() {\n        return(\n            <div className=\"mainPopup\">\n                <div className=\"confContent\">\n\n                    <div className=\"confWindow\">\n                        <div className=\"confTitle\">\n                            Error\n                        </div>\n                        <div className=\"error\">\n                            Your address is incorrect. Please try again.\n                        </div>\n                        <button type=\"button\" id=\"confButton1\" onClick={refreshPage}><b>Try again</b></button>\n                    </div>\n                </div>\n            </div>\n        )\n    }\n\n    return (\n        <div>\n            {connectWalletError ? <ConnectWalletError/> : \"\"}\n            {addressError ? <AddressError/> : \"\"}\n            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : \"\"}\n            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : \"\"}\n            <div id=\"content1\">\n                <div id=\"radios\">\n                    <input id=\"rad1\" type=\"radio\" name=\"radioBtn\" onClick={() => SetVisible(true)}/>\n                    <label className=\"labels\" htmlFor=\"rad1\"><b>WRAP</b></label>\n                    <input id=\"rad2\" type=\"radio\" name=\"radioBtn\" onClick={() => SetVisible(false)}/>\n                    <label className=\"labels\" htmlFor=\"rad2\"><b>UNWRAP</b></label>\n                    <div id=\"bckgrnd\"></div>\n                </div>\n                <DownUp/>\n            </div>\n        </div>\n    )\n\n    function MintPage() {\n\n        const [mintAmount, setMintAmount] = useState('');\n        const [ergFee, setErgFee] = useState('0');\n        const [ergFeeUsd, setErgFeeUsd] = useState('0');\n        const [usdBtcMint, setUsdBtcMint] = useState('0');\n        const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');\n        const [bridgeFee, setBridgeFee] = useState('0');\n        const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');\n        \n\n        const handleChange = event => {\n            setMintAmount(event.target.value);\n            setErgFee(\"0.02\");\n            setErgFeeUsd(0.02 * ergUsd);\n            setUsdBtcMint(usdBTC * event.target.value)\n            if (event.target.value !== '' && (1000 * event.target.value)/1000 !== 0) {\n                setAnetaBTCAmount(event.target.value);\n            }\n            else {\n                setAnetaBTCAmount('0');\n            }\n            setBridgeFee(event.target.value * 33);\n            setBridgeFeeUsd(event.target.value * 33 * ergUsd);\n        };\n\n\n        async function handleClickOpen1() {\n\n            setAnetaBTCAmountG(anetaBTCAmount)\n            setBridgeFeeG(bridgeFee)\n            setBridgeFeeUsdG(bridgeFeeUsd)\n\n            const address = await getAddress()\n            console.log(address)\n            address ? handleClickOpen() : setConnectWalletError(true)\n        }\n\n\n        return (\n            <div id=\"WRAP\">\n                <p className=\"title\">Mint eBTC by locking BTC</p>\n                <input pattern=\"[0-9]+\" type=\"number\" placeholder=\"0.00\"\n                       className=\"btcInput\"\n                       size=\"30\"\n                       id=\"mintAmount\"\n                       name=\"mintAmount\"\n                       onChange={handleChange}\n                       value={mintAmount}\n                /><br/>\n                <div className=\"lblInp\">\n                    BTC<br/>\n                   <div id=\"usd\"> ~ $ {Math.round(usdBtcMint*100)/100}</div>\n                </div>\n                <p/><p/>\n                <div className=\"flex-container\">\n                    <div className=\"left\">Bridge Fee</div>\n                    <div className=\"right\">\n                        <img id=\"bit\" src={require('../img/Ergo_dark.png').default}alt=\"aneta\" className='dark__mode'/>\n                        <img id=\"bit\" src={require('../img/Ergo.png').default}alt=\"aneta\" className='sun__mode'/>\n                        <b>{Math.round(bridgeFee*10000)/10000}</b> ERG\n\n\n\n                    </div>\n\n                    <div className=\"feeUSD\" id=\"usd\"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>\n\n                </div>\n\n                <br></br>\n                <p/><p/>\n                <div className=\"flex-container\">\n                    <div className=\"left\">ERG Network fee</div>\n                    <div className=\"right\">\n                        <div>\n                            <img id=\"bit\" src={require('../img/Ergo_dark.png').default}alt=\"aneta\" className='dark__mode'/>\n                            <img id=\"bit\" src={require('../img/Ergo.png').default}alt=\"aneta\" className='sun__mode'/>\n                            <b>{Math.round(ergFee*100)/100}</b> ERG\n\n                        </div>\n\n                    </div>\n                    <div className=\"feeUSD2\" id=\"usd\"> = $ {Math.round(ergFeeUsd*100)/100} </div>\n                </div>\n\n                <p/><p/>\n\n                <br></br>\n                <p/><p/>\n                <hr id=\"menuHR1\"></hr>\n                <div className=\"flex-container\">\n                    <div className=\"left\">You Will Receive</div>\n                    <div className=\"right\"><img id=\"bit\" src={require('../img/werg.png').default} alt=\"eBTC\"/><b>{anetaBTCAmount}</b> eBTC</div>\n                </div>\n                <button\n                    onClick={handleClickOpen1}\n                    type=\"button\" className=\"mainButton\" id=\"mintButton\"><b>Mint\n                    eBTC</b></button>\n            </div>\n        )\n    }\n\n    function RedeemPage() {\n        const [redeemAmount, setRedeemAmount] = useState('');\n        const [ergFee, setErgFee] = useState('0');\n        const [ergFeeUsd, setErgFeeUsd] = useState('0');\n        const [usdBtcRedeem, setUsdBtcRedeem] = useState('0');\n        const [btcNetworkFee, setBtcNetworkFee] = useState('0');\n        const [btcNetworkFeeUsd, setBtcNetworkFeeUsd] = useState('0');\n        const [btcAddress, setBtcAddress] = useState('');\n        const [BTCAmount, setBTCAmount] = useState('0');\n        // const [BTCAmountUSD, setBTCAmountUSD] = useState('0');\n        const [bridgeFee, setBridgeFee] = useState('0');\n        const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');\n\n\n        const handleChangeRedeem = event => {\n            // ErgUsd();\n            // BtcUsd();\n            setRedeemAmount(event.target.value);\n            setErgFee(\"0.02\");\n            if (event.target.value !== '' && (1000 * event.target.value)/1000 !== 0) {\n                setBTCAmount(event.target.value);\n            } else {\n                setBTCAmount('0');\n            }\n            setBtcNetworkFee(event.target.value * 0.0025);\n            setBtcNetworkFeeUsd(event.target.value * 0.0025 * usdBTC);\n            setErgFeeUsd(0.02 * ergUsd);\n            setUsdBtcRedeem(usdBTC * event.target.value);\n            setBridgeFee(event.target.value * 33);\n            setBridgeFeeUsd(event.target.value * 33 * ergUsd);\n           \n        };\n\n        async function handleClickOpenRedeem1() {\n            setBtcNetworkFeeG(btcNetworkFee)\n            setBtcNetworkFeeUsdG(btcNetworkFeeUsd)\n            setBtcAddressG(btcAddress)\n            setBTCAmountG(BTCAmount)\n            const address = await getAddress()\n            console.log(address, \"Address\")\n            address ? handleClickOpenRedeem() : setConnectWalletError(true)\n        }\n\n        \n\n\n\n        const handleChangeBtcAddress = event => {\n            setBtcAddress(event.target.value);\n        }\n\n        function runRedeem(args) {\n            let data = {\n                amount: 1,\n                btc_vault_id: 0,\n                btc_wallet_id: \"Wallet1-testnet\",\n                network: \"testnet\",\n                vault_id: 0,\n                wallet_id: 0\n            };\n            console.log(JSON.stringify(data));\n            (async () => {\n                const rawResponse = await fetch('http://localhost:5004/redeem', {\n                    method: 'POST',\n                    headers: {\n                        'Accept': 'application/json',\n                        'Content-Type': 'application/x-www-form-urlencoded'\n                    },\n                    mode: 'cors',\n                    cache: 'default',\n                    body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',\n                });\n                const content = await rawResponse.json();\n                console.log(content);\n            })();\n        }\n\n        return (\n            <div id=\"UNWRAP\">\n                <p className=\"title\">Turn eBTC into BTC</p>\n                <input pattern=\"[0-9]+\" type=\"number\" className=\"btcInput\"  max=\"9999\" size=\"30\" placeholder=\"0.00\" required\n                       id=\"mintAmount\"\n                       name=\"mintAmount\"\n                       onChange={handleChangeRedeem}\n                       value={redeemAmount}\n                /><br/>\n                <div className=\"lblInp\">\n                    eBTC<br/>\n                    <div id=\"usd\">~ $ {Math.round(100*usdBtcRedeem)/100}</div>\n                </div>\n                <br></br>\n                <p/>\n                <p className=\"title2\">BTC address</p>\n                <input type=\"text\" className=\"btcInputAddress\" size=\"30\" placeholder=\"Enter your BTC address\" onChange={handleChangeBtcAddress} value={btcAddress}\n                       required/><br/>\n           \n                <div className=\"flex-container\">\n                    <div className=\"left\">Bridge Fee</div>\n                    <div className=\"right\">\n                        <img id=\"bit\" src={require('../img/Ergo_dark.png').default}alt=\"aneta\" className='dark__mode'/>\n                        <img id=\"bit\" src={require('../img/Ergo.png').default}alt=\"aneta\" className='sun__mode'/>\n                        <b>{Math.round(bridgeFee*100)/100}</b> ERG\n\n\n                    </div>\n\n                    <div className=\"feeUSD1\" id=\"usd\"> = $ {Math.round(bridgeFeeUsd*100)/100}</div>\n\n                </div>\n\n                <br></br>\n                <p/><p/>\n                <div className=\"flex-container\">\n                    <div className=\"left\">BTC network Fee</div>\n                    <div className=\"right\">\n                        <img id=\"bit\" src={require('../img/Bitcoin.png').default}\n                             alt=\"aneta\"/><b>{btcNetworkFee}</b> BTC\n\n\n                    </div>\n\n                    <div className=\"feeUSD5\" id=\"usd\"> = $ {Math.round(100*btcNetworkFeeUsd)/100}</div>\n\n                </div>\n\n                <br></br>\n                <p/><p/>\n                <div className=\"flex-container\">\n                    <div className=\"left\">ERG Network fee</div>\n                    <div className=\"right\">\n                        <div><img id=\"bit\" src={require('../img/Ergo_dark.png').default}alt=\"aneta\" className='dark__mode'/>\n                            <img id=\"bit\" src={require('../img/Ergo.png').default}alt=\"aneta\" className='sun__mode'/>\n                            <b>{Math.round(100*ergFee)/100}</b> ERG\n\n                        </div>\n\n                    </div>\n                    <div className=\"feeUSD6\" id=\"usd\"> = $ {Math.round(100*ergFeeUsd)/100} </div>\n                </div>\n\n                \n                <p/><p/>\n                <hr id=\"menuHR1\"></hr>\n                <div className=\"flex-container\">\n                    <div className=\"left\">You Will Receive</div>\n                    <div className=\"right\"><img id=\"bit\" src={require('../img/Bitcoin.png').default} alt=\"BTC\"/><b>{BTCAmount}</b> BTC</div>\n                    <div className=\"feeUSD7\" id=\"usd\"> = $ {Math.round(usdBtcRedeem*0.9975*100)/100} </div>\n                </div>\n                <button onClick={handleClickOpenRedeem1} type=\"button\" className=\"mainButton2\" id=\"mintButton\">\n                    <b>Confirm</b></button>\n            </div>\n        )\n    }\n}\n\n\nexport default Bridge;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/Bridge/Bridge.tsx b/src/pages/Bridge/Bridge.tsx
+--- a/src/pages/Bridge/Bridge.tsx	(revision f9fd0ab18136a823db5db5b77550a5fd748f3aac)
++++ b/src/pages/Bridge/Bridge.tsx	(date 1672142410209)
+@@ -16,6 +16,10 @@
+     const [bridgeFeeG, setBridgeFeeG] = useState('0');
+     const [bridgeFeeUsdG, setBridgeFeeUsdG] = useState('0');
+ 
++
++    const [bridgeFeeGR, setBridgeFeeGR] = useState('0');
++    const [bridgeFeeUsdGR, setBridgeFeeUsdGR] = useState('0');
++
+     const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
+     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
+     const [btcAddressG, setBtcAddressG] = useState('');
+@@ -149,7 +153,7 @@
+             {connectWalletError ? <ConnectWalletError/> : ""}
+             {addressError ? <AddressError/> : ""}
+             {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
+-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
++            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG} bridgeFee = {bridgeFeeGR} btcAddress = {btcAddressG}  /> : ""}
+             <div id="content1">
+                 <div id="radios">
+                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
+@@ -172,7 +176,7 @@
+         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
+         const [bridgeFee, setBridgeFee] = useState('0');
+         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+-        
++
+ 
+         const handleChange = event => {
+             setMintAmount(event.target.value);
+@@ -296,7 +300,7 @@
+             setUsdBtcRedeem(usdBTC * event.target.value);
+             setBridgeFee(event.target.value * 33);
+             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
+-           
++
+         };
+ 
+         async function handleClickOpenRedeem1() {
+@@ -304,12 +308,13 @@
+             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
+             setBtcAddressG(btcAddress)
+             setBTCAmountG(BTCAmount)
++            setBridgeFeeGR(bridgeFee)
+             const address = await getAddress()
+             console.log(address, "Address")
+             address ? handleClickOpenRedeem() : setConnectWalletError(true)
+         }
+ 
+-        
++
+ 
+ 
+ 
+@@ -361,7 +366,7 @@
+                 <p className="title2">BTC address</p>
+                 <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
+                        required/><br/>
+-           
++
+                 <div className="flex-container">
+                     <div className="left">Bridge Fee</div>
+                     <div className="right">
+@@ -406,7 +411,7 @@
+                     <div className="feeUSD6" id="usd"> = $ {Math.round(100*ergFeeUsd)/100} </div>
+                 </div>
+ 
+-                
++
+                 <p/><p/>
+                 <hr id="menuHR1"></hr>
+                 <div className="flex-container">
+Index: src/pages/Bridge/ConfirmationWindowRedeem.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {useState} from \"react\";\nimport CheckMark from \"./CheckMark\";\nimport React from 'react';\nimport sendPaymentFunction from \"./sendPayment\";\nimport redeem from \"./redeem\";\nimport ErrorPayment from \"./ErrorPayment\";\n\nconst DEFAULT_EXPLORER_URL = \"https://api-testnet.ergoplatform.com\";\n\nfunction ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {\n\n    const [nautilusAddress, setNautilusAddress] = useState('');\n\n    const address1 = ergo.get_change_address();\n    address1.then((value) => {\n        setNautilusAddress(value)\n    });\n\n    const refreshPage = () => {\n        window.location.reload();\n    }\n\n    const [txInfo, setTxInfo] = useState('');\n\n\n    const [conf, setConf] = useState(\"info\");\n    const [error, setError] = useState(false);\n\n    const [disable, setDisable] = useState(false);\n\n\n    function NameTrans() {\n        if (eBTC > 0.000000001) {\n            return (\n                <div>\n                    Pay Bridge Fee\n                </div>\n            )\n        }  else {\n            return (\n                <div>\n                    <div className=\"error1\">\n                        Unavailable Quantity\n                    </div>\n                </div>\n            )\n        }\n    }\n\n    function Conf() {\n        if (eBTC > 0.000000001) {\n            if (conf === \"info\") {\n                return (\n                    <ConfirmationInfo/>\n                )\n            } else if (conf === \"subm\") {\n                return (\n                    <ConfirmationSubmission/>\n                )\n            }\n            else if (conf === \"concl\") {\n                console.log(\"txInfo before redeem\", txInfo)\n                redeem(eBTC, btcAddress, nautilusAddress, txInfo)\n                return (\n                    <DontWorryMess/>\n                )\n            }\n\n        } else {\n            return (\n                <div>\n                    <div className=\"error\">\n                        Your requested transaction is not within current quantity limits. Please try again.\n                    </div>\n                    <button type=\"button\" id=\"confButton1\" onClick={refreshPage}><b>Try again</b></button>\n                </div>\n            )\n\n        }\n\n    }\n\n\n    return (\n        error ? <ErrorPayment/> : <div className=\"mainPopup\">\n            <div className=\"confContent\">\n\n                <div className=\"confWindow\">\n                    <div className=\"confTitle\">\n                        <NameTrans/>\n                    </div>\n                    <Conf/>\n                </div>\n            </div>\n        </div>\n    )\n\n\n    function ConfirmationInfo() {\n        return (\n            <div>\n                <div className=\"confInfo\">\n                    <div className=\"flex-containerB\">\n                        <div className=\"left\"><b>Request:</b></div>\n                        <div className=\"right\">\n                            Unwrap {eBTC} eBTC\n                        </div>\n                    </div>\n                    <div className=\"flex-containerB\" id=\"confBA\">\n                        <div className=\"left\">BTC Network Fee:</div>\n                        <div className=\"right\">\n                            <img id=\"bit\" src={require('../img/Ergo.png').default}\n                                 alt=\"aneta\"/><b>{Math.round(btcNetworkFee * 1000) / 1000}</b> ERG <div id=\"usd\"\n                                                                                                        className=\"confBF\">=\n                            $ {Math.round(100 * btcNetworkFeeUsd) / 100}</div>\n                        </div>\n                    </div>\n                    <div className=\"flex-containerB\" id=\"confBA\">\n                        <div className=\"left\"><b>BTC Address:</b> <br/>\n                            <div className=\"confBF\">{btcAddress}</div>\n                        </div>\n                        <div className=\"right\"/>\n\n                    </div>\n                </div>\n                <button type=\"button\" id=\"confButton\" disabled={disable}\n                        onClick={() => send()}\n                ><b>Confirm</b></button>\n\n            </div>\n        )\n    }\n\n    async function send() {\n        setDisable(true)\n        const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)\n        setTxInfo(result)\n        console.log(\"res\", result)\n        result ? setConf(\"subm\") : setError(true)\n    }\n\n\n    function ConfirmationSubmission() {\n        return (\n            <div className=\"confSubmission\">\n                <div className=\"textUR\"></div>\n                <CheckMark/>\n                <button type=\"button\" id=\"confButton1\" className=\"confWRS\" onClick={() => setConf(\"concl\")}>\n                    <b>Continue</b></button>\n            </div>\n        )\n    }\n\n    function DontWorryMess() {\n        return (\n            <div>\n                <div className=\"dntwrr\">Your BTC will be sent to your BTC wallet shortly</div>\n                <div className=\"dntwrr\">This may take up to 24 hours. Don’t worry, your funds are safe :)</div>\n                <div className=\"dntwrr\">\n                    The status of your wrap and unwrap requests can be found under the transaction tab on the menu\n                </div>\n                <button type=\"button\" id=\"confButton1\" onClick={refreshPage}><b>Continue</b></button>\n            </div>\n        )\n    }\n\n\n}\n\n\n\n\n\nexport default ConfirmationWindowRedeem;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/Bridge/ConfirmationWindowRedeem.tsx b/src/pages/Bridge/ConfirmationWindowRedeem.tsx
+--- a/src/pages/Bridge/ConfirmationWindowRedeem.tsx	(revision f9fd0ab18136a823db5db5b77550a5fd748f3aac)
++++ b/src/pages/Bridge/ConfirmationWindowRedeem.tsx	(date 1672142410219)
+@@ -7,7 +7,7 @@
+ 
+ const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
+ 
+-function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
++function ConfirmationWindowRedeem({eBTC, btcNetworkFee, btcNetworkFeeUsd, bridgeFee, btcAddress}) {
+ 
+     const [nautilusAddress, setNautilusAddress] = useState('');
+ 
+@@ -133,7 +133,7 @@
+ 
+     async function send() {
+         setDisable(true)
+-        const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
++        const result = await sendPaymentFunction(eBTC, bridgeFee, nautilusAddress)
+         setTxInfo(result)
+         console.log("res", result)
+         result ? setConf("subm") : setError(true)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"e900a148-0757-4f69-be1a-60eb66bde402\" name=\"Changes\" comment=\"dashboard\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"JavaScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"last_opened_file_path\": \"/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/src/pages/Bridge\",\n    \"ts.external.directory.path\": \"/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/pages/Bridge\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"build\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\n      <command value=\"run\" />\n      <scripts>\n        <script value=\"build\" />\n      </scripts>\n      <node-interpreter value=\"project\" />\n      <envs />\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"npm.build\" />\n        <item itemvalue=\"npm.build\" />\n        <item itemvalue=\"npm.build\" />\n        <item itemvalue=\"npm.build\" />\n        <item itemvalue=\"npm.build\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task id=\"LOCAL-00001\" summary=\"write txID to DB\">\n      <created>1671026022389</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1671026022389</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"dashboard\">\n      <created>1671481110613</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1671481110614</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"dashboard\">\n      <created>1671526547518</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1671526547519</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"4\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"write txID to DB\" />\n    <MESSAGE value=\"dashboard\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"dashboard\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f9fd0ab18136a823db5db5b77550a5fd748f3aac)
++++ b/.idea/workspace.xml	(date 1672839667031)
+@@ -1,7 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="e900a148-0757-4f69-be1a-60eb66bde402" name="Changes" comment="dashboard" />
++    <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindowRedeem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindowRedeem.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/sendPayment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/sendPayment.tsx" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -17,21 +22,41 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="firebase-integration" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GithubProjectSettings">
++    <option name="branchProtectionPatterns">
++      <list>
++        <option value="main" />
++      </list>
++    </option>
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectId" id="2H2asZsyszBpKyps8NroeZoHRmX" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "last_opened_file_path": "/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/src/pages/Bridge",
+-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/aishakozhamseitova/WebstormProjects/aneta_vault&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/node_modules/typescript/lib&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+-      <recent name="$PROJECT_DIR$/src/pages/Bridge" />
++      <recent name="$PROJECT_DIR$" />
+     </key>
+   </component>
+   <component name="RunManager">
+@@ -47,39 +72,142 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="npm.build" />
+-        <item itemvalue="npm.build" />
+-        <item itemvalue="npm.build" />
+         <item itemvalue="npm.build" />
+         <item itemvalue="npm.build" />
+       </list>
+     </recent_temporary>
+   </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+-    <task id="LOCAL-00001" summary="write txID to DB">
+-      <created>1671026022389</created>
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="" />
++      <created>1667485843326</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1667485843326</updated>
++      <workItem from="1667485848226" duration="21233000" />
++      <workItem from="1667876882587" duration="12604000" />
++      <workItem from="1668091148520" duration="37779000" />
++      <workItem from="1668590952918" duration="2409000" />
++      <workItem from="1668941968045" duration="1831000" />
++      <workItem from="1669042053614" duration="1256000" />
++      <workItem from="1669157450902" duration="17004000" />
++      <workItem from="1671960465909" duration="1010000" />
++      <workItem from="1672139672715" duration="3214000" />
++      <workItem from="1672384435806" duration="634000" />
++      <workItem from="1672835469752" duration="598000" />
++    </task>
++    <task id="LOCAL-00001" summary="new changes">
++      <created>1667687958699</created>
+       <option name="number" value="00001" />
+       <option name="presentableId" value="LOCAL-00001" />
+       <option name="project" value="LOCAL" />
+-      <updated>1671026022389</updated>
++      <updated>1667687958700</updated>
+     </task>
+-    <task id="LOCAL-00002" summary="dashboard">
+-      <created>1671481110613</created>
++    <task id="LOCAL-00002" summary="new changes">
++      <created>1667877160576</created>
+       <option name="number" value="00002" />
+       <option name="presentableId" value="LOCAL-00002" />
+       <option name="project" value="LOCAL" />
+-      <updated>1671481110614</updated>
++      <updated>1667877160576</updated>
+     </task>
+-    <task id="LOCAL-00003" summary="dashboard">
+-      <created>1671526547518</created>
++    <task id="LOCAL-00003" summary="new changes">
++      <created>1668323021400</created>
+       <option name="number" value="00003" />
+       <option name="presentableId" value="LOCAL-00003" />
+       <option name="project" value="LOCAL" />
+-      <updated>1671526547519</updated>
++      <updated>1668323021401</updated>
++    </task>
++    <task id="LOCAL-00004" summary="new changes">
++      <created>1668323729095</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1668323729095</updated>
++    </task>
++    <task id="LOCAL-00005" summary="new changes">
++      <created>1668335105378</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1668335105378</updated>
++    </task>
++    <task id="LOCAL-00006" summary="new changes">
++      <created>1668519546709</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1668519546712</updated>
++    </task>
++    <task id="LOCAL-00007" summary="new changes">
++      <created>1668591017789</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1668591017789</updated>
++    </task>
++    <task id="LOCAL-00008" summary="new changes">
++      <created>1669173979343</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1669173979343</updated>
++    </task>
++    <task id="LOCAL-00009" summary="new changes">
++      <created>1669599854474</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1669599854474</updated>
++    </task>
++    <task id="LOCAL-00010" summary="new changes">
++      <created>1669601073277</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1669601073277</updated>
++    </task>
++    <task id="LOCAL-00011" summary="new changes">
++      <created>1671557725468</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1671557725468</updated>
++    </task>
++    <task id="LOCAL-00012" summary="new changes">
++      <created>1671736472664</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1671736472664</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00013" summary="new changes">
++      <created>1671740001103</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1671740001104</updated>
++    </task>
++    <task id="LOCAL-00014" summary="new changes">
++      <created>1671741502024</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1671741502024</updated>
++    </task>
++    <task id="LOCAL-00015" summary="new changes">
++      <created>1671810114346</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1671810114346</updated>
++    </task>
++    <option name="localTasksCounter" value="16" />
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+       <map>
+@@ -92,8 +220,7 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="write txID to DB" />
+-    <MESSAGE value="dashboard" />
+-    <option name="LAST_COMMIT_MESSAGE" value="dashboard" />
++    <MESSAGE value="new changes" />
++    <option name="LAST_COMMIT_MESSAGE" value="new changes" />
+   </component>
+ </project>
+\ No newline at end of file
