@@ -60,7 +60,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 redeem(eBTC, btcAddress, nautilusAddress, txInfo)
                 setTimeout(function() {
                     setContDisable(false)
-                }, 5000);
+                }, 20000);
                 return (
                     <DontWorryMess/>
                 )
