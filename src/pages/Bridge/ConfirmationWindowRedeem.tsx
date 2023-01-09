@@ -27,6 +27,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [disable, setDisable] = useState(false);
 
+    const [contDisable, setContDisable] = useState(true);
+
 
     function NameTrans() {
         if (eBTC > 0.000000001) {
@@ -56,6 +58,9 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
             else if (conf === "concl") {
                 console.log("txInfo before redeem", txInfo)
                 redeem(eBTC, btcAddress, nautilusAddress, txInfo)
+                setTimeout(function() {
+                    setContDisable(false)
+                }, 20000);
                 return (
                     <DontWorryMess/>
                 )
@@ -142,7 +147,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 <div className="dntwrr">
                     The status of your wrap and unwrap requests can be found under the transaction tab on the menu
                 </div>
-                <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
+                <button type="button" id="confButton1" disabled={contDisable} onClick={refreshPage} ><b>Continue</b></button>
             </div>
         )
     }
