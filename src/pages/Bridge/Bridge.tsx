@@ -19,6 +19,7 @@ function Bridge() {
     const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
     const [btcAddressG, setBtcAddressG] = useState('');
+    const [btcAddressMint, setBtcAddressMint] = useState('');
     const [BTCAmountG, setBTCAmountG] = useState('0');
     const [userAddress, setUserAddress] = useState('');
 
@@ -148,7 +149,7 @@ function Bridge() {
         <div>
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
+            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} btcAddress={btcAddressMint} /> : ""}
             {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
@@ -172,6 +173,7 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+        const [btcAddress, setBtcAddress] = useState('');
         
 
         const handleChange = event => {
@@ -195,12 +197,17 @@ function Bridge() {
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
             setBridgeFeeUsdG(bridgeFeeUsd)
+            setBtcAddressMint(btcAddress)
 
             const address = await getAddress()
             console.log(address)
             address ? handleClickOpen() : setConnectWalletError(true)
         }
 
+
+        const handleChangeBtcAddress = event => {
+            setBtcAddress(event.target.value);
+        }
 
         return (
             <div id="WRAP">
@@ -217,7 +224,11 @@ function Bridge() {
                     BTC<br/>
                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
-                <p/><p/>
+                <br></br>
+                <p/>
+                <p className="title2">BTC address</p>
+                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
+                       required/><br/>
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
@@ -229,7 +240,7 @@ function Bridge() {
 
                     </div>
 
-                    <div className="feeUSD" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
+                    <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
 
                 </div>
 
@@ -246,7 +257,7 @@ function Bridge() {
                         </div>
 
                     </div>
-                    <div className="feeUSD2" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
+                    <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
                 </div>
 
                 <p/><p/>

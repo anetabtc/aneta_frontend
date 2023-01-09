@@ -1442,7 +1442,7 @@ body.dark .btnPayment {
 }
 
 #WRAP {
-    height: 530px;
+    height: 630px;
 }
 
 #UNWRAP {
@@ -1785,6 +1785,22 @@ body.dark .btnPayment {
     position: absolute;
     left: 53%;
     top: 75%;
+}
+
+.feeUSD8 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 46%;
+}
+
+.feeUSD9 {
+    text-align: right;
+
+    position: absolute;
+    left: 53%;
+    top: 56%;
 }
 
 #usd {
