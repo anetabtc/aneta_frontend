@@ -8,8 +8,10 @@ import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
 import {addDoc, collection, getDocs, doc} from "firebase/firestore";
 import firebaseConfig from "../Bridge/firebaseConfig";
+import { getAuth } from "firebase/auth";
 import ConfirmationWindow from "../Bridge/ConfirmationWindow";
 import ConfirmationWindowRedeem from "../Bridge/ConfirmationWindowRedeem";
+
 
 
 // Initialize Firebase
@@ -20,6 +22,7 @@ const db = getFirestore(app);
 
 function Transactions() {
     const [products, setProducts] = useState([]);
+    const [idN, setId] = useState([]);
     let txs = []
 
 
@@ -34,13 +37,21 @@ function Transactions() {
         const snapshot = await getDocs(colRef);
         snapshot.forEach(doc => {
             txs.push(
+
                 doc.data()
             )
+
+      // const docId = doc.id
+      //
+      //       setId(docId)
+
 
         })
 
 
         setProducts(txs)
+
+
     }
         const [visible, SetVisible] = useState(true);
 
@@ -86,7 +97,7 @@ function Transactions() {
                                 <td>Created at</td>
                                 <td>Transaction (BTC)</td>
                                 <td>Transaction (eBTC)</td>
-                                <td>Transaction (ERG)</td>
+                                <td>Transaction (Bridge Fee)</td>
                                 <td>anetaBTC ID</td>
                                 <td>Confirmation Status</td>
                             </tr>
@@ -103,15 +114,21 @@ function Transactions() {
                                             minute: '2-digit',
                                             second: '2-digit'
                                         }).format(tx.datetime)}</td>
-                                        <td>{tx.amount} BTC</td>
-                                        <td>{tx.amount} eBTC</td>
-                                        <td className="underline">{tx.btc_address}</td>
-                                        <td className="underline">{tx.erg_address}</td>
-                                        <td>{tx.info}</td>
+                                        <td>{tx.amount} BTC<br/> {tx.btc_address}</td>
+                                        <td>{tx.amount} eBTC <br/> {tx.btc_address}</td>
+                                        <td className="underline">{tx.erg_txid}</td>
+                                        <td className="underline">{tx.documentId}</td>
+                                        <td ><p className="bord"> <b className="boldPo">•</b>Complete</p></td>
 
                                     </tr>
                                     : null
                             ))}
+
+                            {/*{idN.map((tx) => (*/}
+                            {/*        <tr key={tx.id}>*/}
+                            {/*            <td>{tx.id} eBTC</td>*/}
+                            {/*        </tr>*/}
+                            {/*            ))}*/}
                         </table>
 
                 </div>
@@ -126,12 +143,12 @@ function Transactions() {
 
                     <p class="transactionTitle1">Unwrap Requests</p>
                     <table className="tableWrap">
-                        <tr>
+                        <tr border="0">
                             <td>Created at</td>
-                            <td>Amount (BTC)</td>
-                            <td>Amount (eBTC)</td>
-                            <td>BTC Transaction</td>
-                            <td>ERG transaction</td>
+                            <td>Transaction (BTC)</td>
+                            <td>Transaction (eBTC)</td>
+                            <td>Transaction (Bridge Fee)</td>
+                            <td>anetaBTC ID</td>
                             <td>Confirmation Status</td>
                         </tr>
                         <hr className="menuHR"/>
@@ -147,11 +164,11 @@ function Transactions() {
                                         minute: '2-digit',
                                         second: '2-digit'
                                     }).format(tx.datetime)}</td>
-                                    <td>{tx.amount} BTC</td>
-                                    <td>{tx.amount} eBTC</td>
-                                    <td class="underline">{tx.btc_address}</td>
-                                    <td class="underline">{tx.erg_address}</td>
-                                    <td>{tx.info}</td>
+                                    <td>{tx.amount} BTC<br/> {tx.btc_address}</td>
+                                    <td>{tx.amount} eBTC <br/> {tx.btc_address}</td>
+                                    <td className="underline">{tx.erg_txid}</td>
+                                    <td className="underline">{tx.documentId}</td>
+                                    <td ><p className="bord"> <b className="boldPo">•</b>Complete</p></td>
 
                                 </tr>
                                 : null

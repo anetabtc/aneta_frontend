@@ -627,9 +627,10 @@ a:visited {
     background-color: white;
     border-radius: 15px;
     width: 1189px;
-    right: 200px;
+    left: 300px;
     height: 664px;
     margin: auto;
+    margin-top: 150px;
     padding: 10px 30px;
     text-align: left;
     position: absolute; /*Can also be `fixed`*/
@@ -894,7 +895,7 @@ td {
     margin: auto;
     border-radius: 10px;
     margin-top: 80px;
-    margin-left: 300px;
+    margin-left: 390px;
 }
 
 #radios > input {
@@ -930,7 +931,7 @@ td {
 
 #bckgrnd1,
 .labelsTr {
-    width: 202.5px;
+    width: 204.5px;
     height: 40px;
     text-align: center;
     display: inline-block;
@@ -1571,4 +1572,24 @@ div > .addressBTC {
 
 .tableWrap td {
     border: 0;
+}
+
+.bord {
+    border-width:1px;
+    border-style:solid;
+    border-color: black;
+    padding: 7px;
+    width: 70px;
+
+}
+
+.boldPo {
+    color: #10B981;
+    margin-left: 2px;
+    padding: 5px;
+
+}
+
+.tableWrap {
+    padding: 10px;
 }
