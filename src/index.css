@@ -525,6 +525,12 @@ svg {
     margin-top: -20px;
 }
 
+.mainmenu_transaction .menuHR2 {
+    width: 1150px;
+    position: absolute;
+    background-color: black;
+}
+
 .socialMedia {
     display: flex;
     flex-direction: row;
@@ -1568,6 +1574,8 @@ div > .addressBTC {
 
 .tableWrap {
     border: 0;
+    margin-top: 20px;
+
 }
 
 .tableWrap td {

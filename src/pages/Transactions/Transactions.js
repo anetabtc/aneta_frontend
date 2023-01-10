@@ -86,14 +86,14 @@ function Transactions() {
         )
 
     function MintPage() {
-
+        const bridge = 33
         return (
             <div className='mainmenu_transaction'>
 
                     <p className="transactionTitle1">Wrap Requests</p>
 
                         <table className="tableWrap">
-                            <tr border="0">
+                            <tr >
                                 <td>Created at</td>
                                 <td>Transaction (BTC)</td>
                                 <td>Transaction (eBTC)</td>
@@ -101,8 +101,9 @@ function Transactions() {
                                 <td>anetaBTC ID</td>
                                 <td>Confirmation Status</td>
                             </tr>
-                            <hr className="menuHR"/>
+                            <hr className="menuHR2"/>
                             {products.map((tx) => (
+
                                 tx.info == "Mint Order Submitted" || tx.info == "Mint Order Paid" ?
                                     <tr key={tx.id}>
 
@@ -114,10 +115,10 @@ function Transactions() {
                                             minute: '2-digit',
                                             second: '2-digit'
                                         }).format(tx.datetime)}</td>
-                                        <td>{tx.amount} BTC<br/> {tx.btc_address}</td>
-                                        <td>{tx.amount} eBTC <br/> {tx.btc_address}</td>
-                                        <td className="underline">{tx.erg_txid}</td>
-                                        <td className="underline">{tx.documentId}</td>
+                                        <td>{tx.amount} BTC<p className="underline">{tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
+                                        <td >{tx.amount} eBTC <p className="underline"> {tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
+                                        <td >{Math.round(bridge*tx.amount*10000)/10000} ERG <p className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p></td>
+                                        <td className="underline">{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</td>
                                         <td ><p className="bord"> <b className="boldPo">•</b>Complete</p></td>
 
                                     </tr>
@@ -136,6 +137,7 @@ function Transactions() {
     }
 
     function RedeemPage() {
+        const bridge = 33
         return (
             <div className='mainmenu_transaction'>
                 <div>
@@ -151,7 +153,7 @@ function Transactions() {
                             <td>anetaBTC ID</td>
                             <td>Confirmation Status</td>
                         </tr>
-                        <hr className="menuHR"/>
+                        <hr className="menuHR2"/>
                         {products.map((tx) => (
                             tx.info == "Redeem Order Submitted" ?
                                 <tr key={tx.id}>
@@ -164,10 +166,10 @@ function Transactions() {
                                         minute: '2-digit',
                                         second: '2-digit'
                                     }).format(tx.datetime)}</td>
-                                    <td>{tx.amount} BTC<br/> {tx.btc_address}</td>
-                                    <td>{tx.amount} eBTC <br/> {tx.btc_address}</td>
-                                    <td className="underline">{tx.erg_txid}</td>
-                                    <td className="underline">{tx.documentId}</td>
+                                    <td>{tx.amount} BTC<p className="underline">{tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
+                                    <td >{tx.amount} eBTC <p className="underline"> {tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
+                                    <td >{Math.round(bridge*tx.amount*10000)/10000} ERG <p className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p></td>
+                                    <td className="underline">{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</td>
                                     <td ><p className="bord"> <b className="boldPo">•</b>Complete</p></td>
 
                                 </tr>
