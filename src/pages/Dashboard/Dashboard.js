@@ -29,7 +29,8 @@ function Dashboard() {
                 .then(res => res.json())
                 .then(res1 => res1.transactions)
                 .then(res2 => {
-                        setERGAmount(res2.confirmedBalance / 1000000000)
+                        const result = res2.confirmedBalance / 1000000000
+                        setERGAmount(result.toString().substring(0, 6))
                     })
         }
         
