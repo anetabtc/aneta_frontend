@@ -41,15 +41,14 @@ function Transactions() {
                 doc.data()
             )
 
-      // const docId = doc.id
-      //
-      //       setId(docId)
+
+
 
 
         })
+        const postID = txs;
 
-
-        setProducts(txs)
+        setProducts(postID)
 
 
     }
@@ -87,6 +86,7 @@ function Transactions() {
 
     function MintPage() {
         const bridge = 33
+
         return (
             <div className='mainmenu_transaction'>
 
@@ -105,7 +105,7 @@ function Transactions() {
                             {products.map((tx) => (
 
                                 tx.info == "Mint Order Submitted" || tx.info == "Mint Order Paid" ?
-                                    <tr key={tx.id}>
+                                    <tr key={doc.id}>
 
                                         <td>{new Intl.DateTimeFormat('en-US', {
                                             year: 'numeric',
@@ -118,7 +118,9 @@ function Transactions() {
                                         <td>{tx.amount} BTC<p className="underline">{tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
                                         <td >{tx.amount} eBTC <p className="underline"> {tx.btc_address ? tx.btc_address.substring(0, 7) + '-' + tx.btc_address.substring(tx.btc_address.length - 7, tx.btc_address.length) : ""}</p></td>
                                         <td >{Math.round(bridge*tx.amount*10000)/10000} ERG <p className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p></td>
-                                        <td className="underline">{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</td>
+
+                                        <td >{doc.key}</td>
+                                        {/*<td className="underline">{doc.id ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</td>*/}
                                         <td ><p className="bord"> <b className="boldPo">•</b>Complete</p></td>
 
                                     </tr>
