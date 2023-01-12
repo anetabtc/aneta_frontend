@@ -4,6 +4,7 @@ import React from 'react';
 import sendPaymentFunction from "./sendPayment";
 import redeem from "./redeem";
 import ErrorPayment from "./ErrorPayment";
+import RedeemConfWindow from "./RedeemConfWindow";
 
 
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
@@ -14,10 +15,6 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     address1.then((value) => {
         setNautilusAddress(value)
     });
-
-    const refreshPage = () => {
-        window.location.reload();
-    }
 
     const [txInfo, setTxInfo] = useState('');
 
@@ -54,10 +51,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 )
             }
             else if (conf === "concl") {
-                console.log("txInfo before redeem", txInfo)
-                redeem(eBTC, btcAddress, nautilusAddress, txInfo)
                 return (
-                    <DontWorryMess/>
+                    <RedeemConfWindow eBTC={eBTC} btcAddress={btcAddress} nautilusAddress={nautilusAddress} txInfo={txInfo}/>
                 )
             }
 
@@ -134,18 +129,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         result ? setConf("concl") : setError(true)
     }
 
-    function DontWorryMess() {
-        return (
-            <div>
-                <div className="dntwrr">Your BTC will be sent to your BTC wallet shortly</div>
-                <div className="dntwrr">This may take up to 24 hours. Don’t worry, your funds are safe :)</div>
-                <div className="dntwrr">
-                    The status of your wrap and unwrap requests can be found under the transaction tab on the menu
-                </div>
-                <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
-            </div>
-        )
-    }
+
 
 
 }
