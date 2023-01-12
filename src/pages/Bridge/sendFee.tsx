@@ -14,7 +14,10 @@ const sendFeeFunction = async function sendFee( erg, nautilusAddress) {
         let currentHeight = await getch();
         console.log(currentHeight)
         let fee = BigInt(20000000)
-        let bridgeFee = BigInt(erg * 1000000000)
+
+        let feeCalculator = erg * 1000000000
+        let number = Math.trunc(feeCalculator)
+        let bridgeFee = BigInt(number)
         let inputs = await ergo.get_utxos();
 
 

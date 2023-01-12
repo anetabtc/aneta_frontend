@@ -11,9 +11,14 @@ const sendPaymentFunction = async function sendTransaction1(price, btcAddress, n
     let receiverAddress = await getReceiverAddress()
     let currentHeight = await getch();
     console.log(currentHeight)
-    let amountToSend = BigInt(price * 33 * 1000000000);
-    let tokenAmountToSend = BigInt(price * 100000000);
-    let feeAmount = BigInt(2 * 10000000);
+    let amountCalculator = price * 33 * 1000000000;
+    let amountTrunc = Math.trunc(amountCalculator)
+    let amountToSend = BigInt(amountTrunc);
+
+    let tokenAmountCalculator = price * 100000000;
+    let tokenAmountTrunc = Math.trunc(tokenAmountCalculator)
+    let tokenAmountToSend = BigInt(tokenAmountTrunc);
+    let feeAmount = BigInt(20000000);
     let fee = feeAmount;
 
 
