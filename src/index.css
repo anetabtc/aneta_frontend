@@ -356,12 +356,12 @@ body.dark #confButton1 {
 
 /*dropdown*/
 .dropdown {
-    width: 125px;
+    width: 135px;
 }
 
 
 .dropdown .dropdown-btn {
-    height: 35px;
+    height: 38.5px;
     background-color: white;
     border: none;
     color: #000000;
@@ -372,15 +372,17 @@ body.dark #confButton1 {
     cursor: pointer;
     border-radius: 5px;
 
-    margin: 10px;
+    margin: 17.5px 5px 10px 5px;
     font-weight: 500;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    padding-left: 8%;
-    padding-right: 15%;
+}
+
+.dropdown .dropdown-btn div:last-child {
+    margin-left: 5px;
 }
 
 /* dark mode */
@@ -391,17 +393,16 @@ body.dark .dropdown .dropdown-btn {
 }
 
 .dropdown-content {
-    width: 115px;
+    width: 125px;
     position: absolute;
-    padding: 5px;
     background-color: white;
     color: gray;
     text-decoration: none;
     text-align: start;
     font-size: 14px;
     cursor: pointer;
-    margin-left: 10px;
     border-radius: 5px;
+    right: 230px;
 
 }
 
@@ -413,10 +414,14 @@ body.dark .dropdown-content {
 }
 
 .dropdown-item {
-    padding: 5px;
+    padding: 0px 10px 10px 10px;
     border-radius: 10px;
     cursor: pointer;
     display: flex;
+}
+
+.dropdown-item div{
+    margin-left: 5px;
 }
 
 
@@ -434,6 +439,7 @@ body.dark .dropdown-content {
 
 #navText {
     font-size: 9px;
+    margin: 9px 10px;
 }
 
 .selected {
@@ -455,9 +461,9 @@ body.dark .dropdown-content {
 
 
 .imgLogo {
-    width: 179px;
+    width: 140px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 17.5px;
     display: inline;
     float: left;
 }
@@ -490,7 +496,7 @@ body.dark .dropdown-content {
 }
 
 .menuButton {
-    height: 35px;
+    height: 38.5px;
     background-color: white;
     border: none;
     color: #000000;
@@ -501,7 +507,7 @@ body.dark .dropdown-content {
     cursor: pointer;
     border-radius: 5px;
 
-    margin: 10px;
+    margin: 17.5px 5px 10px 5px;
     font-weight: 500;
 
     display: flex;
@@ -509,8 +515,8 @@ body.dark .dropdown-content {
     justify-content: space-between;
     align-items: center;
 
-    padding-inline-start: 10px;
-    padding-inline-end: 10px;
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
 }
 
 /* Dark Mode */
@@ -520,11 +526,16 @@ body.dark .menuButton {
     color: white;
 }
 
+#sun.menuButton{
+    margin-right: 20px;
+    padding: 0 10px;
+}
+
 
 #Vector {
-    align-items: center;
+    display: flex;
     height: 15px;
-    margin-top: auto;
+    margin: auto;
 }
 
 #Icons {
@@ -541,8 +552,8 @@ body.dark .menuButton {
 }
 
 #sun {
-    width: 35px;
-    height: 35px;
+    width: 38.5px;
+    height: 38.5px;
     display: block;
 }
 
@@ -825,6 +836,10 @@ body.dark .transactionTitle2 {
     margin-left: 27px;
 }
 
+body.dark .title2 {
+    color: #E7E7E7;
+}
+
 table {
 
     border-bottom: 1px solid black;
@@ -871,10 +886,6 @@ body.dark td {
 }
 
 /* DASHBOARD */
-
-
-/* DASHBOARD */
-
 
 .menu_dashboard {
 
@@ -1027,7 +1038,7 @@ body.dark .menu_dash > div {
     font-family: 'Prompt', sans-serif;
     background-color: #F1F6FF;
     border-radius: 20px;
-    width: 643px;
+    width: 600px;
 
     display: table;
     margin: 170px 35%;
@@ -1053,12 +1064,13 @@ body.dark #content1 {
 
 .btcInput {
     padding-left: 10px;
-    width: 600px;
+    width: 560px;
     background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
     height: 98px;
     font-size: 38px;
+    margin-bottom: 20px;
 }
 
 body.dark .btcInput {
@@ -1073,7 +1085,7 @@ body.dark .btcInput {
 }
 
 .btcInputAddress {
-    width: 570px;
+    width: 530px;
     background-color: #DCE4EE;
     border: none;
     border-radius: 10px;
@@ -1102,12 +1114,12 @@ body.dark .btcInputAddress {
 }
 
 .mainButton {
-    width: 598px;
+    width: 550px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
-    margin-top: 13%;
+    margin-top: 10%;
     font-size: 20px;
 }
 
@@ -1121,12 +1133,12 @@ body.dark .mainButton {
 }
 
 .mainButton2 {
-    width: 598px;
+    width: 550px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
-    margin-top: 14%;
+    margin-top: 10%;
     font-size: 20px;
 }
 
@@ -1143,11 +1155,15 @@ body.dark .mainButton2 {
     position: relative;
     background-color: #DDDDDD;
     z-index: 5;
-    width: 609px;
+    width: 560px;
     height: 50px;
     margin: auto;
     border-radius: 10px;
     margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 
 }
 
@@ -1168,13 +1184,13 @@ body.dark #radios{
     height: 40px;
     text-align: center;
     display: inline-block;
-    padding-top: 10px;
-    margin-right: -3px;
     z-index: 2;
     cursor: pointer;
     border-radius: 3px;
-    margin-top: 5px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .labels > b {
@@ -1185,8 +1201,10 @@ body.dark #radios{
     background-color: #B9DDFF;
     position: absolute;
     left: 0;
-    margin-top: 0px;
     z-index: -1;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 body.dark #bckgrnd {
@@ -1200,7 +1218,7 @@ body.dark #bckgrnd {
 }
 
 #rad2:checked ~ #bckgrnd {
-    transform: translateX(304.5px);
+    transform: translateX(280px);
     transition: transform 0.5s ease-in-out;
     border-radius: 10px;
 }
@@ -1226,6 +1244,7 @@ body.dark #bckgrnd {
 
 .left {
     text-align: left;
+    margin-left: 30px;
 
 }
 
@@ -1239,9 +1258,8 @@ body.dark #bckgrnd {
 }
 
 .flex-container > div {
-    width: 280px;
+    width: 270px;
     height: 40px;
-    margin: auto;
     line-height: 95px;
     font-size: 17px;
 }
@@ -1736,8 +1754,8 @@ body.dark .btnPayment {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 43%;
+    left: 50%;
+    top: 46%; 
 }
 
 .feeUSD2 {
@@ -1768,40 +1786,40 @@ body.dark .btnPayment {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 53%;
+    left: 50%;
+    top: 56%;
 }
 
 .feeUSD6 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 62%;
+    left: 50%;
+    top: 65%;
 }
 
 .feeUSD7 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 75%;
+    left: 50%;
+    top: 78%;
 }
 
 .feeUSD8 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 46%;
+    left: 50%;
+    top: 48.5%;
 }
 
 .feeUSD9 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 56%;
+    left: 50%;
+    top: 59%;
 }
 
 #usd {
