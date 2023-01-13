@@ -24,6 +24,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [disable, setDisable] = useState(false);
 
+    const [contDisable, setContDisable] = useState(true);
+
 
     function NameTrans() {
         if (eBTC > 0.000000001) {
@@ -128,7 +130,6 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         console.log("res", result)
         result ? setConf("concl") : setError(true)
     }
-
 
 
 
