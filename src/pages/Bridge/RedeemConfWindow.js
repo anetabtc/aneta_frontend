@@ -1,10 +1,17 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import redeem from "./redeem";
 
 function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
 
+
+
+    const [contDisable, setContDisable] = useState(true);
+
     useEffect(() => {
         redeem(eBTC, btcAddress, nautilusAddress, txInfo)
+        setTimeout(function() {
+            setContDisable(false)
+        }, 20000);
         console.log("tx id nautilus: ", txInfo)
     }, []);
 
@@ -19,7 +26,7 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
             <div className="dntwrr">
                 The status of your wrap and unwrap requests can be found under the transaction tab on the menu
             </div>
-            <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
+            <button type="button" id="confButton1" disabled={contDisable} onClick={refreshPage}><b>Continue</b></button>
         </div>
     )
 }
