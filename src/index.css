@@ -1592,9 +1592,20 @@ div > .addressBTC {
 }
 
 .boldPo {
+    color: #F9AC16;
+    margin-left: 2px;
+    padding: 5px;
+    width: 3px;
+    height: 3px;
+
+}
+
+.boldPo1 {
     color: #10B981;
     margin-left: 2px;
     padding: 5px;
+    width: 3px;
+    height: 3px;
 
 }
 
