@@ -5,7 +5,7 @@ import Feedback from './pages/Feedback/Feedback'
 import Vault from './pages/Vault/Vault'
 import {Routes, Route} from "react-router-dom";
 import Navbar from './pages/Navbar.tsx'
-import Transactions from './pages/Transactions/Transactions'
+import Transactions from './pages/Transactions/Transactions.tsx'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Menu from './pages/Menu'
 import Mint from "./pages/Bridge/Mint";

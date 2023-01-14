@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import getAddress from './getAddress'
 
 //////////////////////////////
 import {initializeApp} from "firebase/app";
@@ -21,23 +20,23 @@ const db = getFirestore(app);
 
 function Transactions() {
     const [products, setProducts] = useState([]);
+    const [address, setAddress] = useState('')
     const [idN, setId] = useState([]);
     let txs = [{}]
 
 
     useEffect(() => {
-        const address2 = "9ht5Kg71PVT9aGS8NdNEkPKwH9zzqkti6niLnrGdLWSjNUPb3Sw"
-        // const address1 = ergo.get_change_address();
-        // address1.then((value) => {
-        //     setNautilusAddress(value)
-        // });
-
-        loadTx(address2)
+        try{
+            setAddress(JSON.parse(localStorage.getItem('address')))
+        }catch (e) {
+            setAddress('')
+        }
+        loadTx()
 
     });
 
 
-    async function loadTx(erg_address) {
+    async function loadTx() {
         const colRef = collection(db, "users");
         const snapshot = await getDocs(colRef);
         snapshot.forEach(doc => {
@@ -49,7 +48,8 @@ function Transactions() {
                     "btc_address": doc.data().btc_address,
                     "erg_txid": doc.data().erg_txid,
                     "info": doc.data().info,
-                    "btc_tx_id": doc.data().btc_tx_id
+                    "btc_tx_id": doc.data().btc_tx_id,
+                    "erg_address": doc.data().erg_address
 
                 }
             )
@@ -115,7 +115,7 @@ function Transactions() {
 
                 {
                     products.map((tx) => {
-                            if (tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") {
+                            if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Successful") {
 
                                 return <tr>
                                     <td>{new Intl.DateTimeFormat('en-US', {
@@ -139,7 +139,7 @@ function Transactions() {
                                     <td><p className="bord"><b className="boldPo">•</b>Pending</p></td>
                                 </tr>
                             }
-                            else if(tx.info === "Mint Order Successful") {
+                            else if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
                                 return
                                 <tr>
                                     <td>{new Intl.DateTimeFormat('en-US', {
@@ -195,7 +195,7 @@ function Transactions() {
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
-                                    if (tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") {
+                                    if ((tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") && tx.erg_address === address) {
 
                                         return <tr>
                                             <td>{new Intl.DateTimeFormat('en-US', {
@@ -219,7 +219,7 @@ function Transactions() {
                                             <td><p className="bord"><b className="boldPo">•</b>Pending</p></td>
                                         </tr>
                                     }
-                                    else if(tx.info === "Redeem Order Successful") {
+                                    else if(tx.info === "Redeem Order Successful" && tx.erg_address === address) {
                                         return
                                         <tr>
                                             <td>{new Intl.DateTimeFormat('en-US', {

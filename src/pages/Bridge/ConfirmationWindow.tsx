@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
 import React from 'react';
@@ -20,15 +20,11 @@ const db = getFirestore(app);
 
 /////////////////////////////////
 
-function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
-    const [nautilusAddress, setNautilusAddress] = useState('');
-    const [txID, setTxID] = useState('');
+function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
+
 
     const [conf, setConf] = useState("info");
     const [txInfo, setTxInfo] = useState('');
@@ -40,7 +36,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     }
 
     function NameTrans() {
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             return (
                 <div>
                     Pay Bridge Fee
@@ -60,7 +56,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
     function Conf() {
 
 
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>
@@ -84,13 +80,13 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
+            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} btcAddress={btcAddress}/>
         )
-    } else if (conf === "error") {
-        return (
+    } else if(conf === "error") {
+        return(
             <ErrorPayment/>
         )
-    } else {
+    }else {
         return (
             <div className="mainPopup">
 
@@ -120,36 +116,39 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee}) {
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
-                            <img id="bit" src={require('../img/Ergo.png').default}
-                                 alt="aneta"/><b>{Math.round(bridgeFee * 1000000) / 1000000}</b> ERG <div id="usd"
-                                                                                                          className="confBF">=
+                            <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <b>{Math.round(bridgeFee * 1000000) / 1000000}</b> ERG <div id="usd"
+                                                                                                  className="confBF">=
                             $ {Math.round(1000000 * bridgeFeeUsd) / 1000000}</div>
                         </div>
                     </div>
                 </div>
-                <button disabled={disable} type="button" id="confButton" onClick={() => send()}><b>Confirm</b></button>
+                <button disabled={disable} type="button" id="confButton"onClick={() => send()}><b>Confirm</b></button>
 
             </div>
         )
     }
 
-    async function send() {
+    async function send(){
         setDisable(true)
         const result = await sendFeeFunction(bridgeFee, nautilusAddress)
-        setTxID(result)
-        console.log("Tx ID: ", txID, "res: ", result)
+        setTxInfo(result)
+        console.log("Tx ID: ", txInfo, "res: ", result)
         result ? setConf("subm") : setConf("error")
     }
 
     function ConfirmationSubmission() {
+
         /////////////////////
         console.log("Writing to Firebase")
-        console.log("Tx ID:", txID)
+        console.log("Tx ID:", txInfo)
         // TODO Write to DB
         useEffect(() => {
-            writeToDB(nautilusAddress, eBTC, txID)
+            writeToDB(nautilusAddress, eBTC, txInfo)
         })
         /////////////////////////
+
         return (
             <div className="confSubmission">
                 <div>Bridge Fee Payment Submitted</div>

@@ -1,24 +1,88 @@
-import React from 'react'
+
+import getCurrentHeight from "../Bridge/getCurrentHeight";
+import React, {useEffect, useState} from 'react'
 
 function Dashboard() {
-  return (
-    <div id="pageDashboard">
-    <div className='menu_dashboard'>
+
+    const [amount, setAmount] = useState()
+    const [eBTCAmount, setEBTCAmount] = useState()
+    const [ergAmount, setERGAmount] = useState()
+    // const [BTCVault, setBTCVault] = useState("")
+    let BTCVault
+    let ERGVAult
     
-      
-      <div><h3 className="infoCluster">BTC in Vault</h3><div class="round"><h4>13.300 BTC</h4><h6 className='ClusterL'>Synced</h6> <h6> View Vault ➜</h6></div></div>
-      <div><h3 className="infoCluster">eBTC minted</h3><div class="round"><h4>13.300 eBTC</h4><h6 className='ClusterL'>Synced</h6><h6>View supply ➜</h6></div></div>
-      <div><h3 className="infoCluster">Network Security</h3><div class="round"><h4>Secure</h4><h6 className='ClusterL'>anetaBTC Bridge</h6><h6>View supply ➜</h6></div></div>
-      </div>
-      <div className='menu_dash'>
-      <div><h3 className="infoCluster">BTC Network</h3><div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block 3346729</h6><h6>View BTC height ➜</h6></div></div>
-      <div><h3 className="infoCluster">ERG Network</h3><div class="round"><h4>Synced</h4><h6 className='ClusterL'>Block 2330363</h6><h6>View ERG height ➜</h6></div></div>
-      </div>
-    </div>
-  )
+
+    useEffect(() => {
+
+        function get(){
+
+            fetch("https://api.bitaps.com/btc/testnet/v1/blockchain/address/state/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5")
+                .then(res => res.json())
+                .then(res1 => res1.data)
+                .then((res2) => {
+                    const result = res2.balance / 100000000
+                    setAmount(result.toString().substring(0,6))
+                    setEBTCAmount(result.toString().substring(0,6))
+                })
+
+            fetch("https://api.ergoplatform.com/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw")
+                .then(res => res.json())
+                .then(res1 => res1.transactions)
+                .then(res2 => {
+                        const result = res2.confirmedBalance / 1000000000
+                        setERGAmount(result.toString().substring(0, 6))
+                    })
+        }
+        
+
+        get();
+    }, [])
+
+    const openInNewTab = (url) => {
+        window.open(url, '_blank', 'noreferrer');
+    };
+
+
+    return (
+        <div id="pageDashboard">
+            <div className='menu_dashboard'>
+
+                <div className={"dashBox"}>
+                    <div className="infoTitleDash">BTC in Vault</div>
+                    <div className={"infoDash"}>
+                        <div className={"dashAmount"}>{amount} BTC</div>
+                        <div className={"dashCircle"}>
+                            <div className={"synced"}>Synced <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                        </div>
+                    </div>
+                    <div className={"dashButton"} role={"link"} onClick={() => openInNewTab('https://tbtc.bitaps.com/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5')}>View supply ➜</div>
+                </div>
+
+                <div className={"dashBox"}>
+                    <div className="infoTitleDash">eBTC minted</div>
+                    <div className={"infoDash"}>
+                        <div className={"dashAmount"}>{eBTCAmount} eBTC</div>
+                        <div className={"dashCircle"}>
+                            <div className={"synced"}>Synced <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                        </div>
+                    </div>
+                    <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw')}>View supply ➜</div>
+                </div>
+
+                <div className={"dashBox"}>
+                    <div className="infoTitleDash">Revenue</div>
+                    <div className={"infoDash"}>
+                        <div className={"dashAmount"}>{ergAmount} ERG</div>
+                        <div className={"dashCircle"}>
+                            <div className={"synced"}>Secure <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                        </div>
+                    </div>
+                    <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw')}>View supply ➜</div>
+                </div>
+
+            </div>
+        </div>
+    )
 }
 
 export default Dashboard;
-<script type="text/javascript">
-
-</script>

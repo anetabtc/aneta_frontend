@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import ConfirmationWindow from "./ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
-import getAddress from "./address";
+
 
 function Bridge() {
 
@@ -18,13 +18,14 @@ function Bridge() {
     const [btcNetworkFeeG, setBtcNetworkFeeG] = useState('0');
     const [btcNetworkFeeUsdG, setBtcNetworkFeeUsdG] = useState('0');
     const [btcAddressG, setBtcAddressG] = useState('');
+    const [btcAddressMint, setBtcAddressMint] = useState('');
     const [BTCAmountG, setBTCAmountG] = useState('0');
-    const [userAddress, setUserAddress] = useState('');
 
 
 
     const [connectWalletError, setConnectWalletError] = useState(false);
 
+    const [addressError, setAddressWalletError] = useState(false);
 
     const refreshPage = () => {
         window.location.reload();
@@ -123,10 +124,30 @@ function Bridge() {
         )
     }
 
+    function AddressError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                            Your address is incorrect. Please try again.
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             {connectWalletError ? <ConnectWalletError/> : ""}
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} /> : ""}
+            {addressError ? <AddressError/> : ""}
+            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG} btcAddress={btcAddressMint}  /> : ""}
             {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
@@ -150,8 +171,10 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+        const [btcAddress, setBtcAddress] = useState('');
+        
 
-        const handleChange = async event => {
+        const handleChange = event => {
             setMintAmount(event.target.value);
             setErgFee("0.02");
             setErgFeeUsd(0.02 * ergUsd);
@@ -172,17 +195,22 @@ function Bridge() {
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
             setBridgeFeeUsdG(bridgeFeeUsd)
+            setBtcAddressMint(btcAddress)
 
-            const address = await getAddress()
+            const address = JSON.parse(localStorage.getItem('address'))
             console.log(address)
             address ? handleClickOpen() : setConnectWalletError(true)
         }
 
 
+        const handleChangeBtcAddress = event => {
+            setBtcAddress(event.target.value);
+        }
+
         return (
             <div id="WRAP">
                 <p className="title">Mint eBTC by locking BTC</p>
-                <input pattern="[0-9]+" type="text" max="9999" placeholder="0.00"
+                <input pattern="[0-9]+" type="number" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
@@ -194,19 +222,23 @@ function Bridge() {
                     BTC<br/>
                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
-                <p/><p/>
+                <br></br>
+                <p/>
+                <p className="title2">BTC address</p>
+                <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}
+                       required/><br/>
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png').default}
-
-                             alt="aneta"/><b>{Math.round(bridgeFee*10000)/10000}</b> ERG
+                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <b>{Math.round(bridgeFee*10000)/10000}</b> ERG
 
 
 
                     </div>
 
-                    <div className="feeUSD" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
+                    <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
 
                 </div>
 
@@ -215,12 +247,15 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(ergFee*100)/100}</b> ERG
+                        <div>
+                            <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <b>{Math.round(ergFee*100)/100}</b> ERG
 
                         </div>
 
                     </div>
-                    <div className="feeUSD2" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
+                    <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
                 </div>
 
                 <p/><p/>
@@ -278,11 +313,12 @@ function Bridge() {
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
             setBtcAddressG(btcAddress)
             setBTCAmountG(BTCAmount)
-            const address = await getAddress()
-            console.log(address)
+            const address = JSON.parse(localStorage.getItem('address'))
+            console.log(address, "Address")
             address ? handleClickOpenRedeem() : setConnectWalletError(true)
         }
 
+        
 
 
 
@@ -290,36 +326,10 @@ function Bridge() {
             setBtcAddress(event.target.value);
         }
 
-        function runRedeem(args) {
-            let data = {
-                amount: 1,
-                btc_vault_id: 0,
-                btc_wallet_id: "Wallet1-testnet",
-                network: "testnet",
-                vault_id: 0,
-                wallet_id: 0
-            };
-            console.log(JSON.stringify(data));
-            (async () => {
-                const rawResponse = await fetch('http://localhost:5004/redeem', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                    body: 'amount=1&btc_vault_id=0&btc_wallet_id=Wallet1-testnet&network=testnet&vault_id=0&wallet_id=0',
-                });
-                const content = await rawResponse.json();
-                console.log(content);
-            })();
-        }
-
         return (
             <div id="UNWRAP">
                 <p className="title">Turn eBTC into BTC</p>
-                <input pattern="[0-9]+" type="text" className="btcInput"  max="9999" size="30" placeholder="0.00" required
+                <input pattern="[0-9]+" type="number" className="btcInput"  max="9999" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
@@ -338,8 +348,9 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo.png').default}
-                             alt="aneta"/><b>{Math.round(bridgeFee*100)/100}</b> ERG
+                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <b>{Math.round(bridgeFee*100)/100}</b> ERG
 
 
                     </div>
@@ -354,7 +365,7 @@ function Bridge() {
                     <div className="left">BTC network Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Bitcoin.png').default}
-                             alt="aneta"/><b>{Math.round(10000*btcNetworkFee)/10000}</b> BTC
+                             alt="aneta"/><b>{Math.round(btcNetworkFee*100)/100}</b> BTC
 
 
                     </div>
@@ -368,7 +379,9 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo.png').default} alt="aneta"/><b>{Math.round(100*ergFee)/100}</b> ERG
+                        <div><img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <b>{Math.round(100*ergFee)/100}</b> ERG
 
                         </div>
 

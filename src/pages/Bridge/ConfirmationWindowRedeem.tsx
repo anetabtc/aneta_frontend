@@ -1,35 +1,18 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import CheckMark from "./CheckMark";
 import React from 'react';
 import sendPaymentFunction from "./sendPayment";
 import redeem from "./redeem";
 import ErrorPayment from "./ErrorPayment";
+import RedeemConfWindow from "./RedeemConfWindow";
 
-//////////////////////////////
-import {initializeApp} from "firebase/app";
-import {getFirestore} from "firebase/firestore";
-import {getAnalytics} from "firebase/analytics";
-// Add a second document with a generated ID.
-import {addDoc, collection, getDocs} from "firebase/firestore";
-import firebaseConfig from "./firebaseConfig";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
 
-/////////////////////////////////
-
-const DEFAULT_EXPLORER_URL = "https://api-testnet.ergoplatform.com";
 
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
 
-    const [nautilusAddress, setNautilusAddress] = useState('');
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
 
     const refreshPage = () => {
         window.location.reload();
@@ -45,13 +28,13 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
 
     function NameTrans() {
-        if (eBTC !== "0") {
+        if (eBTC > 0.000000001) {
             return (
                 <div>
                     Pay Bridge Fee
                 </div>
             )
-        } else {
+        }  else {
             return (
                 <div>
                     <div className="error1">
@@ -63,20 +46,15 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
     function Conf() {
-        if (eBTC !== "0" || btcAddress !== '') {
+        if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>
                 )
-            } else if (conf === "subm") {
+            }
+            else if (conf === "concl") {
                 return (
-                    <ConfirmationSubmission/>
-                )
-            } else if (conf === "concl") {
-                console.log("txInfo before redeem", txInfo)
-                redeem(eBTC, btcAddress, nautilusAddress, txInfo)
-                return (
-                    <DontWorryMess/>
+                    <RedeemConfWindow eBTC={eBTC} btcAddress={btcAddress} nautilusAddress={nautilusAddress} txInfo={txInfo}/>
                 )
             }
 
@@ -150,59 +128,16 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
         setTxInfo(result)
         console.log("res", result)
-        result ? setConf("subm") : setError(true)
+        result ? setConf("concl") : setError(true)
     }
 
 
-    function ConfirmationSubmission() {
-        // TODO Write to DB
-        useEffect(() => {
-            writeToDB(nautilusAddress, btcAddress, eBTC, txInfo)
-        })
-        /////////////////////////
-        return (
-            <div className="confSubmission">
-                <div className="textUR"></div>
-                <CheckMark/>
-                <button type="button" id="confButton1" className="confWRS" onClick={() => setConf("concl")}>
-                    <b>Continue</b></button>
-            </div>
-        )
-    }
-
-    function DontWorryMess() {
-        return (
-            <div>
-                <div className="dntwrr">Your BTC will be sent to your BTC wallet shortly</div>
-                <div className="dntwrr">This may take up to 24 hours. Don’t worry, your funds are safe :)</div>
-                <div className="dntwrr">
-                    The status of your wrap and unwrap requests can be found under the transaction tab on the menu
-                </div>
-                <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
-            </div>
-        )
-    }
 
 
 }
 
-async function writeToDB(nautilusAddress, btcAddress, eBTC, txInfo) {
-    console.log("txID", txInfo)
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-            erg_address: nautilusAddress,
-            btc_address: btcAddress,
-            amount: eBTC,
-            datetime: new Date().getTime().toString(),
-            erg_txid: txInfo,
-            info: "Redeem Order Submitted"
-        });
 
-        console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-}
+
 
 
 export default ConfirmationWindowRedeem;

@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="dashboard">
+    <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/Bridge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindowRedeem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindowRedeem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/Mint.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/Mint.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/address.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/firebaseConfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/sendFee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/sendFee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/sendPayment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/sendPayment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Feedback/Feedback.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Feedback/Feedback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Transactions/getAddress.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/img/Vector.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/img/Vector.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/img/nautilus.jpeg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +67,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/src/pages/Bridge",
+    "ts.external.directory.path": "/Users/aishakozhamseitova/WebstormProjects/aneta_frontend/node_modules/typescript/lib"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/Bridge" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
