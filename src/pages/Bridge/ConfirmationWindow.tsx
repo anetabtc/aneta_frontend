@@ -94,6 +94,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     function ConfirmationInfo() {
         return (
             <div>
+                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
@@ -118,6 +119,12 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
             </div>
         )
     }
+
+    /*function close(){
+        const popup = document.querySelector(".mainPopup");
+        const popupFather = popup.parentNode;
+        popupFather.removeChild(popup);
+    }*/
 
     async function send(){
         setDisable(true)

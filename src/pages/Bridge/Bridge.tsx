@@ -221,7 +221,8 @@ function Bridge() {
                        value={mintAmount}
                 /><br/>
                 <div className="lblInp">
-                    BTC<br/>
+                <img id="bit" src={require('../img/Bitcoin.png').default}
+                             alt="aneta"/>BTC<br/>
                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
                 <br></br>
@@ -338,7 +339,7 @@ function Bridge() {
                        value={redeemAmount}
                 /><br/>
                 <div className="lblInp">
-                    eBTC<br/>
+                <img id="bit" src={require('../img/werg.png').default} alt="eBTC"/>eBTC<br/>
                     <div id="usd">~ $ {Math.round(100*usdBtcRedeem)/100}</div>
                 </div>
                 <br></br>
