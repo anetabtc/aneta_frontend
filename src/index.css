@@ -36,7 +36,7 @@ body {
 
 @media (min-width: 2000px) and (orientation: landscape){
     body{
-        width: 2000px;
+    width: 2000px;
     }
 }
 
@@ -56,7 +56,7 @@ body.dark {
     background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(122.33deg, rgba(0, 44, 105, 0.5) 0%, rgba(134, 134, 134, 0) 69.38%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #002C69;
     background-size: 100% 400vh;
     background-repeat: no-repeat;
-}
+  }
 
 .dark__mode {
     display: none;
@@ -1812,6 +1812,99 @@ body.dark .btnPayment {
         height: 100%;
     }
 
+}
+
+.dashButton{
+    width: 300px;
+    height: 50px;
+
+    background: #339AD3;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark .dashButton {
+    background-color: #1F509A;
+}
+
+.synced {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.dashCircle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #339AD3;
+    border-radius: 50%;
+    padding: 1.4644em; /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
+    box-sizing: border-box;
+}
+
+body.dark .dashCircle {
+    border: 3px solid #339AD3;
+}
+
+.dashBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.infoDash {
+    width: 300px;
+    height: 150px;
+
+    background-color: rgba(0, 0, 0, 0.01);
+    border: 1.2px solid rgba(0, 0, 0, 0.09);
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+body.dark .infoDash {
+    color: #FFFFFF;
+
+    background-color: rgba(74, 74, 74, 0.11);
+    border: #1D1D1D;
+}
+
+.infoTitleDash {
+    color: #339AD3;
+    font-size: 25px;
+    font-weight: 800;
+    text-align: left;
+}
+
+body.dark .infoTitleDash {
+    color: #F1F1F1;
+}
+
+.dashAmount {
+    font-size: 20px;
+}
+
+.secure {
+    height: 15px;
+    margin-left: 5px;
 }
 
 .dashButton{

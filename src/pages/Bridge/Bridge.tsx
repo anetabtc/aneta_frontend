@@ -172,7 +172,7 @@ function Bridge() {
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
         const [btcAddress, setBtcAddress] = useState('');
-        
+
 
         const handleChange = event => {
             setMintAmount(event.target.value);
@@ -318,7 +318,7 @@ function Bridge() {
             address ? handleClickOpenRedeem() : setConnectWalletError(true)
         }
 
-        
+
 
 
 
