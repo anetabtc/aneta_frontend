@@ -6,6 +6,7 @@ import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
 
+
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     const [nautilusAddress, setNautilusAddress] = useState('');
@@ -43,7 +44,14 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     }
 
     function Conf() {
+    
+        const explorerUrl = `https://explorer.ergoplatform.com/en/addresses/${txInfo}`
 
+        function closeDiv(){
+            const info = document.getElementById("txInfo");
+            const father = info.parentNode;
+            father.removeChild(info);
+        }
 
         if (eBTC > 0.000000001) {
             if (conf === "info") {
@@ -52,7 +60,22 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
                 )
             } else if (conf === "subm") {
                 return (
-                    <ConfirmationSubmission/>
+                    <div>
+                        <div id="txInfo">
+                            <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={closeDiv} />
+                            </div>
+                            <div className="txLeft">
+                                <img src={require('../img/success.png').default} alt="success" />
+                            </div>
+                            <div className="txRight">
+                                <h3>Transaction Successful</h3>
+                                <button><a href={explorerUrl} target="_blank">View on Explorer</a></button>
+                            </div>
+                             
+                        </div>
+                        <ConfirmationSubmission/>  
+                    </div>
+                                 
                 )
             }
         } else {
@@ -120,16 +143,11 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
         )
     }
 
-    /*function close(){
-        const popup = document.querySelector(".mainPopup");
-        const popupFather = popup.parentNode;
-        popupFather.removeChild(popup);
-    }*/
-
     async function send(){
         setDisable(true)
         const result = await sendFeeFunction(bridgeFee, nautilusAddress)
-        result ? setConf("subm") : setConf("error")
+        result ? setConf("subm") : setConf("error");
+        setTxInfo(result);
     }
 
     function ConfirmationSubmission() {

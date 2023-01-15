@@ -203,11 +203,11 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
                 <div className="popup">
                     <div className="divLabel">
                         <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/> <label
-                        className="labelMain"> BTC Deposit Payment</label>
+                        className="labelMain"> BTC Deposit</label>
                     </div>
                     <div className="menuPopup">
                         <br/>
-                        <label className="SingleTrans1">Send {eBTC} BTC =</label>
+                        <label className="SingleTrans1">Send {eBTC} BTC</label>
                         <p></p>
 
 
@@ -229,13 +229,15 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
                             <span><b>Attention:</b> Some Bitcoin wallets display values in mBTC. In </span><br/><span>this case, ensure you send the correct amount: <b>1000mBTC</b></span>
                         </div>
                         <br/>
-                        <QRCode
-                            id="qrCode"
-                            value={address}
-                            size={120}
-                            level={"L"}
-                            includeMargin={false}
-                        />
+                        <div className='qrCode'>
+                            <QRCode
+                                id="qrCode"
+                                value={address}
+                                size={120}
+                                level={"L"}
+                                includeMargin={false}
+                            />
+                        </div>    
                         <br/><br/>
                         <div className="note">
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are

@@ -5,6 +5,7 @@ import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
 import getAddress from "./address";
 
 
+
 function Bridge() {
 
     const [ergUsd, setErgUsd] = useState('0');

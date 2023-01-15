@@ -100,7 +100,8 @@ body.dark .dark__mode{
 
 .confContent {
     display: table;
-    margin: 280px 37%;
+    margin-top: 280px;
+    margin-left: 525px;
     text-align: center;
     position: absolute;  
     border-radius: 16px;
@@ -108,6 +109,20 @@ body.dark .dark__mode{
 
 body.dark .confContent{
     border: #566474 2px solid;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .confContent{
+        margin-left: 675px;
+    }
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .confContent{
+        margin-left: calc((100vw - 2000px)/2 + 825px);
+    }
 }
 
 
@@ -139,6 +154,79 @@ body.dark .confWindow {
 body.dark .confTitle {
     background: #000000;
     color: white;
+}
+
+#txInfo{
+    position: fixed;
+    right: 30px;
+    top: 80px;
+    background-color: #FFFFFF;
+    display: flex;
+    width: 350px;
+    height: 150px;
+    border-radius: 12.5px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    #txInfo{
+        right: calc((100vw - 2000px)/2 + 30px);
+    }
+}
+
+#txInfo .txRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#txInfo .txRight h3{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+#txInfo button{
+    border-radius: 6px;
+    width: 130px;
+    height: 26px;
+    border: #DDDDDD solid 1px;
+}
+
+#txInfo img {
+    height: 97px;
+    width: 97px;
+    margin-right: 20px;
+}
+
+#txInfo #close img {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+
+#txInfo a {
+    color: #000000;
+    font-size: 12.5px;
+}
+
+body.dark #txInfo{
+    background-color: #141414;
+    color: #FFFFFF;
+}
+
+body.dark #txInfo button{
+    background-color: #141414;
+    border: #7C7C7C solid 1px;
+}
+
+body.dark #txInfo a {
+    color: #FFFFFF;
 }
 
 #confButton {
@@ -1056,7 +1144,8 @@ body.dark .menu_dash > div {
     width: 600px;
 
     display: table;
-    margin: 170px 35%;
+    margin-top: 170px;
+    margin-left: 500px;
     text-align: center;
     position: absolute; /*Can also be `fixed`*/
     /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
@@ -1065,10 +1154,17 @@ body.dark .menu_dash > div {
     overflow: auto;
 }
 
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #content1{
+        margin-left: 650px;
+    }
+}
+
 @media (min-width: 2000px) and (orientation: landscape){
 
     #content1{
-        margin: 170px 700px;
+        margin-left: 800px;
     }
 }
 
@@ -1118,6 +1214,11 @@ body.dark .btcInputAddress {
 
     padding: 0px 20px;
 
+}
+
+.addressBTC > p.labelAdd {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .calling {
@@ -1341,7 +1442,7 @@ ul {
 
 .mainPopup {
     width: 100%;
-    min-height: 900px;
+    min-height: 1000px;
     position: absolute;
     top: 0%;
     z-index: 6;
@@ -1352,11 +1453,17 @@ body.dark .mainPopup {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .mainPopup{
+        left: 0;
+    }
+}
 
 .popup {
     display: flex;
     flex-direction: column;
-    height: 750px;
+    height: 700px;
     width: 545px;
     align-items: center;
     background-color: white;
@@ -1364,14 +1471,29 @@ body.dark .mainPopup {
     top: 10%;
     opacity: 100%;
     border-radius: 16.5px;
-    right: 30%;
+    left: 527px;
 }
 
 body.dark .popup{
   background-color: #000000;
   color: white;
+  border: #566474 2px solid;
+}
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .popup{
+        left: 0;
+        margin-left: 677px;
+    }
 }
 
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .popup{
+        left: 0;
+        margin-left: calc((100vw - 2000px)/2 + 827px);
+    }
+}
 
 .divLabel {
     display: flex;
@@ -1388,11 +1510,7 @@ body.dark .popup{
 }
 
 .menuPopup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     height: 100%;
-    padding: 5% 0;
     border-bottom-right-radius: 16.5px;
     border-bottom-left-radius: 16.5px;
     width: 100%;
@@ -1403,16 +1521,22 @@ body.dark .menuPopup {
   background-color: #20242D;
 }
 
-
 #bitcoin {
     width: 33px;
     height: 33px;
     margin-right: 5px;
 }
 
+.qrCode {
+    display: flex;
+    justify-content: center;
+}
+
 div > .addressBTC {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: auto;
     width: 90%;
     height: 40px;
     background-color: #EEF4FF;
@@ -1421,15 +1545,15 @@ div > .addressBTC {
 }
 
 body.dark .addressBTC {
-  background-color: #20242D;
-}
-
+    background-color: #20242D;
+  }
+  
 .addressBTC > .labelAdd {
-    font-size: 17.5px;
-    margin-top: 8px;
-}
+      font-size: 17.5px;
+  
+  }
 
-.btnPayment {
+  .btnPayment {
     width: 90%;
     height: 58px;
     border-radius: 11px;
@@ -1437,35 +1561,45 @@ body.dark .addressBTC {
     border: 0;
     margin-top: 27px;
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 body.dark .btnPayment {
-  background-color: #214676;
-  color: white;
-}
+    background-color: #214676;
+    color: white;
+  }
 
 
-.attention {
+  .attention {
     text-align: center;
-    width: 91%;
+    width: 90%;
     font-size: 16.5px;
-    padding: 0px 20px 0px 20px;
+    margin: auto;
 }
 
 .note {
-    display: flex;
-    justify-content: center;
-    font-size: 13px;
-    width: 55%;
+    text-align: center;
+    width: 65%;
+    font-size: 16.5px;
+    margin: auto;
 
 }
 
 .SingleTrans1 {
     font-size: 20px;
+    display: flex; 
+    justify-content: center; 
+    margin: 10px 0;
 }
 
 .SingleTrans2 {
     font-size: 18px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 .timing {
