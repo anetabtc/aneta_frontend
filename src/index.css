@@ -255,6 +255,10 @@ body.dark #confButton {
     flex-direction: column;
 }
 
+.redeem .confInfo{
+    gap: 0px;
+}
+
 .confSubmission {
     height: 300px;
     display: flex;
@@ -1442,7 +1446,7 @@ ul {
 
 .mainPopup {
     width: 100%;
-    min-height: 1000px;
+    height: 1000px;
     position: absolute;
     top: 0%;
     z-index: 6;
@@ -1451,6 +1455,13 @@ ul {
 
 body.dark .mainPopup {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .mainPopup{
+        height: 100vh;
+    }
 }
 
 @media (min-width: 2000px) and (orientation: landscape){
