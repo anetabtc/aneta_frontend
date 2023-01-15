@@ -115,12 +115,20 @@ function Transactions() {
 
                 {
                     products.map((tx) => {
-                       
+
                             if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Successful") {
 
 
                                 return <tr >
-                                    <td className="TD1" >{tx.datetime.toDate().toString()}</td>
+                                    <td className="TD1">{new Intl.DateTimeFormat('en-US', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        second: '2-digit'
+                                    }).format(tx.datetime)}</td>
+                                    {/*<td className="TD1" >{tx.datetime.toDate().toString()}</td>*/}
 
                                     <td className="TD1">{tx.amount} BTC<p
                                         className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
@@ -136,7 +144,15 @@ function Transactions() {
                             }
                             if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
                                 return <tr>
-                                    <td className="TD1"> {tx.datetime.toDate().toString()}</td>
+                                    <td className="TD1">{new Intl.DateTimeFormat('en-US', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        second: '2-digit'
+                                    }).format(tx.datetime)}</td>
+                                    {/*<td className="TD1"> {tx.datetime.toDate().toString()}</td>*/}
 
                                     <td className="TD1">{tx.amount} BTC<p
                                         className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>

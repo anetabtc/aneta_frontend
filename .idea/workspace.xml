@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +98,7 @@
       <workItem from="1672919881554" duration="6756000" />
       <workItem from="1673147883028" duration="21130000" />
       <workItem from="1673605801472" duration="5905000" />
-      <workItem from="1673773452529" duration="4205000" />
+      <workItem from="1673773452529" duration="5292000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1667687958699</created>
