@@ -97,70 +97,57 @@ function Transactions() {
 
 
         return (
-            <div className={"mainmenu_transaction"}>
+            <div className="mainmenu_transaction">
 
-                <p className="transactionTitle1">Wrap Requests</p>
+                <p className="transactionTitle1" >Wrap Requests</p>
 
-                <table className="tableWrap">
+                <table className="tableWrap" >
                     <tr>
-                        <td>Created at</td>
-                        <td>Transaction (BTC)</td>
-                        <td>Transaction (eBTC)</td>
-                        <td>Transaction (Bridge Fee)</td>
-                        <td>anetaBTC ID</td>
-                        <td>Confirmation Status</td>
+                        <td className="TD1">Created at</td>
+                        <td className="TD1">Transaction (BTC)</td>
+                        <td className="TD1">Transaction (eBTC)</td>
+                        <td className="TD1">Transaction (Bridge Fee)</td>
+                        <td className="TD1" >anetaBTC ID</td>
+                        <td className="TD1">Confirmation Status</td>
                     </tr>
                     <hr className="menuHR2"/>
-                </table>
+
 
                 {
                     products.map((tx) => {
+                       
                             if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Successful") {
 
-                                return <tr>
-                                    <td>{new Intl.DateTimeFormat('en-US', {
-                                        year: 'numeric',
-                                        month: '2-digit',
-                                        day: '2-digit',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                        second: '2-digit'
-                                    }).format(tx.datetime)}</td>
 
-                                    <td>{tx.amount} BTC<p
+                                return <tr >
+                                    <td className="TD1" >{tx.datetime.toDate().toString()}</td>
+
+                                    <td className="TD1">{tx.amount} BTC<p
                                         className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
                                     </td>
-                                    <td>{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                    <td>{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
+                                    <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
+                                    <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
                                         className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
                                     </td>
 
-                                    <td>{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                    <td><p className="bord"><b className="boldPo">•</b>Pending</p></td>
+                                    <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                    <td className="TD1"><p className="bord"><b className="boldPo">• Pending </b></p></td>
                                 </tr>
                             }
-                            else if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
-                                return
-                                <tr>
-                                    <td>{new Intl.DateTimeFormat('en-US', {
-                                        year: 'numeric',
-                                        month: '2-digit',
-                                        day: '2-digit',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                        second: '2-digit'
-                                    }).format(tx.datetime)}</td>
+                            if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
+                                return <tr>
+                                    <td className="TD1"> {tx.datetime.toDate().toString()}</td>
 
-                                    <td>{tx.amount} BTC<p
+                                    <td className="TD1">{tx.amount} BTC<p
                                         className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
                                     </td>
-                                    <td>{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                    <td>{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
+                                    <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
+                                    <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
                                         className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
                                     </td>
 
-                                    <td>{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                    <td><p className="bord"><b className="boldPo1">•</b>Complete</p></td>
+                                    <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                    <td className="TD1"><p className="bord"><b className="boldPo1">• Complete</b></p></td>
                                 </tr>
                             }
                             else {
@@ -170,7 +157,7 @@ function Transactions() {
                     )
                 }
 
-
+                </table>
             </div>
         )
     }
@@ -185,20 +172,21 @@ function Transactions() {
                     <p class="transactionTitle1">Unwrap Requests</p>
                     <table className="tableWrap">
                         <tr border="0">
-                            <td>Created at</td>
-                            <td>Transaction (BTC)</td>
-                            <td>Transaction (eBTC)</td>
-                            <td>Transaction (Bridge Fee)</td>
-                            <td>anetaBTC ID</td>
-                            <td>Confirmation Status</td>
+                            <td className="TD1">Created at</td>
+                            <td className="TD1">Transaction (BTC)</td>
+                            <td className="TD1">Transaction (eBTC)</td>
+                            <td className="TD1">Transaction (Bridge Fee)</td>
+                            <td className="TD1">anetaBTC ID</td>
+                            <td className="TD1">Confirmation Status</td>
                         </tr>
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
+
                                     if ((tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") && tx.erg_address === address) {
 
                                         return <tr>
-                                            <td>{new Intl.DateTimeFormat('en-US', {
+                                            <td className="TD1">{new Intl.DateTimeFormat('en-US', {
                                                 year: 'numeric',
                                                 month: '2-digit',
                                                 day: '2-digit',
@@ -207,22 +195,21 @@ function Transactions() {
                                                 second: '2-digit'
                                             }).format(tx.datetime)}</td>
 
-                                            <td>{tx.amount} BTC<p
-                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
+                                            <td className="TD1">{tx.amount} BTC<p
+                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p>
                                             </td>
-                                            <td>{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                            <td>{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
+                                            <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
+                                            <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
                                                 className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
                                             </td>
 
-                                            <td>{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                            <td><p className="bord"><b className="boldPo">•</b>Pending</p></td>
+                                            <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                            <td className="TD1"><p className="bord"><b className="boldPo">• Pending</b></p></td>
                                         </tr>
                                     }
-                                    else if(tx.info === "Redeem Order Successful" && tx.erg_address === address) {
-                                        return
-                                        <tr>
-                                            <td>{new Intl.DateTimeFormat('en-US', {
+                                    if(tx.info === "Redeem Order Successful" && tx.erg_address === address) {
+                                        return <tr>
+                                            <td className="TD1">{new Intl.DateTimeFormat('en-US', {
                                                 year: 'numeric',
                                                 month: '2-digit',
                                                 day: '2-digit',
@@ -231,16 +218,16 @@ function Transactions() {
                                                 second: '2-digit'
                                             }).format(tx.datetime)}</td>
 
-                                            <td>{tx.amount} BTC<p
-                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
+                                            <td className="TD1">{tx.amount} BTC<p
+                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p>
                                             </td>
-                                            <td>{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                            <td>{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
+                                            <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
+                                            <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
                                                 className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
                                             </td>
 
-                                            <td>{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                            <td><p className="bord"><b className="boldPo1">•</b>Complete</p></td>
+                                            <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                            <td className="TD1"><p className="bord"><b className="boldPo1">• Complete</b></p></td>
                                         </tr>
                                     }
                                     else {

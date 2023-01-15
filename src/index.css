@@ -771,9 +771,15 @@ body.dark .feedback-page__content-btn {
 }
 
 .mainmenu_transaction .menuHR2 {
-    width: 1150px;
+    width: 1180px;
     position: absolute;
     background-color: black;
+
+    margin-bottom: 20px;
+}
+
+.tableWrap tr td {
+    margin-top: 20px;
 }
 
 .transactionTitle1 {
@@ -791,14 +797,20 @@ body.dark .feedback-page__content-btn {
     border: 0;
     margin-top: 20px;
 
+
 }
 
-.tableWrap td {
-    border: 0;
-}
 
 .tableWrap {
     padding: 10px;
+
+}
+
+.trD {
+    margin-top:30px;
+}
+.TD1 {
+    width: 18%;
 }
 
 .underline {
@@ -1947,4 +1959,9 @@ body.dark .infoTitleDash {
     left: 0;
     margin-top: 0px;
     z-index: -1;
+}
+
+
+.ErgFunc {
+    width: 200px;
 }
