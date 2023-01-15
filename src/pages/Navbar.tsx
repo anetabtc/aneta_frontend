@@ -1,6 +1,5 @@
-import React from "react";
-import {SetStateAction, useState} from "react";
-import getAddress from "./Bridge/address";
+import React, {useEffect} from "react";
+import {useState} from "react";
 
 
 function Navbar() {
