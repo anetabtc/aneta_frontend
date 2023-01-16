@@ -26,6 +26,9 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [contDisable, setContDisable] = useState(true);
 
+    const refreshPage = () => {
+        window.location.reload();
+    }
 
     function NameTrans() {
         if (eBTC > 0.000000001) {
@@ -90,7 +93,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     function ConfirmationInfo() {
         return (
-            <div>
+            <div className="redeem">
+                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
