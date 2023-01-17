@@ -1474,7 +1474,6 @@ body.dark .mainPopup {
 .popup {
     display: flex;
     flex-direction: column;
-    height: 700px;
     width: 545px;
     align-items: center;
     background-color: white;
@@ -1570,12 +1569,12 @@ body.dark .addressBTC {
     border-radius: 11px;
     background-color: #BEDAFF;
     border: 0;
-    margin-top: 27px;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 body.dark .btnPayment {
