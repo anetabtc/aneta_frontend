@@ -224,25 +224,17 @@ function Bridge() {
                 <div className="lblInp">
                     <img id="bit" src={require('../img/Bitcoin.png').default}
                          alt="aneta"/>BTC<br/>
+                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
                 <br></br>
-                <p/>
-                {/*<p className="title2">BTC address</p>*/}
-                {/*<input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress}*/}
-                {/*       required/><br/>*/}
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
                         <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
                         <b>{Math.round(bridgeFee*10000)/10000}</b> ERG
-
-
-
                     </div>
-
                     <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
-
                 </div>
 
                 <br></br>
@@ -260,11 +252,7 @@ function Bridge() {
                     </div>
                     <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
                 </div>
-
-                <p/><p/>
-
-                <br></br>
-                <p/><p/>
+                <br/><br/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
@@ -391,9 +379,6 @@ function Bridge() {
                     </div>
                     <div className="feeUSD6" id="usd"> = $ {Math.round(100*ergFeeUsd)/100} </div>
                 </div>
-
-
-                <p/><p/>
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>

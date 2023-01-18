@@ -1211,7 +1211,7 @@ body.dark .btcInputAddress {
     border-radius: 10px;
     font-size: 17.5px;
     margin-top: 8px;
-
+    margin-left: 30px;
 }
 
 body.dark .btctxid {
@@ -1345,7 +1345,7 @@ body.dark #bckgrnd {
 .lblInp {
     text-align: end;
     clear: both;
-    margin-top: -80px;
+    margin-top: -90px;
     font-size: 18px;
     line-height: 1.5;
     padding-right: 40px;
@@ -1906,7 +1906,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 37%;
+    top: 35%;
 }
 .feeUSD1 {
     text-align: right;
@@ -1921,7 +1921,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 49%;
+    top: 47%;
 }
 
 .feeUSD3 {
@@ -1929,7 +1929,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 49%;
+    top: 47%;
 }
 
 .feeUSD4 {
@@ -1937,7 +1937,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 53%;
-    top: 61%;
+    top: 59%;
 }
 
 .feeUSD5 {
@@ -1961,7 +1961,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 77%;
+    top: 78%;
 }
 
 .feeUSD8 {
@@ -1969,7 +1969,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 40.5%;
+    top: 39%;
 }
 
 .feeUSD9 {
@@ -1977,7 +1977,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 52%;
+    top: 50.5%;
 }
 
 #usd {
