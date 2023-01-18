@@ -5,6 +5,7 @@ import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
 
 
 
+
 function Bridge() {
 
     const [ergUsd, setErgUsd] = useState('0');
@@ -223,7 +224,6 @@ function Bridge() {
                 <div className="lblInp">
                     <img id="bit" src={require('../img/Bitcoin.png').default}
                          alt="aneta"/>BTC<br/>
-                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
                 <br></br>
                 <p/>

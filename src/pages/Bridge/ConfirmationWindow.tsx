@@ -21,6 +21,7 @@ const db = getFirestore(app);
 /////////////////////////////////
 
 
+
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
@@ -54,7 +55,14 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     }
 
     function Conf() {
+    
+        const explorerUrl = `https://explorer.ergoplatform.com/en/addresses/${txInfo}`
 
+        function closeDiv(){
+            const info = document.getElementById("txInfo");
+            const father = info.parentNode;
+            father.removeChild(info);
+        }
 
         if (eBTC > 0.000000001) {
             if (conf === "info") {
@@ -63,7 +71,22 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
                 )
             } else if (conf === "subm") {
                 return (
-                    <ConfirmationSubmission/>
+                    <div>
+                        <div id="txInfo">
+                            <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={closeDiv} />
+                            </div>
+                            <div className="txLeft">
+                                <img src={require('../img/success.png').default} alt="success" />
+                            </div>
+                            <div className="txRight">
+                                <h3>Transaction Successful</h3>
+                                <button><a href={explorerUrl} target="_blank">View on Explorer</a></button>
+                            </div>
+                             
+                        </div>
+                        <ConfirmationSubmission/>  
+                    </div>
+                                 
                 )
             }
         } else {
@@ -105,6 +128,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     function ConfirmationInfo() {
         return (
             <div>
+                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
