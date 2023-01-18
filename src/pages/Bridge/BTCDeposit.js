@@ -19,6 +19,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
     console.log(JSON.stringify(data));
 
 
+
     useEffect(() => {
         setTimeout(function() {
             setContDisable(false)
@@ -57,6 +58,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
                                 clearInterval(interval);
                                 if (statusResponse['data']['task_result']['success'] === true) {
                                     console.log("Resulting operation is success!")
+                                    refreshPage()
                                 } else {
                                     console.log("Resulting operation did not complete successfully!")
                                 }
