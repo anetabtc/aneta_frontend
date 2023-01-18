@@ -1072,6 +1072,22 @@ body.dark .btcInputAddress {
 
 }
 
+.btctxid {
+    width: 86%;
+    padding: 10px;
+    background-color: #EEF4FF;
+    border: 3px solid #2C83BC;
+    border-radius: 10px;
+    font-size: 17.5px;
+    margin-top: 8px;
+
+}
+
+body.dark .btctxid {
+    background-color: #20242D;
+    color: white;
+}
+
 .calling {
 
     position: absolute;
@@ -1242,7 +1258,7 @@ body.dark #bckgrnd {
 
 #menuHR1 {
     width: 92%;
-    margin-top: 50px;
+    margin-top: 65px;
     text-align: left;
 
 }
@@ -1422,7 +1438,7 @@ body.dark .btnPayment {
 }
 
 #WRAP {
-    height: 630px;
+    height: 560px;
 }
 
 #UNWRAP {
@@ -1715,8 +1731,8 @@ body.dark .btnPayment {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 43%;
+    left: 50%;
+    top: 44%;
 }
 
 .feeUSD2 {
@@ -1747,40 +1763,40 @@ body.dark .btnPayment {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 53%;
+    left: 50%;
+    top: 54%;
 }
 
 .feeUSD6 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 62%;
+    left: 50%;
+    top: 64%;
 }
 
 .feeUSD7 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 75%;
+    left: 50%;
+    top: 77%;
 }
 
 .feeUSD8 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 46%;
+    left: 50%;
+    top: 40.5%;
 }
 
 .feeUSD9 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 56%;
+    left: 50%;
+    top: 52%;
 }
 
 #usd {

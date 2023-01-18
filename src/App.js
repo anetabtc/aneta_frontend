@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Bridge from './pages/Bridge/Bridge'
 import Feedback from './pages/Feedback/Feedback'
@@ -9,6 +9,8 @@ import Transactions from './pages/Transactions/Transactions.tsx'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Menu from './pages/Menu'
 import Mint from "./pages/Bridge/Mint";
+import CountdownTimer from "./pages/Bridge/CountdownTimer";
+import QRCode from "react-qr-code";
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
             </div>
         </div>
     )
+
 }
 
 export default App;
