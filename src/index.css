@@ -129,7 +129,7 @@ body.dark .confContent{
 .confWindow {
     z-index: 10;
     width: 545px;
-    height: 389px;
+    height: auto; /* 389 */
     border-radius: 16px;
     background: #EEF4FF;
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.08);
@@ -237,6 +237,7 @@ body.dark #txInfo a {
     border-radius: 20px;
     margin-top: 16%;
     font-size: 16px;
+    margin-bottom: 25px;
 }
 
 #confButton:hover{
@@ -259,12 +260,50 @@ body.dark #confButton {
     gap: 0px;
 }
 
-.confSubmission {
+.confSubmission .paymentSucces {
     height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.depositBTC{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 30px;
+    margin-top: 25px;
+    padding: 0 30px;
+}
+
+#top_card{
+    margin-top: 170px;
+}
+
+.depositBTC #checkMarkIcon{
+    top: 47%
+}
+
+.depositBTC svg {
+    margin: 20px 0;
+}
+
+.depositBTC > #idTransaction {
+    margin-bottom: 20px;
+}
+
+.depositBTC #confButton1 {
+    margin: 25px 0;
+}
+
+.paymentSucces #confButton1 {
+    margin-bottom: 0;
+}
+
+.depositBTC::before {
+    animation: textprogress 2s ease-out;
 }
 
 /*checkmark*/
@@ -367,6 +406,7 @@ svg {
     border: none;
     border-radius: 20px;
     font-size: 16px;
+    margin-bottom: 25px;
 }
 
 #confButton1:hover{
@@ -391,15 +431,6 @@ body.dark #confButton1 {
 }
 
 
-.textBTC::before {
-    animation: textprogress 2s ease-out;
-}
-
-.textBTC::after {
-
-    content: "BTC deposit successfully submitted. eBTC will arrive in your wallet soon. Transactions can take around 10 minutes to process.";
-    animation: textprogress 2s ease-out;
-}
 
 @keyframes textprogress {
     0% {
