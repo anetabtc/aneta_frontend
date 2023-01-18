@@ -26,10 +26,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [disable, setDisable] = useState(false);
     const [contDisable, setContDisable] = useState(true);
-
-    const refreshPage = () => {
-        window.location.reload();
-    }
+    
 
     function NameTrans() {
         if (eBTC > 0.000000001) {
