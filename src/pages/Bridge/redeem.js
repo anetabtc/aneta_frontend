@@ -2,6 +2,10 @@ const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInf
 {
     // calling into the /mint endpoint in the backend
 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -31,6 +35,7 @@ const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInf
                             clearInterval(interval);
                             if (statusResponse['data']['task_result']['success'] === true) {
                                 console.log("Resulting operation is success!")
+                                refreshPage()
                             } else {
                                 console.log("Resulting operation did not complete successfully!")
                             }

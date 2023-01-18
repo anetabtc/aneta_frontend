@@ -802,7 +802,7 @@ body.dark .btnM:hover {
     .mainmenu_feedback{
         margin: 230px 750px;
     }
-    
+
 }
 
 
@@ -870,55 +870,39 @@ body.dark .feedback-page__content-btn {
     font-family: 'Prompt', sans-serif;
     background-color: white;
     border-radius: 15px;
-    width: 750px;
-    height: 475px;
+    width: 1189px;
+    left: 300px;
+    height: 664px;
+    margin: auto;
     margin-top: 150px;
-    margin-left: 50px;
     padding: 10px 30px;
     text-align: left;
     position: absolute; /*Can also be `fixed`*/
-    left: 360px;
+
     right: 0;
     top: 0;
     bottom: 0;
+    /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+    max-width: 100%;
+    max-height: 100%;
     overflow: auto;
 }
 
-@media (min-width: 1640px) and (orientation: landscape){
-    .mainmenu_transaction {
-        width: 1000px;
-        height: 664px;
-        margin-left: 125px;
-    }
+.mainmenu_transaction .menuHR2 {
+    width: 1180px;
+    position: absolute;
+    background-color: black;
+
+    margin-bottom: 20px;
 }
 
-@media (min-width: 1800px) and (orientation: landscape){
-    .mainmenu_transaction {
-        width: 1189px;
-        height: 664px;
-        margin-left: 125px;
-    }
-}
-
-@media (min-width: 2000px) and (orientation: landscape){
-    .mainmenu_transaction {
-        margin-left: calc((100vw - 1700px)/2);
-        width: 1189px;
-        height: 664px;
-    }
-}
-
-body.dark .mainmenu_transaction {
-    background-color: #191B1F;
+.tableWrap tr td {
+    margin-top: 20px;
 }
 
 .transactionTitle1 {
     font-weight: 800;
     font-size: 25px;
-}
-
-body.dark .transactionTitle1 {
-    color: white;
 }
 
 .transactionTitle2 {
@@ -927,9 +911,30 @@ body.dark .transactionTitle1 {
     margin-top: 50px;
 }
 
-body.dark .transactionTitle2 {
-    color: white;
+.tableWrap {
+    border: 0;
+    margin-top: 20px;
+
+
 }
+
+
+.tableWrap {
+    padding: 10px;
+
+}
+
+.trD {
+    margin-top:30px;
+}
+.TD1 {
+    width: 18%;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
 
 .title {
     font-size: 12.5px;
@@ -952,11 +957,6 @@ table {
     border-bottom: 1px solid black;
 }
 
-body.dark table {
-
-    border-bottom: 1px solid #D2D2D2;
-}
-
 tr {
 
 }
@@ -965,34 +965,17 @@ td {
     font-size: 12px;
     padding: 10px;
     text-align: left;
-    width: 1%;
-}
+    width: 29.3%;
 
-@media (min-width: 1640px) and (orientation: landscape){
-    td {
-        font-size: 12px;
-        padding: 10px;
-        text-align: left;
-    }
-}
-
-@media (min-width: 1800px) and (orientation: landscape){
-    td {
-        font-size: 12px;
-        padding: 10px;
-        text-align: left;
-    }
-}
-
-body.dark td {
-    color: #D2D2D2;
 }
 
 .menuTr {
     padding: 20px;
 }
 
+
 /* DASHBOARD */
+
 
 .menu_dashboard {
 
@@ -1220,9 +1203,24 @@ body.dark .btcInputAddress {
 
 }
 
+.btctxid {
+    width: 86%;
+    padding: 10px;
+    background-color: #EEF4FF;
+    border: 3px solid #2C83BC;
+    border-radius: 10px;
+    font-size: 17.5px;
+    margin-top: 8px;
+
+}
+
+body.dark .btctxid {
+    background-color: #20242D;
+
 .addressBTC > p.labelAdd {
     margin-top: 0;
     margin-bottom: 0;
+
 }
 
 .calling {
@@ -1402,7 +1400,7 @@ body.dark #bckgrnd {
 
 #menuHR1 {
     width: 92%;
-    margin-top: 50px;
+    margin-top: 65px;
     text-align: left;
 
 }
@@ -1529,7 +1527,7 @@ body.dark .popup{
 }
 
 body.dark .menuPopup {
-  background-color: #20242D;
+    background-color: #20242D;
 }
 
 #bitcoin {
@@ -1558,7 +1556,6 @@ div > .addressBTC {
 body.dark .addressBTC {
     background-color: #20242D;
   }
-  
 .addressBTC > .labelAdd {
       font-size: 17.5px;
   
@@ -1581,7 +1578,7 @@ body.dark .addressBTC {
 body.dark .btnPayment {
     background-color: #214676;
     color: white;
-  }
+}
 
 
   .attention {
@@ -1621,7 +1618,7 @@ body.dark .btnPayment {
 }
 
 #WRAP {
-    height: 630px;
+    height: 560px;
 }
 
 #UNWRAP {
@@ -1644,9 +1641,9 @@ body.dark .btnPayment {
 }
 
 .right {
-   align-items: center;
+    align-items: center;
     text-align: end;
- 
+
 }
 
 
@@ -1915,7 +1912,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 46%; 
+    top: 44%;
 }
 
 .feeUSD2 {
@@ -1947,7 +1944,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 56%;
+    top: 54%;
 }
 
 .feeUSD6 {
@@ -1955,7 +1952,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 64%;
 }
 
 .feeUSD7 {
@@ -1963,7 +1960,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 79%;
+    top: 77%;
 }
 
 .feeUSD8 {
@@ -1971,7 +1968,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 48.5%;
+    top: 40.5%;
 }
 
 .feeUSD9 {
@@ -1979,7 +1976,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 59%;
+    top: 52%;
 }
 
 #usd {
@@ -1992,7 +1989,7 @@ body.dark .btnPayment {
 }
 
 .error {
-   
+
     font-weight: bold;
     font-size: 20px;
     margin: 80px;
@@ -2002,7 +1999,7 @@ body.dark .btnPayment {
     color: #B20000;
     font-weight: 500;
     font-size: 30px;
-    
+
 }
 
 @media (max-width: 768px) {
@@ -2104,4 +2101,156 @@ body.dark .infoTitleDash {
 .secure {
     height: 15px;
     margin-left: 5px;
+}
+
+.dashButton{
+    width: 300px;
+    height: 50px;
+
+    background: #339AD3;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark .dashButton {
+    background-color: #1F509A;
+}
+
+.synced {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.dashCircle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #339AD3;
+    border-radius: 50%;
+    padding: 1.4644em; /* или padding: calc((100% - 100% / 1.4142) / 2);, где 100% = 10em — это значение width, а √2 ≈ 1.4142 */
+    box-sizing: border-box;
+}
+
+body.dark .dashCircle {
+    border: 3px solid #339AD3;
+}
+
+.dashBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.infoDash {
+    width: 300px;
+    height: 150px;
+
+    background-color: rgba(0, 0, 0, 0.01);
+    border: 1.2px solid rgba(0, 0, 0, 0.09);
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+body.dark .infoDash {
+    color: #FFFFFF;
+
+    background-color: rgba(74, 74, 74, 0.11);
+    border: #1D1D1D;
+}
+
+.infoTitleDash {
+    color: #339AD3;
+    font-size: 25px;
+    font-weight: 800;
+    text-align: left;
+}
+
+body.dark .infoTitleDash {
+    color: #F1F1F1;
+}
+
+.dashAmount {
+    font-size: 20px;
+}
+
+.secure {
+    height: 15px;
+    margin-left: 5px;
+}
+
+
+#radiosTrans {
+    position: absolute;
+    background-color: #DDDDDD;
+    z-index: 5;
+    width: 405px;
+    height: 50px;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-left: 390px;
+}
+
+#radiosTrans > input {
+
+    display: none;
+
+}
+
+#rad3:checked ~ #bckgrnd1 {
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+#rad4:checked ~ #bckgrnd1 {
+    transform: translateX(200.5px);
+    transition: transform 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+#bckgrnd1,
+.labelsTr {
+    width: 204.5px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    padding-top: 10px;
+    margin-right: -3px;
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+#bckgrnd1 {
+    background-color: #A6C6EC;
+    position: absolute;
+    left: 0;
+    margin-top: 0px;
+    z-index: -1;
+}
+
+
+.ErgFunc {
+    width: 200px;
 }

@@ -6,22 +6,24 @@ import {useEffect, useRef} from "react";
 import {formatData} from "./Utils";
 import BTCDeposit from "./BTCDeposit";
 
-function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
+///////////////////////////////
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+// Add a second document with a generated ID.
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import firebaseConfig from "./firebaseConfig";
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+/////////////////////////////////
+
+function Mint({eBTC, bridgeFee, nautilusaddress}) {
+
     const [address, setAddress] = useState('');
-
-
     const [window, setWindow] = useState(true);
-    const [paymentWindow, setPaymentWindow] = useState(true)
-    let data = {
-        amount: 0,
-        btc_vault_id: 0,
-        btc_wallet_id: "Wallet1-testnet",
-        network: "testnet",
-        vault_id: 0,
-        wallet_id: 0
-    };
-    console.log(JSON.stringify(data));
-
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
@@ -29,52 +31,31 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
     const ws = useRef(null);
     let first = useRef(false);
     const url = "https://api.pro.coinbase.com";
+    const [btcTxId, setBTCTxId] = useState('');
 
-    const mint = () => {
+    const [paymentWindow, setPaymentWindow] = useState(true)
 
-        console.log(btcAddress, "BTC Address")
-        // calling into the /mint endpoint in the backend
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                amount: eBTC.toString(),
-                btc_wallet_addr: btcAddress.toString(),
-                network: "testnet",
-                wallet_addr: nautilusaddress.toString()
-            }).toString()
-        };
+    const navigateToBTCDeposit = async () => {
+        console.log('payment is done!')
 
-        fetch("http://localhost:5004/mint", requestOptions)
-            .then(res => res.json())
-            .then((response) => {
-                console.log("Response from /mint endpoint: " + JSON.stringify(response))
-                let taskId = response['data']['task_id']
-                const interval = setInterval(() => {
-                    fetch("http://localhost:5004/statusMint/" + taskId)
-                        .then(res1 => res1.json())
-                        .then((statusResponse) => {
-                            console.log("Status response: " + JSON.stringify(statusResponse))
-                            if (statusResponse['data']['task_status'] == 'finished') {
-                                clearInterval(interval);
-                                if (statusResponse['data']['task_result']['success'] === true) {
-                                    console.log("Resulting operation is success!")
-                                    navigateToBTCDeposit()
-                                } else {
-                                    console.log("Resulting operation did not complete successfully!")
-                                }
-                            } else if (statusResponse['data']['task_status'] == 'failed') {
-                                clearInterval(interval);
-                                console.log("Resulting operation has failed to finish!")
-                            } else {
-                                console.log("trying again...")
-                            }
-                        })
-                }, 5000);
-            })
+        console.log("Writing to Firebase")
+        // TODO Write to DB
+        try {
+            const docRef = await addDoc(collection(db, "payments"), {
+                erg_address: nautilusaddress,
+                amount: eBTC,
+                datetime: new Date().getTime().toString(),
+                btc_tx_id: btcTxId.toString(),
+                info: "Mint Order Paid"
+            });
+
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+        setPaymentWindow(false);
+
     }
 
     const getVaultAddress = () => {
@@ -87,14 +68,9 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
             })
     }
 
+
     useEffect(() => {
-
-        // getting the vault address for the QR code
         getVaultAddress()
-
-        // calling into /mint endpoint
-
-        mint()
 
         ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
         let pairs = [];
@@ -126,7 +102,8 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
         };
 
         apiCall();
-    }, []);
+    }, [])
+
 
     useEffect(() => {
         if (!first.current) {
@@ -179,25 +156,26 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
         setpair(e.target.value);
     };
 
-    const navigateToBTCDeposit = () => {
-        console.log('payment is done!')
-        setPaymentWindow(false);
-    }
-
     const THREE_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000;
     const NOW_IN_MS = new Date().getTime();
 
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
+    const handleChangeBtcTxId = event => {
+        setBTCTxId(event.target.value);
+    }
+
     return (
         <div>
             {console.log("window" + paymentWindow)}
             {console.log("eBTC" + eBTC)}
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee}/>}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} />}
         </div>
     )
 
     function PaymentInfo() {
+
+
         return (
             <div className="mainPopup">
                 <div className="popup">
@@ -209,18 +187,15 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
                         <br/>
                         <label className="SingleTrans1">Send {eBTC} BTC</label>
                         <p></p>
-
-
-                        <p/>
-
-
-                        <p/>
-                        <label className="SingleTrans2">In a single transaction to: </label> <p/>
+                        <label className="SingleTrans2">In a single transaction to: </label>
                         <div type="text" className="addressBTC">
                             <p className="labelAdd">
                                 {address}
                             </p>
                         </div>
+                        <p className="title2">BTC Transaction Id</p>
+                        <input type="text" className="btctxid" size="30" placeholder="Enter your BTC transaction id"  value={btcTxId} onChange={handleChangeBtcTxId}
+                               required/><br/>
                         <div className="timing">
                             <p/><CountdownTimer targetDate={dateTimeAfterThreeDays}></CountdownTimer><p/>
                         </div>
@@ -237,7 +212,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
                                 level={"L"}
                                 includeMargin={false}
                             />
-                        </div>    
+                        </div>
                         <br/><br/>
                         <div className="note">
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are
@@ -245,7 +220,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, btcAddress}) {
                         </div>
                         <p/>
                         <button className="btnPayment" onClick={navigateToBTCDeposit}>I have made the payment</button>
-                         {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
+                        {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
 
                     </div>
                 </div>
