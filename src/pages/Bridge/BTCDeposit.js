@@ -1,10 +1,11 @@
 import CheckMark from "./CheckMark";
 import React from 'react';
 import {useEffect, useRef, useState} from "react";
+import redeem from "./redeem";
 function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
 
 
-
+    const [contDisable, setContDisable] = useState(true)
 
 
     let data = {
@@ -18,6 +19,11 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
     console.log(JSON.stringify(data));
 
 
+    useEffect(() => {
+        setTimeout(function() {
+            setContDisable(false)
+        }, 20000);
+    }, []);
 
     const mint = () => {
 
@@ -31,7 +37,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
             },
             body: new URLSearchParams({
                 amount: eBTC.toString(),
-                // btc_tx_addr: btcAddress.toString(),
+                btc_txId: btcTxID.toString(),
                 network: "testnet",
                 wallet_addr: nautilusaddress.toString()
             }).toString()
@@ -94,7 +100,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
                     <div className="confSubmission">
                         <div className="textBTC"></div>
                         <CheckMark/>
-                        <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
+                        <button type="button" id="confButton1" disabled={contDisable} className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>
                 </div>
             </div>

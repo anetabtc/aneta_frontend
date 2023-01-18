@@ -41,7 +41,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
         console.log("Writing to Firebase")
         // TODO Write to DB
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            const docRef = await addDoc(collection(db, "payments"), {
                 erg_address: nautilusaddress,
                 amount: eBTC,
                 datetime: new Date().getTime().toString(),
