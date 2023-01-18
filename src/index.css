@@ -1582,6 +1582,9 @@ body.dark .btnPayment {
     color: white;
   }
 
+  .btnPayment:hover{
+    cursor: pointer;
+  }
 
   .attention {
     text-align: center;

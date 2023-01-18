@@ -162,6 +162,23 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
         )
     }
 
+    // function ConfirmationSubmission() {
+    //     return (
+    //         <div className="confSubmission">
+    //             <div>Bridge Fee Payment Submitted</div>
+    //             <div>eBTC will arrive in your wallet shortly.</div>
+    //             <div>Transactions can take around 10 minutes to process.</div>
+    //             <CheckMark/>
+    //             <div>Your unique anetaBTC ID for this entire transaction is: <b>"Pendind XXXXX"</b>
+    //             </div>
+    //             <div>This unique ID is also available in your Transactions tab. If you need support, this ID will help us assist you.</div>
+    //             <button type="button" id="confButton1" className="confWRS"
+    //                     onClick={() => setConf("mint")}
+    //             ><b>Continue</b></button>
+    //         </div>
+    //     )
+    // }
+
 
 }
 

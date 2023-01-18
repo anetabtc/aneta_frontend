@@ -17,7 +17,7 @@ function BTCDeposit({eBTC, bridgeFee}) {
                             BTC Deposit</div>
                     </div>
                     <div className="confSubmission">
-                        <div className="textBTC"></div>
+                        <BTCDepositSuccess/>
                         <CheckMark/>
                         <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>
@@ -27,4 +27,11 @@ function BTCDeposit({eBTC, bridgeFee}) {
     )
 }
 
+function BTCDepositSuccess(){
+    return (
+        <div className="textBTC"></div>
+    )
+}
+
 export default BTCDeposit
+
