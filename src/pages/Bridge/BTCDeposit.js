@@ -1,6 +1,88 @@
 import CheckMark from "./CheckMark";
 import React from 'react';
-function BTCDeposit({eBTC, bridgeFee}) {
+import {useEffect, useRef, useState} from "react";
+import redeem from "./redeem";
+
+
+function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) { 
+
+    const [contDisable, setContDisable] = useState(true)
+
+
+    let data = {
+        amount: 0,
+        btc_vault_id: 0,
+        btc_wallet_id: "Wallet1-testnet",
+        network: "testnet",
+        vault_id: 0,
+        wallet_id: 0
+    };
+    console.log(JSON.stringify(data));
+
+
+
+    useEffect(() => {
+        setTimeout(function() {
+            setContDisable(false)
+        }, 20000);
+    }, []);
+
+    const mint = () => {
+
+        console.log(btcTxID, "BTC Tx Id")
+        // calling into the /mint endpoint in the backend
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                amount: eBTC.toString(),
+                btc_txId: btcTxID.toString(),
+                network: "testnet",
+                wallet_addr: nautilusaddress.toString()
+            }).toString()
+        };
+
+        fetch("http://localhost:5004/mint", requestOptions)
+            .then(res => res.json())
+            .then((response) => {
+                console.log("Response from /mint endpoint: " + JSON.stringify(response))
+                let taskId = response['data']['task_id']
+                const interval = setInterval(() => {
+                    fetch("http://localhost:5004/statusMint/" + taskId)
+                        .then(res1 => res1.json())
+                        .then((statusResponse) => {
+                            console.log("Status response: " + JSON.stringify(statusResponse))
+                            if (statusResponse['data']['task_status'] == 'finished') {
+                                clearInterval(interval);
+                                if (statusResponse['data']['task_result']['success'] === true) {
+                                    console.log("Resulting operation is success!")
+                                    refreshPage()
+                                } else {
+                                    console.log("Resulting operation did not complete successfully!")
+                                }
+                            } else if (statusResponse['data']['task_status'] == 'failed') {
+                                clearInterval(interval);
+                                console.log("Resulting operation has failed to finish!")
+                            } else {
+                                console.log("trying again...")
+                            }
+                        })
+                }, 5000);
+            })
+    }
+
+
+
+    useEffect(() => {
+
+
+        mint()
+
+
+    }, []);
 
     const refreshPage = () => {
         window.location.reload();
@@ -22,7 +104,7 @@ function BTCDeposit({eBTC, bridgeFee}) {
                         <div>Transactions can take around 10 minutes to process.</div>
                         <CheckMark/>
                         <div>Your unique anetaBTC ID for this entire transaction is:</div>
-                        <div id="idTransaction"><b>"Pendind idXXXXX"</b></div>
+                        <div id="idTransaction"><b>TXID</b></div>
                         <div>This unique ID is also available in your Transactions tab. If you need support, this ID will help us assist you.</div>
                         <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>

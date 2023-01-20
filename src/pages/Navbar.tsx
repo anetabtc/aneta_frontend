@@ -1,24 +1,31 @@
-import React from "react";
-import {SetStateAction, useState, useEffect} from "react";
-import getAddress from "./Bridge/address";
+import React, {useEffect} from "react";
+import {useState} from "react";
 
 
 function Navbar() {
 
     const [selected, setSelected] = useState("Ergo")
-    const [userAddress, setUserAddress] = useState('');
-    const [connected, setConnected] = useState(false);
+    const [userAddress, setUserAddress] = useState(JSON.parse(localStorage.getItem('address')));
     const [visible, setVisible] = useState(false);
+    const [connectedOnRefresh, setConnectedOnRefresh] = useState(!!JSON.parse(localStorage.getItem('address')))
+
+
+    if(connectedOnRefresh){
+        setConnectedOnRefresh(false)
+        handleWalletConnect()
+    }
 
     async function handleWalletConnect() {
 
-        if (!connected) {
+        console.log("useraddd", userAddress)
+        if (userAddress === null) {
             const isConnected = await ergoConnector.nautilus.connect();
 
             if (isConnected) {
                 const address = ergo.get_change_address();
                 address.then((value) => {
-                    setUserAddress(value)
+                    localStorage.setItem('address', JSON.stringify(value))
+                    setUserAddress(JSON.parse(localStorage.getItem('address')))
                 });
                 // const address = getAddress();
                 // address.then((value) => {
@@ -26,21 +33,23 @@ function Navbar() {
                 // });
             }
 
-            setConnected(true)
         }else{
-            visible ? setVisible(false) : setVisible(true)
+            await ergoConnector.nautilus.connect();
+            if(!connectedOnRefresh){
+                visible ? setVisible(false) : setVisible(true)
+            }
         }
     }
 
     async function disconnect() {
 
-        await ergoConnector.nautilus.disconnect();
-        setUserAddress('')
+        let disconnected = await ergoConnector.nautilus.disconnect();
+        console.log("disconnected: ", disconnected)
+        localStorage.removeItem('address');
+        setUserAddress(JSON.parse(localStorage.getItem('address')))
 
-        setConnected(false)
         setVisible(false)
     }
-
     const [dark, setDark] = useState("")
 
     const darkModeToggle = () => {
@@ -54,6 +63,7 @@ function Navbar() {
     }
 
     useEffect(()=>{
+
        if( localStorage.getItem('dark-mode') === 'true')
        {document.body.classList.add('dark');
         setDark(true);

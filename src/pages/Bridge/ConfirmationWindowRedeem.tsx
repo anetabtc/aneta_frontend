@@ -7,14 +7,16 @@ import ErrorPayment from "./ErrorPayment";
 import RedeemConfWindow from "./RedeemConfWindow";
 
 
+
+
 function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAddress}) {
 
-    const [nautilusAddress, setNautilusAddress] = useState('');
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
 
     const [txInfo, setTxInfo] = useState('');
 
@@ -23,12 +25,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     const [error, setError] = useState(false);
 
     const [disable, setDisable] = useState(false);
-
     const [contDisable, setContDisable] = useState(true);
-
-    const refreshPage = () => {
-        window.location.reload();
-    }
+    
 
     function NameTrans() {
         if (eBTC > 0.000000001) {
@@ -134,6 +132,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         console.log("res", result)
         result ? setConf("concl") : setError(true)
     }
+
 
 
 

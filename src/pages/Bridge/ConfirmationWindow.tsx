@@ -1,24 +1,36 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CheckMark from "./CheckMark";
 import Mint from "./Mint.tsx";
 import React from 'react';
 import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
+///////////////////////////////
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
+// Add a second document with a generated ID.
+import {addDoc, collection, getDocs} from "firebase/firestore";
+import firebaseConfig from "./firebaseConfig";
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+/////////////////////////////////
+
 
 
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
-    const [nautilusAddress, setNautilusAddress] = useState('');
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
-    const address1 = ergo.get_change_address();
-    address1.then((value) => {
-        setNautilusAddress(value)
-    });
 
     const [conf, setConf] = useState("info");
     const [txInfo, setTxInfo] = useState('');
-    const [disable, setDisable] = useState(false);
+    const [disable, setDisable] = useState(false)
+    const [anetaId, setAnetaId] = useState('')
 
 
     const refreshPage = () => {
@@ -146,11 +158,22 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     async function send(){
         setDisable(true)
         const result = await sendFeeFunction(bridgeFee, nautilusAddress)
-        result ? setConf("subm") : setConf("error");
-        setTxInfo(result);
+        setTxInfo(result)
+        console.log("Tx ID: ", txInfo, "res: ", result)
+        result ? setConf("subm") : setConf("error")
     }
 
     function ConfirmationSubmission() {
+
+        /////////////////////
+        console.log("Writing to Firebase")
+        console.log("Tx ID:", txInfo)
+        // TODO Write to DB
+        useEffect(() => {
+            writeToDB(nautilusAddress, eBTC, txInfo)
+        })
+        /////////////////////////
+
         return (
             <div className="confSubmission">
                 <div className="paymentSucces">
@@ -164,6 +187,24 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
         )
     }
 
+
+
+
+}
+
+async function writeToDB(nautilusAddress, eBTC, txID) {
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+            erg_address: nautilusAddress,
+            amount: eBTC,
+            datetime: new Date().getTime().toString(),
+            erg_txid: txID,
+            info: "Mint Order Submitted"
+        });
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
 
 
 }
