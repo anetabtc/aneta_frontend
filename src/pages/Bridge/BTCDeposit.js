@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import redeem from "./redeem";
 
 
-function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) { 
+function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) { 
 
     const [contDisable, setContDisable] = useState(true)
 
@@ -104,7 +104,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID}) {
                         <div>Transactions can take around 10 minutes to process.</div>
                         <CheckMark/>
                         <div>Your unique anetaBTC ID for this entire transaction is:</div>
-                        <div id="idTransaction"><b>TXID</b></div>
+                        <div id="idTransaction"><b>{anetaID}</b></div>
                         <div>This unique ID is also available in your Transactions tab. If you need support, this ID will help us assist you.</div>
                         <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>
