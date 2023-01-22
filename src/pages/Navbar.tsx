@@ -86,6 +86,11 @@ function Navbar() {
                             Get Test BTC
                         </div>
                     </a>
+                    <a target="_blank" href="https://moonshinewallet.com/">
+                        <div className="menuButton">
+                            Download Moonshine Wallet
+                        </div>
+                    </a>
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div>
                         <div className="menuButton" onClick={handleWalletConnect}>
