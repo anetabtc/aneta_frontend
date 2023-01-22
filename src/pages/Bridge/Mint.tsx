@@ -32,6 +32,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
     let first = useRef(false);
     const url = "https://api.pro.coinbase.com";
     const [btcTxId, setBTCTxId] = useState('');
+    const [anetaID, setAnetaID] = useState('');
 
     const [paymentWindow, setPaymentWindow] = useState(true)
 
@@ -49,6 +50,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                 info: "Mint Order Paid"
             });
 
+            setAnetaID(docRef.id)
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -169,7 +171,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
         <div>
             {console.log("window" + paymentWindow)}
             {console.log("eBTC" + eBTC)}
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} />}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} anetaID={anetaID}/>}
         </div>
     )
 

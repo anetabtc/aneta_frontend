@@ -24,6 +24,7 @@ body {
     text-decoration: none;
 }
 
+
 body {
     font-family: 'Avenir', Helvetica, sans-serif;
     width: 100%;
@@ -35,8 +36,9 @@ body {
 }
 
 @media (min-width: 2000px) and (orientation: landscape){
+
     body{
-    width: 2000px;
+        width: 2000px;
     }
 }
 
@@ -46,9 +48,26 @@ code {
 }
 
 .App {
-
+    width: 100%;
 }
 
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .App{
+        width: 2000px;
+    }
+}
+
+.Main{
+    width: 100%;
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .Main{
+        width: 2000px;
+    }
+}
 
 /* Dark mode */
 
@@ -81,9 +100,12 @@ body.dark .dark__mode{
 }
 
 #disconnect {
+    position: absolute;
+    width: 97px;
+    top: 48px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+
 }
 
 /*confirmation window*/
@@ -129,7 +151,7 @@ body.dark .confContent{
 .confWindow {
     z-index: 10;
     width: 545px;
-    height: 389px;
+    height: auto; /* 389 */
     border-radius: 16px;
     background: #EEF4FF;
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.08);
@@ -237,6 +259,7 @@ body.dark #txInfo a {
     border-radius: 20px;
     margin-top: 16%;
     font-size: 16px;
+    margin-bottom: 25px;
 }
 
 #confButton:hover{
@@ -259,12 +282,50 @@ body.dark #confButton {
     gap: 0px;
 }
 
-.confSubmission {
+.confSubmission .paymentSucces {
     height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.depositBTC{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 30px;
+    margin-top: 25px;
+    padding: 0 30px;
+}
+
+#top_card{
+    margin-top: 170px;
+}
+
+.depositBTC #checkMarkIcon{
+    top: 46%
+}
+
+.depositBTC svg {
+    margin: 20px 0;
+}
+
+.depositBTC > #idTransaction {
+    margin-bottom: 20px;
+}
+
+.depositBTC #confButton1 {
+    margin: 25px 0;
+}
+
+.paymentSucces #confButton1 {
+    margin-bottom: 0;
+}
+
+.depositBTC::before {
+    animation: textprogress 2s ease-out;
 }
 
 /*checkmark*/
@@ -367,6 +428,7 @@ svg {
     border: none;
     border-radius: 20px;
     font-size: 16px;
+    margin-bottom: 25px;
 }
 
 #confButton1:hover{
@@ -391,15 +453,6 @@ body.dark #confButton1 {
 }
 
 
-.textBTC::before {
-    animation: textprogress 2s ease-out;
-}
-
-.textBTC::after {
-
-    content: "BTC deposit successfully submitted. eBTC will arrive in your wallet soon. Transactions can take around 10 minutes to process.";
-    animation: textprogress 2s ease-out;
-}
 
 @keyframes textprogress {
     0% {
@@ -568,6 +621,7 @@ body.dark .dropdown-content {
 /* HEADER */
 
 
+
 .imgLogo {
     width: 140px;
     margin-left: 20px;
@@ -577,11 +631,8 @@ body.dark .dropdown-content {
 }
 
 #head {
-    float: right;
+    justify-content: flex-end;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
 }
 
 #notConnect_wallet {
@@ -626,6 +677,7 @@ body.dark .dropdown-content {
     padding-inline-start: 20px;
     padding-inline-end: 20px;
 }
+
 
 /* Dark Mode */
 
@@ -795,14 +847,22 @@ body.dark .btnM:hover {
     display: table;
     border-radius: 15px;
     overflow: auto;
-    margin: 230px 37%;
+    margin-top: 220px;
+    margin-left: 500px;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .mainmenu_feedback{
+        margin-left: 650px;
+    }
 }
 
 @media (min-width: 2000px) and (orientation: landscape){
-    .mainmenu_feedback{
-        margin: 230px 750px;
-    }
 
+    .mainmenu_feedback{
+        margin-left: 800px;
+    }
 }
 
 
@@ -870,23 +930,36 @@ body.dark .feedback-page__content-btn {
     font-family: 'Prompt', sans-serif;
     background-color: white;
     border-radius: 15px;
-    width: 1189px;
-    left: 300px;
+    max-width: 1300px;
+    left: 400px;
     height: 664px;
-    margin: auto;
-    margin-top: 150px;
+    margin-top: 200px;
     padding: 10px 30px;
     text-align: left;
-    position: absolute; /*Can also be `fixed`*/
-
-    right: 0;
-    top: 0;
-    bottom: 0;
-    /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
-    max-width: 100%;
-    max-height: 100%;
-    overflow: auto;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-right: 100px;
+    margin-bottom: 50px;
 }
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .mainmenu_transaction{
+        left: 500px;
+        margin-right: 200px;
+    }
+}
+
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .mainmenu_transaction{
+        left: calc((100vw - 2000px)/2 + 500px);
+    }
+}
+
+
 
 .mainmenu_transaction .menuHR2 {
     width: 1180px;
@@ -894,6 +967,11 @@ body.dark .feedback-page__content-btn {
     background-color: black;
 
     margin-bottom: 20px;
+}
+
+body.dark .mainmenu_transaction {
+    background-color: #191B1F;
+    color: #FFFFFF;
 }
 
 .tableWrap tr td {
@@ -946,6 +1024,8 @@ body.dark .feedback-page__content-btn {
     color: #575757;
     text-align: left;
     margin-left: 27px;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 body.dark .title2 {
@@ -985,8 +1065,26 @@ td {
     gap: 50px;
     align-items: center;
     justify-content: center;
-    margin: 290px 50px 50px 420px;
-    max-width: 1300px;
+    margin: 220px 50px 50px 420px;
+    max-width: 1400px;
+}
+
+@media (min-width: 1700px) and (orientation: landscape){
+    .menu_dashboard {
+        margin: 220px 50px 50px 450px;
+    }
+}
+
+@media (min-width: 1800px) and (orientation: landscape){
+    .menu_dashboard {
+        margin: 220px 50px 50px 450px;
+    }
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+    .menu_dashboard {
+        margin: 220px 50px 50px 550px;
+    }
 }
 
 
@@ -1129,16 +1227,38 @@ body.dark .menu_dash > div {
     background-color: #F1F6FF;
     border-radius: 20px;
     width: 600px;
-
     display: table;
     margin-top: 170px;
     margin-left: 500px;
-    text-align: center;
-    position: absolute; /*Can also be `fixed`*/
-    /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+    text-align: center; 
+    position: absolute;
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #content1{
+        margin-left: 650px;
+    }
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    #content1{
+        margin-left: 800px;
+    }
+}
+
+.btcInput:focus, .btcInputAddress:focus {
+    outline: none;
+    border: #B9DDFF 2px solid;
+}
+
+body.dark .btcInput:focus, body.dark .btcInputAddress:focus {
+    outline: none;
+    border: #2C83BC 2px solid;
 }
 
 @media (min-width: 1640px) and (orientation: landscape){
@@ -1460,6 +1580,7 @@ body.dark .mainPopup {
 
     .mainPopup{
         height: 100vh;
+        min-height: 1000px;
     }
 }
 
@@ -1473,7 +1594,6 @@ body.dark .mainPopup {
 .popup {
     display: flex;
     flex-direction: column;
-    height: 700px;
     width: 545px;
     align-items: center;
     background-color: white;
@@ -1568,12 +1688,12 @@ body.dark .addressBTC {
     border-radius: 11px;
     background-color: #BEDAFF;
     border: 0;
-    margin-top: 27px;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 body.dark .btnPayment {
@@ -1581,6 +1701,9 @@ body.dark .btnPayment {
     color: white;
 }
 
+  .btnPayment:hover{
+    cursor: pointer;
+  }
 
   .attention {
     text-align: center;
@@ -1608,7 +1731,7 @@ body.dark .btnPayment {
     font-size: 18px;
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    padding: 10px 0;
 }
 
 .timing {
@@ -1961,7 +2084,7 @@ body.dark .btnPayment {
 
     position: absolute;
     left: 50%;
-    top: 78%;
+    top: 79%;
 }
 
 .feeUSD8 {
@@ -2200,6 +2323,9 @@ body.dark .infoTitleDash {
 
 #radiosTrans {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #DDDDDD;
     z-index: 5;
     width: 405px;
@@ -2207,7 +2333,19 @@ body.dark .infoTitleDash {
     margin: auto;
     border-radius: 10px;
     margin-top: 80px;
-    margin-left: 390px;
+    margin-left: 290px;
+}
+
+body.dark #radiosTrans {
+    background-color: #2C2E3B;
+    color: #ffffff;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #radiosTrans{
+        margin-left: 390px;
+    }
 }
 
 #radiosTrans > input {
@@ -2231,15 +2369,14 @@ body.dark .infoTitleDash {
 #bckgrnd1,
 .labelsTr {
     width: 204.5px;
-    height: 40px;
+    height: 100%;
     text-align: center;
-    display: inline-block;
-    padding-top: 10px;
-    margin-right: -3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 2;
     cursor: pointer;
-    border-radius: 3px;
-    margin-top: 5px;
+    border-radius: 10px;
     font-size: 14px;
 }
 
@@ -2249,6 +2386,10 @@ body.dark .infoTitleDash {
     left: 0;
     margin-top: 0px;
     z-index: -1;
+}
+
+body.dark #bckgrnd1 {
+    background-color: #184372;
 }
 
 

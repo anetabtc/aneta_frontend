@@ -29,7 +29,8 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     const [conf, setConf] = useState("info");
     const [txInfo, setTxInfo] = useState('');
-    const [disable, setDisable] = useState(false);
+    const [disable, setDisable] = useState(false)
+    const [anetaId, setAnetaId] = useState('')
 
 
     const refreshPage = () => {
@@ -175,18 +176,21 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
         return (
             <div className="confSubmission">
-                <div>Bridge Fee Payment Submitted</div>
-                <CheckMark/>
-                <button type="button" id="confButton1" className="confWRS"
-                        onClick={() => setConf("mint")}
-                ><b>Continue</b></button>
+                <div className="paymentSucces">
+                    <div>Bridge Fee Payment Submitted</div>
+                    <CheckMark/>
+                    <button type="button" id="confButton1" className="confWRS"
+                            onClick={() => setConf("mint")}
+                    ><b>Continue</b></button>
+                </div>
             </div>
         )
     }
 
 
-}
 
+
+}
 
 async function writeToDB(nautilusAddress, eBTC, txID) {
     try {
@@ -197,11 +201,12 @@ async function writeToDB(nautilusAddress, eBTC, txID) {
             erg_txid: txID,
             info: "Mint Order Submitted"
         });
-
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
+
+
 }
 
 
