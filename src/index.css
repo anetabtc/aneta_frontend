@@ -1335,6 +1335,7 @@ body.dark .btcInputAddress {
 
 body.dark .btctxid {
     background-color: #20242D;
+    color: white;
 
 }
 .addressBTC > p.labelAdd {
