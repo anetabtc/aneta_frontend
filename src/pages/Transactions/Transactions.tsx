@@ -98,6 +98,7 @@ function Transactions() {
 
     function MintPage() {
         const bridge = 33
+        const br = 32
 
 
         return (

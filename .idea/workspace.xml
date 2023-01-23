@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2023,_01_45_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2023__01_45__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/BTCDeposit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/BTCDeposit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/redeem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/redeem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +51,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ts.external.directory.path&quot;: &quot;/Users/aishakozhamseitova/WebstormProjects/aneta_frontend2/node_modules/typescript/lib&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/Bridge" />
@@ -98,6 +101,7 @@
       <workItem from="1673147883028" duration="21130000" />
       <workItem from="1673605801472" duration="5905000" />
       <workItem from="1673773452529" duration="5292000" />
+      <workItem from="1674486815303" duration="60000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1667687958699</created>
