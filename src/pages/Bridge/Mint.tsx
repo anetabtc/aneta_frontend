@@ -45,7 +45,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
             const docRef = await addDoc(collection(db, "payments"), {
                 erg_address: nautilusaddress,
                 amount: eBTC,
-                datetime: new Date().getTime().toString(),
+                datetime: new Date().toUTCString(),
                 btc_tx_id: btcTxId.toString(),
                 info: "Mint Order Paid"
             });

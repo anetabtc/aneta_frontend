@@ -22,6 +22,7 @@ function Transactions() {
     const [products, setProducts] = useState([]);
     const [address, setAddress] = useState('')
     const [idN, setId] = useState([]);
+    const [getTxs, setGetTxs] = useState(true);
     let txs = [{}]
 
 
@@ -31,7 +32,10 @@ function Transactions() {
         }catch (e) {
             setAddress('')
         }
-        loadTx()
+        if(getTxs){
+            loadTx()
+            setGetTxs(false)
+        }
 
     });
 

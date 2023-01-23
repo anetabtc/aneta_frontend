@@ -937,8 +937,7 @@ body.dark .feedback-page__content-btn {
     padding: 10px 30px;
     text-align: left;
     position: absolute;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: scroll;
     margin-right: 100px;
     margin-bottom: 50px;
 }

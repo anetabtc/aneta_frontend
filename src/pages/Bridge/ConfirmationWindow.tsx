@@ -197,7 +197,7 @@ async function writeToDB(nautilusAddress, eBTC, txID) {
         const docRef = await addDoc(collection(db, "users"), {
             erg_address: nautilusAddress,
             amount: eBTC,
-            datetime: new Date().getTime().toString(),
+            datetime: new Date().toUTCString(),
             erg_txid: txID,
             info: "Mint Order Submitted"
         });

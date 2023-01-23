@@ -55,7 +55,7 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
                 erg_address: nautilusAddress,
                 btc_address: btcAddress,
                 amount: eBTC,
-                datetime: new Date().getTime().toString(),
+                datetime: new Date().toUTCString(),
                 erg_txid: txInfo,
                 info: "Redeem Order Submitted"
             });
