@@ -121,7 +121,7 @@ function Transactions() {
                 {
                     products.map((tx) => {
                             
-                            if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Success") {
+                            if ((tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Success") {
 
 
                                 return <tr >
@@ -187,7 +187,7 @@ function Transactions() {
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
-                                    if ((tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") && tx.erg_address === address) {
+                                    if (tx.info === "Redeem Order Processing" && tx.erg_address === address) {
 
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
