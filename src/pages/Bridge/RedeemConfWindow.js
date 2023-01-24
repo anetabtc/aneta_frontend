@@ -21,16 +21,14 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
 
 
     const [contDisable, setContDisable] = useState(true);
-    const [anetaID, setAnetaID] = useState('');
 
 
     useEffect(() => {
-        redeem(eBTC, btcAddress, nautilusAddress, txInfo)
+        writeToDB(nautilusAddress, btcAddress, eBTC, txInfo)
         setTimeout(function() {
             setContDisable(false)
         }, 20000);
         console.log("tx id nautilus: ", txInfo)
-        writeToDB(nautilusAddress, btcAddress, eBTC, txInfo)
     }, []);
 
     const refreshPage = () => {
@@ -55,11 +53,11 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
                 erg_address: nautilusAddress,
                 btc_address: btcAddress,
                 amount: eBTC,
-                datetime: new Date().getTime().toString(),
+                datetime: new Date().toUTCString(),
                 erg_txid: txInfo,
                 info: "Redeem Order Submitted"
             });
-            setAnetaID(docRef.id)
+            redeem(eBTC, btcAddress, nautilusAddress, txInfo, docRef.id)
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);

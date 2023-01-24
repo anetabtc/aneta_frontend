@@ -22,6 +22,7 @@ function Transactions() {
     const [products, setProducts] = useState([]);
     const [address, setAddress] = useState('')
     const [idN, setId] = useState([]);
+    const [getTxs, setGetTxs] = useState(true);
     let txs = [{}]
 
 
@@ -31,7 +32,10 @@ function Transactions() {
         }catch (e) {
             setAddress('')
         }
-        loadTx()
+        if(getTxs){
+            loadTx()
+            setGetTxs(false)
+        }
 
     });
 
@@ -94,6 +98,7 @@ function Transactions() {
 
     function MintPage() {
         const bridge = 33
+        const br = 32
 
 
         return (
@@ -116,7 +121,7 @@ function Transactions() {
                 {
                     products.map((tx) => {
                             
-                            if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Successful") {
+                            if ((tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Success") {
 
 
                                 return <tr >
@@ -127,14 +132,14 @@ function Transactions() {
                                     </td>
                                     <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
                                     <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                        className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                        className="underline"> <a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</a></p>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
                                     <td className="TD1"><p className="bord"><b className="boldPo">• Pending </b></p></td>
                                 </tr>
                             }
-                            if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
+                            if(tx.info === "Mint Order Success" && tx.erg_address === address) {
                                 return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
@@ -143,7 +148,7 @@ function Transactions() {
                                     </td>
                                     <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
                                     <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                        className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                        className="underline"> <a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</a></p>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -182,7 +187,7 @@ function Transactions() {
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
-                                    if ((tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") && tx.erg_address === address) {
+                                    if (tx.info === "Redeem Order Processing" && tx.erg_address === address) {
 
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
@@ -192,14 +197,14 @@ function Transactions() {
                                             </td>
                                             <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
                                             <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                                className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                                className="underline"> <a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</a></p>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
                                             <td className="TD1"><p className="bord"><b className="boldPo">• Pending</b></p></td>
                                         </tr>
                                     }
-                                    if(tx.info === "Redeem Order Successful" && tx.erg_address === address) {
+                                    if(tx.info === "Redeem Order Success" && tx.erg_address === address) {
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
 
@@ -208,7 +213,7 @@ function Transactions() {
                                             </td>
                                             <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
                                             <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                                className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                                className="underline"> <a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</a></p>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>

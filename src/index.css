@@ -937,8 +937,7 @@ body.dark .feedback-page__content-btn {
     padding: 10px 30px;
     text-align: left;
     position: absolute;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: scroll;
     margin-right: 100px;
     margin-bottom: 50px;
 }
@@ -1345,7 +1344,6 @@ body.dark .btctxid {
     background-color: #1D1D1D;
     border: none;
 
-
 }
 .addressBTC > p.labelAdd {
     margin-top: 0;
@@ -1367,7 +1365,7 @@ body.dark .btctxid {
 #copyPop {
     position: absolute;
     font-size: 14px;
-    top: 193px;
+    top: 194px;
     right: 30px;
     display: flex;
     justify-content: center;
