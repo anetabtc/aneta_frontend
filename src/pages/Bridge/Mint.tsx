@@ -174,8 +174,24 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
             {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} anetaID={anetaID}/>}
         </div>
     )
+    
+
+
 
     function PaymentInfo() {
+
+
+        const [copy, setCopy] = useState(false)
+
+        function btnCopy(){
+            const btnCopy = document.querySelector(".labelAdd").childNodes[0]
+                 navigator.clipboard.writeText(btnCopy.innerHTML)
+                 setCopy(true);
+                setTimeout(()=>{
+                    setCopy(false);
+                },1500);
+                }
+
 
 
         return (
@@ -186,44 +202,46 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                         className="labelMain"> BTC Deposit</label>
                     </div>
                     <div className="menuPopup">
-                        <br/>
-                        <label className="SingleTrans1">Send {eBTC} BTC</label>
+                        <label className="SingleTrans1">Using Moonshine Wallet,<br/>Send {eBTC} BTC</label>
                         <p></p>
                         <label className="SingleTrans2">In a single transaction to: </label>
                         <div type="text" className="addressBTC">
-                            <p className="labelAdd">
-                                {address}
+                            <p className="labelAdd" onClick={btnCopy}>
+                                {/* {address} */}
+                                <p>tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe</p>
+                                <img id="copy" className="sun__mode" src={require('../img/copy.png').default} alt="copy"/>
+                                <img id="copy" className="dark__mode" src={require('../img/copy_dark.png').default} alt="copy"/>
+                                {copy ? <p id="copyPop">Copied</p>: ""}
                             </p>
                         </div>
-                        <p className="title2">BTC Transaction Id</p>
-                        <input type="text" className="btctxid" size="30" placeholder="Enter your BTC transaction id"  value={btcTxId} onChange={handleChangeBtcTxId}
-                               required/><br/>
                         <div className="timing">
                             <p/><CountdownTimer targetDate={dateTimeAfterThreeDays}></CountdownTimer><p/>
                         </div>
-                        <br/>
-                        <div className="attention">
-                            <span><b>Attention:</b> Some Bitcoin wallets display values in mBTC. In </span><br/><span>this case, ensure you send the correct amount: <b>1000mBTC</b></span>
+                        <div className="information"><b>
+                            Add the ERG address used to pay the bridge fee in the metadata of this BTC transaction in your Moonshine Wallet. This ERG address will receive eBTC.</b>
                         </div>
-                        <br/>
+                        <div className="attention">
+                            <span><b className="warning">Attention:</b> The ERG address you add to the metadata of your BTC deposit <b>must be the same</b> as the ERG address you used to pay the bridge fee</span>
+                        </div>
                         <div className='qrCode'>
                             <QRCode
                                 id="qrCode"
-                                value={address}
+                                // value={address}
+                                value="tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe"
                                 size={120}
                                 level={"L"}
                                 includeMargin={false}
                             />
                         </div>
-                        <br/><br/>
                         <div className="note">
-                            <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don’t worry, your funds are
-                        safe :)</span>
+                            <span><b>Next: Enter the BTC Transaction ID from the BTC deposit transaction you just submitted.</b></span>
                         </div>
-                        <p/>
-                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I have made the payment</button>
-                        {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
 
+
+                        <input type="text" className="btctxid" size="30" placeholder="BTC Transaction ID (from Moonshine Wallet)"  value={btcTxId} onChange={handleChangeBtcTxId}
+                               required/><br/>
+                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I completed these steps.</button>
+                        {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
                     </div>
                 </div>
             </div>

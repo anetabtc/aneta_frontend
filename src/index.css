@@ -1324,24 +1324,65 @@ body.dark .btcInputAddress {
 }
 
 .btctxid {
-    width: 86%;
+    display: flex;
+    width: 90%;
     padding: 10px;
+    height: 30px;
     background-color: #EEF4FF;
-    border: 3px solid #2C83BC;
+    border: 2px solid #2C83BC;
     border-radius: 10px;
     font-size: 17.5px;
-    margin-top: 8px;
-    margin-left: 30px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+body.dark .btctxid::placeholder{
+    color: #DBDBDB;
+    font-weight: 300;
 }
 
 body.dark .btctxid {
-    background-color: #20242D;
+    background-color: #1D1D1D;
+    border: none;
+
 
 }
 .addressBTC > p.labelAdd {
     margin-top: 0;
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.addressBTC > p.labelAdd:hover{
+    cursor: pointer;
+}
+
+#copy {
+    margin-left: 10px;
+    height: 15px;
+}
+
+#copyPop {
+    position: absolute;
+    font-size: 14px;
+    top: 193px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 25px;
+    background-color: #BEDAFF;
+    color: #000000;
+    border-radius: 25px;
+    transition: 0.5s;
+}
+
+body.dark #copyPop {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
 }
 
 .calling {
@@ -1607,7 +1648,7 @@ body.dark .mainPopup {
 body.dark .popup{
   background-color: #000000;
   color: white;
-  border: #566474 2px solid;
+  border: #787878 2px solid;
 }
 @media (min-width: 1640px) and (orientation: landscape){
 
@@ -1648,7 +1689,7 @@ body.dark .popup{
 }
 
 body.dark .menuPopup {
-    background-color: #20242D;
+    background-color: #141414;
 }
 
 #bitcoin {
@@ -1660,6 +1701,7 @@ body.dark .menuPopup {
 .qrCode {
     display: flex;
     justify-content: center;
+    margin: 15px 0;
 }
 
 div > .addressBTC {
@@ -1670,12 +1712,13 @@ div > .addressBTC {
     width: 90%;
     height: 40px;
     background-color: #EEF4FF;
-    border: 3px solid #2C83BC;
+    border: 2px solid #2C83BC;
     border-radius: 11px;
 }
 
 body.dark .addressBTC {
-    background-color: #20242D;
+    background-color: #141414;
+    border: 2px solid #787878;
   }
 .addressBTC > .labelAdd {
       font-size: 17.5px;
@@ -1707,9 +1750,13 @@ body.dark .btnPayment {
 
   .attention {
     text-align: center;
-    width: 90%;
+    width: 75%;
     font-size: 16.5px;
     margin: auto;
+}
+
+.warning{
+    color: #FF7272;
 }
 
 .note {
@@ -1724,7 +1771,8 @@ body.dark .btnPayment {
     font-size: 20px;
     display: flex; 
     justify-content: center; 
-    margin: 10px 0;
+    margin: 15px 0;
+    text-align: center;
 }
 
 .SingleTrans2 {
@@ -1734,11 +1782,21 @@ body.dark .btnPayment {
     padding: 10px 0;
 }
 
+.information {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #76D572;
+}
+
+
 .timing {
     font-size: 13px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    font-weight: 600;
 }
 
 #WRAP {
