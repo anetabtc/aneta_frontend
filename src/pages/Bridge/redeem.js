@@ -1,4 +1,4 @@
-const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInfo)
+const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInfo, anetaID)
 {
     // calling into the /mint endpoint in the backend
 
@@ -17,7 +17,8 @@ const redeem = function redeemFunction(price, btcAddress, nautilusAddress, txInf
             btc_wallet_addr: btcAddress,
             network: "testnet",
             wallet_addr: nautilusAddress.toString(),
-            tx_id: txInfo.toString()
+            tx_id: txInfo.toString(),
+            doc_id: anetaID.toString()
         }).toString()
     };
 

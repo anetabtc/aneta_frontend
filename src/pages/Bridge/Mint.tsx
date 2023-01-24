@@ -20,7 +20,7 @@ const db = getFirestore(app);
 
 /////////////////////////////////
 
-function Mint({eBTC, bridgeFee, nautilusaddress}) {
+function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     const [address, setAddress] = useState('');
     const [window, setWindow] = useState(true);
@@ -32,7 +32,6 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
     let first = useRef(false);
     const url = "https://api.pro.coinbase.com";
     const [btcTxId, setBTCTxId] = useState('');
-    const [anetaID, setAnetaID] = useState('');
 
     const [paymentWindow, setPaymentWindow] = useState(true)
 
@@ -49,8 +48,6 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                 btc_tx_id: btcTxId.toString(),
                 info: "Mint Order Paid"
             });
-
-            setAnetaID(docRef.id)
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -169,8 +166,6 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
 
     return (
         <div>
-            {console.log("window" + paymentWindow)}
-            {console.log("eBTC" + eBTC)}
             {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} anetaID={anetaID}/>}
         </div>
     )
