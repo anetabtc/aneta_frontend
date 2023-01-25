@@ -104,7 +104,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} btcAddress={btcAddress}/>
+            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} btcAddress={btcAddress} anetaID={anetaId}/>
         )
     } else if(conf === "error") {
         return(
@@ -159,20 +159,10 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
         setDisable(true)
         const result = await sendFeeFunction(bridgeFee, nautilusAddress)
         setTxInfo(result)
-        console.log("Tx ID: ", txInfo, "res: ", result)
-        result ? setConf("subm") : setConf("error")
+        result ? writeToDB(nautilusAddress, eBTC, result) : setConf("error")
     }
 
     function ConfirmationSubmission() {
-
-        /////////////////////
-        console.log("Writing to Firebase")
-        console.log("Tx ID:", txInfo)
-        // TODO Write to DB
-        useEffect(() => {
-            writeToDB(nautilusAddress, eBTC, txInfo)
-        })
-        /////////////////////////
 
         return (
             <div className="confSubmission">
@@ -188,26 +178,27 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     }
 
 
+    async function writeToDB(nautilusAddress, eBTC, txID) {
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                erg_address: nautilusAddress,
+                amount: eBTC,
+                datetime: new Date().toUTCString(),
+                erg_txid: txID,
+                info: "Mint Order Submitted"
+            });
+            setConf("subm")
+            setAnetaId(docRef.id)
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
 
-
-}
-
-async function writeToDB(nautilusAddress, eBTC, txID) {
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-            erg_address: nautilusAddress,
-            amount: eBTC,
-            datetime: new Date().getTime().toString(),
-            erg_txid: txID,
-            info: "Mint Order Submitted"
-        });
-        console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-        console.error("Error adding document: ", e);
     }
 
-
 }
+
+
 
 
 export default ConfirmationWindow;

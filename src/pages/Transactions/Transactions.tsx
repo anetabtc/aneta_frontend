@@ -22,7 +22,9 @@ function Transactions() {
     const [products, setProducts] = useState([]);
     const [address, setAddress] = useState('')
     const [idN, setId] = useState([]);
-    let txs = [{}]
+    const [getTxs, setGetTxs] = useState(true);
+    let txs = [{}];
+    let txs2 = [{}]
 
 
     useEffect(() => {
@@ -31,7 +33,10 @@ function Transactions() {
         }catch (e) {
             setAddress('')
         }
-        loadTx()
+        if(getTxs){
+            loadTx()
+            setGetTxs(false)
+        }
 
     });
 
@@ -49,6 +54,7 @@ function Transactions() {
                     "erg_txid": doc.data().erg_txid,
                     "info": doc.data().info,
                     "btc_tx_id": doc.data().btc_tx_id,
+                    "ebtc_mint_tx_id": doc.data().ebtc_mint_tx_id,
                     "erg_address": doc.data().erg_address
 
                 }
@@ -57,7 +63,6 @@ function Transactions() {
 
 
         setProducts(txs)
-
     }
 
     const [visible, SetVisible] = useState(true);
@@ -94,6 +99,7 @@ function Transactions() {
 
     function MintPage() {
         const bridge = 33
+        const br = 32
 
 
         return (
@@ -116,34 +122,30 @@ function Transactions() {
                 {
                     products.map((tx) => {
                             
-                            if ((tx.info === "Mint Order Submitted" || tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Successful") {
+                            if ((tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Success") {
 
 
                                 return <tr >
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1">{tx.amount} BTC<p
-                                        className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
+                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                     </td>
-                                    <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                    <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                        className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
                                     <td className="TD1"><p className="bord"><b className="boldPo">• Pending </b></p></td>
                                 </tr>
                             }
-                            if(tx.info === "Mint Order Successful" && tx.erg_address === address) {
+                            if(tx.info === "Mint Order Success" && tx.erg_address === address) {
                                 return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1">{tx.amount} BTC<p
-                                        className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p>
+                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                     </td>
-                                    <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : ""}</p></td>
-                                    <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                        className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -182,33 +184,27 @@ function Transactions() {
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
-                                    if ((tx.info === "Redeem Order Submitted" || tx.info === "Redeem Order Processing") && tx.erg_address === address) {
+                                    if (tx.info === "Redeem Order Processing" && tx.erg_address === address) {
 
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
-
-                                            <td className="TD1">{tx.amount} BTC<p
-                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p>
+                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                             </td>
-                                            <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
-                                            <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                                className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
                                             <td className="TD1"><p className="bord"><b className="boldPo">• Pending</b></p></td>
                                         </tr>
                                     }
-                                    if(tx.info === "Redeem Order Successful" && tx.erg_address === address) {
+                                    if(tx.info === "Redeem Order Success" && tx.erg_address === address) {
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
-
-                                            <td className="TD1">{tx.amount} BTC<p
-                                                className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p>
+                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                             </td>
-                                            <td className="TD1">{tx.amount} eBTC <p className="underline">{tx.btc_tx_id ? tx.btc_tx_id.substring(0, 7) + '-' + tx.btc_tx_id.substring(tx.btc_tx_id.length - 7, tx.btc_tx_id.length) : "No data"}</p></td>
-                                            <td className="TD1">{Math.round(bridge * tx.amount * 10000) / 10000} ERG <p
-                                                className="underline"> {tx.erg_txid ? tx.erg_txid.substring(0, 7) + '-' + tx.erg_txid.substring(tx.erg_txid.length - 7, tx.erg_txid.length) : ""}</p>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
