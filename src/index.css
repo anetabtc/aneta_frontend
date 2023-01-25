@@ -937,7 +937,8 @@ body.dark .feedback-page__content-btn {
     padding: 10px 30px;
     text-align: left;
     position: absolute;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin-right: 100px;
     margin-bottom: 50px;
 }
@@ -1227,7 +1228,7 @@ body.dark .menu_dash > div {
     border-radius: 20px;
     width: 600px;
     display: table;
-    margin-top: 170px;
+    margin-top: 120px;
     margin-left: 500px;
     text-align: center; 
     position: absolute;
@@ -1331,8 +1332,12 @@ body.dark .btcInputAddress {
     border: 2px solid #2C83BC;
     border-radius: 10px;
     font-size: 17.5px;
-    margin: auto;
-    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+input.btctxid:focus{
+    border: 2px solid #2C83BC;
+    outline: none;
 }
 
 body.dark .btctxid::placeholder{
@@ -1762,6 +1767,7 @@ body.dark .btnPayment {
     width: 65%;
     font-size: 16.5px;
     margin: auto;
+    margin-bottom: 15px;
 
 }
 
@@ -1796,6 +1802,71 @@ body.dark .btnPayment {
     justify-content: center;
     font-weight: 600;
 }
+
+#back{
+    position: absolute;
+    left: 20px;
+}
+#back:hover{
+    cursor: pointer;
+}
+
+#back img{
+    /*height: 30px;*/
+}
+
+#domTxId.popup {
+    top: 280px
+}
+
+#domTxId.popup .menuPopup{
+    background-color: #FFFFFF; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+#domTxId.popup .menuPopup p{
+    width: 70%;  
+    text-align: center;
+}
+
+#domTxId.popup .menuPopup .title{
+    width: 100%;  
+    text-align: left;
+    margin-left: 10%;
+    font-size: 14px;
+}
+
+body.dark #domTxId.popup .menuPopup .title{
+    color: #FFFFFF;
+}
+
+body.dark #domTxId.popup .menuPopup{
+    background-color: #000000;
+}
+
+.inputTx {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark .inputTx input{
+    color: #ffffff;
+}
+
+.confirmation{
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    top: 195px;
+    left: 120px;
+}
+
 
 #WRAP {
     height: 560px;

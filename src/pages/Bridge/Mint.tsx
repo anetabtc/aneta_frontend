@@ -57,6 +57,8 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     }
 
+
+
     const getVaultAddress = () => {
 
         fetch("http://localhost:5004/getVaultAddress")
@@ -160,9 +162,9 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-    const handleChangeBtcTxId = event => {
+   /* const handleChangeBtcTxId = event => {
         setBTCTxId(event.target.value);
-    }
+    } */
 
     return (
         <div>
@@ -175,17 +177,42 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     function PaymentInfo() {
 
+        const [domTxId, setDomTxId] = useState("");
+        const [copy, setCopy] = useState("");
+        const [confirmation, setConfirmation] = useState("");
 
-        const [copy, setCopy] = useState(false)
+
+
+        const btnConfirmation = () => {
+            const inputBTCTx = document.querySelector(".btctxid").value;
+            setBTCTxId(inputBTCTx);
+            setConfirmation("false")   
+        }
+        useEffect(()=>{
+            if(btcTxId == ""){
+                
+            }else{
+                console.log("this is id" + btcTxId)
+                navigateToBTCDeposit() 
+            }
+        })  
 
         function btnCopy(){
             const btnCopy = document.querySelector(".labelAdd").childNodes[0]
                  navigator.clipboard.writeText(btnCopy.innerHTML)
-                 setCopy(true);
+                 setCopy("true");
                 setTimeout(()=>{
-                    setCopy(false);
+                    setCopy("false");
                 },1500);
-                }
+        }
+
+        function btnDomTxIdOn(){
+            setDomTxId("true")
+            setConfirmation("true")
+        }
+        function btnDomTxIdOff(){
+            setDomTxId("false")
+        }
 
 
 
@@ -202,11 +229,10 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                         <label className="SingleTrans2">In a single transaction to: </label>
                         <div type="text" className="addressBTC">
                             <p className="labelAdd" onClick={btnCopy}>
-                                {/* {address} */}
-                                <p>tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe</p>
+                                <p>{address}</p>
                                 <img id="copy" className="sun__mode" src={require('../img/copy.png').default} alt="copy"/>
                                 <img id="copy" className="dark__mode" src={require('../img/copy_dark.png').default} alt="copy"/>
-                                {copy ? <p id="copyPop">Copied</p>: ""}
+                                {copy === "true" ? <p id="copyPop">Copied</p>: ""}
                             </p>
                         </div>
                         <div className="timing">
@@ -221,28 +247,47 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                         <div className='qrCode'>
                             <QRCode
                                 id="qrCode"
-                                // value={address}
-                                value="tb1q03i4ngjso93ld8ehtksnf5mndlds8rndnmqoe"
+                                value={address}
                                 size={120}
                                 level={"L"}
                                 includeMargin={false}
                             />
                         </div>
                         <div className="note">
-                            <span><b>Next: Enter the BTC Transaction ID from the BTC deposit transaction you just submitted.</b></span>
+                            <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>
                         </div>
-
-
-                        <input type="text" className="btctxid" size="30" placeholder="BTC Transaction ID (from Moonshine Wallet)"  value={btcTxId} onChange={handleChangeBtcTxId}
-                               required/><br/>
-                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I completed these steps.</button>
-                        {/*<button type="button" id="confButton1"  onClick={refreshPage}><b>Continue</b></button> */}
+                        
+                        <button className="btnPayment" onClick={btnDomTxIdOn}>I have sent the deposit</button>
+                        
+                        
                     </div>
                 </div>
+                {domTxId === "true" ?
+                    <div className="mainPopup">
+                        <div id="domTxId" className="popup">
+                            <div className="divLabel">
+                                <div id="back" onClick={btnDomTxIdOff}><img src={require('../img/arrow.png').default} alt="arrow" />
+                                </div>
+                                <label className="labelMain">Enter BTC TX ID</label>
+                            </div>
+                            <div className="menuPopup">
+                                <p>Enter the BTC Transaction ID from the BTC deposit transaction you just submitted</p>
+                                <p className="title">BTC Transaction ID</p>
+                                <div className="inputTx">
+                                    <input type="text" className="btctxid" size="30" placeholder="BTC Transaction ID (from Moonshine Wallet)"  /* value={btcTxId} onChange={handleChangeBtcTxId} */ required/>
+                                    <button className="btnPayment" onClick={btnConfirmation} type="submit">Continue</button>
+                                    {confirmation != "false"?"":<p className="confirmation">Please! Entrer the valid BTC Transaction ID</p>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>: ""}
             </div>
         )
     }
+
+
 }
+
 
 
 export default Mint
