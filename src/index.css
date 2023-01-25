@@ -1016,6 +1016,15 @@ body.dark .mainmenu_transaction {
     width: 18%;
 }
 
+
+.TD1 a{
+    color: #000000;
+}
+
+body.dark .TD1 a{
+    color: #FFFFFF;
+}
+
 .underline {
     text-decoration: underline;
 }
