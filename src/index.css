@@ -943,6 +943,13 @@ body.dark .feedback-page__content-btn {
     margin-bottom: 50px;
 }
 
+.mainmenu_transaction a:visited {
+    color: white; /* Цвет посещенных ссылок */
+}
+.mainmenu_transaction a:active {
+    color: white; /* Цвет активных ссылок */
+}
+
 @media (min-width: 1640px) and (orientation: landscape){
 
     .mainmenu_transaction{
