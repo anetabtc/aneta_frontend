@@ -827,7 +827,7 @@ body.dark #kya .confWindow {
 }
 
 #kya.confContent{
-    margin-top: 70px;
+    margin-top: 110px;
     margin-left: 450px;
 }
 
@@ -865,6 +865,7 @@ body.dark #kya .confWindow {
 
 .kya div {
     margin: 15px 0;
+    font-size: 14px;
 }
 
 .kya h2{
