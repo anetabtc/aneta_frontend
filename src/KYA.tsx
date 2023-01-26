@@ -35,12 +35,12 @@ function KYA() {
                             <h2>Know Your Assumptions (KYA)<div id="close"><img src={close} alt="X" onClick={acceptFunction} />
                             </div></h2>
                             <p>This website (app.anetabtc.io) provides the means for users to interact with the anetaBTC protocol. <br/>The anetaBTC protocol operates as a financial protocol built on top of the Ergo blockchain, operated in large part by smart contracts.</p>
-                            <p>Notice:<br/>app.anetabtc.io is currently being operated on the Ergo Mainnet. As a precautionary measure, it is strongly recommended that users utilize a new Ergo wallet when interacting with app.anetabtc.io, as the safety and security of the wallet dApp connection is not fully guaranteed during this testing phase.</p>
+                            <p><b>Notice:</b><br/>app.anetabtc.io is currently being operated on the Ergo Mainnet. As a precautionary measure, it is strongly recommended that users utilize a new Ergo wallet when interacting with app.anetabtc.io, as the safety and security of the wallet dApp connection is not fully guaranteed during this testing phase.</p>
                             <p><b>By Accepting these KYA, you agree that:</b>
                                 <ol>
                                     <li>You will use app.anetabtc.io at your own risk;</li>
                                     <li>Only YOU are responsible for your own assets;</li>
-                                    <li>The anetaBTC protocol and its smart contracts meet your expectations</li>
+                                    <li>The anetaBTC protocol and its smart contracts meet your expectations.</li>
                                 </ol>
                             </p>
                             <p><b>Notice that:</b>
