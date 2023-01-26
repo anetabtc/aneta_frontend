@@ -58,7 +58,7 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
                 info: "Redeem Order Submitted"
             });
             redeem(eBTC, btcAddress, nautilusAddress, txInfo, docRef.id)
-            console.log("Document written with ID: ", docRef.id);
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
