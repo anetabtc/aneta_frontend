@@ -48,7 +48,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                 btc_tx_id: btcTxId.toString(),
                 info: "Mint Order Paid"
             });
-            console.log("Document written with ID: ", docRef.id);
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
