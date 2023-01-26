@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
+import KYA from "../KYA";
 
 
 function Navbar() {
@@ -76,6 +77,7 @@ function Navbar() {
     // }, [])
     return (
         <div>
+            <KYA/>
             <div id="navbar_menu">
                 <div id="imgLogonav">
                     {dark ? <img src={require('./img/logo_dark.png').default} alt="aneta" className="imgLogo"/> : <img src={require('./img/logo.png').default} alt="aneta" className="imgLogo"/>}

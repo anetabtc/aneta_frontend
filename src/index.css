@@ -820,6 +820,85 @@ body.dark .btnM:hover {
     margin-right: 30%;
 }
 
+/* KYA */
+
+body.dark #kya .confWindow {
+    background: #141414;
+}
+
+#kya.confContent{
+    margin-top: 110px;
+    margin-left: 450px;
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #kya.confContent{
+        margin-left: 600px;
+    }
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    #kya.confContent{
+        margin-left: calc((100vw - 2000px)/2 + 700px);
+    }
+}
+
+#kya .confWindow{
+    width: 700px;
+}
+
+.kya{
+    text-align: justify;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 22px;
+    padding: 0 30px;
+}
+
+.kya #close{
+    right: 30px;
+}
+
+.kya div {
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+/* .kya h2{
+    font-weight: 400;
+} */
+
+.kya ol{
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.kya ul{
+    margin: 0;
+    margin-left: 20px;
+}
+
+.kya p:last-child{
+    color: #FF8000;
+}
+
+body.dark .kya p:last-child{
+    color: #00FF29;
+}
+
+.kya #confButton1{
+    width: 640px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+
+
 /* BODY */
 
 .mainmenu {
