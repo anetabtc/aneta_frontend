@@ -181,16 +181,25 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
         const [copy, setCopy] = useState("");
         const [confirmation, setConfirmation] = useState("");
 
+        
 
+        function check(text){
+            let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
+            return (regex.test(text));
+        }
 
         const btnConfirmation = () => {
             const inputBTCTx = document.querySelector(".btctxid").value;
-            setBTCTxId(inputBTCTx);
-            setConfirmation("false")   
+            if(check(inputBTCTx)){
+                setBTCTxId(inputBTCTx);
+            }else{
+                setConfirmation("false") 
+            }
+              
         }
         useEffect(()=>{
-            if(btcTxId == ""){
-                
+            if(btcTxId==""){
+
             }else{
                 console.log("this is id" + btcTxId)
                 navigateToBTCDeposit() 
