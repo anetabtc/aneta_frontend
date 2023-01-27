@@ -184,7 +184,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
         
 
         function check(text){
-            let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
+            let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{20,100}$/;
             return (regex.test(text));
         }
 
