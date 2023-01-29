@@ -34,6 +34,8 @@ function Bridge() {
     const [checkSatoshi, setCheckSatoshi] = useState(true)
     const [multipleSatoshiRedeem, setMultipleSatoshiRedeem] = useState(true)
     const [checkSatoshiRedeem, setCheckSatoshiRedeem] = useState(true)
+    const [checkMin, setCheckMin] = useState(true)
+    const [checkMinRedeem, setCheckMinRedeem] = useState(true)
 
     const refreshPage = () => {
         window.location.reload();
@@ -41,7 +43,8 @@ function Bridge() {
             setMultipleSatoshi(true);
             setMultipleSatoshiRedeem(true);
             setCheckSatoshi(true);
-            setCheckSatoshiRedeem(true)
+            setCheckSatoshiRedeem(true);
+            setCheckMinRedeem(true)
         },1000);
     }
 
@@ -177,17 +180,38 @@ function Bridge() {
         )
     }
 
+    function MinAmountError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                        You can mint and redeem a minimum of 0.0006 BTC
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             {multipleSatoshi ? '' : <SatoshiError/>}
+            {checkMin ? '' : <MinAmountError/> }
             
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup && multipleSatoshi ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
+            {popup && multipleSatoshi && checkMin ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
                 // btcAddress={btcAddressMint}
             /> : ""}
             {multipleSatoshiRedeem ? '' : <SatoshiError/>}
-            {popupr && multipleSatoshiRedeem ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
+            {checkMinRedeem ? '' : <MinAmountError/> }
+            {popupr && multipleSatoshiRedeem && checkMinRedeem ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -240,7 +264,12 @@ function Bridge() {
             let integer = Math.trunc(checkDecimals)/checkDecimals;
             if(integer<1){
                 setCheckSatoshi(false)
-            }else setCheckSatoshi(true)      
+            } 
+            
+            let minAmount = parseFloat(anetaBTCAmount)
+            if(minAmount<0.0006){
+                setCheckMin(false)
+            }
 
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
@@ -354,7 +383,12 @@ function Bridge() {
             let integer = Math.trunc(checkDecimals)/checkDecimals;
             if(integer<1){
                 setCheckSatoshiRedeem(false)
-            }   
+            }
+
+            let minAmount = parseFloat(BTCAmount)
+            if(minAmount<0.0006){
+                setCheckMinRedeem(false)
+            }
 
             setBtcNetworkFeeG(btcNetworkFee)
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
