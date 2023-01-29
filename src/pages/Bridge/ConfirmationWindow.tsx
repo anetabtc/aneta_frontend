@@ -57,7 +57,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     function Conf() {
     
-        const explorerUrl = `https://explorer.ergoplatform.com/en/transactions/${txInfo}`
+        const explorerUrl = `https://ergo-explorer.anetabtc.io/transactions/${txInfo}`
 
         function closeDiv(){
             const info = document.getElementById("txInfo");
