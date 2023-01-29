@@ -30,9 +30,21 @@ function Bridge() {
 
     const [addressError, setAddressWalletError] = useState(false);
 
+    const [multipleSatoshi, setMultipleSatoshi] = useState(true)
+    const [checkSatoshi, setCheckSatoshi] = useState(true)
+    const [multipleSatoshiRedeem, setMultipleSatoshiRedeem] = useState(true)
+    const [checkSatoshiRedeem, setCheckSatoshiRedeem] = useState(true)
+
     const refreshPage = () => {
         window.location.reload();
+        setTimeout(()=>{
+            setMultipleSatoshi(true);
+            setMultipleSatoshiRedeem(true);
+            setCheckSatoshi(true);
+            setCheckSatoshiRedeem(true)
+        },1000);
     }
+
 
 
     useEffect(()=>{
@@ -146,14 +158,36 @@ function Bridge() {
         )
     }
 
+    function SatoshiError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                        Please, enter a multiple number of satoshi (Maximum 8 decimal places).
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
+            {multipleSatoshi ? '' : <SatoshiError/>}
+            
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
+            {popup && multipleSatoshi ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
                 // btcAddress={btcAddressMint}
             /> : ""}
-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
+            {multipleSatoshiRedeem ? '' : <SatoshiError/>}
+            {popupr && multipleSatoshiRedeem ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -176,6 +210,7 @@ function Bridge() {
         const [anetaBTCAmount, setAnetaBTCAmount] = useState('0');
         const [bridgeFee, setBridgeFee] = useState('0');
         const [bridgeFeeUsd, setBridgeFeeUsd] = useState('0');
+        
         // const [btcAddress, setBtcAddress] = useState('');
 
 
@@ -191,11 +226,21 @@ function Bridge() {
                 setAnetaBTCAmount('0');
             }
             setBridgeFee(event.target.value * 33);
-            setBridgeFeeUsd(event.target.value * 33 * ergUsd);
+            setBridgeFeeUsd(event.target.value * 33 * ergUsd);          
         };
+
+        useEffect(()=>{
+            checkSatoshi ? '' : setMultipleSatoshi(false);
+        })
 
 
         async function handleClickOpen1() {
+
+            let checkDecimals = Math.round(100000 * (parseFloat(anetaBTCAmount)*100000000)) / 100000;
+            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            if(integer<1){
+                setCheckSatoshi(false)
+            }else setCheckSatoshi(true)      
 
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
@@ -299,7 +344,18 @@ function Bridge() {
 
         };
 
+        useEffect(()=>{
+            checkSatoshiRedeem ? '' : setMultipleSatoshiRedeem(false)
+        })
+
         async function handleClickOpenRedeem1() {
+
+            let checkDecimals = Math.round(100000 * (parseFloat(BTCAmount)*100000000)) / 100000; 
+            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            if(integer<1){
+                setCheckSatoshiRedeem(false)
+            }   
+
             setBtcNetworkFeeG(btcNetworkFee)
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
             setBtcAddressG(btcAddress)
