@@ -1727,7 +1727,6 @@ ul {
 
 .mainPopup {
     width: 100%;
-    /* height: 1000px; */
     height: 100vh;
     min-height: 1000px;
     position: absolute;
@@ -1740,13 +1739,6 @@ body.dark .mainPopup {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* @media (min-width: 1640px) and (orientation: landscape){
-
-    .mainPopup{
-        height: 100vh;
-        min-height: 1000px;
-    }
-} */
 
 @media (min-width: 2000px) and (orientation: landscape){
 
