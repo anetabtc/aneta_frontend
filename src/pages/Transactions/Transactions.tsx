@@ -100,7 +100,7 @@ function Transactions() {
     function MintPage() {
         const bridge = 33
         const br = 32
-        const [sortedField, setSortedField] = React.useState(null);
+
 
         return (
             <div className="mainmenu_transaction">
@@ -139,7 +139,7 @@ function Transactions() {
                                 </tr>
                             }
                             if(tx.info === "Mint Order Success" && tx.erg_address === address) {
-                                return <tr key={tx.datetime}>
+                                return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
                                     <td className="TD1"><a target="_blank" href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
@@ -153,7 +153,7 @@ function Transactions() {
                                 </tr>
                             }
                         if(tx.info === "Mint Order Failed" && tx.erg_address === address) {
-                            return <tr key={tx.datetime}>
+                            return <tr>
                                 <td className="TD1" >{tx.datetime}</td>
 
                                 <td className="TD1"><a target="_blank" href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
