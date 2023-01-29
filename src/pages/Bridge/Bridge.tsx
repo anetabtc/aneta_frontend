@@ -190,7 +190,7 @@ function Bridge() {
                             Error
                         </div>
                         <div className="error">
-                        You can mint and redeem a minimum of 0.0006 BTC
+                        You can mint and redeem a minimum of 0.0006 BTC.
                         </div>
                         <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
                     </div>

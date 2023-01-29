@@ -204,10 +204,10 @@ function Transactions() {
                                             return <tr>
                                                 <td className="TD1">{tx.datetime}</td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
                                                 </td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                                 </td>
 
                                                 <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -219,10 +219,10 @@ function Transactions() {
                                             return <tr>
                                                 <td className="TD1">{tx.datetime}</td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
                                                 </td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                                 </td>
 
                                                 <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -234,10 +234,10 @@ function Transactions() {
                                             return <tr>
                                                 <td className="TD1">{tx.datetime}</td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
                                                 </td>
                                                 <td className="TD1"><a target="_blank"
-                                                                       href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                                 </td>
 
                                                 <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
