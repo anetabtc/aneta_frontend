@@ -184,7 +184,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
         
 
         function check(text){
-            let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
+            let regex = /^(?=\w*\d)(?=\w*[a-z])\S{20,100}$/;
             return (regex.test(text));
         }
 
@@ -247,12 +247,13 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                         <div className="timing">
                             <p/><CountdownTimer targetDate={dateTimeAfterThreeDays}></CountdownTimer><p/>
                         </div>
-                        <div className="information"><b>
-                            Add the ERG address used to pay the bridge fee in the metadata of this BTC transaction in your Moonshine Wallet. This ERG address will receive eBTC.</b>
-                        </div>
                         <div className="attention">
-                            <span><b className="warning">Attention:</b> The ERG address you add to the metadata of your BTC deposit <b>must be the same</b> as the ERG address you used to pay the bridge fee</span>
+                            <span><b className="warning">Attention:</b></span>
                         </div>
+                        <div className="information">
+                            <b>Add your ERG address</b> in the “Message (Optional)” section in your Moonshine Wallet before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG address into the message section of this transaction, you will not receive eBTC.  
+                        </div>
+                        
                         <div className='qrCode'>
                             <QRCode
                                 id="qrCode"

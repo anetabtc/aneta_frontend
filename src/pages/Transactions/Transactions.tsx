@@ -125,13 +125,13 @@ function Transactions() {
                             if ((tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing") && tx.erg_address === address && tx.info != "Mint Order Success") {
 
 
-                                return <tr >
+                                return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
+                                    <td className="TD1"><a target="_blank" href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                     </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                    <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                    <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -142,16 +142,30 @@ function Transactions() {
                                 return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
+                                    <td className="TD1"><a target="_blank" href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
                                     </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                    <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                    <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
                                     <td className="TD1"><p className="bord"><b className="boldPo1">• Complete</b></p></td>
                                 </tr>
                             }
+                        if(tx.info === "Mint Order Failed" && tx.erg_address === address) {
+                            return <tr>
+                                <td className="TD1" >{tx.datetime}</td>
+
+                                <td className="TD1"><a target="_blank" href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
+                                </td>
+                                <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
+                                <td className="TD1"><a target="_blank" href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                </td>
+
+                                <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                <td className="TD1"><p className="bord"><b className="boldPo1">• Failed</b></p></td>
+                            </tr>
+                        }
                             else {
                                 return null
                             }
@@ -176,7 +190,7 @@ function Transactions() {
                         <tr border="0">
                             <td className="TD1">Created at</td>
                             <td className="TD1">Transaction (BTC)</td>
-                            <td className="TD1">Transaction (eBTC)</td>
+
                             <td className="TD1">Transaction (Bridge Fee)</td>
                             <td className="TD1">anetaBTC ID</td>
                             <td className="TD1">Confirmation Status</td>
@@ -184,39 +198,60 @@ function Transactions() {
                         <hr className="menuHR2"/>
                         {
                             products.map((tx) => {
-                                    if (tx.info === "Redeem Order Processing" && tx.erg_address === address) {
 
-                                        return <tr>
-                                            <td className="TD1" >{tx.datetime}</td>
-                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                            </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
-                                            </td>
+                                        if (tx.info === "Redeem Order Processing" && tx.erg_address === address) {
 
-                                            <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                            <td className="TD1"><p className="bord"><b className="boldPo">• Pending</b></p></td>
-                                        </tr>
-                                    }
-                                    if(tx.info === "Redeem Order Success" && tx.erg_address === address) {
-                                        return <tr>
-                                            <td className="TD1" >{tx.datetime}</td>
-                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                            </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
-                                            </td>
+                                            return <tr>
+                                                <td className="TD1">{tx.datetime}</td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                </td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                </td>
 
-                                            <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
-                                            <td className="TD1"><p className="bord"><b className="boldPo1">• Complete</b></p></td>
-                                        </tr>
-                                    }
-                                    else {
-                                        return null
-                                    }
+                                                <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                                <td className="TD1"><p className="bord"><b className="boldPo">• Pending</b>
+                                                </p></td>
+                                            </tr>
+                                        }
+                                        if (tx.info === "Redeem Order Success" && tx.erg_address === address) {
+                                            return <tr>
+                                                <td className="TD1">{tx.datetime}</td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                </td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                </td>
+
+                                                <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                                <td className="TD1"><p className="bord"><b className="boldPo1">•
+                                                    Complete</b></p></td>
+                                            </tr>
+                                        }
+                                        if (tx.info === "Redeem Order Failed" && tx.erg_address === address) {
+                                            return <tr>
+                                                <td className="TD1">{tx.datetime}</td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://tbtc.bitaps.com/" + tx.btc_tx_id}>{tx.amount} BTC </a>
+                                                </td>
+                                                <td className="TD1"><a target="_blank"
+                                                href={"https://explorer.ergoplatform.com/en/transactions/" + tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                                </td>
+
+                                                <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
+                                                <td className="TD1"><p className="bord"><b className="boldPo1">• Failed</b>
+                                                </p></td>
+                                            </tr>
+                                        }
+                                        else {
+                                            return null
+                                        }
                                 }
                             )
                         }
+
                     </table>
 
                 </div>

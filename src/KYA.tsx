@@ -18,7 +18,6 @@ function KYA() {
     useEffect(()=>{
         let connect = JSON.parse(localStorage.getItem('address'));
         connect == null ? setConnection(false) : setConnection(true) 
-        connection ? console.log("Esta conectado"):console.log("NO Esta conectado");
     })
 
     const acceptFunction = () => {
