@@ -251,7 +251,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                             <span><b className="warning">Attention:</b></span>
                         </div>
                         <div className="information">
-                            Add your ERG address <b>used to pay the bridge fee</b> in the “Message (Optional)” section in your Moonshine Wallet for your deposit transaction. This ERG address will receive eBTC. If you do not add your ERG address into the message section of this transaction, you will not receive eBTC.  
+                            <b>Add your ERG address</b> in the “Message (Optional)” section in your Moonshine Wallet before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG address into the message section of this transaction, you will not receive eBTC.  
                         </div>
                         
                         <div className='qrCode'>

@@ -1905,6 +1905,11 @@ body.dark .btnPayment {
     text-align: center;
 }
 
+.information b{
+    color: #F7931A;
+    font-weight: 400px;
+}
+
 
 .timing {
     font-size: 13px;
