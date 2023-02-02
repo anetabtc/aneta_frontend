@@ -32,7 +32,7 @@ const sendPaymentFunction = async function sendTransaction1(price, btcAddress, n
                     {tokenId: "60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690", amount: tokenAmountToSend}
                 ])
                 .setAdditionalRegisters({
-                    R4: SConstant(SColl(SByte, Buffer.from(btcAddress, "utf-8"))).toString(),
+                    R4: SConstant(SColl(SByte, Buffer.from(btcAddress, "utf-8"))),
                 })
             )
             .sendChangeTo(nautilusAddress).payFee(fee)

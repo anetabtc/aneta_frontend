@@ -192,11 +192,6 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
             }
               
         }
-        useEffect(()=>{
-
-                navigateToBTCDeposit() 
-
-        })  
 
         function btnCopy(){
             const btnCopy = document.querySelector(".labelAdd").childNodes[0]
