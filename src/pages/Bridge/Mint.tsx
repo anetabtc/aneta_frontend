@@ -46,7 +46,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                 erg_address: nautilusaddress,
                 amount: eBTC,
                 datetime: new Date().toUTCString(),
-                btc_tx_id: btcTxId.toString(),
+
                 info: "Mint Order Paid"
             });
 
@@ -193,12 +193,9 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
               
         }
         useEffect(()=>{
-            if(btcTxId==""){
 
-            }else{
-                console.log("this is id" + btcTxId)
                 navigateToBTCDeposit() 
-            }
+
         })  
 
         function btnCopy(){
@@ -261,30 +258,12 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>
                         </div>
                         
-                        <button className="btnPayment" onClick={btnDomTxIdOn}>I have sent the deposit</button>
+                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I have sent the deposit</button>
                         
                         
                     </div>
                 </div>
-                {domTxId === "true" ?
-                    <div className="mainPopup">
-                        <div id="domTxId" className="popup">
-                            <div className="divLabel">
-                                <div id="back" onClick={btnDomTxIdOff}><img src={require('../img/arrow.png').default} alt="arrow" />
-                                </div>
-                                <label className="labelMain">Enter BTC TX ID</label>
-                            </div>
-                            <div className="menuPopup">
-                                <p>Enter the BTC Transaction ID from the BTC deposit transaction you just submitted</p>
-                                <p className="title">BTC Transaction ID</p>
-                                <div className="inputTx">
-                                    <input type="text" className="btctxid" size="30" placeholder="BTC Transaction ID (from Moonshine Wallet)"  /* value={btcTxId} onChange={handleChangeBtcTxId} */ required/>
-                                    <button className="btnPayment" onClick={btnConfirmation} type="submit">Continue</button>
-                                    {confirmation != "false"?"":<p className="confirmation">Please! Entrer the valid BTC Transaction ID</p>}
-                                </div>
-                            </div>
-                        </div>
-                    </div>: ""}
+
             </div>
         )
     }

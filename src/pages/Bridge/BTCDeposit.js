@@ -25,7 +25,6 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
             setContDisable(false)
         }, 20000);
     }, []);
-    
 
     const refreshPage = () => {
         window.location.reload();
