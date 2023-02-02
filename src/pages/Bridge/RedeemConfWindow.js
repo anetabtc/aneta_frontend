@@ -48,7 +48,7 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
     async function writeToDB(nautilusAddress, btcAddress, eBTC, txInfo) {
         console.log("txID", txInfo)
         try {
-            const docRef = await addDoc(collection(db, "users_test"), {
+            const docRef = await addDoc(collection(db, "users"), {
                 erg_address: nautilusAddress,
                 btc_address: btcAddress,
                 amount: eBTC,
