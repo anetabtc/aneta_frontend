@@ -1,14 +1,14 @@
 import {useState} from "react";
-import {OutputBuilder, TransactionBuilder} from "@fleet-sdk/core";
-import redeem from "./redeem";
-import getReceiverAddress from "./getReceiverAddress";
+import {OutputBuilder, SConstant, SColl, TransactionBuilder, SByte, SLong} from "@fleet-sdk/core";
 
 const DEFAULT_EXPLORER_URL = "https://api.ergoplatform.com";
+
+const VAULT_ERG_WALLET_ADDRESS = "9hp4qZYXu9UbMZbiGkZ185HtZeqAN5DN2siyzGB8V5ZM39GZfRq"
 
 const sendPaymentFunction = async function sendTransaction1(price, btcAddress, nautilusAddress) {
 
     let result = ''
-    let receiverAddress = await getReceiverAddress()
+    let receiverAddress = VAULT_ERG_WALLET_ADDRESS
     let currentHeight = await getch();
     console.log(currentHeight)
     let amountCalculator = price * 33 * 1000000000;
@@ -31,6 +31,9 @@ const sendPaymentFunction = async function sendTransaction1(price, btcAddress, n
                 .addTokens([
                     {tokenId: "60da81069ae38c78bda38a738abcfb6c31b58d2269b25db596f5783b19f77690", amount: tokenAmountToSend}
                 ])
+                .setAdditionalRegisters({
+                    R4: SConstant(SColl(SByte, Buffer.from(btcAddress, "utf-8"))).toString(),
+                })
             )
             .sendChangeTo(nautilusAddress).payFee(fee)
             .build("EIP-12");

@@ -2,7 +2,6 @@ import {useState} from "react";
 import CheckMark from "./CheckMark";
 import React from 'react';
 import sendPaymentFunction from "./sendPayment";
-import redeem from "./redeem";
 import ErrorPayment from "./ErrorPayment";
 import RedeemConfWindow from "./RedeemConfWindow";
 

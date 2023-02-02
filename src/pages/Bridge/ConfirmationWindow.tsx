@@ -180,7 +180,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     async function writeToDB(nautilusAddress, eBTC, txID) {
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            const docRef = await addDoc(collection(db, "users_test"), {
                 erg_address: nautilusAddress,
                 amount: eBTC,
                 datetime: new Date().toUTCString(),
