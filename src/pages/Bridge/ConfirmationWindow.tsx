@@ -104,7 +104,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} btcAddress={btcAddress} anetaID={anetaId}/>
+            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} anetaID={anetaId}/>
         )
     } else if(conf === "error") {
         return(

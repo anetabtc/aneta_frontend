@@ -29,7 +29,6 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
 
     const mint = () => {
 
-        console.log(btcTxID, "BTC Tx Id")
         console.log(anetaID, "aneta Id")
         // calling into the /mint endpoint in the backend
         const requestOptions = {
@@ -40,7 +39,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
             },
             body: new URLSearchParams({
                 amount: eBTC.toString(),
-                btc_txId: btcTxID.toString(),
+
                 network: "testnet",
                 wallet_addr: nautilusaddress.toString(),
                 doc_id: anetaID.toString()
