@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import redeem from "./redeem";
 
 //////////////////////////////
 import {initializeApp} from "firebase/app";
@@ -49,7 +48,7 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
     async function writeToDB(nautilusAddress, btcAddress, eBTC, txInfo) {
         console.log("txID", txInfo)
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            const docRef = await addDoc(collection(db, "users_test"), {
                 erg_address: nautilusAddress,
                 btc_address: btcAddress,
                 amount: eBTC,
@@ -57,7 +56,6 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
                 erg_txid: txInfo,
                 info: "Redeem Order Submitted"
             });
-            redeem(eBTC, btcAddress, nautilusAddress, txInfo, docRef.id)
 
         } catch (e) {
             console.error("Error adding document: ", e);

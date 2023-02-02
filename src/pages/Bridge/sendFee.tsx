@@ -1,13 +1,13 @@
 import {useState} from "react";
 import {OutputBuilder, TransactionBuilder} from "@fleet-sdk/core";
-import redeem from "./redeem";
-import getReceiverAddress from "./getReceiverAddress";
 import getCurrentHeight from "./getCurrentHeight";
 const DEFAULT_EXPLORER_URL = "https://api.ergoplatform.com";
 
+const VAULT_ERG_WALLET_ADDRESS = "9hp4qZYXu9UbMZbiGkZ185HtZeqAN5DN2siyzGB8V5ZM39GZfRq"
+
 const sendFeeFunction = async function sendFee( erg, nautilusAddress) {
 
-    let receiverAddress = await getReceiverAddress();
+    let receiverAddress = VAULT_ERG_WALLET_ADDRESS;
     console.log("here", receiverAddress)
     let result = ''
     try{

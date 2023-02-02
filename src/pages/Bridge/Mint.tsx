@@ -19,6 +19,7 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 /////////////////////////////////
+const VAULT_BTC_WALLET_ADDRESS = "n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6"
 
 function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
@@ -60,13 +61,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
 
     const getVaultAddress = () => {
-
-        fetch("http://localhost:5004/getVaultAddress")
-            .then(res1 => res1.json())
-            .then((vaultAddress) => {
-                console.log("Vault address: " + JSON.stringify(vaultAddress))
-                setAddress(vaultAddress.address)
-            })
+        setAddress(VAULT_BTC_WALLET_ADDRESS)
     }
 
 
