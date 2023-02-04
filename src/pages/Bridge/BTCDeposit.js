@@ -3,9 +3,7 @@ import React from 'react';
 import {useEffect, useRef, useState} from "react";
 
 
-function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) { 
-
-    const [contDisable, setContDisable] = useState(true)
+function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
 
 
     let data = {
@@ -20,11 +18,6 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
 
 
 
-    useEffect(() => {
-        setTimeout(function() {
-            setContDisable(false)
-        }, 20000);
-    }, []);
 
     const refreshPage = () => {
         window.location.reload();
@@ -45,7 +38,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress, btcTxID, anetaID}) {
                         <div>eBTC will arrive in your wallet shortly.</div>
                         <div>Transactions can take around 10 minutes to process.</div>
                         <CheckMark/>
-                        <button type="button" id="confButton1" disabled={contDisable} className="confWRS" onClick={refreshPage}><b>Continue</b></button>
+                        <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
                     </div>
                         
                     </div>
