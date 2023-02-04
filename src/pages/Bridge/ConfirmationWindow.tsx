@@ -21,16 +21,13 @@ const db = getFirestore(app);
 /////////////////////////////////
 
 
-
 function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
 
     const [conf, setConf] = useState("info");
-    const [txInfo, setTxInfo] = useState('');
-    const [disable, setDisable] = useState(false)
-    const [anetaId, setAnetaId] = useState('')
+    const [disable, setDisable] = useState(false);
 
 
     const refreshPage = () => {
@@ -56,40 +53,13 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     }
 
     function Conf() {
-    
-        const explorerUrl = `https://explorer.ergoplatform.com/en/addresses/${txInfo}`
-
-        function closeDiv(){
-            const info = document.getElementById("txInfo");
-            const father = info.parentNode;
-            father.removeChild(info);
-        }
 
         if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>
                 )
-            } else if (conf === "subm") {
-                return (
-                    <div>
-                        <div id="txInfo">
-                            <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={closeDiv} />
-                            </div>
-                            <div className="txLeft">
-                                <img src={require('../img/success.png').default} alt="success" />
-                            </div>
-                            <div className="txRight">
-                                <h3>Transaction Successful</h3>
-                                <button><a href={explorerUrl} target="_blank">View on Explorer</a></button>
-                            </div>
-                             
-                        </div>
-                        <ConfirmationSubmission/>  
-                    </div>
-                                 
-                )
-            }
+            } 
         } else {
             return (
                 <div>
@@ -104,13 +74,13 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress} anetaID={anetaId}/>
+            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
         )
-    } else if(conf === "error") {
-        return(
+    } else if (conf === "error") {
+        return (
             <ErrorPayment/>
         )
-    }else {
+    } else {
         return (
             <div className="mainPopup">
 
@@ -129,7 +99,8 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     function ConfirmationInfo() {
         return (
             <div>
-                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
+                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage}/>
+                </div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
@@ -141,64 +112,44 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
-                            <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <img id="bit" src={require('../img/Ergo_dark.png').default} alt="aneta"
+                                 className='dark__mode'/>
+                            <img id="bit" src={require('../img/Ergo.png').default} alt="aneta" className='sun__mode'/>
                             <b>{Math.round(bridgeFee * 1000000) / 1000000}</b> ERG <div id="usd"
-                                                                                                  className="confBF">=
+                                                                                        className="confBF">=
                             $ {Math.round(1000000 * bridgeFeeUsd) / 1000000}</div>
                         </div>
                     </div>
                 </div>
-                <button disabled={disable} type="button" id="confButton"onClick={() => send()}><b>Confirm</b></button>
+                <button disabled={disable} type="button" id="confButton"
+                        onClick={() => writeToDB(nautilusAddress, eBTC)}><b>Confirm</b></button>
 
             </div>
         )
     }
 
-    async function send(){
-        setDisable(true)
-        const result = await sendFeeFunction(bridgeFee, nautilusAddress)
-        setTxInfo(result)
-        result ? writeToDB(nautilusAddress, eBTC, result) : setConf("error")
-    }
 
-    function ConfirmationSubmission() {
-
-        return (
-            <div className="confSubmission">
-                <div className="paymentSucces">
-                    <div>Bridge Fee Payment Submitted</div>
-                    <CheckMark/>
-                    <button type="button" id="confButton1" className="confWRS"
-                            onClick={() => setConf("mint")}
-                    ><b>Continue</b></button>
-                </div>
-            </div>
-        )
-    }
-
-
-    async function writeToDB(nautilusAddress, eBTC, txID) {
+    async function writeToDB(nautilusAddress, eBTC) {
+        
+        setDisable(true);
+        
         try {
             const docRef = await addDoc(collection(db, "users"), {
                 erg_address: nautilusAddress,
                 amount: eBTC,
                 datetime: new Date().toUTCString(),
-                erg_txid: txID,
                 info: "Mint Order Submitted"
             });
-            setConf("subm")
-            setAnetaId(docRef.id)
-            
+            setConf("mint")
+
         } catch (e) {
             console.error("Error adding document: ", e);
+            setDisable(false);
         }
 
     }
 
 }
-
-
 
 
 export default ConfirmationWindow;

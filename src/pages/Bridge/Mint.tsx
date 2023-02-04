@@ -21,7 +21,7 @@ const db = getFirestore(app);
 /////////////////////////////////
 const VAULT_BTC_WALLET_ADDRESS = "n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6"
 
-function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
+function Mint({eBTC, bridgeFee, nautilusaddress}) {
 
     const [address, setAddress] = useState('');
     const [window, setWindow] = useState(true);
@@ -163,7 +163,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     return (
         <div>
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} anetaID={anetaID}/>}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId}/>}
         </div>
     )
     
