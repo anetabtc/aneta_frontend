@@ -6,10 +6,8 @@ import {getFirestore} from "firebase/firestore";
 import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
 import {addDoc, collection, getDocs, doc} from "firebase/firestore";
-import firebaseConfig from "../Bridge/firebaseConfig";
+import firebaseConfig from "../../firebase/firebaseConfig";
 import {getAuth} from "firebase/auth";
-import ConfirmationWindow from "../Bridge/ConfirmationWindow";
-import ConfirmationWindowRedeem from "../Bridge/ConfirmationWindowRedeem";
 
 
 // Initialize Firebase

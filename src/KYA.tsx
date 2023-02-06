@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import close from "../src/pages/img/dark_close.png";
+import close from "../src/assets/img/dark_close.png";
 
 
 function KYA() {

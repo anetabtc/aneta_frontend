@@ -6,7 +6,7 @@ import {getFirestore} from "firebase/firestore";
 import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import firebaseConfig from "./firebaseConfig";
+import firebaseConfig from "../../../firebase/firebaseConfig";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

@@ -1,5 +1,3 @@
-
-import getCurrentHeight from "../Bridge/getCurrentHeight";
 import React, {useEffect, useState} from 'react'
 
 function Dashboard() {
@@ -52,7 +50,7 @@ function Dashboard() {
                     <div className={"infoDash"}>
                         <div className={"dashAmount"}>{amount} BTC</div>
                         <div className={"dashCircle"}>
-                            <div className={"synced"}>Synced <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                            <div className={"synced"}>Synced <img className={"secure"} src={require('../../assets/img/secure.png').default}/></div>
                         </div>
                     </div>
                     <div className={"dashButton"} role={"link"} onClick={() => openInNewTab('https://tbtc.bitaps.com/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5')}>View supply ➜</div>
@@ -63,7 +61,7 @@ function Dashboard() {
                     <div className={"infoDash"}>
                         <div className={"dashAmount"}>{eBTCAmount} eBTC</div>
                         <div className={"dashCircle"}>
-                            <div className={"synced"}>Synced <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                            <div className={"synced"}>Synced <img className={"secure"} src={require('../../assets/img/secure.png').default}/></div>
                         </div>
                     </div>
                     <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw')}>View supply ➜</div>
@@ -74,7 +72,7 @@ function Dashboard() {
                     <div className={"infoDash"}>
                         <div className={"dashAmount"}>{ergAmount} ERG</div>
                         <div className={"dashCircle"}>
-                            <div className={"synced"}>Secure <img className={"secure"} src={require('../img/secure.png').default}/></div>
+                            <div className={"synced"}>Secure <img className={"secure"} src={require('../../assets/img/secure.png').default}/></div>
                         </div>
                     </div>
                     <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw')}>View supply ➜</div>

@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
 import CheckMark from "./CheckMark";
-import Mint from "./Mint.tsx";
+import QRWindow from "./QRWindow.tsx";
 import React from 'react';
-import sendFeeFunction from "./sendFee";
 import ErrorPayment from "./ErrorPayment";
 
 ///////////////////////////////
@@ -11,7 +10,7 @@ import {getFirestore} from "firebase/firestore";
 import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import firebaseConfig from "./firebaseConfig";
+import firebaseConfig from "../../../firebase/firebaseConfig";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -74,7 +73,7 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
 
     if (conf === "mint") {
         return (
-            <Mint eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
+            <QRWindow eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusAddress}/>
         )
     } else if (conf === "error") {
         return (
@@ -99,22 +98,22 @@ function ConfirmationWindow({eBTC, bridgeFeeUsd, bridgeFee, btcAddress}) {
     function ConfirmationInfo() {
         return (
             <div>
-                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage}/>
+                <div id="close"><img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage}/>
                 </div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
-                            <img id="bit1" src={require('../img/werg.png').default}
+                            <img id="bit1" src={require('../../../assets/img/werg.png').default}
                                  alt="eBTC"/> Mint {Math.round(eBTC * 1000000) / 1000000} eBTC
                         </div>
                     </div>
                     <div className="flex-containerB">
                         <div className="left">Bridge Fee:</div>
                         <div className="right">
-                            <img id="bit" src={require('../img/Ergo_dark.png').default} alt="aneta"
+                            <img id="bit" src={require('../../../assets/img/Ergo_dark.png').default} alt="aneta"
                                  className='dark__mode'/>
-                            <img id="bit" src={require('../img/Ergo.png').default} alt="aneta" className='sun__mode'/>
+                            <img id="bit" src={require('../../../assets/img/Ergo.png').default} alt="aneta" className='sun__mode'/>
                             <b>{Math.round(bridgeFee * 1000000) / 1000000}</b> ERG <div id="usd"
                                                                                         className="confBF">=
                             $ {Math.round(1000000 * bridgeFeeUsd) / 1000000}</div>

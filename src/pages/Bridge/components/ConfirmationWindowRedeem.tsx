@@ -1,7 +1,7 @@
 import {useState} from "react";
 import CheckMark from "./CheckMark";
 import React from 'react';
-import sendPaymentFunction from "./sendPayment";
+import sendPaymentFunction from "../services/transactions/sendPayment";
 import ErrorPayment from "./ErrorPayment";
 import RedeemConfWindow from "./RedeemConfWindow";
 
@@ -91,7 +91,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     function ConfirmationInfo() {
         return (
             <div className="redeem">
-                <div id="close"><img src={require('../img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
+                <div id="close"><img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
@@ -102,7 +102,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                     <div className="flex-containerB" id="confBA">
                         <div className="left">BTC Network Fee:</div>
                         <div className="right">
-                            <img id="bit" src={require('../img/Ergo.png').default}
+                            <img id="bit" src={require('../../../assets/img/Ergo.png').default}
                                  alt="aneta"/><b>{Math.round(btcNetworkFee * 1000) / 1000}</b> ERG <div id="usd"
                                                                                                         className="confBF">=
                             $ {Math.round(100 * btcNetworkFeeUsd) / 100}</div>

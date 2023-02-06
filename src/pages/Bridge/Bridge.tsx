@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
-import ConfirmationWindow from "./ConfirmationWindow.tsx";
-import ConfirmationWindowRedeem from "./ConfirmationWindowRedeem.tsx";
+import ConfirmationWindow from "./components/ConfirmationWindow.tsx";
+import ConfirmationWindowRedeem from "./components/ConfirmationWindowRedeem.tsx";
 
 
 
@@ -222,7 +222,7 @@ function Bridge() {
                        value={mintAmount}
                 /><br/>
                 <div className="lblInp">
-                    <img id="bit" src={require('../img/Bitcoin.png').default}
+                    <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
                          alt="aneta"/>BTC<br/>
                     <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
                 </div>
@@ -230,8 +230,8 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
                         <b>{Math.round(bridgeFee*10000)/10000}</b> ERG
                     </div>
                     <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
@@ -243,8 +243,8 @@ function Bridge() {
                     <div className="left">ERG Network fee</div>
                     <div className="right">
                         <div>
-                            <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                            <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
                             <b>{Math.round(ergFee*100)/100}</b> ERG
 
                         </div>
@@ -256,7 +256,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/werg.png').default} alt="eBTC"/><b>{anetaBTCAmount}</b> eBTC</div>
+                    <div className="right"><img id="bit" src={require('../../assets/img/werg.png').default} alt="eBTC"/><b>{anetaBTCAmount}</b> eBTC</div>
                 </div>
                 <button
                     onClick={handleClickOpen1}
@@ -327,7 +327,7 @@ function Bridge() {
                        value={redeemAmount}
                 /><br/>
                 <div className="lblInp">
-                    <img id="bit" src={require('../img/werg.png').default} alt="eBTC"/>eBTC<br/>
+                    <img id="bit" src={require('../../assets/img/werg.png').default} alt="eBTC"/>eBTC<br/>
                     <div id="usd">~ $ {Math.round(100*usdBtcRedeem)/100}</div>
                 </div>
                 <br></br>
@@ -339,8 +339,8 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                        <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                        <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
                         <b>{Math.round(bridgeFee*100)/100}</b> ERG
 
 
@@ -355,7 +355,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">BTC network Fee</div>
                     <div className="right">
-                        <img id="bit" src={require('../img/Bitcoin.png').default}
+                        <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
                              alt="aneta"/><b>{Math.round(btcNetworkFee*100)/100}</b> BTC
 
 
@@ -370,8 +370,8 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">ERG Network fee</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                            <img id="bit" src={require('../img/Ergo.png').default}alt="aneta" className='sun__mode'/>
+                        <div><img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
+                            <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
                             <b>{Math.round(100*ergFee)/100}</b> ERG
 
                         </div>
@@ -382,7 +382,7 @@ function Bridge() {
                 <hr id="menuHR1"></hr>
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../img/Bitcoin.png').default} alt="BTC"/><b>{BTCAmount}</b> BTC</div>
+                    <div className="right"><img id="bit" src={require('../../assets/img/Bitcoin.png').default} alt="BTC"/><b>{BTCAmount}</b> BTC</div>
                     <div className="feeUSD7" id="usd"> = $ {Math.round(usdBtcRedeem*0.9975*100)/100} </div>
                 </div>
                 <button onClick={handleClickOpenRedeem1} type="button" className="mainButton2" id="mintButton">

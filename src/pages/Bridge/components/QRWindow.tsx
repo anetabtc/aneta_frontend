@@ -3,7 +3,7 @@ import QRCode from "react-qr-code";
 import React from 'react';
 import {useState} from "react";
 import {useEffect, useRef} from "react";
-import {formatData} from "./Utils";
+import {formatData} from "../services/utils/Utils";
 import BTCDeposit from "./BTCDeposit";
 
 ///////////////////////////////
@@ -12,7 +12,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // Add a second document with a generated ID.
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import firebaseConfig from "./firebaseConfig";
+import firebaseConfig from "../../../firebase/firebaseConfig";
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -21,7 +21,7 @@ const db = getFirestore(app);
 /////////////////////////////////
 const VAULT_BTC_WALLET_ADDRESS = "n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6"
 
-function Mint({eBTC, bridgeFee, nautilusaddress}) {
+function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
 
     const [address, setAddress] = useState('');
     const [window, setWindow] = useState(true);
@@ -216,7 +216,7 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
             <div className="mainPopup">
                 <div className="popup">
                     <div className="divLabel">
-                        <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/> <label
+                        <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="aneta"/> <label
                         className="labelMain"> BTC Deposit</label>
                     </div>
                     <div className="menuPopup">
@@ -226,8 +226,8 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                         <div type="text" className="addressBTC">
                             <p className="labelAdd" onClick={btnCopy}>
                                 <p>{address}</p>
-                                <img id="copy" className="sun__mode" src={require('../img/copy.png').default} alt="copy"/>
-                                <img id="copy" className="dark__mode" src={require('../img/copy_dark.png').default} alt="copy"/>
+                                <img id="copy" className="sun__mode" src={require('../../../assets/img/copy.png').default} alt="copy"/>
+                                <img id="copy" className="dark__mode" src={require('../../../assets/img/copy_dark.png').default} alt="copy"/>
                                 {copy === "true" ? <p id="copyPop">Copied</p>: ""}
                             </p>
                         </div>
@@ -246,7 +246,6 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
                                 value={address}
                                 size={120}
                                 level={"L"}
-                                includeMargin={false}
                             />
                         </div>
                         <div className="note">
@@ -268,4 +267,4 @@ function Mint({eBTC, bridgeFee, nautilusaddress}) {
 
 
 
-export default Mint
+export default QRWindow

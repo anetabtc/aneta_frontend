@@ -29,7 +29,7 @@ function BTCDeposit({eBTC, bridgeFee, nautilusaddress}) {
                 <div className="confWindow">
                     <div className="confTitle">
                         <div>
-                        <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/>
+                        <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="aneta"/>
                             BTC Deposit</div>
                     </div>
                     <div className="confSubmission">
