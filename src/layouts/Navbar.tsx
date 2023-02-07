@@ -83,12 +83,12 @@ function Navbar() {
                     {dark ? <img src={require('../assets/img/logo_dark.png').default} alt="aneta" className="imgLogo"/> : <img src={require('../assets/img/logo.png').default} alt="aneta" className="imgLogo"/>}
                 </div>
                 <div id="head">
-                    <a target="_blank" href="./Navbar">
+                    <a target="_blank" href="https://bitcoinfaucet.uo1.net/">
                         <div className="menuButton">
                             Get Test BTC
                         </div>
                     </a>
-                    <a target="_blank" href="./Navbar">
+                    <a target="_blank" href="https://moonshinewallet.com/">
                         <div className="menuButton">
                             Download Moonshine Wallet
                         </div>
