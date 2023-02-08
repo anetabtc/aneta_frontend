@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c88b23ce-8751-4a87-8cfd-ac8401bd651d" name="Changes" comment="new changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/BTCDeposit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/BTCDeposit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/ConfirmationWindow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Bridge/Mint.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Bridge/Mint.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Transactions/Transactions.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +51,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -104,6 +105,7 @@
       <workItem from="1674486815303" duration="3644000" />
       <workItem from="1674627853687" duration="6671000" />
       <workItem from="1675363710831" duration="156000" />
+      <workItem from="1675872104383" duration="426000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1667687958699</created>
