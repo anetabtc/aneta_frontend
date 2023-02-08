@@ -96,7 +96,7 @@ function Transactions() {
     )
 
     function MintPage() {
-        const bridge = 33
+        const bridge = 0.05
         const br = 32
 
 
@@ -108,7 +108,6 @@ function Transactions() {
                 <table className="tableWrap" >
                     <tr>
                         <td className="TD1">Created at</td>
-                        <td className="TD1">Transaction (BTC)</td>
                         <td className="TD1">Transaction (eBTC)</td>
                         <td className="TD1">Transaction (Bridge Fee)</td>
                         <td className="TD1" >anetaBTC ID</td>
@@ -126,10 +125,8 @@ function Transactions() {
                                 return <tr >
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                    </td>
                                     <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -140,10 +137,8 @@ function Transactions() {
                                 return <tr>
                                     <td className="TD1" >{tx.datetime}</td>
 
-                                    <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                    </td>
                                     <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -163,7 +158,7 @@ function Transactions() {
     }
 
     function RedeemPage() {
-        const bridge = 33
+        const bridge = 0.05
         return (
             <div className='mainmenu_transaction'>
                 <div>
@@ -173,7 +168,6 @@ function Transactions() {
                     <table className="tableWrap">
                         <tr border="0">
                             <td className="TD1">Created at</td>
-                            <td className="TD1">Transaction (BTC)</td>
                             <td className="TD1">Transaction (eBTC)</td>
                             <td className="TD1">Transaction (Bridge Fee)</td>
                             <td className="TD1">anetaBTC ID</td>
@@ -186,10 +180,9 @@ function Transactions() {
 
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
-                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                            </td>
+
                                             <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -199,10 +192,9 @@ function Transactions() {
                                     if(tx.info === "Redeem Order Success" && tx.erg_address === address) {
                                         return <tr>
                                             <td className="TD1" >{tx.datetime}</td>
-                                            <td className="TD1"><a href={"https://tbtc.bitaps.com/"+ tx.btc_tx_id}>{tx.amount} BTC </a>
-                                            </td>
+
                                             <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 10000) / 10000} ERG </a>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
