@@ -4,7 +4,7 @@ function Feedback() {
   return (
     <div className="feedback-page">
     <div className='mainmenu_feedback'>
-    <a target="_blank" rel="noreferrer" href="https://anetabtc.io/"><div className="feedback-page__content-btn">anetaBTC Feedback Form</div></a>
+    <a target="_blank" rel="noreferrer" href="https://5c3i0k2q3p5.typeform.com/to/hfymRoSr"><div className="feedback-page__content-btn">anetaBTC Feedback Form</div></a>
     <a target="_blank"rel="noreferrer" href="https://discord.com/invite/ScXG76dJXM"><div className="feedback-page__content-btn">Discuss on Discord
                     <img src={require('../../assets/img/i_discord_dark.png').default} alt="aneta" id="Icons" className="dark__mode"/>
                     <img src={require('../../assets/img/i_discord.png').default} alt="aneta" id="Icons" className="sun__mode"/></div></a>
