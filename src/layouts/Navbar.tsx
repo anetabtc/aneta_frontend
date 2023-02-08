@@ -132,7 +132,8 @@ function DropDown({selected, setSelected}) {
             document.getElementById("drop-content").style.width = "135px"
         }
     }
-    const options = ["Ergo", "Cardano"];
+    /*const options = ["Ergo", "Cardano"];*/
+    const options = ["Ergo"]; /* Cardano Inactive at this stage */
     return (
         <div className="dropdown"  id={"dropdown"} >
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
@@ -154,9 +155,9 @@ function DropDown({selected, setSelected}) {
                         <div onClick={(e) => {
                             setSelected(option)
                             setIsActive(false)
-                            changeWidth()
                         }}
                              className="dropdown-item">
+                            <div className="temporary"> {/* This div unique Cardano Inactive at this stage */}
                             <div>{dark ? <img className="nav-icon" src={require('../assets/img/' + option + '_dark.png').default} alt="aneta"
                                       id="Vector"/>:<img className="nav-icon" src={require('../assets/img/' + option + '.png').default} alt="aneta"
                                       id="Vector"/>}</div>
@@ -164,6 +165,19 @@ function DropDown({selected, setSelected}) {
                             {selected === option && (
                                 <div className="selected"></div>
                             )}
+                            </div>{/* This div unique Cardano Inactive at this stage */}
+                            {/* Cardano Inactive at this stage */}
+                            
+                            <div className="temporary">
+                                <div>{dark ? <img className="nav-icon" src={require('../assets/img/' + 'Cardano' + '_dark.png').default} alt="aneta"
+                                    id="Vector"/>:<img className="nav-icon" src={require('../assets/img/' + 'Cardano' + '.png').default} alt="aneta"
+                                    id="Vector"/>}
+                                </div>
+                                <div id="disabled">Cardano</div>
+                                <div className="disabled">off</div>
+                            </div>
+                            
+                            {/* Cardano Inactive at this stage */}
                         </div>
                     ))}
                 </div>

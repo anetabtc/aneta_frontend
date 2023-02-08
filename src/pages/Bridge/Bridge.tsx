@@ -212,7 +212,7 @@ function Bridge() {
 
         return (
             <div id="WRAP">
-                <p className="title">Mint eBTC by locking BTC</p>
+                <p className="title">Mint eBTC</p>
                 <input pattern="[0-9]+" type="number" placeholder="0.00"
                        className="btcInput"
                        size="30"
@@ -224,10 +224,10 @@ function Bridge() {
                 <div className="lblInp">
                     <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
                          alt="aneta"/>BTC<br/>
-                    <div id="usd"> ~ $ {Math.round(usdBtcMint*100)/100}</div>
+                    <div id="usd"> ~ $ {(Math.round(usdBtcMint*100)/100).toFixed(2)}</div>
                 </div>
                 <br></br>
-                <div className="flex-container">
+{/*                 <div className="flex-container">
                     <div className="left">Bridge Fee</div>
                     <div className="right">
                         <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
@@ -253,15 +253,26 @@ function Bridge() {
                     <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
                 </div>
                 <br/><br/>
-                <hr id="menuHR1"></hr>
+                <hr id="menuHR1"></hr> */}
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../../assets/img/werg.png').default} alt="eBTC"/><b>{anetaBTCAmount}</b> eBTC</div>
+                    <div className="right">
+                        <div><img id="bit" src={require('../../assets/img/werg.png').default} alt="eBTC"/><b>{Math.round((parseFloat(anetaBTCAmount)*.995)*100000000)/100000000}</b> eBTC</div>
+                        <div id="usd"> = $ {(Math.round((usdBtcMint*.995)*100)/100).toFixed(2)}</div>
+                    </div>
+                    
+                </div>
+                <div className="bridgeFee">
+                    <div>Bridge fee (0.5%)</div>
+                    <div>
+                        <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
+                         alt="aneta"/><b>{Math.round((parseFloat(anetaBTCAmount)*.005)*100000000)/100000000} BTC</b><br/>
+                        <div id="usd"> = $ {(Math.round((usdBtcMint*.005)*100)/100).toFixed(2)}</div>
+                    </div>
                 </div>
                 <button
                     onClick={handleClickOpen1}
-                    type="button" className="mainButton" id="mintButton"><b>Mint
-                    eBTC</b></button>
+                    type="button" className="mainButton" id="mintButton"><b>Wrap BTC</b></button>
             </div>
         )
     }
