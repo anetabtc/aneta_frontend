@@ -1894,6 +1894,10 @@ body.dark .btnPayment {
     color: white;
 }
 
+body.dark .btnPayment:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
   .btnPayment:hover{
     cursor: pointer;
   }
@@ -1906,8 +1910,10 @@ body.dark .btnPayment {
 }
 
 .warning{
-    color: #FF7272;
+    color: #F7931A;
+    font-size: 24px;
 }
+
 
 .note {
     text-align: center;
@@ -1935,10 +1941,13 @@ body.dark .btnPayment {
 
 .information {
     width: 80%;
-    margin: auto;
+    margin: 15px auto 15px auto;
     text-align: center;
-    margin-bottom: 15px;
-    color: #76D572;
+}
+
+.information b{
+    color: #F7931A;
+    font-weight: 400px;
 }
 
 
