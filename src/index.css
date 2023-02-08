@@ -266,11 +266,117 @@ body.dark #txInfo a {
     cursor: pointer;
 }
 
+
 body.dark #confButton {
-    background-color: #1C4574;
+    background-color: #1F509A;
     color: white;
 }
 
+#confButton:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+body.dark #confButton:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+.confWindow.btcDeposit{
+    width: 600px;
+    
+}
+
+
+
+
+body.dark .confWindow.btcDeposit {
+    background-color: #141414;
+}
+
+.titleBTC {
+    text-align: justify;
+    font-size: 24px;
+    padding-top: 24px;
+    margin-left: 15px;
+    padding-bottom: 50px;
+
+}
+
+.resultBridge{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.amountBridge{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.resultBridge .card{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #DBE4F6;
+}
+
+body.dark .resultBridge .card {
+    border: #434343 solid 1px;
+    background-color: #1D1D1D;
+
+}
+
+.resultBridge .card p{
+    margin-left: 5px;
+}
+
+.arrowBridge img{
+    width: 80px;
+    margin-bottom: 40px;
+}
+
+.text1{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+}
+
+.text2{
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    padding: 18px 14px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    background-color: #DBE4F6;
+}
+
+
+body.dark .text2 {
+    background-color: #1D1D1D;
+}
+
+.confWindow.btcDeposit #confButton1 {
+    width: 90%;
+    font-size: 18px;
+}
+
+/* REVISAR PARA BORRAR  */
 .confInfo {
     height: 120px;
     gap: 30px;
@@ -302,9 +408,25 @@ body.dark #confButton {
 
 #top_card{
     margin-top: 170px;
+    margin-left: 500px;
 }
 
-.depositBTC #checkMarkIcon{
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #top_card{
+        margin-left: 650px;
+    }
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    #top_card{
+        margin-left: 800px;
+    }
+}
+
+
+/* .depositBTC #checkMarkIcon{
     top: 62%
 }
 
@@ -314,15 +436,15 @@ body.dark #confButton {
 
 .depositBTC > #idTransaction {
     margin-bottom: 20px;
-}
+} */
 
-.depositBTC #confButton1 {
+/* .depositBTC #confButton1 {
     margin-bottom: 25px;
 }
 
 .paymentSucces #confButton1 {
     margin-bottom: 0;
-}
+} */
 
 .depositBTC::before {
     animation: textprogress 2s ease-out;
@@ -436,9 +558,19 @@ svg {
 }
 
 body.dark #confButton1 {
-    background-color: #1C4574;
+    background-color: #1F509A;
     color: white;
 }
+
+#confButton1:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+body.dark #confButton1:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+
 
 
 
@@ -1693,7 +1825,7 @@ body.dark #bckgrnd {
     padding: 0 20px 0 10px;
 }
 
-.bridgeFee div:first-child{
+body.dark .bridgeFee div:first-child{
     color: #D8D8D8;
 }
 
@@ -1770,7 +1902,8 @@ ul {
 
 .mainPopup {
     width: 100%;
-    height: 1000px;
+    height: 100vh;
+    min-height: 1000px;
     position: absolute;
     top: 0%;
     z-index: 6;
@@ -1781,13 +1914,6 @@ body.dark .mainPopup {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (min-width: 1640px) and (orientation: landscape){
-
-    .mainPopup{
-        height: 100vh;
-        min-height: 1000px;
-    }
-}
 
 @media (min-width: 2000px) and (orientation: landscape){
 
@@ -1904,8 +2030,12 @@ body.dark .addressBTC {
 }
 
 body.dark .btnPayment {
-    background-color: #214676;
+    background-color: #1F509A;
     color: white;
+}
+
+.btnPayment:hover {
+    background-color: rgba(031, 080, 154, 0.5);
 }
 
 body.dark .btnPayment:hover {
