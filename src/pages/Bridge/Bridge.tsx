@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import ConfirmationWindow from "./components/ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./components/ConfirmationWindowRedeem.tsx";
-
+import QRWindow from './components/QRWindow';
 
 
 
@@ -30,8 +30,23 @@ function Bridge() {
 
     const [addressError, setAddressWalletError] = useState(false);
 
+    const [multipleSatoshi, setMultipleSatoshi] = useState(true)
+    const [checkSatoshi, setCheckSatoshi] = useState(true)
+    const [multipleSatoshiRedeem, setMultipleSatoshiRedeem] = useState(true)
+    const [checkSatoshiRedeem, setCheckSatoshiRedeem] = useState(true)
+    const [checkMin, setCheckMin] = useState(true)
+    const [checkMinRedeem, setCheckMinRedeem] = useState(true)
+
     const refreshPage = () => {
         window.location.reload();
+        setTimeout(()=>{
+            setMultipleSatoshi(true);
+            setMultipleSatoshiRedeem(true);
+            setCheckSatoshi(true);
+            setCheckSatoshiRedeem(true);
+            setCheckMinRedeem(true);
+            setCheckMin(true);
+        },1000);
     }
 
 
@@ -146,14 +161,59 @@ function Bridge() {
         )
     }
 
+    function SatoshiError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                        Please, enter a multiple number of satoshi (Maximum 8 decimal places).
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    function MinAmountError() {
+        return(
+            <div className="mainPopup">
+                <div className="confContent">
+
+                    <div className="confWindow">
+                        <div className="confTitle">
+                            Error
+                        </div>
+                        <div className="error">
+                        You can mint and redeem a minimum of 0.0006 BTC.
+                        </div>
+                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
+            {multipleSatoshi ? '' : <SatoshiError/>}
+            {checkMin ? '' : <MinAmountError/> }
+
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
+            {popup && multipleSatoshi && checkMin ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
                 // btcAddress={btcAddressMint}
             /> : ""}
-            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
+
+            {multipleSatoshiRedeem ? '' : <SatoshiError/>}
+            {checkMinRedeem ? '' : <MinAmountError/> }
+            
+            {popupr && multipleSatoshiRedeem && checkMinRedeem ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -194,8 +254,23 @@ function Bridge() {
             setBridgeFeeUsd(event.target.value * 33 * ergUsd);
         };
 
+        useEffect(()=>{
+            checkSatoshi ? '' : setMultipleSatoshi(false);
+        })
+
 
         async function handleClickOpen1() {
+
+            let checkDecimals = Math.round(100000 * (parseFloat(anetaBTCAmount)*100000000)) / 100000;
+            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            if(integer<1){
+                setCheckSatoshi(false)
+            }
+
+            let minAmount = parseFloat(anetaBTCAmount)
+            if(minAmount<0.0006){
+                setCheckMin(false)
+            }
 
             setAnetaBTCAmountG(anetaBTCAmount)
             setBridgeFeeG(bridgeFee)
@@ -310,7 +385,25 @@ function Bridge() {
 
         };
 
+        useEffect(()=>{
+            checkSatoshiRedeem ? '' : setMultipleSatoshiRedeem(false)
+        })
+
+
         async function handleClickOpenRedeem1() {
+
+            let checkDecimals = Math.round(100000 * (parseFloat(BTCAmount)*100000000)) / 100000; 
+            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            if(integer<1){
+                setCheckSatoshiRedeem(false)
+            }
+
+            let minAmount = parseFloat(BTCAmount)
+            if(minAmount<0.0006){
+                setCheckMinRedeem(false)
+            }
+
+
             setBtcNetworkFeeG(btcNetworkFee)
             setBtcNetworkFeeUsdG(btcNetworkFeeUsd)
             setBtcAddressG(btcAddress)

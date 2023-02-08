@@ -567,6 +567,13 @@ body.dark .dropdown .dropdown-btn {
 
 }
 
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .dropdown-content{
+        right: calc((100vw - 2000px)/2 + 235px);
+    }
+}
+
 /* dark mode */
 
 body.dark .dropdown-content {
@@ -1668,7 +1675,7 @@ body.dark #bckgrnd {
 
 .right #usd {
     position: absolute;
-    right: 25px;
+    right: 38px;
     top: 250px;
 }
 
@@ -1683,7 +1690,7 @@ body.dark #bckgrnd {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 20px 0 10px;
 }
 
 .bridgeFee div:first-child{
@@ -1692,6 +1699,13 @@ body.dark #bckgrnd {
 
 body.dark .bridgeFee{
     background-color: #222222;
+}
+
+.bridgeFee #usd {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+    margin-top: 5px;
 }
 
 .flex-containerB {
@@ -2050,6 +2064,8 @@ body.dark .inputTx input{
 .right {
     align-items: center;
     text-align: end;
+    box-sizing: border-box;
+    padding-right: 13px;
 
 }
 
