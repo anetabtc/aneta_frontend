@@ -3,7 +3,7 @@ import React from 'react';
 import {useEffect, useRef, useState} from "react";
 
 
-function BTCDeposit({eBTC, bridgeFee, nautilusaddress}) {
+function BTCDeposit({eBTC}) {
 
 
     let data = {

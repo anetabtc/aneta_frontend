@@ -7,11 +7,11 @@ import {formatData} from "../services/utils/Utils";
 import BTCDeposit from "./BTCDeposit";
 
 ///////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {addDoc, collection, getDocs} from "firebase/firestore";
 import firebaseConfig from "../../../firebase/firebaseConfig";
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -21,7 +21,10 @@ const db = getFirestore(app);
 /////////////////////////////////
 const VAULT_BTC_WALLET_ADDRESS = "n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6"
 
-function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
+function QRWindow({eBTC}) {
+
+
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
     const [address, setAddress] = useState('');
     const [window, setWindow] = useState(true);
@@ -41,9 +44,10 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
 
         console.log("Writing to Firebase")
         // TODO Write to DB
+
         try {
             const docRef = await addDoc(collection(db, "payments"), {
-                erg_address: nautilusaddress,
+                erg_address: nautilusAddress,
                 amount: eBTC,
                 datetime: new Date().toUTCString(),
 
@@ -59,7 +63,6 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
     }
 
 
-
     const getVaultAddress = () => {
         setAddress(VAULT_BTC_WALLET_ADDRESS)
     }
@@ -67,6 +70,8 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
 
     useEffect(() => {
         getVaultAddress()
+        
+        writeToDB()
 
         ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
         let pairs = [];
@@ -157,17 +162,15 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
 
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-   /* const handleChangeBtcTxId = event => {
-        setBTCTxId(event.target.value);
-    } */
+    /* const handleChangeBtcTxId = event => {
+         setBTCTxId(event.target.value);
+     } */
 
     return (
         <div>
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId}/>}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC}/>}
         </div>
     )
-    
-
 
 
     function PaymentInfo() {
@@ -176,40 +179,39 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
         const [copy, setCopy] = useState("");
         const [confirmation, setConfirmation] = useState("");
 
-        
 
-        function check(text){
+        function check(text) {
             let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
             return (regex.test(text));
         }
 
         const btnConfirmation = () => {
             const inputBTCTx = document.querySelector(".btctxid").value;
-            if(check(inputBTCTx)){
+            if (check(inputBTCTx)) {
                 setBTCTxId(inputBTCTx);
-            }else{
-                setConfirmation("false") 
+            } else {
+                setConfirmation("false")
             }
-              
+
         }
 
-        function btnCopy(){
+        function btnCopy() {
             const btnCopy = document.querySelector(".labelAdd").childNodes[0]
-                 navigator.clipboard.writeText(btnCopy.innerHTML)
-                 setCopy("true");
-                setTimeout(()=>{
-                    setCopy("false");
-                },1500);
+            navigator.clipboard.writeText(btnCopy.innerHTML)
+            setCopy("true");
+            setTimeout(() => {
+                setCopy("false");
+            }, 1500);
         }
 
-        function btnDomTxIdOn(){
+        function btnDomTxIdOn() {
             setDomTxId("true")
             setConfirmation("true")
         }
-        function btnDomTxIdOff(){
+
+        function btnDomTxIdOff() {
             setDomTxId("false")
         }
-
 
 
         return (
@@ -226,9 +228,11 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
                         <div type="text" className="addressBTC">
                             <p className="labelAdd" onClick={btnCopy}>
                                 <p>{address}</p>
-                                <img id="copy" className="sun__mode" src={require('../../../assets/img/copy.png').default} alt="copy"/>
-                                <img id="copy" className="dark__mode" src={require('../../../assets/img/copy_dark.png').default} alt="copy"/>
-                                {copy === "true" ? <p id="copyPop">Copied</p>: ""}
+                                <img id="copy" className="sun__mode"
+                                     src={require('../../../assets/img/copy.png').default} alt="copy"/>
+                                <img id="copy" className="dark__mode"
+                                     src={require('../../../assets/img/copy_dark.png').default} alt="copy"/>
+                                {copy === "true" ? <p id="copyPop">Copied</p> : ""}
                             </p>
                         </div>
                         <div className="timing">
@@ -238,7 +242,9 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
                             <span><b className="warning">Attention:</b></span>
                         </div>
                         <div className="information">
-                            <b>Add your ERG address</b> in the “Message (Optional)” section in your Moonshine Wallet before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG address into the message section of this transaction, you will not receive eBTC.  
+                            <b>Add your ERG address</b> in the “Message (Optional)” section in your Moonshine Wallet
+                            before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG
+                            address into the message section of this transaction, you will not receive eBTC.
                         </div>
                         <div className='qrCode'>
                             <QRCode
@@ -251,10 +257,10 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
                         <div className="note">
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>
                         </div>
-                        
+
                         <button className="btnPayment" onClick={navigateToBTCDeposit}>I have sent the deposit</button>
-                        
-                        
+
+
                     </div>
                 </div>
 
@@ -262,9 +268,22 @@ function QRWindow({eBTC, bridgeFee, nautilusaddress}) {
         )
     }
 
+    async function writeToDB() {
+        // TODO Write to DB
 
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                erg_address: nautilusAddress,
+                amount: eBTC,
+                datetime: new Date().toUTCString(),
+                info: "Mint Order Submitted"
+            });
+
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
 }
-
 
 
 export default QRWindow

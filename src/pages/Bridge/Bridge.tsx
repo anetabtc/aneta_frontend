@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 
-import ConfirmationWindow from "./components/ConfirmationWindow.tsx";
 import ConfirmationWindowRedeem from "./components/ConfirmationWindowRedeem.tsx";
 import QRWindow from './components/QRWindow';
 
@@ -206,7 +205,7 @@ function Bridge() {
 
             {connectWalletError ? <ConnectWalletError/> : ""}
             {addressError ? <AddressError/> : ""}
-            {popup && multipleSatoshi && checkMin ? <ConfirmationWindow eBTC = {anetaBTCAmountG} bridgeFee = {bridgeFeeG} bridgeFeeUsd = {bridgeFeeUsdG}
+            {popup && multipleSatoshi && checkMin ? <QRWindow eBTC = {anetaBTCAmountG}
                 // btcAddress={btcAddressMint}
             /> : ""}
 
