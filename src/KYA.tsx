@@ -11,14 +11,13 @@ function KYA() {
       window.addEventListener("load", ()=>{
         let connect = JSON.parse(localStorage.getItem('address'));
         setTimeout(()=>{
-            connect == null ? setAccept(false) : "";;
+            connect == null ? setAccept(false) : "";
         },2000);
     })
 
     useEffect(()=>{
         let connect = JSON.parse(localStorage.getItem('address'));
-        connect == null ? setConnection(false) : setConnection(true) 
-        connection ? console.log("Esta conectado"):console.log("NO Esta conectado");
+        connect == null ? setConnection(false) : setConnection(true);
     })
 
     const acceptFunction = () => {

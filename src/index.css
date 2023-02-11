@@ -1277,9 +1277,9 @@ body.dark .TD1 a{
     font-size: 12.5px;
     color: #575757;
     text-align: left;
-    margin-left: 27px;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 body.dark .title2 {
@@ -1558,7 +1558,7 @@ body.dark .btcInput {
 
 .btcInputAddress {
     width: 530px;
-    background-color: #DCE4EE;
+    background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
     height: 47px;
@@ -1567,7 +1567,7 @@ body.dark .btcInput {
 }
 
 body.dark .btcInputAddress {
-    background-color: #222429;
+    background-color: #222222;
     color: white;
 }
 
@@ -1655,7 +1655,7 @@ body.dark #copyPop {
 }
 
 .mainButton {
-    width: 550px;
+    width: 560px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
@@ -1674,12 +1674,12 @@ body.dark .mainButton {
 }
 
 .mainButton2 {
-    width: 550px;
+    width: 560px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
-    margin-top: 10%;
+    margin-top: 20px;
     font-size: 20px;
 }
 
@@ -1764,6 +1764,8 @@ body.dark #bckgrnd {
     border-radius: 10px;
 }
 
+
+
 .lblInp {
     text-align: end;
     clear: both;
@@ -1789,6 +1791,28 @@ body.dark #bckgrnd {
 
 }
 
+.warningBridge{
+    color: #DD524C;
+    position: absolute;
+    top: 230px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.warningBridge.redeem{
+    top:225px;
+}
+
+.warningBridge.address{
+    top: 330px;
+}
+
+.warningBridge img {
+    height: 16px;
+    margin-right: 5px;
+}
 
 
 .flex-container {
@@ -1822,7 +1846,13 @@ body.dark #bckgrnd {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px 0 10px;
+    padding: 20px 18px 20px 10px;
+}
+
+.bridgeFee.unWrap{
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
 }
 
 body.dark .bridgeFee div:first-child{
@@ -1833,11 +1863,18 @@ body.dark .bridgeFee{
     background-color: #222222;
 }
 
+.bridgeFee .feeItem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .bridgeFee #usd {
     display: flex;
     justify-content: flex-end;
     padding-right: 5px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
 }
 
 .flex-containerB {
@@ -2460,20 +2497,23 @@ body.dark .inputTx input{
     left: 53%;
     top: 35%;
 }
-.feeUSD1 {
-    text-align: right;
 
-    position: absolute;
-    left: 50%;
-    top: 44%;
-}
+#usd.feeUSD1 {
+    /*    text-align: right;
+   
+       position: absolute;
+       left: 50%;
+       top: 79%; */
+       top: 350px;
+   }
 
 .feeUSD2 {
-    text-align: right;
+/*     text-align: right;
 
     position: absolute;
     left: 53%;
-    top: 47%;
+    top: 47%; */
+    top: 400px;
 }
 
 .feeUSD3 {
@@ -2508,13 +2548,7 @@ body.dark .inputTx input{
     top: 64%;
 }
 
-.feeUSD7 {
-    text-align: right;
 
-    position: absolute;
-    left: 50%;
-    top: 79%;
-}
 
 .feeUSD8 {
     text-align: right;
