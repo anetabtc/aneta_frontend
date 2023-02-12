@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from 'react'
 
 function ErrorPayment() {
 
@@ -6,9 +6,18 @@ function ErrorPayment() {
         window.location.reload();
     }
 
+    const [popupFixed, setPopupFixed] = useState(true);
+
+    setTimeout(()=>{
+        setPopupFixed(false);
+        window.location.reload();
+    },5000);
+
     return(
-        <div className="mainPopup">
-            <div className="confContent">
+        popupFixed ? 
+        //<div className="mainPopup">
+        <div className="popupFixed">
+{/*             <div className="confContent">
                 <div className="confWindow">
                     <div className="confTitle">
                         Error
@@ -16,8 +25,20 @@ function ErrorPayment() {
                     <div className="error">Something went wrong.</div>
                     <button type="button" id="confButton1" onClick={refreshPage}><b>Try again!</b></button>
                 </div>
+            </div> */}
+            <div id="close">
+                    <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage}/>
             </div>
-        </div>
+            <div className="result">
+                <div>
+                    <img src={require('../../../assets/img/fail.png').default} alt="fail" height="50px"/>
+                </div>
+                <div>
+                    <p>Transaction Failed</p>
+                    <p>Please Try Again</p>
+                </div>
+            </div>
+        </div> : ""
     )
 }
 

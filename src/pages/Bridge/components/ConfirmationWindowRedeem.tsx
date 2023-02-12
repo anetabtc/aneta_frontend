@@ -58,6 +58,10 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 return (
                     <RedeemConfWindow eBTC={eBTC} btcAddress={btcAddress} nautilusAddress={nautilusAddress} txInfo={txInfo}/>
                 )
+            }else if (conf === "wait"){
+                return (
+                    <Wait/>
+                )
             }
 
         //} 
@@ -81,8 +85,6 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
             <div className="confContent">
 
                 <div className="confWindow">
-                    <div className="titleBTC">Confirm Unwrap</div>
-                    <div id="close"><img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
 {/*                     <div className="confTitle">
                         <NameTrans/>
                     </div> */}
@@ -92,11 +94,31 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         </div>
     )
 
+    function closeWait(){
+        setConf("info")
+    }
+
+    function Wait(){
+        return (                    
+            <div className="redeem waiting">
+                <div className="titleBTC underLine">Waiting for confirmation</div>
+                <div id="close">
+                    <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={closeWait} />
+                </div>
+                <div className='spinner waiting'></div>
+                <div className="text">Unwrapping {eBTC} eBTC.</div>
+                <div className="text">Confirm this transaction in your wallet.</div>
+            </div>)
+    }
+
 
     function ConfirmationInfo() {
         return (
             <div className="redeem">
-
+                <div className="titleBTC">Confirm Unwrap</div>
+                    <div id="close">
+                        <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} />
+                    </div>
                 <div className="resultBridge">
                     <div className="amountBridge">
                             <div className="card">
@@ -181,6 +203,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
         setSpinConf(true)
         setTimeout(()=>{
             setSpinConf(false);
+            setConf("wait")
         },2000);
         setDisable(true)
         const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
