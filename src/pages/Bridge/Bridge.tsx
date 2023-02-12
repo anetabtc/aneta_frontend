@@ -172,7 +172,7 @@ function Bridge() {
                             Error
                         </div>
                         <div className="error">
-                        Please, enter a multiple number of satoshi (Maximum 8 decimal places).
+                        Please, enter a multiple parseFloat of satoshi (Maximum 8 decimal places).
                         </div>
                         <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
                     </div>
@@ -241,6 +241,7 @@ function Bridge() {
 
         const [minMint, setMinMint] = useState(true)
         const [maxDecimals, setMaxDecimals] = useState(true)
+        const [spinMint, setSpinMint] = useState(false)
 
 
 
@@ -260,15 +261,14 @@ function Bridge() {
         };
 
         function checkAmount(){
-            let checkDecimals = Math.round(100000 * (parseFloat(anetaBTCAmount)*100000000)) / 100000;
-            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            let integer = parseFloat(anetaBTCAmount).toString().replace(/^[^\.]+/,'0');
             if(parseFloat(anetaBTCAmount)<0.0006){
                 setMinMint(false)
             }else setMinMint(true)
-            if(integer<1){
+            if(integer.length>10){
                 setMaxDecimals(false)
             }else setMaxDecimals(true)
-            
+
         }
 
         useEffect(()=>{
@@ -280,23 +280,17 @@ function Bridge() {
             if(anetaBTCAmount == '0'){
                 setMinMint(false)
             }else if(minMint && maxDecimals){
-                handleClickOpen1()
+                setSpinMint(true)
+                setTimeout(()=>{
+                    setSpinMint(false);
+                    handleClickOpen1()
+                },2000);
             }
         }
 
 
         async function handleClickOpen1() {
 
-/*             let checkDecimals = Math.round(100000 * (parseFloat(anetaBTCAmount)*100000000)) / 100000;
-            let integer = Math.trunc(checkDecimals)/checkDecimals;
-            if(integer<1){
-                setCheckSatoshi(false)
-            }
-
-            let minAmount = parseFloat(anetaBTCAmount)
-            if(minAmount<0.0006){
-                setCheckMin(false)
-            } */
 
                 setAnetaBTCAmountG(parseFloat(anetaBTCAmount).toString())
                 setBridgeFeeG(bridgeFee)
@@ -314,7 +308,7 @@ function Bridge() {
         return (
             <div id="WRAP">
                 <p className="title">Mint eBTC</p>
-                <input pattern="[0-9]+" type="number" placeholder="0.00"
+                <input pattern="[0-9]+" type="parseFloat" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
@@ -363,7 +357,7 @@ function Bridge() {
 
                 {minMint ? "" : <div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> You can mint a minimum of 0.0006 BTC.</div>}
 
-                {(minMint && !maxDecimals)?<div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple number of satoshi (Maximum 8 decimal places).</div>:""}
+                {(minMint && !maxDecimals)?<div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple parseFloat of satoshi (Maximum 8 decimal places).</div>:""}
 
 
                 <div className="flex-container">
@@ -384,7 +378,7 @@ function Bridge() {
                 </div>
                 <button
                     onClick={confirmMint}
-                    type="button" className="mainButton" id="mintButton"><b>Wrap BTC</b></button>
+                    type="button" className="mainButton" id="mintButton">{spinMint ? <div className='spinner mint'></div>:""}<b>Wrap BTC</b></button>
             </div>
         )
     }
@@ -405,6 +399,7 @@ function Bridge() {
         const [checkBTCAddress, setCheckBTCAddress] = useState(true)
         const [minRedeem, setMinRedeem] = useState(true)
         const [maxDecimalsRedeem, setMaxDecimalsRedeem] = useState(true)
+        const [spinRedeem, setSpinRedeem] = useState(false)
 
 
         const handleChangeRedeem = event => {
@@ -427,12 +422,11 @@ function Bridge() {
         };
 
         function checkAmountRedeem(){
-            let checkDecimals = Math.round(100000 * (parseFloat(BTCAmount)*100000000)) / 100000;
-            let integer = Math.trunc(checkDecimals)/checkDecimals;
+            let integer = parseFloat(BTCAmount).toString().replace(/^[^\.]+/,'0');
             if(parseFloat(BTCAmount)<0.0006){
                 setMinRedeem(false)
             }else setMinRedeem(true)
-            if(integer<1){
+            if(integer.length>10){
                 setMaxDecimalsRedeem(false)
             }else setMaxDecimalsRedeem(true)
 
@@ -462,23 +456,18 @@ function Bridge() {
             }else if(btcAddress == ''){
                 setCheckBTCAddress(false)
             }else if(minRedeem && checkBTCAddress && maxDecimalsRedeem){
-                handleClickOpenRedeem1()
+                setSpinRedeem(true)
+                setTimeout(()=>{
+                    setSpinRedeem(false);
+                    handleClickOpenRedeem1()
+                },2000);
+                
             }
         }
 
 
         async function handleClickOpenRedeem1() {
 
-/*             let checkDecimals = Math.round(100000 * (parseFloat(BTCAmount)*100000000)) / 100000; 
-            let integer = Math.trunc(checkDecimals)/checkDecimals;
-            if(integer<1){
-                setCheckSatoshiRedeem(false)
-            }
-
-            let minAmount = parseFloat(BTCAmount)
-            if(minAmount<0.0006){
-                setCheckMinRedeem(false)
-            } */
 
 
   
@@ -505,7 +494,7 @@ function Bridge() {
         return (
             <div id="UNWRAP">
                 <p className="title">Redeem BTC</p>
-                <input pattern="[0-9]+" type="number" className="btcInput"  max="9999" size="30" placeholder="0.00" required
+                <input pattern="[0-9]+" type="parseFloat" className="btcInput"  max="9999" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
@@ -518,7 +507,7 @@ function Bridge() {
                 </div>
                 {minRedeem? "" : <div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> You can redeem a minimum of 0.0006 BTC.</div>}
 
-                {(minRedeem && !maxDecimalsRedeem)?<div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple number of satoshi (Maximum 8 decimal places).</div>:""}
+                {(minRedeem && !maxDecimalsRedeem)?<div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple parseFloat of satoshi (Maximum 8 decimal places).</div>:""}
 
                 <br></br>
                 <p/>
@@ -617,7 +606,7 @@ function Bridge() {
 
 
 
-                <button onClick={confirmRedeem} type="button" className="mainButton2" id="mintButton">
+                <button onClick={confirmRedeem} type="button" className="mainButton2" id="mintButton">{spinRedeem ? <div className='spinner'></div>:""}
                     <b>Unwrap eBTC</b></button>
             </div>
         )
