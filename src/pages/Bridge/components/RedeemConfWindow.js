@@ -17,7 +17,15 @@ const db = getFirestore(app);
 
 function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
 
+    const [popupFixed, setPopupFixed] = useState(true);
 
+    setTimeout(()=>{
+        setPopupFixed(false);
+    },5000);
+
+    function closePop(){
+        setPopupFixed(false);
+    }
 
 
 
@@ -38,6 +46,20 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
                 The status of your wrap and unwrap requests can be found under the transaction tab on the menu
             </div>
             <button type="button" id="confButton1" onClick={refreshPage}><b>Continue</b></button>
+            {popupFixed ? <div className="popupFixed">
+                <div id="close">
+                    <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={closePop}/>
+                </div>
+                <div className="result">
+                    <div>
+                        <img src={require('../../../assets/img/success.png').default} alt="success" height="50px"/>
+                    </div>
+                    <div>
+                        <p>Transaction Successful</p>
+                        <a href="#">Please Try Again</a>
+                    </div>
+                </div>
+            </div> : ""}
         </div>
     )
 
