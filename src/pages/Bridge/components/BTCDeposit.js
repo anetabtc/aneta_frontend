@@ -65,7 +65,7 @@ function BTCDeposit({eBTC}) {
                         </div>
                     </div>
                     <div className="text1">Thank you for sending your BTC Deposit.</div>
-                    <div className="text1">eBTC will be sent to your Cardano wallet once your BTC deposit is confirmed. This process may take up to 24 hours.</div>
+                    <div className="text1">eBTC will be sent to your Ergo wallet once your BTC deposit is confirmed. This process may take up to 24 hours.</div>
                     <div className="text2">The status and details of this transaction can be found in the “Transactions” tab on the side menu.</div>
                     <div className="text2"><b><div>Support</div></b><br/>If you need support, your BTC transaction ID will help us assist you.</div>
                     <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Close</b></button>

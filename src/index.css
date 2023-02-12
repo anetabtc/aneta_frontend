@@ -130,7 +130,7 @@ body.dark .dark__mode{
 }
 
 body.dark .confContent{
-    border: #141414 2px solid;
+    border: #787878 2px solid;
 }
 
 @media (min-width: 1640px) and (orientation: landscape){
@@ -301,6 +301,8 @@ body.dark #confButton:hover {
 
 body.dark .redeemConfWindow{
     background-color: #141414;
+    border: #787878 2px solid;
+    
 }
 
 .titleBTC {
