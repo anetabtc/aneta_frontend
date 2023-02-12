@@ -572,7 +572,7 @@ function Bridge() {
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
                     <div className="right">
-                        <div><img id="bit" src={require('../../assets/img/Bitcoin.png').default} alt="BTC"/><b>{parseFloat(BTCAmount) == 0 ? 0:(Math.round(((parseFloat(BTCAmount)*.995)-0.0001)*100000000)/100000000).toLocaleString('en', { maximumSignificantDigits: 3 })}</b> BTC</div>
+                        <div><img id="bit" src={require('../../assets/img/Bitcoin.png').default} alt="BTC"/><b>{parseFloat(BTCAmount) == 0 ? 0:(Math.round(((parseFloat(BTCAmount)*.995)-0.0001)*100000000)/100000000).toString()}</b> BTC</div>
                         <div id="usd" className="feeUSD1"> = $ {(Math.round(((usdBtcRedeem*.995)-0.0001)*100)/100).toFixed(2)}</div>
                     </div>
                 </div>
@@ -582,7 +582,7 @@ function Bridge() {
                         <div>Bridge fee (0.5%)</div>
                         <div>
                             <img id="bit" src={require('../../assets/img/werg.png').default}
-                            alt="aneta"/><b>{(Math.round((parseFloat(BTCAmount)*.005)*100000000)/100000000).toLocaleString('en', { maximumSignificantDigits: 3 })} eBTC</b><br/>
+                            alt="aneta"/><b>{(Math.round((parseFloat(BTCAmount)*.005)*100000000)/100000000).toString()} eBTC</b><br/>
                             <div id="usd"> = $ {(Math.round((usdBtcRedeem*.005)*100)/100).toFixed(2)}</div>
                         </div>
                     </div>
@@ -590,8 +590,8 @@ function Bridge() {
                         <div>BTC network Fee</div>
                         <div>
                             <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
-                            alt="aneta"/><b>{parseFloat(BTCAmount)==0 ? 0: 0.0001} BTC</b><br/>
-                            <div id="usd"> ~ $ {parseFloat(BTCAmount)==0 ? 0:(Math.round((usdBTC*.0001)*100)/100).toFixed(2)}</div>
+                            alt="aneta"/><b>{parseFloat(BTCAmount)==0 ? 0: "0.0001"} BTC</b><br/>
+                            <div id="usd"> ~ $ {parseFloat(BTCAmount)==0 ? "0.00":(Math.round((usdBTC*.0001)*100)/100).toFixed(2)}</div>
                         </div>
                     </div>
                     <div className='feeItem'>
@@ -599,7 +599,7 @@ function Bridge() {
                         <div>
                         <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
                         <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/><b>{parseFloat(BTCAmount)==0 ? 0: 0.05} ERG</b><br/>
-                            <div id="usd"> = $ {parseFloat(BTCAmount)==0 ? 0:(Math.round((ergUsd*.05)*100)/100).toFixed(2)}</div>
+                            <div id="usd"> = $ {parseFloat(BTCAmount)==0 ? "0.00":(Math.round((ergUsd*.05)*100)/100).toFixed(2)}</div>
                         </div>
                     </div>
                 </div>

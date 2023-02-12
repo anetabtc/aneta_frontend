@@ -27,7 +27,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     const [contDisable, setContDisable] = useState(true);
     
 
-    function NameTrans() {
+/*      function NameTrans() {
         if (eBTC > 0.000000001) {
             return (
                 <div>
@@ -43,10 +43,10 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 </div>
             )
         }
-    }
+    } */
 
     function Conf() {
-        if (eBTC > 0.000000001) {
+        //if (eBTC > 0.000000001) {
             if (conf === "info") {
                 return (
                     <ConfirmationInfo/>
@@ -58,7 +58,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 )
             }
 
-        } else {
+        //} 
+        /* else {
             return (
                 <div>
                     <div className="error">
@@ -68,7 +69,7 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 </div>
             )
 
-        }
+        } */
 
     }
 
@@ -78,9 +79,11 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
             <div className="confContent">
 
                 <div className="confWindow">
-                    <div className="confTitle">
+                    <div className="titleBTC">Confirm Unwrap</div>
+                    <div id="close"><img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
+{/*                     <div className="confTitle">
                         <NameTrans/>
-                    </div>
+                    </div> */}
                     <Conf/>
                 </div>
             </div>
@@ -91,8 +94,56 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     function ConfirmationInfo() {
         return (
             <div className="redeem">
-                <div id="close"><img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} /></div>
-                <div className="confInfo">
+
+                <div className="resultBridge">
+                    <div className="amountBridge">
+                            <div className="card">
+                            <img id="bitcoin" src={require('../../../assets/img/werg.png').default} alt="eBTC"/>
+                            <p>eBTC</p>
+                        </div>
+                        <div>{eBTC}</div>
+                    </div>
+                    <div className="arrowBridge"><img src={require('../../../assets/img/arrow_blue.png').default} alt="arrow"/></div>
+ 
+                    <div className="amountBridge">
+                        <div className="card">
+                            <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="btc"/>
+                            <p>BTC</p>
+                        </div>
+                        <div>{Math.round(((parseFloat(eBTC)*.995)-.0001)*100000000)/100000000}</div>
+                    </div>
+                </div>
+                
+                <div className="bridgeFee unWrap confirm">
+                    <div className='feeItem'>
+                        <div>Bridge fee:
+                            <img src={require('../../../assets/img/svg.png').default}
+                            alt="info" height={"16px"} className='dark__mode'/>
+                            <img src={require('../../../assets/img/svg_light.png').default}
+                            alt="info" height={"16px"} className='sun__mode'/>
+                            </div>
+                        <div>
+                        {Math.round((parseFloat(eBTC)*.005)*100000000)/100000000} eBTC
+                        </div>
+                    </div>
+                    <div className='feeItem'>
+                        <div>BTC Network Fee:</div>
+                        <div>
+                            0.0001 BTC
+                        </div>
+                    </div>
+                    <div className='feeItem'>
+                        <div>ERG Network Fee:</div>
+                        <div>
+                            0.05 ERG
+                        </div>
+                    </div>
+                </div>
+                <div className="text2">BTC destination address:
+                    <br/>{btcAddress}
+                </div>
+
+{/*                 <div className="confInfo">
                     <div className="flex-containerB">
                         <div className="left"><b>Request:</b></div>
                         <div className="right">
@@ -115,10 +166,10 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                         <div className="right"/>
 
                     </div>
-                </div>
+                </div> */}
                 <button type="button" id="confButton" disabled={disable}
                         onClick={() => send()}
-                ><b>Confirm</b></button>
+                ><b>Confirm Unwrap</b></button>
 
             </div>
         )

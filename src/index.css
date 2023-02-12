@@ -158,7 +158,7 @@ body.dark .confContent{
 }
 
 body.dark .confWindow {
-    background: #20242D;
+    background: #141414;
     color: white;
 }
 
@@ -252,12 +252,12 @@ body.dark #txInfo a {
 }
 
 #confButton {
-    width: 486px;
+    width: 500px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 20px;
-    margin-top: 16%;
+    /* margin-top: 16%; */
     font-size: 16px;
     margin-bottom: 25px;
 }
@@ -288,9 +288,9 @@ body.dark #confButton:hover {
 
 
 
-body.dark .confWindow.btcDeposit {
+/* body.dark .confWindow.btcDeposit {
     background-color: #141414;
-}
+} */
 
 .titleBTC {
     text-align: justify;
@@ -386,6 +386,14 @@ body.dark .text2 {
 
 .redeem .confInfo{
     gap: 0px;
+}
+
+.redeem .text2{
+    width: 95%;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 24px;
+    margin-top: 20px;
 }
 
 .confSubmission .paymentSucces {
@@ -981,9 +989,9 @@ body.dark .btnM:hover {
 
 /* KYA */
 
-body.dark #kya .confWindow {
+/* body.dark #kya .confWindow {
     background: #141414;
-}
+} */
 
 #kya.confContent{
     margin-top: 110px;
@@ -1546,7 +1554,7 @@ body.dark #content1 {
 }
 
 body.dark .btcInput {
-    background-color: #222222;
+    background-color: #1D1D1D;
     color: white;
 }
 
@@ -1567,7 +1575,7 @@ body.dark .btcInput {
 }
 
 body.dark .btcInputAddress {
-    background-color: #222222;
+    background-color: #1D1D1D;
     color: white;
 }
 
@@ -1900,7 +1908,12 @@ body.dark .bridgeFee div:first-child{
 }
 
 body.dark .bridgeFee{
-    background-color: #222222;
+    background-color: #1D1D1D;
+}
+
+.bridgeFee.unWrap.confirm{
+    width: 95%;
+    margin: auto;
 }
 
 .bridgeFee .feeItem{
@@ -1908,6 +1921,12 @@ body.dark .bridgeFee{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.bridgeFee .feeItem div:first-child{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .bridgeFee #usd {
