@@ -292,13 +292,28 @@ body.dark #confButton:hover {
     background-color: #141414;
 } */
 
+.redeemConfWindow{
+    position: absolute;
+    background-color: #EEF4FF;
+    top: -100px;
+    border-radius: 16px;
+}
+
+body.dark .redeemConfWindow{
+    background-color: #141414;
+}
+
 .titleBTC {
+    display: flex;
     text-align: justify;
     font-size: 24px;
     padding-top: 24px;
     margin-left: 15px;
     padding-bottom: 50px;
+}
 
+.titleBTC img {
+    margin-left: 5px;
 }
 
 .titleBTC.underLine{
@@ -376,6 +391,15 @@ body.dark .resultBridge .card {
     background-color: #DBE4F6;
 }
 
+.text3{
+    text-align: center;
+    width: 85%;
+    margin: auto;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+}
+
 
 body.dark .text2 {
     background-color: #1D1D1D;
@@ -407,6 +431,14 @@ body.dark .text2 {
     font-size: 16px;
     text-align: justify;
     line-height: 24px;
+    margin-top: 20px;
+}
+
+.text2.address{
+    width: 90%;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 26px;
     margin-top: 20px;
 }
 
@@ -707,7 +739,7 @@ body.dark #confButton1:hover {
 /* dark mode */
 
 body.dark .dropdown .dropdown-btn {
-    background-color: #191B1F;
+    background-color: #141414;
     color: white;
 }
 
@@ -735,7 +767,7 @@ body.dark .dropdown .dropdown-btn {
 /* dark mode */
 
 body.dark .dropdown-content {
-    background-color: #191B1F;
+    background-color: #141414;
     color: white;
 }
 
@@ -867,7 +899,7 @@ body.dark .disabled {
 /* Dark Mode */
 
 body.dark .menuButton {
-    background-color: #191B1F;
+    background-color: #141414;
     color: white;
 }
 
@@ -1410,7 +1442,7 @@ body.dark .infoCluster {
 }
 
 body.dark .round {
-    background: #191B1F;
+    background: #141414;
     border: 3px solid #93CBEA;
 }
 
@@ -1461,7 +1493,7 @@ body.dark .round > h4 {
 }
 
 body.dark .menu_dash > div {
-    background-color: #191B1F;
+    background-color: #141414;
 }
 
 .menu_dash > .info2 {
@@ -1740,6 +1772,10 @@ body.dark .mainButton {
     left: 177px;
 }
 
+.spinner.QR{
+    left: 140px;
+}
+
 .spinner.waiting{
     width: 60px;
     height: 60px;
@@ -1807,7 +1843,7 @@ body.dark #radios{
 .popupFixed{
     background-color: #DBE4F6;
     position: fixed;
-    width: 300px;
+    width: 330px;
     height: 130px;
     top: 80px;
     right: 40px;
@@ -1833,13 +1869,41 @@ body.dark .popupFixed{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 25px;
+    margin-right: 30px;
     gap: 15px;
+    font-size: 14px;
 }
 
+.popupFixed .result .resultTx{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.popupFixed .result p:last-child{
+    font-size: 12.5px;
+}
+
+.popupFixed .result p{
+    margin: 0;
+}
 
 body.dark .popupFixed .result p{
-    color: white;
+    color: #FFFFFF;
+}
+
+.popupFixed .txInfo {
+    color: #000000;
+    border: #B9DDFF 1px solid;
+    border-radius: 5px;
+    font-size: 12.5px;
+    padding: 3px 10px;
+}
+
+body.dark .popupFixed .txInfo {
+    color: #FFFFFF;
+    border: #7C7C7C 1px solid;
 }
 
 #bckgrnd,
@@ -2934,7 +2998,7 @@ body.dark .infoTitleDash {
 }
 
 body.dark #radiosTrans {
-    background-color: #191B1F;
+    background-color: #141414;
     color: #ffffff;
 }
 

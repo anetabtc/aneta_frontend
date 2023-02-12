@@ -179,6 +179,8 @@ function QRWindow({eBTC}) {
         const [copy, setCopy] = useState("");
         const [confirmation, setConfirmation] = useState("");
 
+        const [spinQR, setSpinQR] = useState(false)
+
 
         function check(text) {
             let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
@@ -211,6 +213,19 @@ function QRWindow({eBTC}) {
 
         function btnDomTxIdOff() {
             setDomTxId("false")
+        }
+
+        function confirmQR(){
+
+                setSpinQR(true)
+                setTimeout(()=>{
+                    setSpinQR(false);
+                },3000);
+                setTimeout(()=>{
+                    navigateToBTCDeposit()
+                },2000);
+                
+            
         }
 
 
@@ -258,7 +273,7 @@ function QRWindow({eBTC}) {
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>
                         </div>
 
-                        <button className="btnPayment" onClick={navigateToBTCDeposit}>I have sent the deposit</button>
+                        <button className="btnPayment" onClick={confirmQR}>{spinQR ? <div className='spinner QR'></div>:""}I have sent the deposit</button>
 
 
                     </div>

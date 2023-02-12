@@ -31,9 +31,9 @@ function ErrorPayment() {
             </div>
             <div className="result">
                 <div>
-                    <img src={require('../../../assets/img/fail.png').default} alt="fail" height="50px"/>
+                    <img src={require('../../../assets/img/fail.png').default} alt="fail" height="80px"/>
                 </div>
-                <div>
+                <div className="resultTx">
                     <p>Transaction Failed</p>
                     <p>Please Try Again</p>
                 </div>
