@@ -25,6 +25,8 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
 
     const [disable, setDisable] = useState(false);
     const [contDisable, setContDisable] = useState(true);
+
+    const [spinConf, setSpinConf] = useState(false)
     
 
 /*      function NameTrans() {
@@ -169,13 +171,17 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 </div> */}
                 <button type="button" id="confButton" disabled={disable}
                         onClick={() => send()}
-                ><b>Confirm Unwrap</b></button>
+                >{spinConf ? <div className='spinner conf'></div>:""}<b>Confirm Unwrap</b></button>
 
             </div>
         )
     }
 
     async function send() {
+        setSpinConf(true)
+        setTimeout(()=>{
+            setSpinConf(false);
+        },2000);
         setDisable(true)
         const result = await sendPaymentFunction(eBTC, btcAddress, nautilusAddress)
         setTxInfo(result)

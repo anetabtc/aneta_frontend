@@ -172,7 +172,7 @@ function Bridge() {
                             Error
                         </div>
                         <div className="error">
-                        Please, enter a multiple parseFloat of satoshi (Maximum 8 decimal places).
+                        Please, enter a multiple number of satoshi (Maximum 8 decimal places).
                         </div>
                         <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
                     </div>
@@ -308,7 +308,7 @@ function Bridge() {
         return (
             <div id="WRAP">
                 <p className="title">Mint eBTC</p>
-                <input pattern="[0-9]+" type="parseFloat" placeholder="0.00"
+                <input pattern="[0-9]+" type="number" min="0" placeholder="0.00"
                        className="btcInput"
                        size="30"
                        id="mintAmount"
@@ -357,7 +357,7 @@ function Bridge() {
 
                 {minMint ? "" : <div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> You can mint a minimum of 0.0006 BTC.</div>}
 
-                {(minMint && !maxDecimals)?<div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple parseFloat of satoshi (Maximum 8 decimal places).</div>:""}
+                {(minMint && !maxDecimals)?<div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple number of satoshi (Maximum 8 decimal places).</div>:""}
 
 
                 <div className="flex-container">
@@ -494,7 +494,7 @@ function Bridge() {
         return (
             <div id="UNWRAP">
                 <p className="title">Redeem BTC</p>
-                <input pattern="[0-9]+" type="parseFloat" className="btcInput"  max="9999" size="30" placeholder="0.00" required
+                <input pattern="[0-9]+" type="number" min="0" className="btcInput"  max="9999" size="30" placeholder="0.00" required
                        id="mintAmount"
                        name="mintAmount"
                        onChange={handleChangeRedeem}
@@ -507,7 +507,7 @@ function Bridge() {
                 </div>
                 {minRedeem? "" : <div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> You can redeem a minimum of 0.0006 BTC.</div>}
 
-                {(minRedeem && !maxDecimalsRedeem)?<div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple parseFloat of satoshi (Maximum 8 decimal places).</div>:""}
+                {(minRedeem && !maxDecimalsRedeem)?<div className='warningBridge redeem'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple number of satoshi (Maximum 8 decimal places).</div>:""}
 
                 <br></br>
                 <p/>
