@@ -7,7 +7,7 @@ import Transactions from './pages/Transactions/Transactions.tsx'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Navbar from "./layouts/Navbar.tsx";
 import Menu from "./layouts/Menu"
-import Kya from './Kya.tsx';
+import Kya from './layouts/Kya.tsx';
 
 function App() {
 
