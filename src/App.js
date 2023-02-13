@@ -7,6 +7,7 @@ import Transactions from './pages/Transactions/Transactions.tsx'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Navbar from "./layouts/Navbar.tsx";
 import Menu from "./layouts/Menu"
+import Kya from './Kya';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <div className="Main">
                 <Navbar />
                 <Menu />
+                <Kya />
 
                 <Routes><Route path="/" element={<Bridge />} /></Routes>
                 <Routes><Route path="/transactions" element={<Transactions />} /></Routes>

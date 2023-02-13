@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import close from "../src/assets/img/dark_close.png";
 
 
-function KYA() {
+function Kya() {
 
     const [connection, setConnection] = useState(false)
     const [accept, setAccept] = useState(true)
@@ -62,4 +62,4 @@ function KYA() {
   )
 }
 
-export default KYA
+export default Kya
