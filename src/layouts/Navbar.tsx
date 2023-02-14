@@ -174,7 +174,6 @@ function DropDown({selected, setSelected}) {
                                     id="Vector"/>}
                                 </div>
                                 <div id="disabled">Cardano</div>
-                                <div className="disabled">off</div>
                             </div>
                             
                             {/* Cardano Inactive at this stage */}

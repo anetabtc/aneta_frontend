@@ -4,6 +4,29 @@ import { constants } from "buffer";
 
 function Menu() {
 
+    const [activeB, setActiveB] = useState(true);
+    const [activeT, setActiveT] = useState(false);
+    const [activeD, setActiveD] = useState(false);
+    const [activeF, setActiveF] = useState(false);
+
+    window.addEventListener("load", function(){
+
+        let menuActive = document.querySelectorAll(".menu-item")
+            for(let i=0; i<menuActive.length; i++){
+        
+                menuActive[i].addEventListener("click", function(){
+                    for(const items of menuActive){
+                        items.classList.remove("active")
+                    }
+                    this.classList.add("active");
+                    })
+                }
+    })
+
+
+    //{`menu-item ${active?'active':''}`}
+    
+
     return (
         <div className="sidebar" id="sidebar">
             <div className="menuTop">

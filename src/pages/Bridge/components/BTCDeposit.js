@@ -61,7 +61,7 @@ function BTCDeposit({eBTC}) {
                                 <img id="bitcoin" src={require('../../../assets/img/werg.png').default} alt="eBTC"/>
                                 <p>eBTC</p>
                             </div>
-                            <div>{Math.round((parseFloat(eBTC)*.995)*100000000)/100000000}</div>
+                            <div>{Math.round(((parseFloat(eBTC)*.995)-0.0001)*100000000)/100000000}</div>
                         </div>
                     </div>
                     <div className="text1">Thank you for sending your BTC Deposit.</div>

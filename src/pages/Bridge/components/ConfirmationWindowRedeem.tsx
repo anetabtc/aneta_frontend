@@ -140,26 +140,14 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 
                 <div className="bridgeFee unWrap confirm">
                     <div className='feeItem'>
-                        <div>Bridge fee:
-                            <img src={require('../../../assets/img/svg.png').default}
+                        <div>Bridge Fee:
+{/*                             <img src={require('../../../assets/img/svg.png').default}
                             alt="info" height={"16px"} className='dark__mode'/>
                             <img src={require('../../../assets/img/svg_light.png').default}
-                            alt="info" height={"16px"} className='sun__mode'/>
+                            alt="info" height={"16px"} className='sun__mode'/> */}
                             </div>
                         <div>
-                        {Math.round((parseFloat(eBTC)*.005)*100000000)/100000000} eBTC
-                        </div>
-                    </div>
-                    <div className='feeItem'>
-                        <div>BTC Network Fee:</div>
-                        <div>
-                            0.0001 BTC
-                        </div>
-                    </div>
-                    <div className='feeItem'>
-                        <div>ERG Network Fee:</div>
-                        <div>
-                            0.05 ERG
+                        {Math.round(((parseFloat(eBTC)*.005)+0.0001)*100000000)/100000000} eBTC + 0.05 ERG
                         </div>
                     </div>
                 </div>
