@@ -14,7 +14,7 @@ function Dashboard() {
 
         function get(){
 
-            fetch("https://api.bitaps.com/btc/testnet/v1/blockchain/address/state/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5")
+            fetch("https://api.bitaps.com/btc/testnet/v1/blockchain/address/state/n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6")
                 .then(res => res.json())
                 .then(res1 => res1.data)
                 .then((res2) => {
@@ -23,7 +23,7 @@ function Dashboard() {
                     setEBTCAmount(result.toString().substring(0,6))
                 })
 
-            fetch("https://api.ergoplatform.com/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw")
+            fetch("https://api.ergoplatform.com/addresses/9hp4qZYXu9UbMZbiGkZ185HtZeqAN5DN2siyzGB8V5ZM39GZfRq")
                 .then(res => res.json())
                 .then(res1 => res1.transactions)
                 .then(res2 => {
@@ -53,7 +53,7 @@ function Dashboard() {
                             <div className={"synced"}>Synced <img className={"secure"} src={require('../../assets/img/secure.png').default}/></div>
                         </div>
                     </div>
-                    <div className={"dashButton"} role={"link"} onClick={() => openInNewTab('https://tbtc.bitaps.com/mhnQqgcZQjxXW4he5vZYHPfCaBx2UGorC5')}>View supply ➜</div>
+                    <div className={"dashButton"} role={"link"} onClick={() => openInNewTab('https://tbtc.bitaps.com/n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6')}>View supply ➜</div>
                 </div>
 
                 <div className={"dashBox"}>
@@ -64,7 +64,7 @@ function Dashboard() {
                             <div className={"synced"}>Synced <img className={"secure"} src={require('../../assets/img/secure.png').default}/></div>
                         </div>
                     </div>
-                    <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9fsYtXufgnv65JRDMWEHqGcgSRwBxdfkJbmD6tUozxE1J9zE8Dw')}>View supply ➜</div>
+                    <div className={"dashButton"} role="link" onClick={() => openInNewTab('https://explorer.ergoplatform.com/en/addresses/9hp4qZYXu9UbMZbiGkZ185HtZeqAN5DN2siyzGB8V5ZM39GZfRq')}>View supply ➜</div>
                 </div>
 
                 <div className={"dashBox"}>
