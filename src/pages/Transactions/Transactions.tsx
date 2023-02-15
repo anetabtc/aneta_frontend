@@ -96,7 +96,7 @@ function Transactions() {
     )
 
     function MintPage() {
-        const bridge = 0.05
+        const bridge = 0.005
         const br = 32
 
 
@@ -126,7 +126,7 @@ function Transactions() {
                                     <td className="TD1" >{tx.datetime}</td>
 
                                     <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round((0.001+ bridge * tx.amount) * 100000000) / 100000000} BTC </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -138,7 +138,7 @@ function Transactions() {
                                     <td className="TD1" >{tx.datetime}</td>
 
                                     <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
+                                    <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round((0.001+ bridge * tx.amount) * 100000000) / 100000000} BTC </a>
                                     </td>
 
                                     <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -158,7 +158,7 @@ function Transactions() {
     }
 
     function RedeemPage() {
-        const bridge = 0.05
+        const bridge = 0.005
         return (
             <div className='mainmenu_transaction'>
                 <div>
@@ -182,7 +182,7 @@ function Transactions() {
                                             <td className="TD1" >{tx.datetime}</td>
 
                                             <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round((bridge * tx.amount + 0.0001 + 0.05) * 100000000) / 100000000} BTC </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
@@ -194,7 +194,7 @@ function Transactions() {
                                             <td className="TD1" >{tx.datetime}</td>
 
                                             <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.ebtc_mint_tx_id}>{tx.amount} eBTC </a> </td>
-                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round(bridge * tx.amount * 100000000) / 100000000} BTC </a>
+                                            <td className="TD1"><a href={"https://explorer.ergoplatform.com/en/transactions/"+ tx.erg_txid}>{Math.round((bridge * tx.amount + 0.0001 + 0.05) * 100000000) / 100000000} BTC </a>
                                             </td>
 
                                             <td className="TD1">{tx.id ? tx.id.substring(0, 7) + '-' + tx.id.substring(tx.id.length - 7, tx.id.length) : ""}</td>
