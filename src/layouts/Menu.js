@@ -12,16 +12,29 @@ function Menu() {
     window.addEventListener("load", function(){
 
         let menuActive = document.querySelectorAll(".menu-item")
+
+
             for(let i=0; i<menuActive.length; i++){
+                
+                if(menuActive[i] == window.location.href){
+                    menuActive[i].classList.add("active")
+                }
         
                 menuActive[i].addEventListener("click", function(){
                     for(const items of menuActive){
+                        
                         items.classList.remove("active")
                     }
                     this.classList.add("active");
                     })
                 }
     })
+
+/*     useEffect(()=>{
+
+
+
+    }) */
 
 
     //{`menu-item ${active?'active':''}`}

@@ -2275,11 +2275,18 @@ body.dark .menuPopup {
     margin-right: 5px;
 }
 
-.qrCode {
+.backgroundQR{
+    background-color: #FFFFFF;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin: 15px 0;
+    margin: 15px auto;
+    width: 135px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
+
+
 
 div > .addressBTC {
     display: flex;
@@ -2717,26 +2724,82 @@ body.dark .inputTx input{
 
     .mobile {
         display: block;
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 20px;
         font-size: 16px;
-    }
-    body.dark .mobile {
         color: white;
+        background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(123.72deg, rgba(0, 44, 105, 0.5) 3.68%, rgba(82, 82, 82, 0) 66.34%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #001431;
     }
+/*     body.dark .mobile {
+        color: white;
+    } */
 
     .mobLogo {
         width: 179px;
+        margin-top: 40px;
     }
 
     .textMob {
-        margin-top: 135px;
-        text-align: center;
-        max-width: 600px;
+        margin-top: 70px;
+        width: 100%;
+        max-width: 500px;
+        background: rgba(0, 0, 0, 0.32);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+    .textMob h2{
+        width: 80%;
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .infoMob{
+        margin: 30px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .infoMob h3{
+        width: 60%;
+        text-align: center;
+        max-width: 400px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .buttonMob{
+        width: 260px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1F509A;
+        border-radius: 8px;
+    }
+
+    .buttonMob a{
+        color: white;
+    }
+
+    .mobBack{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-width: 400px;
+    }
+    @media (min-width: 400px){
+        .mobBack{
+            left: calc((100vw - 400px)/2);
+        }
+    }
+
 }
 
 

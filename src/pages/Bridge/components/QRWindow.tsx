@@ -27,7 +27,7 @@ function QRWindow({eBTC}) {
     const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
     const [address, setAddress] = useState('');
-    const [window, setWindow] = useState(true);
+    const [windows, setWindows] = useState(true);
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
@@ -61,6 +61,8 @@ function QRWindow({eBTC}) {
         setPaymentWindow(false);
 
     }
+
+
 
 
     const getVaultAddress = () => {
@@ -228,6 +230,10 @@ function QRWindow({eBTC}) {
             
         }
 
+        const refreshPage = () => {
+            window.location.reload();
+        }
+
 
         return (
             <div className="mainPopup">
@@ -235,6 +241,9 @@ function QRWindow({eBTC}) {
                     <div className="divLabel">
                         <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="aneta"/> <label
                         className="labelMain"> BTC Deposit</label>
+                        <div id="close">
+                            <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} />
+                        </div>
                     </div>
                     <div className="menuPopup">
                         <label className="SingleTrans1">Using Moonshine Wallet,<br/>Send {eBTC} BTC</label>
@@ -261,13 +270,15 @@ function QRWindow({eBTC}) {
                             before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG
                             address into the message section of this transaction, you will not receive eBTC.
                         </div>
-                        <div className='qrCode'>
-                            <QRCode
-                                id="qrCode"
-                                value={address}
-                                size={120}
-                                level={"L"}
-                            />
+                        <div className="backgroundQR">
+                            <div className='qrCode'>
+                                <QRCode
+                                    id="qrCode"
+                                    value={address}
+                                    size={120}
+                                    level={"L"}
+                                />
+                            </div>
                         </div>
                         <div className="note">
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>

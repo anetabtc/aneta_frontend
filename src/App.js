@@ -25,9 +25,23 @@ function App() {
 
             </div>
             <div className="mobile">
-                <img src={require('./assets/img/logo.png').default} className="mobLogo sun__mode" alt="aneta"/>
-                <img src={require('./assets/img/logo_dark.png').default} className="mobLogo dark__mode" alt="aneta"/>
-                <h2 className="textMob">anetaBTC is not yet available on mobile devices. Please use anetaBTC on desktop.</h2>
+                {/* <img src={require('./assets/img/logo.png').default} className="mobLogo sun__mode" alt="aneta"/> */}
+                <img src={require('./assets/img/logo_dark.png').default} className="mobLogo" alt="aneta"/>
+                <div className="textMob">
+                    <h2>The anetaBTC bridge is not yet available on mobile devices.</h2>
+                </div>
+                <div className="infoMob">
+                    <h3>The Moonshine BTC wallet is required for wrapping BTC and is only available as a mobile wallet. Moonshine wallet can be downloaded below.</h3>
+                </div>
+
+                <div className="buttonMob">
+                    <a target="_blank" href="https://moonshinewallet.com/">Get Moonshine BTC wallet</a>
+                </div>
+
+                <div>
+                    <img src={require('./assets/img/back_mob.png').default} className="mobBack" alt="aneta"/>
+                </div>
+                
             </div>
         </div>
     )
