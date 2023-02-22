@@ -112,7 +112,23 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
     }
 
 
+
     function ConfirmationInfo() {
+
+        const [toolTip, setToolTip] = useState(false);
+
+        function onToolTip(){
+            setToolTip(true)
+        }
+
+        function ofToolTip(){
+            setTimeout(()=>{
+                setToolTip(false);
+            },1000);
+        }
+
+
+
         return (
             <div className="redeem">
                 <div className="titleBTC">Confirm Unwrap</div>
@@ -141,11 +157,17 @@ function ConfirmationWindowRedeem({eBTC, btcNetworkFeeUsd, btcNetworkFee, btcAdd
                 <div className="bridgeFee unWrap confirm">
                     <div className='feeItem'>
                         <div>Bridge Fee:
-{/*                             <img src={require('../../../assets/img/svg.png').default}
-                            alt="info" height={"16px"} className='dark__mode'/>
-                            <img src={require('../../../assets/img/svg_light.png').default}
-                            alt="info" height={"16px"} className='sun__mode'/> */}
+                            <img src={require('../../../assets/img/idark_svg.png').default}
+                            alt="info" height={"16px"} className='dark__mode' onMouseOver={onToolTip} onMouseOut={ofToolTip}/>
+                            <img src={require('../../../assets/img/ilight_svg.png').default}
+                            alt="info" height={"16px"} className='sun__mode' onMouseOver={onToolTip} onMouseOut={ofToolTip}/>
                             </div>
+                            {toolTip ? <div className="toolTip">
+                                0.05% of eBTC Quantity<br/>Uwrapped + 0.0001 eBTC<br/>+ 0.05 ERG 
+                                <div className="flecha-down"></div>
+                            </div> : ""}
+                            
+
                         <div>
                         {Math.round(((parseFloat(eBTC)*.005)+0.0001)*100000000)/100000000} eBTC + 0.05 ERG
                         </div>

@@ -4,10 +4,10 @@ import { constants } from "buffer";
 
 function Menu() {
 
-    const [activeB, setActiveB] = useState(true);
+/*     const [activeB, setActiveB] = useState(true);
     const [activeT, setActiveT] = useState(false);
     const [activeD, setActiveD] = useState(false);
-    const [activeF, setActiveF] = useState(false);
+    const [activeF, setActiveF] = useState(false); */
 
     window.addEventListener("load", function(){
 

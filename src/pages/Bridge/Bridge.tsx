@@ -593,7 +593,7 @@ function Bridge() {
 
 
 
-                <button onClick={confirmRedeem} type="button" className="mainButton2" id="mintButton">{spinRedeem ? <div className='spinner'></div>:""}
+                <button onClick={confirmRedeem} type="button" className="mainButton2" id="mintButton">{spinRedeem ? <div className='spinner unwrap'></div>:""}
                     <b>Unwrap eBTC</b></button>
             </div>
         )

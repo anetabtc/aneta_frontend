@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 //////////////////////////////
 import {initializeApp} from "firebase/app";
-import {getFirestore} from "firebase/firestore";
+import {enableMultiTabIndexedDbPersistence, getFirestore} from "firebase/firestore";
 import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
 import {addDoc, collection, getDocs, doc} from "firebase/firestore";
@@ -23,6 +23,9 @@ function Transactions() {
     const [getTxs, setGetTxs] = useState(true);
     let txs = [{}];
     let txs2 = [{}]
+
+    const [order, setOrder] = useState(false);
+
 
 
     useEffect(() => {
@@ -61,7 +64,37 @@ function Transactions() {
 
 
         setProducts(txs)
+        setOrder(true)
+
     }
+
+    useEffect(()=>{
+        if(order){
+            orderProducts()
+        }
+
+     },[order]);
+
+
+    function orderProducts() {
+
+        /* ORDER AND CLEAN products */
+
+        const newProducts = []
+        for (const indice of products) {
+            if(isNaN(Date.parse(indice.datetime))){
+            }else{
+                newProducts.push(indice)
+            }
+        }
+        newProducts.sort(function(a,b){
+            return (Date.parse(b.datetime)-Date.parse(a.datetime))
+        })
+        setProducts(newProducts)
+        
+     }
+
+   
 
     const [visible, SetVisible] = useState(true);
 
@@ -117,6 +150,8 @@ function Transactions() {
 
 
                 {
+                    
+
                     products.map((tx) => {
                             
                             if ((tx.info === "Mint Order Paid" || tx.info === "Mint Order Processing"|| tx.info === "Mint Order Submitted") && tx.erg_address === address && tx.info != "Mint Order Success") {
