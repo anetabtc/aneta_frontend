@@ -1336,10 +1336,6 @@ table {
     border-bottom: 1px solid black;
 }
 
-tr {
-
-}
-
 td {
     font-size: 12px;
     padding: 10px;
@@ -1910,9 +1906,6 @@ body.dark .popupFixed .txInfo {
     justify-content: center;
 }
 
-.labels > b {
-
-}
 
 #bckgrnd {
     background-color: #B9DDFF;
