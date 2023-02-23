@@ -14,7 +14,6 @@ function BTCDeposit({eBTC}) {
         vault_id: 0,
         wallet_id: 0
     };
-    console.log(JSON.stringify(data));
 
 
 
@@ -25,25 +24,6 @@ function BTCDeposit({eBTC}) {
 
      return(
         <div className="mainPopup">
-{/*             <div className="confContent" id="top_card">
-                <div className="confWindow">
-                    <div className="confTitle">
-                        <div>
-                        <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="aneta"/>
-                            BTC Deposit</div>
-                    </div>
-                    <div className="confSubmission">
-                    <div className="depositBTC">
-                        <div>Bridge Fee Payment Submitted</div>
-                        <div>eBTC will arrive in your wallet shortly.</div>
-                        <div>Transactions can take around 10 minutes to process.</div>
-                        <CheckMark/>
-                        <button type="button" id="confButton1" className="confWRS" onClick={refreshPage}><b>Continue</b></button>
-                    </div>
-                        
-                    </div>
-                </div>
-            </div> */}
             <div className="confContent" id="top_card">
                 <div className="confWindow btcDeposit">
                     <div className="titleBTC">BTC Deposit</div>

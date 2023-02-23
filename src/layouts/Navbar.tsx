@@ -18,7 +18,6 @@ function Navbar() {
 
     async function handleWalletConnect() {
 
-        console.log("useraddd", userAddress)
         if (userAddress === null) {
             const isConnected = await ergoConnector.nautilus.connect();
 
@@ -45,7 +44,6 @@ function Navbar() {
     async function disconnect() {
 
         let disconnected = await ergoConnector.nautilus.disconnect();
-        console.log("disconnected: ", disconnected)
         localStorage.removeItem('address');
         setUserAddress(JSON.parse(localStorage.getItem('address')))
 

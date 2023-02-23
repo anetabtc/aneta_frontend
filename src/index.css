@@ -151,7 +151,7 @@ body.dark .confContent{
 .confWindow {
     z-index: 10;
     width: 545px;
-    height: auto; /* 389 */
+    height: auto;
     border-radius: 16px;
     background: #EEF4FF;
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.08);
@@ -286,12 +286,6 @@ body.dark #confButton:hover {
 }
 
 
-
-
-/* body.dark .confWindow.btcDeposit {
-    background-color: #141414;
-} */
-
 .redeemConfWindow{
     position: absolute;
     background-color: #EEF4FF;
@@ -412,7 +406,6 @@ body.dark .text2 {
     font-size: 18px;
 }
 
-/* REVISAR PARA BORRAR  */
 .confInfo {
     height: 120px;
     gap: 30px;
@@ -485,26 +478,6 @@ body.dark .text2 {
     }
 }
 
-
-/* .depositBTC #checkMarkIcon{
-    top: 62%
-}
-
-.depositBTC svg {
-    margin: 20px 0;
-}
-
-.depositBTC > #idTransaction {
-    margin-bottom: 20px;
-} */
-
-/* .depositBTC #confButton1 {
-    margin-bottom: 25px;
-}
-
-.paymentSucces #confButton1 {
-    margin-bottom: 0;
-} */
 
 .depositBTC::before {
     animation: textprogress 2s ease-out;
@@ -630,16 +603,6 @@ body.dark #confButton1:hover {
     background-color: rgba(031, 080, 154, 0.5);
 }
 
-
-
-
-
-/*.circle, .overlay {*/
-/*    grid-area: 1 / 1;*/
-/*    left: 45%;*/
-/*}*/
-
-
 .overlay {
     margin-left: 205px;
 }
@@ -754,7 +717,7 @@ body.dark .dropdown .dropdown-btn {
     text-align: start;
     font-size: 14px;
     border-radius: 5px;
-    right: 235px;
+    right: 228px;
 
 }
 
@@ -1056,9 +1019,6 @@ body.dark .btnM:hover {
 
 /* KYA */
 
-/* body.dark #kya .confWindow {
-    background: #141414;
-} */
 
 #kya.confContent{
     margin-top: 110px;
@@ -1101,10 +1061,6 @@ body.dark .btnM:hover {
     margin: 15px 0;
     font-size: 14px;
 }
-
-/* .kya h2{
-    font-weight: 400;
-} */
 
 .kya ol{
     padding: 0;
@@ -1796,7 +1752,7 @@ body.dark .mainButton {
 }
 
 .spinner.unwrap{
-    bottom: 44px;
+    bottom: 40px;
     left: 200px;
 }
 
@@ -2148,12 +2104,10 @@ body.dark .flecha-down{
     display: flex;
     justify-content: flex-end;
     padding-right: 5px;
-    /* margin-top: 5px; */
 }
 
 .flex-containerB {
     display: flex;
-    /*flex-direction: row;*/
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -2441,10 +2395,6 @@ body.dark .btnPayment:hover {
     cursor: pointer;
 }
 
-#back img{
-    /*height: 30px;*/
-}
-
 #domTxId.popup {
     top: 280px
 }
@@ -2587,19 +2537,6 @@ body.dark .inputTx input{
 
 .vault-set-up-text {
     text-align: center;
-}
-
-.vault-amount-block {
-] width: 544 px;
-    height: 157px;
-
-    border: 0.88px solid #5C5C5C;
-    border-radius: 15px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .vault-amount-text {
@@ -2768,9 +2705,6 @@ body.dark .inputTx input{
         color: white;
         background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(123.72deg, rgba(0, 44, 105, 0.5) 3.68%, rgba(82, 82, 82, 0) 66.34%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #001431;
     }
-/*     body.dark .mobile {
-        color: white;
-    } */
 
     .mobLogo {
         width: 179px;
@@ -2848,20 +2782,10 @@ body.dark .inputTx input{
 }
 
 #usd.feeUSD1 {
-    /*    text-align: right;
-   
-       position: absolute;
-       left: 50%;
-       top: 79%; */
        top: 350px;
    }
 
 .feeUSD2 {
-/*     text-align: right;
-
-    position: absolute;
-    left: 53%;
-    top: 47%; */
     top: 400px;
 }
 
@@ -2872,31 +2796,6 @@ body.dark .inputTx input{
     right: 33px;
     top: 495px;
 }
-
-/* .feeUSD4 {
-    text-align: right;
-
-    position: absolute;
-    left: 53%;
-    top: 59%;
-}
-
-.feeUSD5 {
-    text-align: right;
-
-    position: absolute;
-    left: 50%;
-    top: 54%;
-}
-
-.feeUSD6 {
-    text-align: right;
-
-    position: absolute;
-    left: 50%;
-    top: 64%;
-}
-
 
 
 .feeUSD8 {

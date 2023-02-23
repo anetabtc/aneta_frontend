@@ -15,17 +15,7 @@ function ErrorPayment() {
 
     return(
         popupFixed ? 
-        //<div className="mainPopup">
         <div className="popupFixed">
-{/*             <div className="confContent">
-                <div className="confWindow">
-                    <div className="confTitle">
-                        Error
-                    </div>
-                    <div className="error">Something went wrong.</div>
-                    <button type="button" id="confButton1" onClick={refreshPage}><b>Try again!</b></button>
-                </div>
-            </div> */}
             <div id="close">
                     <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage}/>
             </div>

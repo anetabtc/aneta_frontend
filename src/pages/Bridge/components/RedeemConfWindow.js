@@ -33,7 +33,6 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
 
     useEffect(() => {
         writeToDB(nautilusAddress, btcAddress, eBTC, txInfo)
-        console.log("tx id nautilus: ", txInfo)
     }, []);
 
     const refreshPage = () => {
@@ -104,7 +103,6 @@ function RedeemConfWindow({eBTC, btcAddress, nautilusAddress, txInfo}) {
     )
 
     async function writeToDB(nautilusAddress, btcAddress, eBTC, txInfo) {
-        console.log("txID", txInfo)
         try {
             const docRef = await addDoc(collection(db, "users"), {
                 erg_address: nautilusAddress,

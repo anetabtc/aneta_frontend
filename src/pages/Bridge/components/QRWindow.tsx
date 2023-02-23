@@ -40,9 +40,7 @@ function QRWindow({eBTC}) {
     const [paymentWindow, setPaymentWindow] = useState(true)
 
     const navigateToBTCDeposit = async () => {
-        console.log('payment is done!')
 
-        console.log("Writing to Firebase")
         // TODO Write to DB
 
         try {

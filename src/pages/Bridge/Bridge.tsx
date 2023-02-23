@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import ConfirmationWindowRedeem from "./components/ConfirmationWindowRedeem.tsx";
+import ConfirmationWindowRedeem from "./components/ConfirmationWindowRedeem";
 import QRWindow from './components/QRWindow';
 
 
@@ -29,25 +29,10 @@ function Bridge() {
 
     const [addressError, setAddressWalletError] = useState(false);
 
-/*     const [multipleSatoshi, setMultipleSatoshi] = useState(true)
-    const [checkSatoshi, setCheckSatoshi] = useState(true)
-    const [multipleSatoshiRedeem, setMultipleSatoshiRedeem] = useState(true)
-    const [checkSatoshiRedeem, setCheckSatoshiRedeem] = useState(true)
-    const [checkMin, setCheckMin] = useState(true)
-    const [checkMinRedeem, setCheckMinRedeem] = useState(true) */
-
-
 
     const refreshPage = () => {
         window.location.reload();
-        setTimeout(()=>{
-/*             setMultipleSatoshi(true);
-            setMultipleSatoshiRedeem(true);
-            setCheckSatoshi(true);
-            setCheckSatoshiRedeem(true);
-            setCheckMinRedeem(true);
-            setCheckMin(true); */
-        },1000);
+
     }
 
 
@@ -56,10 +41,6 @@ function Bridge() {
         BtcUsd();
     }, [])
 
-    // setInterval(() => {
-    //     ErgUsd();
-    //     BtcUsd();
-    // }, 60000);
 
     function ErgUsd() {
 
@@ -74,7 +55,6 @@ function Bridge() {
                 cache: 'default',
             });
             const content = await rawResponse.json();
-            console.log(content.USD + " erg usd")
             setErgUsd(content.USD)
         })();
 
@@ -94,7 +74,6 @@ function Bridge() {
             });
             const content = await rawResponse.json();
             setUsdBTC(content.USD)
-            console.log(usdBTC + " btcusd")
         })();
     }
 
@@ -113,7 +92,6 @@ function Bridge() {
 
     function DownUp() {
         if (visible) {
-            {console.log("anetaBTCAmountG" + anetaBTCAmountG)}
             return (
                 <MintPage eBTC={anetaBTCAmountG} bridgeFee={bridgeFeeG}/>
             )
@@ -143,78 +121,17 @@ function Bridge() {
         )
     }
 
-/*     function AddressError() {
-        return(
-            <div className="mainPopup">
-                <div className="confContent">
-
-                    <div className="confWindow">
-                        <div className="confTitle">
-                            Error
-                        </div>
-                        <div className="error">
-                            Your address is incorrect. Please try again.
-                        </div>
-                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
-                    </div>
-                </div>
-            </div>
-        )
-    } */
-
-/*     function SatoshiError() {
-        return(
-            <div className="mainPopup">
-                <div className="confContent">
-
-                    <div className="confWindow">
-                        <div className="confTitle">
-                            Error
-                        </div>
-                        <div className="error">
-                        Please, enter a multiple number of satoshi (Maximum 8 decimal places).
-                        </div>
-                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
-                    </div>
-                </div>
-            </div>
-        )
-    } */
-
-/*     function MinAmountError() {
-        return(
-            <div className="mainPopup">
-                <div className="confContent">
-
-                    <div className="confWindow">
-                        <div className="confTitle">
-                            Error
-                        </div>
-                        <div className="error">
-                        You can mint and redeem a minimum of 0.0006 BTC.
-                        </div>
-                        <button type="button" id="confButton1" onClick={refreshPage}><b>Try again</b></button>
-                    </div>
-                </div>
-            </div>
-        )
-    } */
-
     return (
         <div>
-            {/* {multipleSatoshi ? '' : <SatoshiError/>} */}
-            {/* {checkMin ? '' : <MinAmountError/> } */}
 
             {connectWalletError ? <ConnectWalletError/> : ""}
-            {addressError ? <AddressError/> : ""}
-            {popup /* && multipleSatoshi && checkMin */ ? <QRWindow eBTC = {anetaBTCAmountG}
+            {/* {addressError ? <AddressError/> : ""} */}
+            {popup ? <QRWindow eBTC = {anetaBTCAmountG}
                 // btcAddress={btcAddressMint}
             /> : ""}
 
-{/*             {multipleSatoshiRedeem ? '' : <SatoshiError/>}
-            {checkMinRedeem ? '' : <MinAmountError/> } */}
             
-            {popupr /* && multipleSatoshiRedeem && checkMinRedeem */ ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
+            {popupr ? <ConfirmationWindowRedeem eBTC = {BTCAmountG} btcNetworkFee = {btcNetworkFeeG} btcNetworkFeeUsd = {btcNetworkFeeUsdG}  btcAddress = {btcAddressG}  /> : ""}
             <div id="content1">
                 <div id="radios">
                     <input id="rad1" type="radio" name="radioBtn" onClick={() => SetVisible(true)}/>
@@ -271,10 +188,6 @@ function Bridge() {
 
         }
 
-        useEffect(()=>{
-            /* checkSatoshi ? '' : setMultipleSatoshi(false); */
-        })
-
 
         function confirmMint(){
             if(anetaBTCAmount == '0'){
@@ -298,7 +211,6 @@ function Bridge() {
                 // setBtcAddressMint(btcAddress)
     
                 const address = JSON.parse(localStorage.getItem('address'))
-                console.log(address)
                 address ? handleClickOpen() : setConnectWalletError(true)
         }
 
@@ -322,39 +234,7 @@ function Bridge() {
                          alt="aneta"/>BTC<br/>
                     <div id="usd"> ~ $ {(Math.round(usdBtcMint*100)/100).toFixed(2)}</div>
                 </div>
-                <br></br>
-{/*                 <div className="flex-container">
-                    <div className="left">Bridge Fee</div>
-                    <div className="right">
-                        <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                        <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
-                        <b>{Math.round(bridgeFee*10000)/10000}</b> ERG
-                    </div>
-                    <div className="feeUSD8" id="usd"> = $ {Math.round(bridgeFeeUsd*10000)/10000}</div>
-                </div>
-
-                <br></br>
-                <p/><p/>
-                <div className="flex-container">
-                    <div className="left">ERG Network fee</div>
-                    <div className="right">
-                        <div>
-                            <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                            <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
-                            <b>{Math.round(ergFee*100)/100}</b> ERG
-
-                        </div>
-
-                    </div>
-                    <div className="feeUSD9" id="usd"> = $ {Math.round(ergFeeUsd*100)/100} </div>
-                </div>
-                <br/><br/>
-                <hr id="menuHR1"></hr> */}
-
-                
-
-
-
+                <br></br>          
                 {minMint ? "" : <div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> You can mint a minimum of 0.0006 BTC.</div>}
 
                 {(minMint && !maxDecimals)?<div className='warningBridge'><img src={require('../../assets/img/error.png').default} alt="error"/> Enter a multiple number of satoshi (Maximum 8 decimal places).</div>:""}
@@ -444,10 +324,6 @@ function Bridge() {
             return (regex.test(text));
         }
 
-        useEffect(()=>{
-            /* checkSatoshiRedeem ? '' : setMultipleSatoshiRedeem(false) */
-        })
-
         function confirmRedeem(){
             if(BTCAmount == '0'){
                 if(btcAddress == ''){
@@ -476,7 +352,6 @@ function Bridge() {
                 setBtcAddressG(btcAddress)
                 setBTCAmountG(parseFloat(BTCAmount).toString())
                 const address = JSON.parse(localStorage.getItem('address'))
-                console.log(address, "Address")
                 address ? handleClickOpenRedeem() : setConnectWalletError(true)
 
 
@@ -515,60 +390,6 @@ function Bridge() {
                 <input type="text" className="btcInputAddress" size="30" placeholder="Enter your BTC address" onChange={handleChangeBtcAddress} value={btcAddress} onBlur={checkAddress}
                        required/><br/>
                 {checkBTCAddress? "" : <div className='warningBridge address'><img src={require('../../assets/img/error.png').default} alt="error"/> Please enter a valid BTC Destination Address.</div>}
-
-{/*                 <div className="flex-container">
-                    <div className="left">Bridge Fee</div>
-                    <div className="right">
-                        <img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                        <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
-                        <b>{Math.round(bridgeFee*100)/100}</b> ERG
-
-
-                    </div>
-
-                    <div className="feeUSD1" id="usd"> = $ {Math.round(bridgeFeeUsd*100)/100}</div>
-
-                </div>
-
-                <br></br>
-                <p/><p/>
-                <div className="flex-container">
-                    <div className="left">BTC network Fee</div>
-                    <div className="right">
-                        <img id="bit" src={require('../../assets/img/Bitcoin.png').default}
-                             alt="aneta"/><b>{Math.round(btcNetworkFee*100)/100}</b> BTC
-
-
-                    </div>
-
-                    <div className="feeUSD5" id="usd"> = $ {Math.round(100*btcNetworkFeeUsd)/100}</div>
-
-                </div>
-
-                <br></br>
-                <p/><p/>
-                <div className="flex-container">
-                    <div className="left">ERG Network fee</div>
-                    <div className="right">
-                        <div><img id="bit" src={require('../../assets/img/Ergo_dark.png').default}alt="aneta" className='dark__mode'/>
-                            <img id="bit" src={require('../../assets/img/Ergo.png').default}alt="aneta" className='sun__mode'/>
-                            <b>{Math.round(100*ergFee)/100}</b> ERG
-
-                        </div>
-
-                    </div>
-                    <div className="feeUSD6" id="usd"> = $ {Math.round(100*ergFeeUsd)/100} </div>
-                </div>
-                <hr id="menuHR1"></hr> */}
-
-
-{/*                 <div className="flex-container">
-                    <div className="left">You Will Receive</div>
-                    <div className="right"><img id="bit" src={require('../../assets/img/Bitcoin.png').default} alt="BTC"/><b>{BTCAmount}</b> BTC</div>
-                    <div className="feeUSD7" id="usd"> = $ {Math.round(usdBtcRedeem*0.9975*100)/100} </div>
-                </div> */}
-
-
                 <div className="flex-container">
                     <div className="left">You Will Receive</div>
                     <div className="right">
