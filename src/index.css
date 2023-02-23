@@ -122,7 +122,7 @@ body.dark .dark__mode{
 
 .confContent {
     display: table;
-    margin-top: 280px;
+    margin-top: 230px;
     margin-left: 525px;
     text-align: center;
     position: absolute;  
@@ -130,7 +130,7 @@ body.dark .dark__mode{
 }
 
 body.dark .confContent{
-    border: #566474 2px solid;
+    border: #787878 2px solid;
 }
 
 @media (min-width: 1640px) and (orientation: landscape){
@@ -151,14 +151,14 @@ body.dark .confContent{
 .confWindow {
     z-index: 10;
     width: 545px;
-    height: auto; /* 389 */
+    height: auto;
     border-radius: 16px;
     background: #EEF4FF;
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.08);
 }
 
 body.dark .confWindow {
-    background: #20242D;
+    background: #141414;
     color: white;
 }
 
@@ -252,12 +252,12 @@ body.dark #txInfo a {
 }
 
 #confButton {
-    width: 486px;
+    width: 500px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 20px;
-    margin-top: 16%;
+    /* margin-top: 16%; */
     font-size: 16px;
     margin-bottom: 25px;
 }
@@ -266,9 +266,144 @@ body.dark #txInfo a {
     cursor: pointer;
 }
 
+
 body.dark #confButton {
-    background-color: #1C4574;
+    background-color: #1F509A;
     color: white;
+}
+
+#confButton:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+body.dark #confButton:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+.confWindow.btcDeposit{
+    width: 600px;
+    
+}
+
+
+.redeemConfWindow{
+    position: absolute;
+    background-color: #EEF4FF;
+    top: -100px;
+    border-radius: 16px;
+}
+
+body.dark .redeemConfWindow{
+    background-color: #141414;
+    border: #787878 2px solid;
+    
+}
+
+.titleBTC {
+    display: flex;
+    text-align: justify;
+    font-size: 24px;
+    padding-top: 24px;
+    margin-left: 15px;
+    padding-bottom: 50px;
+}
+
+.titleBTC img {
+    margin-left: 5px;
+}
+
+.titleBTC.underLine{
+    border-bottom: #1D1D1D 1px solid;
+    margin-right: 15px;
+    padding-bottom: 10px;
+}
+
+body.dark .titleBTC.underLine{
+    border-bottom: #8E8E8E 1px solid;
+}
+
+.resultBridge{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.amountBridge{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.resultBridge .card{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #DBE4F6;
+}
+
+body.dark .resultBridge .card {
+    border: #434343 solid 1px;
+    background-color: #1D1D1D;
+
+}
+
+.resultBridge .card p{
+    margin-left: 5px;
+}
+
+.arrowBridge img{
+    width: 80px;
+    margin-bottom: 40px;
+}
+
+.text1{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+}
+
+.text2{
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    padding: 18px 14px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    background-color: #DBE4F6;
+}
+
+.text3{
+    text-align: center;
+    width: 85%;
+    margin: auto;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+}
+
+
+body.dark .text2 {
+    background-color: #1D1D1D;
+}
+
+.confWindow.btcDeposit #confButton1 {
+    width: 90%;
+    font-size: 18px;
 }
 
 .confInfo {
@@ -280,6 +415,30 @@ body.dark #confButton {
 
 .redeem .confInfo{
     gap: 0px;
+}
+
+.redeem.waiting{
+    height: 330px;
+}
+
+.redeem .text2{
+    width: 95%;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 24px;
+    margin-top: 20px;
+}
+
+.text2.address{
+    width: 90%;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 26px;
+    margin-top: 20px;
+}
+
+.redeem .text{
+    margin-bottom: 40px;
 }
 
 .confSubmission .paymentSucces {
@@ -302,27 +461,23 @@ body.dark #confButton {
 
 #top_card{
     margin-top: 170px;
+    margin-left: 500px;
 }
 
-.depositBTC #checkMarkIcon{
-    top: 62%
+@media (min-width: 1640px) and (orientation: landscape){
+
+    #top_card{
+        margin-left: 650px;
+    }
 }
 
-.depositBTC svg {
-    margin: 20px 0;
+@media (min-width: 2000px) and (orientation: landscape){
+
+    #top_card{
+        margin-left: 800px;
+    }
 }
 
-.depositBTC > #idTransaction {
-    margin-bottom: 20px;
-}
-
-.depositBTC #confButton1 {
-    margin-bottom: 25px;
-}
-
-.paymentSucces #confButton1 {
-    margin-bottom: 0;
-}
 
 .depositBTC::before {
     animation: textprogress 2s ease-out;
@@ -436,17 +591,17 @@ svg {
 }
 
 body.dark #confButton1 {
-    background-color: #1C4574;
+    background-color: #1F509A;
     color: white;
 }
 
+#confButton1:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
 
-
-/*.circle, .overlay {*/
-/*    grid-area: 1 / 1;*/
-/*    left: 45%;*/
-/*}*/
-
+body.dark #confButton1:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
 
 .overlay {
     margin-left: 205px;
@@ -549,7 +704,7 @@ body.dark #confButton1 {
 /* dark mode */
 
 body.dark .dropdown .dropdown-btn {
-    background-color: #2C2E3B;
+    background-color: #141414;
     color: white;
 }
 
@@ -557,29 +712,71 @@ body.dark .dropdown .dropdown-btn {
     width: 125px;
     position: absolute;
     background-color: white;
-    color: gray;
+    color: #000000;
     text-decoration: none;
     text-align: start;
     font-size: 14px;
-    cursor: pointer;
     border-radius: 5px;
-    right: 235px;
+    right: 228px;
 
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .dropdown-content{
+        right: calc((100vw - 2000px)/2 + 235px);
+    }
 }
 
 /* dark mode */
 
 body.dark .dropdown-content {
-    background-color: #2C2E3B;
+    background-color: #141414;
     color: white;
 }
 
 .dropdown-item {
     padding: 0px 10px 10px 10px;
     border-radius: 10px;
-    cursor: pointer;
+    display: flex;
+    /* Cardano Inactive at this stage */
+    flex-direction: column;
+    gap: 10px;
+    /* Cardano Inactive at this stage */
+}
+
+/* Cardano Inactive at this stage */
+
+
+.dropdown-item .temporary{
     display: flex;
 }
+
+.dropdown-item .temporary #disabled{
+    color: gray;
+}
+
+body.dark .dropdown-item .temporary #disabled{
+    color: gray;
+}
+
+div.temporary:last-child:hover{
+    cursor: default;
+}
+
+div.temporary:first-child:hover{
+    cursor: pointer;
+    background-color: #B9DDFF;
+    border-radius: 5px;
+}
+
+body.dark div.temporary:first-child:hover{
+    background-color: #1F509A;
+}
+
+
+/* Cardano Inactive at this stage */
+
 
 .dropdown-item div{
     margin-left: 5px;
@@ -682,7 +879,7 @@ body.dark .dropdown-content {
 /* Dark Mode */
 
 body.dark .menuButton {
-    background-color: #2C2E3B;
+    background-color: #141414;
     color: white;
 }
 
@@ -769,7 +966,7 @@ body.dark .menuButton {
 /* Dark Mode */
 
 body.dark .sidebar {
-    background-color: #191B1F;
+    background-color: #141414;
 }
 
 .btnM {
@@ -822,9 +1019,6 @@ body.dark .btnM:hover {
 
 /* KYA */
 
-body.dark #kya .confWindow {
-    background: #141414;
-}
 
 #kya.confContent{
     margin-top: 110px;
@@ -867,10 +1061,6 @@ body.dark #kya .confWindow {
     margin: 15px 0;
     font-size: 14px;
 }
-
-/* .kya h2{
-    font-weight: 400;
-} */
 
 .kya ol{
     padding: 0;
@@ -946,7 +1136,7 @@ body.dark .kya p:last-child{
 
 
 body.dark .mainmenu_feedback{
-    background-color: #191B1F;
+    background-color: #141414;
 }
 
 
@@ -1009,6 +1199,7 @@ body.dark .feedback-page__content-btn {
     font-family: 'Prompt', sans-serif;
     background-color: white;
     border-radius: 15px;
+    width: 58%;
     max-width: 1300px;
     left: 400px;
     height: 664px;
@@ -1018,7 +1209,6 @@ body.dark .feedback-page__content-btn {
     position: absolute;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-right: 100px;
     margin-bottom: 50px;
 }
 
@@ -1033,7 +1223,6 @@ body.dark .feedback-page__content-btn {
 
     .mainmenu_transaction{
         left: 500px;
-        margin-right: 200px;
     }
 }
 
@@ -1048,7 +1237,7 @@ body.dark .feedback-page__content-btn {
 
 
 .mainmenu_transaction .menuHR2 {
-    width: 1180px;
+    width: 90%;
     position: absolute;
     background-color: black;
 
@@ -1056,7 +1245,7 @@ body.dark .feedback-page__content-btn {
 }
 
 body.dark .mainmenu_transaction {
-    background-color: #191B1F;
+    background-color: #141414;
     color: #FFFFFF;
 }
 
@@ -1092,7 +1281,22 @@ body.dark .mainmenu_transaction {
     margin-top:30px;
 }
 .TD1 {
-    width: 18%;
+   width: 150px
+}
+
+@media (min-width: 1640px) and (orientation: landscape){
+
+    .TD1 {
+        width: 180px;
+    }
+}
+
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .TD1 {
+        width: 250px;
+    }
 }
 
 
@@ -1118,9 +1322,9 @@ body.dark .TD1 a{
     font-size: 12.5px;
     color: #575757;
     text-align: left;
-    margin-left: 27px;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 body.dark .title2 {
@@ -1132,15 +1336,10 @@ table {
     border-bottom: 1px solid black;
 }
 
-tr {
-
-}
-
 td {
     font-size: 12px;
     padding: 10px;
     text-align: left;
-    width: 29.3%;
 
 }
 
@@ -1191,7 +1390,7 @@ td {
 }
 
 body.dark .menu_dashboard > div {
-    background-color: #191B1F;
+    background-color: #141414;
 }
 
 .menu_dashboard > .info2 {
@@ -1225,7 +1424,7 @@ body.dark .infoCluster {
 }
 
 body.dark .round {
-    background: #191B1F;
+    background: #141414;
     border: 3px solid #93CBEA;
 }
 
@@ -1276,7 +1475,7 @@ body.dark .round > h4 {
 }
 
 body.dark .menu_dash > div {
-    background-color: #191B1F;
+    background-color: #141414;
 }
 
 .menu_dash > .info2 {
@@ -1371,7 +1570,7 @@ body.dark .btcInput:focus, body.dark .btcInputAddress:focus {
 }
 
 body.dark #content1 {
-    background-color: #191B1F;
+    background-color: #141414;
     color: white;
 }
 
@@ -1387,7 +1586,7 @@ body.dark #content1 {
 }
 
 body.dark .btcInput {
-    background-color: #222429;
+    background-color: #1D1D1D;
     color: white;
 }
 
@@ -1399,7 +1598,7 @@ body.dark .btcInput {
 
 .btcInputAddress {
     width: 530px;
-    background-color: #DCE4EE;
+    background-color: #DBE4F6;
     border: none;
     border-radius: 10px;
     height: 47px;
@@ -1408,7 +1607,7 @@ body.dark .btcInput {
 }
 
 body.dark .btcInputAddress {
-    background-color: #222429;
+    background-color: #1D1D1D;
     color: white;
 }
 
@@ -1491,13 +1690,21 @@ body.dark #copyPop {
 
 }
 
+#mintButton:hover{
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
 .mainButton {
-    width: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 560px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
-    margin-top: 10%;
+    margin: auto;
+    margin-top: 30px;
     font-size: 20px;
 }
 
@@ -1506,18 +1713,80 @@ body.dark #copyPop {
 }
 
 body.dark .mainButton {
-    background-color: #184372;
+    background-color: #1F509A;
     color: white;
 }
 
 .mainButton2 {
-    width: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 560px;
     height: 65px;
     background-color: #B9DDFF;
     border: none;
     border-radius: 15px;
-    margin-top: 10%;
+    margin: auto;
+    gap: 10px;
+    margin-top: 20px;
     font-size: 20px;
+}
+
+.spinner {
+    border: 3px solid rgba(0, 0, 0, .5);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-left-color: transparent;
+    animation: spin 1s linear infinite;
+    position: absolute;
+}
+
+.spinner.mint{
+    bottom: 45px;
+    left: 220px;
+}
+
+.spinner.unwrap{
+    bottom: 40px;
+    left: 200px;
+}
+
+.spinner.conf{
+    bottom: 46px;
+    left: 177px;
+}
+
+.spinner.QR{
+    left: 140px;
+}
+
+.spinner.waiting{
+    width: 60px;
+    height: 60px;
+    border: 3px solid #76D572;
+    border-left-color: transparent;
+    position: inherit;
+    margin: 40px auto;
+}
+
+body.dark .spinner.waiting{
+    border: 3px solid #76D572;
+    border-left-color: transparent;
+}
+
+body.dark .spinner{
+    border: 3px solid rgba(255, 255, 255, 1);
+    border-left-color: transparent;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .mainButton2:hover{
@@ -1525,7 +1794,7 @@ body.dark .mainButton {
 }
 
 body.dark .mainButton2 {
-    background-color: #184372;
+    background-color: #1F509A;
     color: white;
 }
 
@@ -1556,6 +1825,72 @@ body.dark #radios{
 
 }
 
+.popupFixed{
+    background-color: #FFFFFF;
+    position: fixed;
+    width: 330px;
+    height: 130px;
+    top: 80px;
+    right: 40px;
+    z-index: 10;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 2000px) and (orientation: landscape){
+
+    .popupFixed{
+        right: calc((100vw - 2000px)/2 + 40px);
+    }
+}
+
+body.dark .popupFixed{
+    background-color: #141414;
+}
+
+.popupFixed .result{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.popupFixed .result .resultTx{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.popupFixed .result p:last-child{
+    font-size: 12.5px;
+}
+
+.popupFixed .result p{
+    margin: 0;
+}
+
+body.dark .popupFixed .result p{
+    color: #FFFFFF;
+}
+
+.popupFixed .txInfo {
+    color: #000000;
+    border: #B9DDFF 1px solid;
+    border-radius: 5px;
+    font-size: 12.5px;
+    padding: 3px 10px;
+}
+
+body.dark .popupFixed .txInfo {
+    color: #FFFFFF;
+    border: #7C7C7C 1px solid;
+}
+
 #bckgrnd,
 .labels {
     width: 304.5px;
@@ -1571,9 +1906,6 @@ body.dark #radios{
     justify-content: center;
 }
 
-.labels > b {
-
-}
 
 #bckgrnd {
     background-color: #B9DDFF;
@@ -1586,7 +1918,7 @@ body.dark #radios{
 }
 
 body.dark #bckgrnd {
-    background-color: #234877;
+    background-color: #1F509A;
 }
 
 #rad1:checked ~ #bckgrnd {
@@ -1600,6 +1932,8 @@ body.dark #bckgrnd {
     transition: transform 0.5s ease-in-out;
     border-radius: 10px;
 }
+
+
 
 .lblInp {
     text-align: end;
@@ -1622,10 +1956,32 @@ body.dark #bckgrnd {
 
 .left {
     text-align: left;
-    margin-left: 30px;
+    margin-left: 10px;
 
 }
 
+.warningBridge{
+    color: #DD524C;
+    position: absolute;
+    top: 230px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.warningBridge.redeem{
+    top:225px;
+}
+
+.warningBridge.address{
+    top: 330px;
+}
+
+.warningBridge img {
+    height: 16px;
+    margin-right: 5px;
+}
 
 
 .flex-container {
@@ -1636,15 +1992,115 @@ body.dark #bckgrnd {
 }
 
 .flex-container > div {
-    width: 270px;
+    width: 280px;
     height: 40px;
     line-height: 95px;
     font-size: 17px;
 }
 
+.right #usd {
+    position: absolute;
+    right: 38px;
+    top: 250px;
+}
+
+.bridgeFee {
+    box-sizing: border-box;
+    height: 100px;
+    width: 572px;
+    background-color: #DBE4F6;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 45px 10px;
+}
+
+.bridgeFee.unWrap{
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+}
+
+body.dark .bridgeFee div:first-child{
+    color: #D8D8D8;
+}
+
+body.dark .bridgeFee{
+    background-color: #1D1D1D;
+}
+
+.bridgeFee.unWrap.confirm{
+    width: 95%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.bridgeFee .feeItem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bridgeFee .feeItem div:first-child{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.toolTip{
+    position: absolute;
+    top:130px;
+    left: 20px;
+    background: #B9DDFF;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 22px;
+    transition: 0.5s;
+}
+
+body.dark .toolTip{
+    background: #36435A;
+}
+
+.flecha-down {
+    position: absolute;
+    bottom: -29px;
+    left: 82px;
+    width:0px;
+    height:0px;
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-top:30px solid #B9DDFF;
+    font-size:0px;
+    line-height:0px;
+}
+
+body.dark .flecha-down{
+    border-top:30px solid #36435A;
+}
+
+
+.amountFee{
+    display: flex;
+    align-items: center;
+}
+
+.addition {
+    margin: 0 10px;
+}
+
+.bridgeFee #usd {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
 .flex-containerB {
     display: flex;
-    /*flex-direction: row;*/
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -1683,7 +2139,19 @@ body.dark #menuHR1 {
     background-color: #B9DDFF;
 }
 body.dark .menu-item:hover {
-    background-color: #234877;
+    background-color: #1F509A;
+}
+
+.menu-item.active{
+    background-color: #B9DDFF;
+}
+
+body.dark .menu-item.active{
+    background-color: #1F509A;
+}
+
+body.dark .menu-item.active li{
+    color: #FFFFFF;
 }
 
 
@@ -1704,7 +2172,8 @@ ul {
 
 .mainPopup {
     width: 100%;
-    height: 1000px;
+    height: 100vh;
+    min-height: 1000px;
     position: absolute;
     top: 0%;
     z-index: 6;
@@ -1715,13 +2184,6 @@ body.dark .mainPopup {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (min-width: 1640px) and (orientation: landscape){
-
-    .mainPopup{
-        height: 100vh;
-        min-height: 1000px;
-    }
-}
 
 @media (min-width: 2000px) and (orientation: landscape){
 
@@ -1796,11 +2258,18 @@ body.dark .menuPopup {
     margin-right: 5px;
 }
 
-.qrCode {
+.backgroundQR{
+    background-color: #FFFFFF;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin: 15px 0;
+    margin: 15px auto;
+    width: 135px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
+
+
 
 div > .addressBTC {
     display: flex;
@@ -1838,8 +2307,16 @@ body.dark .addressBTC {
 }
 
 body.dark .btnPayment {
-    background-color: #214676;
+    background-color: #1F509A;
     color: white;
+}
+
+.btnPayment:hover {
+    background-color: rgba(031, 080, 154, 0.5);
+}
+
+body.dark .btnPayment:hover {
+    background-color: rgba(031, 080, 154, 0.5);
 }
 
   .btnPayment:hover{
@@ -1854,8 +2331,10 @@ body.dark .btnPayment {
 }
 
 .warning{
-    color: #FF7272;
+    color: #F7931A;
+    font-size: 24px;
 }
+
 
 .note {
     text-align: center;
@@ -1883,10 +2362,13 @@ body.dark .btnPayment {
 
 .information {
     width: 80%;
-    margin: auto;
+    margin: 15px auto 15px auto;
     text-align: center;
-    margin-bottom: 15px;
-    color: #76D572;
+}
+
+.information b{
+    color: #F7931A;
+    font-weight: 400px;
 }
 
 
@@ -1904,10 +2386,6 @@ body.dark .btnPayment {
 }
 #back:hover{
     cursor: pointer;
-}
-
-#back img{
-    /*height: 30px;*/
 }
 
 #domTxId.popup {
@@ -1964,11 +2442,11 @@ body.dark .inputTx input{
 
 
 #WRAP {
-    height: 560px;
+    height: 470px;
 }
 
 #UNWRAP {
-    height: 668px;
+    height: 550px;
 
 }
 
@@ -1989,6 +2467,8 @@ body.dark .inputTx input{
 .right {
     align-items: center;
     text-align: end;
+    box-sizing: border-box;
+    padding-right: 13px;
 
 }
 
@@ -2050,19 +2530,6 @@ body.dark .inputTx input{
 
 .vault-set-up-text {
     text-align: center;
-}
-
-.vault-amount-block {
-] width: 544 px;
-    height: 157px;
-
-    border: 0.88px solid #5C5C5C;
-    border-radius: 15px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .vault-amount-text {
@@ -2223,26 +2690,79 @@ body.dark .inputTx input{
 
     .mobile {
         display: block;
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 20px;
         font-size: 16px;
-    }
-    body.dark .mobile {
         color: white;
+        background: linear-gradient(180deg, rgba(0, 68, 105, 0) 55.42%, rgba(0, 0, 0, 0.45) 102.55%), linear-gradient(237.69deg, rgba(45, 45, 45, 0) 30.63%, rgba(188, 212, 242, 0.2) 125.87%), linear-gradient(120.81deg, rgba(133, 133, 133, 0) 31.32%, rgba(255, 215, 138, 0.2) 123.21%), linear-gradient(123.72deg, rgba(0, 44, 105, 0.5) 3.68%, rgba(82, 82, 82, 0) 66.34%), linear-gradient(238.28deg, rgba(39, 54, 133, 0.65) 0%, rgba(130, 130, 130, 0) 68.22%), #001431;
     }
 
     .mobLogo {
         width: 179px;
+        margin-top: 40px;
     }
 
     .textMob {
-        margin-top: 135px;
-        text-align: center;
-        max-width: 600px;
+        margin-top: 70px;
+        width: 100%;
+        max-width: 500px;
+        background: rgba(0, 0, 0, 0.32);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+    .textMob h2{
+        width: 80%;
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .infoMob{
+        margin: 30px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .infoMob h3{
+        width: 60%;
+        text-align: center;
+        max-width: 400px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .buttonMob{
+        width: 260px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1F509A;
+        border-radius: 8px;
+    }
+
+    .buttonMob a{
+        color: white;
+    }
+
+    .mobBack{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-width: 400px;
+    }
+    @media (min-width: 400px){
+        .mobBack{
+            left: calc((100vw - 400px)/2);
+        }
+    }
+
 }
 
 
@@ -2253,61 +2773,23 @@ body.dark .inputTx input{
     left: 53%;
     top: 35%;
 }
-.feeUSD1 {
-    text-align: right;
 
-    position: absolute;
-    left: 50%;
-    top: 44%;
-}
+#usd.feeUSD1 {
+       top: 350px;
+   }
 
 .feeUSD2 {
-    text-align: right;
-
-    position: absolute;
-    left: 53%;
-    top: 47%;
+    top: 400px;
 }
 
 .feeUSD3 {
     text-align: right;
 
     position: absolute;
-    left: 53%;
-    top: 47%;
+    right: 33px;
+    top: 495px;
 }
 
-.feeUSD4 {
-    text-align: right;
-
-    position: absolute;
-    left: 53%;
-    top: 59%;
-}
-
-.feeUSD5 {
-    text-align: right;
-
-    position: absolute;
-    left: 50%;
-    top: 54%;
-}
-
-.feeUSD6 {
-    text-align: right;
-
-    position: absolute;
-    left: 50%;
-    top: 64%;
-}
-
-.feeUSD7 {
-    text-align: right;
-
-    position: absolute;
-    left: 50%;
-    top: 79%;
-}
 
 .feeUSD8 {
     text-align: right;
@@ -2323,7 +2805,7 @@ body.dark .inputTx input{
     position: absolute;
     left: 50%;
     top: 50.5%;
-}
+} */
 
 #usd {
     font-size: 16px;
@@ -2559,7 +3041,7 @@ body.dark .infoTitleDash {
 }
 
 body.dark #radiosTrans {
-    background-color: #2C2E3B;
+    background-color: #141414;
     color: #ffffff;
 }
 
@@ -2611,7 +3093,7 @@ body.dark #radiosTrans {
 }
 
 body.dark #bckgrnd1 {
-    background-color: #184372;
+    background-color: #1F509A;
 }
 
 

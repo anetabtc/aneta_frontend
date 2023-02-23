@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import close from "../src/pages/img/dark_close.png";
+import close from "../../src/assets/img/dark_close.png";
 
 
-function KYA() {
+function Kya() {
 
     const [connection, setConnection] = useState(false)
     const [accept, setAccept] = useState(true)
@@ -11,14 +11,13 @@ function KYA() {
       window.addEventListener("load", ()=>{
         let connect = JSON.parse(localStorage.getItem('address'));
         setTimeout(()=>{
-            connect == null ? setAccept(false) : "";;
+            connect == null ? setAccept(false) : "";
         },2000);
     })
 
     useEffect(()=>{
         let connect = JSON.parse(localStorage.getItem('address'));
-        connect == null ? setConnection(false) : setConnection(true) 
-        connection ? console.log("Esta conectado"):console.log("NO Esta conectado");
+        connect == null ? setConnection(false) : setConnection(true);
     })
 
     const acceptFunction = () => {
@@ -63,4 +62,4 @@ function KYA() {
   )
 }
 
-export default KYA
+export default Kya

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
-import KYA from "../KYA";
+
 
 
 function Navbar() {
@@ -18,7 +18,6 @@ function Navbar() {
 
     async function handleWalletConnect() {
 
-        console.log("useraddd", userAddress)
         if (userAddress === null) {
             const isConnected = await ergoConnector.nautilus.connect();
 
@@ -45,7 +44,6 @@ function Navbar() {
     async function disconnect() {
 
         let disconnected = await ergoConnector.nautilus.disconnect();
-        console.log("disconnected: ", disconnected)
         localStorage.removeItem('address');
         setUserAddress(JSON.parse(localStorage.getItem('address')))
 
@@ -77,10 +75,10 @@ function Navbar() {
     // }, [])
     return (
         <div>
-            <KYA/>
+            
             <div id="navbar_menu">
                 <div id="imgLogonav">
-                    {dark ? <img src={require('./img/logo_dark.png').default} alt="aneta" className="imgLogo"/> : <img src={require('./img/logo.png').default} alt="aneta" className="imgLogo"/>}
+                    {dark ? <img src={require('../assets/img/logo_dark.png').default} alt="aneta" className="imgLogo"/> : <img src={require('../assets/img/logo.png').default} alt="aneta" className="imgLogo"/>}
                 </div>
                 <div id="head">
                     <a target="_blank" href="https://bitcoinfaucet.uo1.net/">
@@ -96,7 +94,7 @@ function Navbar() {
                     <div><DropDown selected={selected} setSelected={setSelected}/></div>
                     <div>
                         <div className="menuButton" onClick={handleWalletConnect}>
-                            {userAddress ? <img id="nautilusimg" alt="aneta" src={require('./img/nautilus.png').default}/> : ""}
+                            {userAddress ? <img id="nautilusimg" alt="aneta" src={require('../assets/img/nautilus.png').default}/> : ""}
                             {userAddress ? userAddress.substring(0, 4) + '...' + userAddress.substring(userAddress.length - 4, userAddress.length) : 'Connect wallet'}
                         </div>
                         {visible ? <div className="menuButton" id="disconnect" onClick={disconnect}>Disconnect</div> : "" }
@@ -105,7 +103,7 @@ function Navbar() {
                     </div>
                     <div>
                         <button type="button" className="menuButton" id="sun" onClick={darkModeToggle}>
-                            {dark ? <img alt="aneta" src={require('./img/Vector_dark.png').default} id="Vector"/>: <img alt="aneta" src={require('./img/Vector.png').default} id="Vector"/>}
+                            {dark ? <img alt="aneta" src={require('../assets/img/Vector_dark.png').default} id="Vector"/>: <img alt="aneta" src={require('../assets/img/Vector.png').default} id="Vector"/>}
                         </button>
                     </div>
                 </div>
@@ -120,18 +118,6 @@ function Navbar() {
 function DropDown({selected, setSelected}) {
     const [isActive, setIsActive] = useState(false)
 
-    // function DownUp() {
-    //     if (isActive) {
-    //         return (
-    //             <img id="down" alt="aneta" src={require('./img/up.png')}/>
-    //         )
-    //     } else {
-    //         return (
-    //             <img id="down" alt="aneta" src={require('./img/down.png')}/>
-    //         )
-    //     }
-    // }
-
     const [dark, setDark] = useState("")
     useEffect(()=>{ localStorage.getItem('dark-mode') === 'true' ? setDark(true): setDark(false);},);
 
@@ -144,13 +130,14 @@ function DropDown({selected, setSelected}) {
             document.getElementById("drop-content").style.width = "135px"
         }
     }
-    const options = ["Ergo", "Cardano"];
+    /*const options = ["Ergo", "Cardano"];*/
+    const options = ["Ergo"]; /* Cardano Inactive at this stage */
     return (
         <div className="dropdown"  id={"dropdown"} >
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 <div className="imgwrapper">
 
-                    {dark ? <img src={require('./img/' + selected + '_dark.png').default} id="Vector"/>:<img src={require('./img/' + selected + '.png').default} id="Vector"/>}
+                    {dark ? <img src={require('../assets/img/' + selected + '_dark.png').default} id="Vector"/>:<img src={require('../assets/img/' + selected + '.png').default} id="Vector"/>}
 
                 </div>
                 <div>{selected}</div>
@@ -166,16 +153,28 @@ function DropDown({selected, setSelected}) {
                         <div onClick={(e) => {
                             setSelected(option)
                             setIsActive(false)
-                            changeWidth()
                         }}
                              className="dropdown-item">
-                            <div>{dark ? <img className="nav-icon" src={require('./img/' + option + '_dark.png').default} alt="aneta"
-                                      id="Vector"/>:<img className="nav-icon" src={require('./img/' + option + '.png').default} alt="aneta"
+                            <div className="temporary"> {/* This div unique Cardano Inactive at this stage */}
+                            <div>{dark ? <img className="nav-icon" src={require('../assets/img/' + option + '_dark.png').default} alt="aneta"
+                                      id="Vector"/>:<img className="nav-icon" src={require('../assets/img/' + option + '.png').default} alt="aneta"
                                       id="Vector"/>}</div>
                             <div>{option}</div>
                             {selected === option && (
                                 <div className="selected"></div>
                             )}
+                            </div>{/* This div unique Cardano Inactive at this stage */}
+                            {/* Cardano Inactive at this stage */}
+                            
+                            <div className="temporary">
+                                <div>{dark ? <img className="nav-icon" src={require('../assets/img/' + 'Cardano' + '_dark.png').default} alt="aneta"
+                                    id="Vector"/>:<img className="nav-icon" src={require('../assets/img/' + 'Cardano' + '.png').default} alt="aneta"
+                                    id="Vector"/>}
+                                </div>
+                                <div id="disabled">Cardano</div>
+                            </div>
+                            
+                            {/* Cardano Inactive at this stage */}
                         </div>
                     ))}
                 </div>

@@ -3,27 +3,31 @@ import QRCode from "react-qr-code";
 import React from 'react';
 import {useState} from "react";
 import {useEffect, useRef} from "react";
-import {formatData} from "./Utils";
+import {formatData} from "../services/utils/Utils";
 import BTCDeposit from "./BTCDeposit";
 
 ///////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
 // Add a second document with a generated ID.
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import firebaseConfig from "./firebaseConfig";
+import {addDoc, collection, getDocs} from "firebase/firestore";
+import firebaseConfig from "../../../firebase/firebaseConfig";
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 /////////////////////////////////
+const VAULT_BTC_WALLET_ADDRESS = "n4YDfMoo1i3rzF8XEq9zyfo8TFfnroLjy6"
 
-function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
+function QRWindow({eBTC}) {
+
+
+    const [nautilusAddress, setNautilusAddress] = useState(JSON.parse(localStorage.getItem('address')));
 
     const [address, setAddress] = useState('');
-    const [window, setWindow] = useState(true);
+    const [windows, setWindows] = useState(true);
     const [currencies, setcurrencies] = useState([]);
     const [pair, setpair] = useState("");
     const [price, setprice] = useState("0.00");
@@ -36,16 +40,15 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
     const [paymentWindow, setPaymentWindow] = useState(true)
 
     const navigateToBTCDeposit = async () => {
-        console.log('payment is done!')
 
-        console.log("Writing to Firebase")
         // TODO Write to DB
+
         try {
             const docRef = await addDoc(collection(db, "payments"), {
-                erg_address: nautilusaddress,
+                erg_address: nautilusAddress,
                 amount: eBTC,
                 datetime: new Date().toUTCString(),
-                btc_tx_id: btcTxId.toString(),
+
                 info: "Mint Order Paid"
             });
 
@@ -59,19 +62,16 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
 
 
-    const getVaultAddress = () => {
 
-        fetch("http://localhost:5004/getVaultAddress")
-            .then(res1 => res1.json())
-            .then((vaultAddress) => {
-                console.log("Vault address: " + JSON.stringify(vaultAddress))
-                setAddress(vaultAddress.address)
-            })
+    const getVaultAddress = () => {
+        setAddress(VAULT_BTC_WALLET_ADDRESS)
     }
 
 
     useEffect(() => {
         getVaultAddress()
+        
+        writeToDB()
 
         ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
         let pairs = [];
@@ -162,17 +162,15 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
 
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-   /* const handleChangeBtcTxId = event => {
-        setBTCTxId(event.target.value);
-    } */
+    /* const handleChangeBtcTxId = event => {
+         setBTCTxId(event.target.value);
+     } */
 
     return (
         <div>
-            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC} bridgeFee={bridgeFee} nautilusaddress={nautilusaddress} btcTxID={btcTxId} anetaID={anetaID}/>}
+            {paymentWindow ? <PaymentInfo/> : <BTCDeposit eBTC={eBTC}/>}
         </div>
     )
-    
-
 
 
     function PaymentInfo() {
@@ -181,56 +179,69 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
         const [copy, setCopy] = useState("");
         const [confirmation, setConfirmation] = useState("");
 
-        
+        const [spinQR, setSpinQR] = useState(false)
 
-        function check(text){
+
+        function check(text) {
             let regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{10,60}$/;
             return (regex.test(text));
         }
 
         const btnConfirmation = () => {
             const inputBTCTx = document.querySelector(".btctxid").value;
-            if(check(inputBTCTx)){
+            if (check(inputBTCTx)) {
                 setBTCTxId(inputBTCTx);
-            }else{
-                setConfirmation("false") 
+            } else {
+                setConfirmation("false")
             }
-              
+
         }
-        useEffect(()=>{
-            if(btcTxId==""){
 
-            }else{
-                console.log("this is id" + btcTxId)
-                navigateToBTCDeposit() 
-            }
-        })  
-
-        function btnCopy(){
+        function btnCopy() {
             const btnCopy = document.querySelector(".labelAdd").childNodes[0]
-                 navigator.clipboard.writeText(btnCopy.innerHTML)
-                 setCopy("true");
-                setTimeout(()=>{
-                    setCopy("false");
-                },1500);
+            navigator.clipboard.writeText(btnCopy.innerHTML)
+            setCopy("true");
+            setTimeout(() => {
+                setCopy("false");
+            }, 1500);
         }
 
-        function btnDomTxIdOn(){
+        function btnDomTxIdOn() {
             setDomTxId("true")
             setConfirmation("true")
         }
-        function btnDomTxIdOff(){
+
+        function btnDomTxIdOff() {
             setDomTxId("false")
         }
 
+        function confirmQR(){
+
+                setSpinQR(true)
+                setTimeout(()=>{
+                    setSpinQR(false);
+                },3000);
+                setTimeout(()=>{
+                    navigateToBTCDeposit()
+                },2000);
+                
+            
+        }
+
+        const refreshPage = () => {
+            window.location.reload();
+        }
 
 
         return (
             <div className="mainPopup">
                 <div className="popup">
                     <div className="divLabel">
-                        <img id="bitcoin" src={require('../img/Bitcoin.png').default} alt="aneta"/> <label
+                        <img id="bitcoin" src={require('../../../assets/img/Bitcoin.png').default} alt="aneta"/> <label
                         className="labelMain"> BTC Deposit</label>
+                        <div id="close">
+                            <img src={require('../../../assets/img/dark_close.png').default} alt="X" onClick={refreshPage} />
+                        </div>
                     </div>
                     <div className="menuPopup">
                         <label className="SingleTrans1">Using Moonshine Wallet,<br/>Send {eBTC} BTC</label>
@@ -239,64 +250,64 @@ function Mint({eBTC, bridgeFee, nautilusaddress, anetaID}) {
                         <div type="text" className="addressBTC">
                             <p className="labelAdd" onClick={btnCopy}>
                                 <p>{address}</p>
-                                <img id="copy" className="sun__mode" src={require('../img/copy.png').default} alt="copy"/>
-                                <img id="copy" className="dark__mode" src={require('../img/copy_dark.png').default} alt="copy"/>
-                                {copy === "true" ? <p id="copyPop">Copied</p>: ""}
+                                <img id="copy" className="sun__mode"
+                                     src={require('../../../assets/img/copy.png').default} alt="copy"/>
+                                <img id="copy" className="dark__mode"
+                                     src={require('../../../assets/img/copy_dark.png').default} alt="copy"/>
+                                {copy === "true" ? <p id="copyPop">Copied</p> : ""}
                             </p>
                         </div>
                         <div className="timing">
                             <p/><CountdownTimer targetDate={dateTimeAfterThreeDays}></CountdownTimer><p/>
                         </div>
-                        <div className="information"><b>
-                            Add the ERG address used to pay the bridge fee in the metadata of this BTC transaction in your Moonshine Wallet. This ERG address will receive eBTC.</b>
-                        </div>
                         <div className="attention">
-                            <span><b className="warning">Attention:</b> The ERG address you add to the metadata of your BTC deposit <b>must be the same</b> as the ERG address you used to pay the bridge fee</span>
+                            <span><b className="warning">Attention:</b></span>
                         </div>
-                        <div className='qrCode'>
-                            <QRCode
-                                id="qrCode"
-                                value={address}
-                                size={120}
-                                level={"L"}
-                                includeMargin={false}
-                            />
+                        <div className="information">
+                            <b>Add your ERG address</b> in the “Message (Optional)” section in your Moonshine Wallet
+                            before sending this deposit. This ERG address will receive eBTC. If you do not add your ERG
+                            address into the message section of this transaction, you will not receive eBTC.
+                        </div>
+                        <div className="backgroundQR">
+                            <div className='qrCode'>
+                                <QRCode
+                                    id="qrCode"
+                                    value={address}
+                                    size={120}
+                                    level={"L"}
+                                />
+                            </div>
                         </div>
                         <div className="note">
                             <span><b>Note:</b> Payments may take over 10 minutes to confirm. Don't worry, your funds are safe :)</span>
                         </div>
-                        
-                        <button className="btnPayment" onClick={btnDomTxIdOn}>I have sent the deposit</button>
-                        
-                        
+
+                        <button className="btnPayment" onClick={confirmQR}>{spinQR ? <div className='spinner QR'></div>:""}I have sent the deposit</button>
+
+
                     </div>
                 </div>
-                {domTxId === "true" ?
-                    <div className="mainPopup">
-                        <div id="domTxId" className="popup">
-                            <div className="divLabel">
-                                <div id="back" onClick={btnDomTxIdOff}><img src={require('../img/arrow.png').default} alt="arrow" />
-                                </div>
-                                <label className="labelMain">Enter BTC TX ID</label>
-                            </div>
-                            <div className="menuPopup">
-                                <p>Enter the BTC Transaction ID from the BTC deposit transaction you just submitted</p>
-                                <p className="title">BTC Transaction ID</p>
-                                <div className="inputTx">
-                                    <input type="text" className="btctxid" size="30" placeholder="BTC Transaction ID (from Moonshine Wallet)"  /* value={btcTxId} onChange={handleChangeBtcTxId} */ required/>
-                                    <button className="btnPayment" onClick={btnConfirmation} type="submit">Continue</button>
-                                    {confirmation != "false"?"":<p className="confirmation">Please! Entrer the valid BTC Transaction ID</p>}
-                                </div>
-                            </div>
-                        </div>
-                    </div>: ""}
+
             </div>
         )
     }
 
+    async function writeToDB() {
+        // TODO Write to DB
 
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                erg_address: nautilusAddress,
+                amount: eBTC,
+                datetime: new Date().toUTCString(),
+                info: "Mint Order Submitted"
+            });
+
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
 }
 
 
-
-export default Mint
+export default QRWindow
